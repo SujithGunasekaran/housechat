@@ -1,0 +1,25 @@
+.hero_main
+{
+    width : 100%;
+    padding : 130px 20px 130px 20px;
+}
+.hero_my_name
+{
+    font-size: 3.5rem;
+    letter-spacing: 0.050rem;
+    text-align: center;
+}
+.hero_my_info
+{
+    padding : 20px 0px;
+    font-family: 'Montserrat';
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.030rem;
+}
+
+@media(max-width:750px){
+    .hero_my_name{font-size: 1.8rem;}
+    .hero_main{padding: 100px 2px;}
+}

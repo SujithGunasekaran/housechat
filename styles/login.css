@@ -1,0 +1,134 @@
+.login_main_container
+{
+    width : 100%;
+    padding : 100px 20px 100px 20px;
+}
+.login_heading
+{
+    text-align: center;
+    color: var(--text-black);
+    font-family: 'Montserrat';
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: 0.030rem;
+}
+.login_heading_line
+{
+    margin : 0px 0px 0px 5px;
+    width : 50px;
+    border-bottom: 3px solid black;
+}
+.login_form_container
+{
+    margin : 15px 0px;
+}
+.login_form_input_field
+{
+    margin : 20px 0px;
+    border : 1px solid rgb(214, 213, 213);
+    height : 45px;
+    width : 100%;
+    padding : 0px 7px;
+    font-family: 'Roboto';
+    font-size: 0.940rem;
+    letter-spacing: 0.030rem;
+    border-radius: 5px;
+    color : rgb(36, 35, 35);
+    transition: 0.5s all ease-in-out;
+}
+.login_form_input_field::placeholder
+{
+    color : rgb(165, 165, 165);
+    font-size: .800rem;
+    letter-spacing: 0.040rem;
+}
+.login_form_input_field:focus
+{
+    outline: none;
+    border : 1px solid rgb(72, 141, 231);
+}
+.login_form_input_field:hover
+{
+    border : 1px solid rgb(72, 141, 231);
+}
+.login_form_input_field_error
+{
+    margin : 20px 0px;
+    border : 1px solid rgb(216, 16, 16);
+    height : 45px;
+    width : 100%;
+    padding : 0px 7px;
+    font-family: 'Roboto';
+    font-size: 0.940rem;
+    letter-spacing: 0.030rem;
+    border-radius: 5px;
+    color : rgb(36, 35, 35);
+    transition: 0.5s all ease-in-out;
+}
+.login_form_input_field_error:focus{
+    outline: none;
+}
+.login_form_input_error
+{
+    padding : 0px 5px;
+    color: var(--text-error);
+    font-family: 'Montserrat';
+    font-size: 0.650rem;
+    font-weight: 500;
+    letter-spacing: 0.030rem;
+}
+.login_form_forgot_password
+{
+    text-align: right;
+    padding : 10px 3px 10px 0px;
+    color: var(--text-blue);
+    font-family: 'Montserrat';
+    font-size: 0.880rem;
+    font-weight: 500;
+    letter-spacing: 0.040rem;
+}
+.login_form_btn
+{
+    border : none;
+    width : 100%;
+    margin : 20px 0px;
+    border-radius: 5px;
+    height : 45px;
+    background-color: var(--text-blue);
+    color : white;
+    font-family: 'Montserrat';
+    font-size: 0.880rem;
+    font-weight: 500;
+    letter-spacing: 0.040rem;
+    transition: 0.5s all ease-in-out;
+}
+.login_form_btn:focus{
+    outline: none;
+}
+.login_form_btn:hover
+{
+    cursor: pointer;
+    background-color: rgb(24, 112, 212);
+}
+.login_form_having_account
+{
+    text-align: center;
+    padding : 15px 0px;
+    color: var(--text-black);
+    font-family: 'Montserrat';
+    font-size: 0.880rem;
+    font-weight: 500;
+    letter-spacing: 0.040rem;
+}
+.login_form_having_account a
+{
+    padding-left: 5px;
+    color : var(--text-blue);
+    text-decoration: none;
+}
+.login_form_having_account a:focus{
+    text-decoration: none;
+}
+@media(max-width:750px){
+    .login_main_container{ padding: 100px 2px; }
+}
