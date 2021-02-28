@@ -2,68 +2,8 @@ import axios from 'axios';
 import PortfolioCard from '../../Components/portfolio/PortfolioCard';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { useLazyQuery } from '@apollo/client';
-import { GET_PORTFOLIOS } from '../../apollo/queries';
-
-// const fetchPortfolios = async () => {
-//     const query = `
-//         query Portfolios {
-//             portfolios {
-//                 _id,
-//                 title,
-//                 company,
-//                 companyWebsite,
-//                 location,
-//                 jobTitle,
-//                 description,
-//                 startDate,
-//                 endDate
-//             }
-//         }
-//     `
-//     try {
-//         let responseData = await axios.post('http://localhost:3000/graphql', { query })
-//         return responseData.data.data;
-//     }
-//     catch (err) {
-//         console.log(err);
-//     }
-// }
-
-const graphCreatePortfolio = async () => {
-    const query = `
-    mutation CreatePortfolio{
-        createPortfolio(input : {
-            title: "New Title",
-            company: "New Compant",
-            companyWebsite: "https://www.google.com",
-            location: "New Location",
-            jobTitle: "New JobTitle",
-            description: "New Description",
-            startDate: "01/01/2010",
-            endDate: "01/01/2011"
-        })
-        {
-            _id
-            title
-            company
-            companyWebsite
-            location
-            jobTitle
-            description
-            startDate
-            endDate
-        }
-      }
-    `;
-    try {
-        let responseData = await axios.post('http://localhost:3000/graphql', { query });
-        return responseData.data.data.createPortfolio;
-    }
-    catch (err) {
-        return err;
-    }
-}
+import { useLazyQuery, useMutation } from '@apollo/client';
+import { GET_PORTFOLIOS, CREATE_PORTFOLIO } from '../../apollo/queries';
 
 const graphUpdatePortfolio = async (id) => {
     const query = `
@@ -120,23 +60,23 @@ export default function Portfolio() {
 
     const [portfolios, setPortfolios] = useState([]);
 
-    const [getPortfolios, { loading, data }] = useLazyQuery(GET_PORTFOLIOS)
+    const [getPortfolios, { loading, data }] = useLazyQuery(GET_PORTFOLIOS);
+    const [createPortfolio] = useMutation(CREATE_PORTFOLIO, {
+        update(cache, { data: { createPortfolio } }) {
+            const { portfolios } = cache.readQuery({ query: GET_PORTFOLIOS });
+            cache.writeQuery({
+                query: GET_PORTFOLIOS,
+                data: { portfolios: [...portfolios, createPortfolio] }
+            })
+        }
+    })
 
     useEffect(() => {
         getPortfolios();
     }, [])
 
-    if (data && portfolios.length === 0) setPortfolios(data.portfolios);
-
-    const createPortfolio = async () => {
-        try {
-            let responseData = await graphCreatePortfolio()
-            let newPortfolio = [...portfolios, responseData];
-            setPortfolios(newPortfolio);
-        }
-        catch (err) {
-            console.log(err);
-        }
+    if (data && (portfolios.length === 0 || data.portfolios.length !== portfolios.length)) {
+        setPortfolios(data.portfolios);
     }
 
     const updatePortfolio = async (id) => {
