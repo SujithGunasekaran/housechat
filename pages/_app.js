@@ -7,12 +7,19 @@ import '../styles/topicPost.css';
 import '../styles/cv.css';
 import '../styles/signup.css';
 import '../styles/login.css';
+import 'isomorphic-unfetch';
 import Header from '../Components/Header';
 import Head from 'next/head';
+import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
+
+const client = new ApolloClient({
+  uri: 'http://localhost:3000/graphql',
+  cache: new InMemoryCache()
+})
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <ApolloProvider client={client} >
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
@@ -22,7 +29,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <Header />
       <Component {...pageProps} />
-    </>
+    </ApolloProvider>
   )
 }
 
