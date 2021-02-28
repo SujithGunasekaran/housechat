@@ -1,11 +1,10 @@
-import { useQuery } from '@apollo/client';
-import { GET_PORTFOLIOBYID } from '../../apollo/queries';
+import { useGetPortfolioById } from '../../apollo/actions';
 import withApollo from '../../hoc/withApollo';
 import { getDataFromTree } from '@apollo/client/react/ssr';
 
 function PortfolioDetails({ query }) {
 
-    const { data } = useQuery(GET_PORTFOLIOBYID, { variables: { id: query.id } });
+    const { data } = useGetPortfolioById(query.id);
     const portfolio = data && data.portfolio || {};
     return (
         <div className="portfolio_main">

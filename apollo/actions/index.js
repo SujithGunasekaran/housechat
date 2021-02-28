@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from '@apollo/client';
-import { GET_PORTFOLIOS, CREATE_PORTFOLIO, UPDATE_PORTFOLIO, DELETE_PORTFOLIO } from '../queries';
+import { GET_PORTFOLIOS, CREATE_PORTFOLIO, UPDATE_PORTFOLIO, DELETE_PORTFOLIO, GET_PORTFOLIOBYID } from '../queries';
 
+export const useGetPortfolioById = (id) => useQuery(GET_PORTFOLIOBYID, { variables: { id: id } });
 
 export const useGetPortfolios = () => useQuery(GET_PORTFOLIOS);
 
