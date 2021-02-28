@@ -16,3 +16,19 @@ export const GET_PORTFOLIOBYID = gql`
         }
     }
 `;
+
+export const GET_PORTFOLIOS = gql`
+    query Portfolios {
+        portfolios {
+            _id,
+            title,
+            company,
+            companyWebsite,
+            location,
+            jobTitle,
+            description,
+            startDate,
+            endDate
+        }
+    }
+`;
