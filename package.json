@@ -1,5 +1,5 @@
 {
-  "name": "sujithportfolio",
+  "name": "forum",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,7 @@
     "dev": "nodemon server/index.js"
   },
   "dependencies": {
+    "@apollo/client": "^3.3.11",
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "apollo-server-express": "^2.21.0",
@@ -16,6 +17,7 @@
     "express": "^4.17.1",
     "express-graphql": "^0.12.0",
     "graphql": "^15.5.0",
+    "isomorphic-unfetch": "^3.1.0",
     "next": "10.0.7",
     "nodemon": "^2.0.7",
     "react": "17.0.1",
