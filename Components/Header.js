@@ -28,7 +28,7 @@ const Header = () => {
                             <HeaderLink href="/Portfolio">Portfolio</HeaderLink>
                         </li>
                         <li>
-                            <HeaderLink href="/forum">Forum</HeaderLink>
+                            <HeaderLink href="/forum/Categories">Forum</HeaderLink>
                         </li>
                         <li>
                             <HeaderLink href="/Cv">Cv</HeaderLink>
