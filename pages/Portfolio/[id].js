@@ -1,16 +1,23 @@
-import { useQuery } from '@apollo/client';
+import { useQuery, useLazyQuery } from '@apollo/client';
 import { GET_PORTFOLIOBYID } from '../../apollo/queries';
+import { useEffect, useState } from 'react';
 
 export default function PortfolioDetails({ query }) {
 
-    const { loading, error, data } = useQuery(GET_PORTFOLIOBYID, { variables: { id: query.id } });
+    const [portfolio, setPortfolio] = useState(null);
 
-    const { portfolio } = data ? data : {};
+    const [getPortfolioById, { loading, data }] = useLazyQuery(GET_PORTFOLIOBYID);
+
+    useEffect(() => {
+        getPortfolioById({ variables: { id: query.id } })
+    }, [])
+
+    if (data && !portfolio) setPortfolio(data.portfolio);
 
     return (
         <div className="portfolio_main">
             {
-                loading ? <div>Loading....</div> :
+                loading || !portfolio ? <div>Loading....</div> :
                     portfolio ?
                         <div className="container-fluid">
                             <div className="row">
@@ -69,7 +76,7 @@ export default function PortfolioDetails({ query }) {
                                 </div>
                             </div>
                         </div>
-                        : portfolio === null ? <div>Invalid Url</div> : <div>Loading Data...</div>
+                        : portfolio === null ? <div>Invalid Url</div> : null
             }
         </div>
     )
