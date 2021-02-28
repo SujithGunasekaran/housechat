@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { GET_PORTFOLIOS, CREATE_PORTFOLIO } from '../../apollo/queries';
+import withApollo from '../../Hoc/withApollo';
+import { getDataFromTree } from '@apollo/react-ssr';
 
 const graphUpdatePortfolio = async (id) => {
     const query = `
@@ -56,7 +58,7 @@ const graphDeletePortfolio = async (id) => {
 }
 
 
-export default function Portfolio() {
+function Portfolio() {
 
     const [portfolios, setPortfolios] = useState([]);
 
@@ -139,3 +141,5 @@ export default function Portfolio() {
         </div>
     )
 }
+
+export default withApollo(Portfolio, { getDataFromTree });

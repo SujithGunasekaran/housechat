@@ -1,8 +1,10 @@
 import { useQuery, useLazyQuery } from '@apollo/client';
 import { GET_PORTFOLIOBYID } from '../../apollo/queries';
 import { useEffect, useState } from 'react';
+import withApollo from '../../Hoc/withApollo';
+import { getDataFromTree } from '@apollo/react-ssr';
 
-export default function PortfolioDetails({ query }) {
+function PortfolioDetails({ query }) {
 
     const [portfolio, setPortfolio] = useState(null);
 
@@ -85,3 +87,5 @@ export default function PortfolioDetails({ query }) {
 PortfolioDetails.getInitialProps = ({ query }) => {
     return { query };
 }
+
+export default withApollo(PortfolioDetails, { getDataFromTree });
