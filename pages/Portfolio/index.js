@@ -1,32 +1,34 @@
 import axios from 'axios';
 import PortfolioCard from '../../Components/portfolio/PortfolioCard';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLazyQuery } from '@apollo/client';
+import { GET_PORTFOLIOS } from '../../apollo/queries';
 
-const fetchPortfolios = async () => {
-    const query = `
-        query Portfolios {
-            portfolios {
-                _id,
-                title,
-                company,
-                companyWebsite,
-                location,
-                jobTitle,
-                description,
-                startDate,
-                endDate
-            }
-        }
-    `
-    try {
-        let responseData = await axios.post('http://localhost:3000/graphql', { query })
-        return responseData.data.data;
-    }
-    catch (err) {
-        console.log(err);
-    }
-}
+// const fetchPortfolios = async () => {
+//     const query = `
+//         query Portfolios {
+//             portfolios {
+//                 _id,
+//                 title,
+//                 company,
+//                 companyWebsite,
+//                 location,
+//                 jobTitle,
+//                 description,
+//                 startDate,
+//                 endDate
+//             }
+//         }
+//     `
+//     try {
+//         let responseData = await axios.post('http://localhost:3000/graphql', { query })
+//         return responseData.data.data;
+//     }
+//     catch (err) {
+//         console.log(err);
+//     }
+// }
 
 const graphCreatePortfolio = async () => {
     const query = `
@@ -114,9 +116,17 @@ const graphDeletePortfolio = async (id) => {
 }
 
 
-export default function Portfolio({ data }) {
+export default function Portfolio() {
 
-    const [portfolios, setPortfolios] = useState(data.portfolios);
+    const [portfolios, setPortfolios] = useState([]);
+
+    const [getPortfolios, { loading, data }] = useLazyQuery(GET_PORTFOLIOS)
+
+    useEffect(() => {
+        getPortfolios();
+    }, [])
+
+    if (data && portfolios.length === 0) setPortfolios(data.portfolios);
 
     const createPortfolio = async () => {
         try {
@@ -167,29 +177,25 @@ export default function Portfolio({ data }) {
                     <button onClick={createPortfolio} >CreatePortfolio</button>
                     <div className="row">
                         {
-                            portfolios.map((portfolioInfo) => (
-                                <div className="col-md-4" key={portfolioInfo._id}>
-                                    <Link
-                                        href='/Portfolio/[id]'
-                                        as={`/Portfolio/${portfolioInfo._id}`}
-                                    >
-                                        <a>
-                                            <PortfolioCard portfolioInfo={portfolioInfo} />
-                                        </a>
-                                    </Link>
-                                    <button onClick={() => updatePortfolio(portfolioInfo._id)}>Update Portfolio</button>
-                                    <button onClick={() => deletePortfolio(portfolioInfo._id)}>Delete Portfolio</button>
-                                </div>
-                            ))
+                            loading ? <div>Loading....</div> :
+                                portfolios.map((portfolioInfo) => (
+                                    <div className="col-md-4" key={portfolioInfo._id}>
+                                        <Link
+                                            href='/Portfolio/[id]'
+                                            as={`/Portfolio/${portfolioInfo._id}`}
+                                        >
+                                            <a>
+                                                <PortfolioCard portfolioInfo={portfolioInfo} />
+                                            </a>
+                                        </Link>
+                                        <button onClick={() => updatePortfolio(portfolioInfo._id)}>Update Portfolio</button>
+                                        <button onClick={() => deletePortfolio(portfolioInfo._id)}>Delete Portfolio</button>
+                                    </div>
+                                ))
                         }
                     </div>
                 </div>
             </div>
         </div>
     )
-}
-
-Portfolio.getInitialProps = async () => {
-    let portfolios = await fetchPortfolios();
-    return { data: { ...portfolios } };
 }
