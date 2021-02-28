@@ -32,3 +32,29 @@ export const GET_PORTFOLIOS = gql`
         }
     }
 `;
+
+export const CREATE_PORTFOLIO = gql`
+    mutation CreatePortfolio{
+        createPortfolio(input : {
+            title: "New Title",
+            company: "New Compant",
+            companyWebsite: "https://www.google.com",
+            location: "New Location",
+            jobTitle: "New JobTitle",
+            description: "New Description",
+            startDate: "01/01/2010",
+            endDate: "01/01/2011"
+        })
+        {
+            _id
+            title
+            company
+            companyWebsite
+            location
+            jobTitle
+            description
+            startDate
+            endDate
+        }
+    }
+`;
