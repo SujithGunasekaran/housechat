@@ -7,7 +7,6 @@ import '../styles/topicPost.css';
 import '../styles/cv.css';
 import '../styles/signup.css';
 import '../styles/login.css';
-import 'isomorphic-unfetch';
 import Header from '../Components/Header';
 import Head from 'next/head';
 

@@ -1,11 +1,10 @@
 import axios from 'axios';
 import PortfolioCard from '../../Components/portfolio/PortfolioCard';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import { useLazyQuery, useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { GET_PORTFOLIOS, CREATE_PORTFOLIO } from '../../apollo/queries';
-import withApollo from '../../Hoc/withApollo';
-import { getDataFromTree } from '@apollo/react-ssr';
+import withApollo from '../../hoc/withApollo';
+import { getDataFromTree } from '@apollo/client/react/ssr';
 
 const graphUpdatePortfolio = async (id) => {
     const query = `
@@ -58,11 +57,9 @@ const graphDeletePortfolio = async (id) => {
 }
 
 
-function Portfolio() {
+const Portfolio = () => {
 
-    const [portfolios, setPortfolios] = useState([]);
-
-    const [getPortfolios, { loading, data }] = useLazyQuery(GET_PORTFOLIOS);
+    const { data } = useQuery(GET_PORTFOLIOS);
     const [createPortfolio] = useMutation(CREATE_PORTFOLIO, {
         update(cache, { data: { createPortfolio } }) {
             const { portfolios } = cache.readQuery({ query: GET_PORTFOLIOS });
@@ -73,39 +70,16 @@ function Portfolio() {
         }
     })
 
-    useEffect(() => {
-        getPortfolios();
-    }, [])
-
-    if (data && (portfolios.length === 0 || data.portfolios.length !== portfolios.length)) {
-        setPortfolios(data.portfolios);
-    }
-
     const updatePortfolio = async (id) => {
-        try {
-            let responseData = await graphUpdatePortfolio(id);
-            let index = portfolios.findIndex((portfolioInfo) => portfolioInfo._id === responseData._id);
-            let newPortfolio = portfolios.slice();
-            newPortfolio[index] = { ...newPortfolio[index], ...responseData };
-            setPortfolios(newPortfolio);
-        }
-        catch (err) {
-            console.log(err);
-        }
+        await graphUpdatePortfolio(id);
+
     }
 
     const deletePortfolio = async (id) => {
-        try {
-            let responseID = await graphDeletePortfolio(id);
-            let index = portfolios.findIndex((portfolioId) => portfolioId._id === responseID)
-            let newPortfolio = portfolios.slice();
-            newPortfolio.splice(index, 1);
-            setPortfolios(newPortfolio);
-        }
-        catch (err) {
-            console.log(err);
-        }
+        await graphDeletePortfolio(id);
     }
+
+    const portfolios = data ? data.portfolios : [];
 
     return (
         <div>
@@ -119,21 +93,21 @@ function Portfolio() {
                     <button onClick={createPortfolio} >CreatePortfolio</button>
                     <div className="row">
                         {
-                            loading ? <div>Loading....</div> :
-                                portfolios.map((portfolioInfo) => (
-                                    <div className="col-md-4" key={portfolioInfo._id}>
-                                        <Link
-                                            href='/Portfolio/[id]'
-                                            as={`/Portfolio/${portfolioInfo._id}`}
-                                        >
-                                            <a>
-                                                <PortfolioCard portfolioInfo={portfolioInfo} />
-                                            </a>
-                                        </Link>
-                                        <button onClick={() => updatePortfolio(portfolioInfo._id)}>Update Portfolio</button>
-                                        <button onClick={() => deletePortfolio(portfolioInfo._id)}>Delete Portfolio</button>
-                                    </div>
-                                ))
+                            // loading ? <div>Loading....</div> :
+                            portfolios.map((portfolioInfo) => (
+                                <div className="col-md-4" key={portfolioInfo._id}>
+                                    <Link
+                                        href='/Portfolio/[id]'
+                                        as={`/Portfolio/${portfolioInfo._id}`}
+                                    >
+                                        <a>
+                                            <PortfolioCard portfolioInfo={portfolioInfo} />
+                                        </a>
+                                    </Link>
+                                    <button onClick={() => updatePortfolio(portfolioInfo._id)}>Update Portfolio</button>
+                                    <button onClick={() => deletePortfolio(portfolioInfo._id)}>Delete Portfolio</button>
+                                </div>
+                            ))
                         }
                     </div>
                 </div>
