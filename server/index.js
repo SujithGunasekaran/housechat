@@ -18,6 +18,11 @@ const { portfolioTypes } = require('./graphql/Types/PortfolioTypes');
 
 const { portfolioQuerys, portfolioMutations } = require('./graphql/Resolver/PortfolioResolver');
 
+//mongodb connection
+
+const mongodb = require('./database/mongodb');
+mongodb.connect();
+
 
 app.prepare().then(() => {
 
