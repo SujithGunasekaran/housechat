@@ -6,7 +6,8 @@
     "test": "next dev",
     "build": "next build",
     "start": "next start",
-    "dev": "nodemon server/index.js"
+    "dev": "nodemon server/index.js",
+    "populateDB": "node server/fakeDB/populate.js"
   },
   "dependencies": {
     "@apollo/client": "^3.3.11",
