@@ -1,3 +1,5 @@
+const Portfolios = require('../../database/model/portfolioModel');
+
 const data = {
     Portfolio: [
         {
@@ -38,15 +40,11 @@ const data = {
 
 
 exports.portfolioQuerys = {
-    hello: () => {
-        return 'Hello Welcome Graphql Project';
-    },
     portfolio: (root, { id }) => {
-        const portfolio = data.Portfolio.find(portfolioID => portfolioID._id === id);
-        return portfolio;
+        return Portfolios.findById(id);
     },
     portfolios: () => {
-        return data.Portfolio;
+        return Portfolios.find({});
     }
 }
 
