@@ -42,8 +42,8 @@ export const CREATE_PORTFOLIO = gql`
             location: "New Location",
             jobTitle: "New JobTitle",
             description: "New Description",
-            startDate: "01/01/2010",
-            endDate: "01/01/2011"
+            startDate : "2010-01-01:23:59Z"
+            endDate: "2011-01-01:23:59Z"
         })
         {
             _id
@@ -68,8 +68,8 @@ export const UPDATE_PORTFOLIO = gql`
             location: "Updated Location",
             jobTitle: "Updated JobTitle",
             description: "Updated Description",
-            startDate: "01/01/2010",
-            endDate: "01/01/2011"
+            startDate : "2010-01-01:23:59Z"
+            endDate: "2011-01-01:23:59Z"
         })
         {
             _id

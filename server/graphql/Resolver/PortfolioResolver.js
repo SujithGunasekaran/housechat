@@ -49,23 +49,16 @@ exports.portfolioQuerys = {
 }
 
 exports.portfolioMutations = {
-    createPortfolio: (root, { input }) => {
-        const _id = require('crypto').randomBytes(10).toString('hex');
-        const newPortfolio = { ...input };
-        newPortfolio._id = _id;
-        data.Portfolio = [...data.Portfolio, newPortfolio];
-        return newPortfolio;
+    createPortfolio: async (root, { input }) => {
+        const createdPortfolios = await Portfolios.create(input);
+        return createdPortfolios;
     },
-    updatePortfolio: (root, { id, input }) => {
-        const index = data.Portfolio.findIndex((portfolioID) => portfolioID._id === id)
-        const oldPortfolio = data.Portfolio[index];
-        const updatedPortfolio = { ...oldPortfolio, ...input };
-        data.Portfolio[index] = updatedPortfolio;
+    updatePortfolio: async (root, { id, input }) => {
+        const updatedPortfolio = await Portfolios.findOneAndUpdate({ _id: id }, input, { new: true });
         return updatedPortfolio;
     },
-    deletePortfolio: (root, { id }) => {
-        let index = data.Portfolio.findIndex((portfolioData) => portfolioData._id === id);
-        data.Portfolio.splice(index, 1);
-        return id;
+    deletePortfolio: async (root, { id }) => {
+        const deletedPortfolio = await Portfolios.findOneAndRemove({ _id: id });
+        return deletedPortfolio._id;
     }
 }
