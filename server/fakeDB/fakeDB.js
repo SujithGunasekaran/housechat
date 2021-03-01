@@ -1,12 +1,18 @@
-
+const { Portfolio } = require('./data');
+const Portfolios = require('../database/model/portfolioModel');
 class fakeDB {
 
-    populate() {
-
+    async cleanData() {
+        await Portfolios.deleteMany({});
     }
 
-    clear() {
+    async addData() {
+        await Portfolios.create(Portfolio);
+    }
 
+    async populate() {
+        await this.cleanData();
+        await this.addData();
     }
 
 }

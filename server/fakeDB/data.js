@@ -1,7 +1,6 @@
 const data = {
     Portfolio: [
         {
-            _id: "1",
             title: 'Job in Netcentric',
             company: 'Netcentric',
             companyWebsite: 'https://www.google.com',
@@ -12,7 +11,6 @@ const data = {
             endDate: '01/01/2016'
         },
         {
-            _id: "2",
             title: 'Job in Siemens',
             company: 'Siemens',
             companyWebsite: 'https://www.google.com',
@@ -23,7 +21,6 @@ const data = {
             endDate: '01/01/2013'
         },
         {
-            _id: "3",
             title: 'Work in USA',
             company: 'WhoKnows',
             companyWebsite: 'https://www.google.com',
