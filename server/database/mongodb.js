@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const config = require('../config/dev');
 
-const Portfolios = require('../database/model/portfolioModel');
+const Portfolios = require('../database/model/DB_portfolioModel');
 
 exports.connect = () => {
     mongoose.connect(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, () => {
