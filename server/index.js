@@ -1,5 +1,6 @@
 const express = require('express');
 const next = require('next');
+const mongoose = require('mongoose');
 
 // Apollo server
 
@@ -9,6 +10,10 @@ const port = process.env.PORT || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
+
+// Graphql Model
+
+const PortfolioModel = require('./graphql/model/PortfolioModel');
 
 // Types
 
@@ -59,7 +64,14 @@ app.prepare().then(() => {
 
     // To Setting up an apollo server
 
-    const apolloServer = new ApolloServer({ typeDefs, resolvers });
+    const apolloServer = new ApolloServer({
+        typeDefs, resolvers,
+        context: () => ({
+            models: {
+                PortfolioModel: new PortfolioModel(mongoose.model('portfolio'))
+            }
+        })
+    });
     apolloServer.applyMiddleware({ app: server });
 
     server.all('*', (req, res) => {
