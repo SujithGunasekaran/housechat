@@ -6,12 +6,15 @@ class UserModel {
         this.Model = model;
     }
 
-    signIn() {
+    signIn(signUpData) {
         return 'Signin...'
     };
 
-    signUp() {
-        return 'Signup.....'
+    signUp(signUpData) {
+        if (signUpData.password !== signUpData.passwordConfirmation) {
+            throw new Error('Password must be same as passwordConfirmation');
+        }
+        return this.Model.create(signUpData);
     };
 
     signOut() {

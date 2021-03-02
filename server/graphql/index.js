@@ -12,10 +12,12 @@ const UserModel = require('./model/Gql_UserModel');
 // Types
 
 const { portfolioTypes } = require('./Types/PortfolioTypes');
+const { userTypes } = require('./Types/UserTypes');
 
 // Resolver
 
-const { portfolioQuerys, portfolioMutations, userMutations } = require('./Resolver/PortfolioResolver');
+const { portfolioQuerys, portfolioMutations } = require('./Resolver/PortfolioResolver');
+const { userMutations } = require('./Resolver/UserResolver');
 
 
 exports.createApolloServer = () => {
@@ -25,6 +27,7 @@ exports.createApolloServer = () => {
     const typeDefs = gql`
 
         ${portfolioTypes}
+        ${userTypes}
 
         type Query{
             portfolio(id : ID) : Portfolio,
@@ -37,7 +40,7 @@ exports.createApolloServer = () => {
             deletePortfolio(id : ID) : ID
 
             signIn : String,
-            signUp : String,
+            signUp(input : signUpInput) : String,
             signOut : String
         }
     `;
