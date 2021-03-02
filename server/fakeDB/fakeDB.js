@@ -1,13 +1,16 @@
-const { Portfolio } = require('./data');
-const Portfolios = require('../database/model/portfolioModel');
+const { Portfolios, Users } = require('./data');
+const Portfolio = require('../database/model/DB_portfolioModel');
+const User = require('../database/model/DB_userModel');
 class fakeDB {
 
     async cleanData() {
-        await Portfolios.deleteMany({});
+        await User.deleteMany({});
+        await Portfolio.deleteMany({});
     }
 
     async addData() {
-        await Portfolios.create(Portfolio);
+        await User.create(Users);
+        await Portfolio.create(Portfolios);
     }
 
     async populate() {
