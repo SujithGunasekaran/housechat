@@ -6,7 +6,8 @@ const { ApolloServer, gql } = require('apollo-server-express');
 
 // Graphql Model
 
-const PortfolioModel = require('./model/PortfolioModel');
+const PortfolioModel = require('./model/Gql_PortfolioModel');
+const UserModel = require('./model/Gql_UserModel');
 
 // Types
 
@@ -14,7 +15,7 @@ const { portfolioTypes } = require('./Types/PortfolioTypes');
 
 // Resolver
 
-const { portfolioQuerys, portfolioMutations } = require('./Resolver/PortfolioResolver');
+const { portfolioQuerys, portfolioMutations, userMutations } = require('./Resolver/PortfolioResolver');
 
 
 exports.createApolloServer = () => {
@@ -34,6 +35,10 @@ exports.createApolloServer = () => {
             createPortfolio(input : portfolioInput) : Portfolio,
             updatePortfolio(id : ID, input : portfolioInput) : Portfolio,
             deletePortfolio(id : ID) : ID
+
+            signIn : String,
+            signUp : String,
+            signOut : String
         }
     `;
 
@@ -44,7 +49,8 @@ exports.createApolloServer = () => {
             ...portfolioQuerys
         },
         Mutation: {
-            ...portfolioMutations
+            ...portfolioMutations,
+            ...userMutations
         }
     }
 
@@ -54,7 +60,8 @@ exports.createApolloServer = () => {
         typeDefs, resolvers,
         context: () => ({
             models: {
-                PortfolioModel: new PortfolioModel(mongoose.model('portfolio'))
+                PortfolioModel: new PortfolioModel(mongoose.model('portfolio')),
+                UserModel: new UserModel()
             }
         })
     });
