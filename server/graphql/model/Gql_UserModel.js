@@ -2,9 +2,9 @@
 
 class UserModel {
 
-    // constructor(){
-    //     this.Model = model;
-    // }
+    constructor(model) {
+        this.Model = model;
+    }
 
     signIn() {
         return 'Signin...'
