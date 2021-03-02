@@ -22,3 +22,15 @@ exports.portfolioMutations = {
         return deletedPortfolio._id;
     }
 }
+
+exports.userMutations = {
+    signIn: (root, args, context) => {
+        return context.models.UserModel.signIn();
+    },
+    signUp: (root, args, context) => {
+        return context.models.UserModel.signUp();
+    },
+    signOut: (root, args, context) => {
+        return context.models.UserModel.signOut();
+    }
+}
