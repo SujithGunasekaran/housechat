@@ -28,6 +28,7 @@
     "next-with-apollo": "^5.1.1",
     "nodemon": "^2.0.7",
     "passport": "^0.4.1",
+    "passport-strategy": "^1.0.0",
     "react": "17.0.1",
     "react-dom": "17.0.1"
   }
