@@ -9,7 +9,7 @@ class UserModel {
     async signIn(signInData, context) {
         try {
             const user = await context.authenticate(signInData);
-            return user;
+            return `Userdata : ${user.username}`;
         }
         catch (err) {
             return err;

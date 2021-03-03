@@ -3,14 +3,15 @@ const passport = require('passport');
 const authenticateUserData = (userData) => {
 
     return new Promise((resolve, reject) => {
-        console.log("calling authenticateUserData");
 
-        const done = (err, user) => {
-            if (err) {
-                return reject(new Error(err))
+        const done = (error, user) => {
+            if (error) {
+                return reject(new Error(error))
             }
             if (user) {
                 return resolve(user);
+            } else {
+                return reject(new Error('Invalid Password or Email'));
             }
         }
 
