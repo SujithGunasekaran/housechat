@@ -6,8 +6,12 @@ class UserModel {
         this.Model = model;
     }
 
-    signIn(signUpData) {
-        return 'Signin...'
+    signIn(signInData, context) {
+        const isUserAuthenticated = context.authenticate(signInData);
+        if (isUserAuthenticated) {
+            console.log("Success");
+        }
+        return 'Signin Output';
     };
 
     signUp(signUpData) {

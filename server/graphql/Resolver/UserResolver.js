@@ -1,6 +1,6 @@
 exports.userMutations = {
-    signIn: (root, args, context) => {
-        return context.models.UserModel.signIn();
+    signIn: (root, { input }, context) => {
+        return context.models.UserModel.signIn(input, context);
     },
     signUp: async (root, { input }, context) => {
         const createdUser = await context.models.UserModel.signUp(input);
