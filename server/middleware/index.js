@@ -1,7 +1,10 @@
 const config = require('../config/dev');
 const session = require('express-session');
+const passport = require('passport');
 
 exports.initMiddleware = (server, mongodb) => {
+
+    require('./passport').initPassportMiddleware(passport);
 
     const sessionInfo = {
         name: 'Portfolio-Session',
