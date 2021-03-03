@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 const config = require('../config/dev');
 
 require('../database/model/DB_portfolioModel');
@@ -15,3 +17,12 @@ exports.connect = () => {
             console.log("Mongodb Connected successfully");
         })
 };
+
+exports.initializeMongodbSession = () => {
+    const store = new MongoDBStore({
+        uri: config.mongoURI,
+        collection: 'portfolioSession'
+    });
+
+    return store;
+}

@@ -15,6 +15,8 @@ app.prepare().then(() => {
 
     const server = express();
 
+    require('./middleware').initMiddleware(server, mongodb);
+
     const apolloServer = require('./graphql').createApolloServer();
     apolloServer.applyMiddleware({ app: server });
 
