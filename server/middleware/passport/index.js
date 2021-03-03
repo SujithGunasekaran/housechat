@@ -16,7 +16,18 @@ exports.initPassportMiddleware = (passport) => {
             if (!user) {
                 return done(null, false); // ( error, data ) => null (error) and false (user);
             }
-            return done(null, user);
+
+            user.validatePassword(userData.password, (error, result) => {
+                if (error) {
+                    return done(error);
+                }
+                if (!result) {
+                    done(null, false);
+                }
+
+                return done(null, user);
+            })
+
         })
 
     }))
