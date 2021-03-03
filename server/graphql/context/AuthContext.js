@@ -15,8 +15,8 @@ const authenticateUserData = (userData) => {
             }
         }
 
-        const authenticateUserData = passport.authenticate('graphql', userData, done)
-        authenticateUserData();
+        const authenticateData = passport.authenticate('graphql', userData, done)
+        authenticateData();
     })
 
 }
