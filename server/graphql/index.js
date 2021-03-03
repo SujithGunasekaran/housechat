@@ -19,12 +19,15 @@ const { userTypes } = require('./Types/UserTypes');
 const { portfolioQuerys, portfolioMutations } = require('./Resolver/PortfolioResolver');
 const { userMutations } = require('./Resolver/UserResolver');
 
+// graphql context
+
+const { buildAuthContext } = require('./context/AuthContext');
 
 exports.createApolloServer = () => {
 
     // We need to construct typeDefinition. Is same as schema in graphql but in Apollo typedefs.
 
-    const typeDefs = gql`
+    const typeDefs = gql(`
 
         ${portfolioTypes}
         ${userTypes}
@@ -39,11 +42,11 @@ exports.createApolloServer = () => {
             updatePortfolio(id : ID, input : portfolioInput) : Portfolio,
             deletePortfolio(id : ID) : ID
 
-            signIn : String,
+            signIn(input : signInInput) : String,
             signUp(input : signUpInput) : String,
             signOut : String
         }
-    `;
+    `);
 
     // Apollo Resolver Query is used to manage query Resolver, Mutation is used to manage create, update, delete like this
 
@@ -62,6 +65,7 @@ exports.createApolloServer = () => {
     const apolloServer = new ApolloServer({
         typeDefs, resolvers,
         context: () => ({
+            ...buildAuthContext(),
             models: {
                 PortfolioModel: new PortfolioModel(mongoose.model('portfolio')),
                 UserModel: new UserModel(mongoose.model('User'))
