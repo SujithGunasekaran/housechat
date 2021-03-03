@@ -6,12 +6,14 @@ class UserModel {
         this.Model = model;
     }
 
-    signIn(signInData, context) {
-        const isUserAuthenticated = context.authenticate(signInData);
-        if (isUserAuthenticated) {
-            console.log("Success");
+    async signIn(signInData, context) {
+        try {
+            const user = await context.authenticate(signInData);
+            return user;
         }
-        return 'Signin Output';
+        catch (err) {
+            return err;
+        }
     };
 
     signUp(signUpData) {
