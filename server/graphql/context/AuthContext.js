@@ -1,6 +1,6 @@
 const passport = require('passport');
 
-const authenticateUserData = (userData) => {
+const authenticateUserData = (req, userData) => {
 
     return new Promise((resolve, reject) => {
 
@@ -9,6 +9,7 @@ const authenticateUserData = (userData) => {
                 return reject(new Error(error))
             }
             if (user) {
+                req.helloWorld();
                 return resolve(user);
             } else {
                 return reject(new Error('Invalid Password or Email'));
@@ -22,11 +23,11 @@ const authenticateUserData = (userData) => {
 }
 
 
-exports.buildAuthContext = () => {
+exports.buildAuthContext = (req) => {
 
     const auth = {
         authenticate: (userData) => {
-            return authenticateUserData(userData);
+            return authenticateUserData(req, userData);
         }
     }
     return auth;

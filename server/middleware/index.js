@@ -17,4 +17,11 @@ exports.initMiddleware = (server, mongodb) => {
 
     server.use(session(sessionInfo));
 
+    server.use((req, res, next) => {
+        req.helloWorld = () => {
+            console.log("hello world");
+        }
+        next();
+    })
+
 }
