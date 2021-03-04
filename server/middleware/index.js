@@ -18,5 +18,5 @@ exports.initMiddleware = (server, mongodb) => {
     server.use(session(sessionInfo));
 
     server.use(passport.initialize());
-
+    server.use(passport.session());
 }

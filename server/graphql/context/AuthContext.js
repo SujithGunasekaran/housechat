@@ -31,7 +31,9 @@ exports.buildAuthContext = (req) => {
         authenticate: (userData) => {
             return authenticateUserData(req, userData);
         },
-        logout: () => req.logout()
+        logout: () => req.logout(),
+        isAuthenticated: () => req.isAuthenticated(),
+        getUser: () => req.user
     }
     return auth;
 }

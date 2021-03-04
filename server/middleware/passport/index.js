@@ -13,6 +13,12 @@ exports.initPassportMiddleware = (passport) => {
             done(null, user._id)
         })
 
+        passport.deserializeUser((id, done) => {
+            User.findById(id, (error, user) => {
+                done(error, user);
+            })
+        })
+
         User.findOne({ email: userData.email }, (err, user) => {
             if (err) {
                 return done(err);
