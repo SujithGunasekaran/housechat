@@ -23,8 +23,14 @@ class UserModel {
         return this.Model.create(signUpData);
     };
 
-    signOut() {
-        return 'Signout....'
+    signOut(context) {
+        try {
+            context.logout();
+            return true;
+        }
+        catch (err) {
+            return false;
+        }
     };
 }
 

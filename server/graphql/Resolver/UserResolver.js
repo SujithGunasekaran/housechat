@@ -7,6 +7,6 @@ exports.userMutations = {
         return createdUser._id;
     },
     signOut: (root, args, context) => {
-        return context.models.UserModel.signOut();
+        return context.models.UserModel.signOut(context);
     }
 }

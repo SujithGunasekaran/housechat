@@ -30,7 +30,8 @@ exports.buildAuthContext = (req) => {
     const auth = {
         authenticate: (userData) => {
             return authenticateUserData(req, userData);
-        }
+        },
+        logout: () => req.logout()
     }
     return auth;
 }
