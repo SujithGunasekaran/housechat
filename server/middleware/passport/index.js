@@ -9,6 +9,10 @@ exports.initPassportMiddleware = (passport) => {
         // 1. Find user in db if user exist verify user password
         // if user is verified call done.
 
+        passport.serializeUser((user, done) => {
+            done(null, user._id)
+        })
+
         User.findOne({ email: userData.email }, (err, user) => {
             if (err) {
                 return done(err);
@@ -22,7 +26,7 @@ exports.initPassportMiddleware = (passport) => {
                     return done(error);
                 }
                 if (!result) {
-                    done(null, false);
+                    return done(null, false);
                 }
 
                 return done(null, user);
