@@ -5,8 +5,7 @@ import '../styles/portfolio.css';
 import '../styles/forumCategories.css';
 import '../styles/topicPost.css';
 import '../styles/cv.css';
-import '../styles/signup.css';
-import '../styles/login.css';
+import '../styles/form.css';
 import Header from '../Components/Header';
 import Head from 'next/head';
 
