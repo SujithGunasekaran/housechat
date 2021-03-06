@@ -2,7 +2,7 @@ import useForm from '../Hooks/useForm';
 import LoginForm from '../Components/Forms/LoginForm';
 
 export default function Login() {
-    const { formField, handleInputFieldChange, handleFormSubmit } = useForm('Login');
+    const { formField, handleInputFieldChange } = useForm();
     return (
         <div className="form_main_container">
             <div className="container-fluid">
@@ -13,7 +13,6 @@ export default function Login() {
                             <LoginForm
                                 formField={formField}
                                 handleInputFieldChange={handleInputFieldChange}
-                                handleFormSubmit={handleFormSubmit}
                             />
                         </div>
                     </div>

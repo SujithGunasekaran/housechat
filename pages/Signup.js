@@ -1,9 +1,22 @@
 import SignupForm from '../Components/Forms/SignupForm';
 import useForm from '../Hooks/useForm';
+import withApollo from '../hoc/withApollo';
+import { useSignup } from '../apollo/actions';
+import Redirect from '../Components/Redirect';
 
-export default function Signup() {
+function Signup() {
 
-    const { formField, handleInputFieldChange, handleFormSubmit } = useForm('Signin');
+    const { formField, handleInputFieldChange } = useForm('Signup');
+
+    const [setUserData, { data, error }] = useSignup(formField);
+
+    if (data && data.signUp) {
+        return (
+            <Redirect
+                path='/Login'
+            />
+        )
+    }
 
     return (
         <div className="form_main_container">
@@ -15,7 +28,10 @@ export default function Signup() {
                             <SignupForm
                                 formField={formField}
                                 handleInputFieldChange={handleInputFieldChange}
-                                handleFormSubmit={handleFormSubmit}
+                                onFormSubmit={(e) => {
+                                    e.preventDefault();
+                                    setUserData(formField)
+                                }}
                             />
                         </div>
                     </div>
@@ -24,3 +40,5 @@ export default function Signup() {
         </div>
     )
 }
+
+export default withApollo(Signup)
