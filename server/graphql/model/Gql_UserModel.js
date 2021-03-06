@@ -16,11 +16,26 @@ class UserModel {
         }
     };
 
-    signUp(signUpData) {
+    async signUp(signUpData) {
+        let data = ['username', 'email', 'password', 'passwordConfirmation'];
+        let emptyDataErrorMessage = ''
         if (signUpData.password !== signUpData.passwordConfirmation) {
             throw new Error('Password must be same as passwordConfirmation');
         }
-        return this.Model.create(signUpData);
+        try {
+            return await this.Model.create(signUpData);
+        }
+        catch (err) {
+            if (err.code === 11000) {
+                throw new Error('User with provided email already exists!');
+            }
+            data.map((fieldName) => {
+                if (err.message.includes(fieldName)) {
+                    emptyDataErrorMessage += fieldName + ' ';
+                }
+            })
+            if (emptyDataErrorMessage) throw new Error(`Please Enter the following Fields ${emptyDataErrorMessage}`)
+        }
     };
 
     signOut(context) {

@@ -3,6 +3,7 @@ import { useState } from 'react';
 const useForm = () => {
 
     const [formField, setFormField] = useState({})
+    const [formError, setFormError] = useState('')
 
     const handleInputFieldChange = (e) => {
         setFormField({
@@ -11,7 +12,7 @@ const useForm = () => {
         })
     }
 
-    return { formField, handleInputFieldChange }
+    return { formField, formError, setFormError, handleInputFieldChange }
 
 }
 

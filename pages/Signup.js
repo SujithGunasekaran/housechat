@@ -6,16 +6,26 @@ import Redirect from '../Components/Redirect';
 
 function Signup() {
 
-    const { formField, handleInputFieldChange } = useForm('Signup');
+    const { formField, formError, setFormError, handleInputFieldChange } = useForm('Signup');
 
-    const [setUserData, { data, error }] = useSignup(formField);
+    const [setUserData] = useSignup(formField);
 
-    if (data && data.signUp) {
-        return (
-            <Redirect
-                path='/Login'
-            />
-        )
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const { data } = await setUserData(formField)
+            if (data && data.signUp) {
+                return <Redirect path='/Login' />
+            }
+        }
+        catch (err) {
+            if (JSON.parse(JSON.stringify(err)).graphQLErrors.length > 0) {
+                setFormError(JSON.parse(JSON.stringify(err)).graphQLErrors[0].message);
+            }
+            else {
+                setFormError('Something went wrong please try again...!')
+            }
+        }
     }
 
     return (
@@ -27,11 +37,9 @@ function Signup() {
                         <div className="form_container">
                             <SignupForm
                                 formField={formField}
+                                formError={formError}
                                 handleInputFieldChange={handleInputFieldChange}
-                                onFormSubmit={(e) => {
-                                    e.preventDefault();
-                                    setUserData(formField)
-                                }}
+                                onFormSubmit={handleFormSubmit}
                             />
                         </div>
                     </div>
