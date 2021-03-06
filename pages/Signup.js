@@ -19,8 +19,7 @@ function Signup() {
             }
         }
         catch (err) {
-            console.log(JSON.parse(JSON.stringify(err)))
-            if (JSON.parse(JSON.stringify(err)).graphQLErrors.length > 0) {
+            if (JSON.parse(JSON.stringify(err)).graphQLErrors && JSON.parse(JSON.stringify(err)).graphQLErrors.length > 0) {
                 setFormError(JSON.parse(JSON.stringify(err)).graphQLErrors[0].message);
             }
             else {

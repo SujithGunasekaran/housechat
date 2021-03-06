@@ -1,13 +1,37 @@
 import useForm from '../Hooks/useForm';
 import LoginForm from '../Components/Forms/LoginForm';
+import { useSignin } from '../apollo/actions';
+import withApollo from '../hoc/withApollo';
+import RedirectComponent from '../Components/Redirect';
 
-export default function Login() {
+function Login() {
 
-    const { formField, handleInputFieldChange } = useForm();
+    const { formField, formError, formSuccess, setFormSuccess, setFormError, handleInputFieldChange } = useForm();
 
-    const handleLoginFormSubmit = (e) => {
+    // Mutations
+
+    const [signIn] = useSignin();
+
+    const handleLoginFormSubmit = async (e) => {
         e.preventDefault();
-        console.log(formField);
+        try {
+            const { data } = await signIn({ variables: formField });
+            if (data && data.signIn) {
+                setFormSuccess(true);
+            }
+        }
+        catch (err) {
+            if (JSON.parse(JSON.stringify(err)).graphQLErrors && JSON.parse(JSON.stringify(err)).graphQLErrors.length > 0) {
+                setFormError(JSON.parse(JSON.stringify(err)).graphQLErrors[0].message);
+            }
+            else {
+                setFormError('Something went wrong please try again...!')
+            }
+        }
+    }
+
+    if (formSuccess) {
+        return <RedirectComponent path="/" />
     }
 
     return (
@@ -21,6 +45,7 @@ export default function Login() {
                                 formField={formField}
                                 handleInputFieldChange={handleInputFieldChange}
                                 handleLoginFormSubmit={handleLoginFormSubmit}
+                                formError={formError}
                             />
                         </div>
                     </div>
@@ -29,3 +54,5 @@ export default function Login() {
         </div>
     )
 }
+
+export default withApollo(Login);

@@ -107,4 +107,20 @@ export const SIGNUP = gql`
             passwordConfirmation : $passwordConfirmation
         })
     }
+`;
+
+export const SIGN_IN = gql`
+    mutation Signin(
+        $email : String!
+        $password : String!
+    ){
+        signIn(input : {
+            email : $email
+            password : $password
+        }){
+            _id
+            username
+            role
+        }
+    }
 `
