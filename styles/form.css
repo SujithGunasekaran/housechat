@@ -129,6 +129,19 @@
 .form_having_account a:focus{
     text-decoration: none;
 }
+
+.form_error
+{
+    margin : 5px 0px;
+    background-color: rgb(245, 220, 220);
+    color : red;
+    padding : 10px 15px;
+    font-family: 'Montserrat';
+    font-size: 0.820rem;
+    font-weight: 500;
+    letter-spacing: 0.040rem;
+}
+
 @media(max-width:750px){
     .form_main_container{ padding: 100px 2px; }
 }
