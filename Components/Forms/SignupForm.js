@@ -1,12 +1,11 @@
 import Link from 'next/link';
 
-
 const SignupForm = (props) => {
 
-    const { formField, handleInputFieldChange, handleFormSubmit } = props;
+    const { formField, handleInputFieldChange, onFormSubmit } = props;
 
     return (
-        <form onSubmit={handleFormSubmit}>
+        <form onSubmit={onFormSubmit}>
             <input
                 className='form_input_field'
                 type="text"

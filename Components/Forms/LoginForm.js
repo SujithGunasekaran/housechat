@@ -3,10 +3,10 @@ import Link from 'next/link';
 
 const LoginForm = (props) => {
 
-    const { formField, handleInputFieldChange, handleFormSubmit } = props;
+    const { formField, handleInputFieldChange } = props;
 
     return (
-        <form onSubmit={handleFormSubmit}>
+        <form>
             <input
                 className='form_input_field'
                 type="text"
