@@ -34,7 +34,7 @@ class UserModel {
                     emptyDataErrorMessage += fieldName + ' ';
                 }
             })
-            if (emptyDataErrorMessage) throw new Error(`Please Enter the following Fields ${emptyDataErrorMessage}`)
+            if (emptyDataErrorMessage) throw new Error(`Please Enter ${emptyDataErrorMessage}`)
         }
     };
 

@@ -2,23 +2,24 @@ import SignupForm from '../Components/Forms/SignupForm';
 import useForm from '../Hooks/useForm';
 import withApollo from '../hoc/withApollo';
 import { useSignup } from '../apollo/actions';
-import Redirect from '../Components/Redirect';
+import RedirectComponent from '../Components/Redirect';
 
 function Signup() {
 
-    const { formField, formError, setFormError, handleInputFieldChange } = useForm('Signup');
+    const { formField, formError, formSuccess, setFormSuccess, setFormError, handleInputFieldChange } = useForm('Signup');
 
     const [setUserData] = useSignup(formField);
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await setUserData(formField)
+            const { data } = await setUserData();
             if (data && data.signUp) {
-                return <Redirect path='/Login' />
+                setFormSuccess(true);
             }
         }
         catch (err) {
+            console.log(JSON.parse(JSON.stringify(err)))
             if (JSON.parse(JSON.stringify(err)).graphQLErrors.length > 0) {
                 setFormError(JSON.parse(JSON.stringify(err)).graphQLErrors[0].message);
             }
@@ -27,6 +28,8 @@ function Signup() {
             }
         }
     }
+
+    if (formSuccess) return <RedirectComponent path="/Login" />
 
     return (
         <div className="form_main_container">
