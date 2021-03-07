@@ -47,13 +47,7 @@ class UserModel {
 
     signOut(context) {
         try {
-            // console.log("Before logout --------")
-            // console.log("Is Authenticated", context.isAuthenticated())
-            // console.log("user", context.getUser())
             context.logout();
-            // console.log("After logout --------")
-            // console.log("Is Authenticated", context.isAuthenticated())
-            // console.log("user", context.getUser())
             return true;
         }
         catch (err) {
