@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const LoginForm = (props) => {
 
-    const { formField, formError, handleInputFieldChange, handleLoginFormSubmit } = props;
+    const { formField, formError, handleInputFieldChange, handleLoginFormSubmit, loading } = props;
 
     return (
         <form onSubmit={handleLoginFormSubmit}>
@@ -24,7 +24,7 @@ const LoginForm = (props) => {
                 onChange={handleInputFieldChange}
             />
             <div className="form_forgot_password">Forgot Password ?</div>
-            <button className="form_btn">Sign in</button>
+            <button disabled={loading ? true : false} className="form_btn">{loading ? 'Signing in....' : 'Signin'}</button>
             {
                 formError ? <div className="form_error">{formError}</div> : null
             }

@@ -10,7 +10,7 @@ function Login() {
 
     // Mutations
 
-    const [signIn] = useSignin();
+    const [signIn, { loading }] = useSignin();
 
     const handleLoginFormSubmit = async (e) => {
         e.preventDefault();
@@ -46,6 +46,7 @@ function Login() {
                                 handleInputFieldChange={handleInputFieldChange}
                                 handleLoginFormSubmit={handleLoginFormSubmit}
                                 formError={formError}
+                                loading={loading}
                             />
                         </div>
                     </div>

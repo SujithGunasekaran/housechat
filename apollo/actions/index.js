@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useLazyQuery } from '@apollo/client';
-import { GET_PORTFOLIOS, CREATE_PORTFOLIO, UPDATE_PORTFOLIO, DELETE_PORTFOLIO, GET_PORTFOLIOBYID, SIGNUP, SIGN_IN, GET_USER } from '../queries';
+import { GET_PORTFOLIOS, CREATE_PORTFOLIO, UPDATE_PORTFOLIO, DELETE_PORTFOLIO, GET_PORTFOLIOBYID, SIGNUP, SIGN_IN, GET_USER, SIGN_OUT } from '../queries';
 
 export const useGetPortfolioById = (id) => useQuery(GET_PORTFOLIOBYID, { variables: { id: id } });
 
@@ -38,5 +38,7 @@ export const useSignin = () => useMutation(SIGN_IN, {
         })
     }
 })
+
+export const useSignout = () => useMutation(SIGN_OUT)
 
 export const useLazyGetUser = () => useLazyQuery(GET_USER)

@@ -18,6 +18,16 @@
     width : 50px;
     border-bottom: 3px solid black;
 }
+.form_info
+{
+    padding : 20px 0px;
+    text-align: center;
+    color: var(--text-black);
+    font-family: 'Montserrat';
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.030rem;
+}
 .form_container
 {
     margin : 15px 0px;

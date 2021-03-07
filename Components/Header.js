@@ -35,7 +35,11 @@ const Header = () => {
             setUser(data.user);
         }
     }
-
+    if (data && !data.user) {
+        if (user) {
+            setUser(null);
+        }
+    }
     return (
         <div>
             <div className="header_page_mobile_container" id="mobileheader">
@@ -78,7 +82,7 @@ const Header = () => {
                             Welcome, {user && user.username}
                         </div>
                         <div className="header_page_signout">
-                            <HeaderLink href='/Login'>Signout</HeaderLink>
+                            <HeaderLink href='/Logout'>Signout</HeaderLink>
                         </div>
                     </div>
                 }

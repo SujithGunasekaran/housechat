@@ -133,4 +133,10 @@ export const GET_USER = gql`
             role
         }
     }
+`;
+
+export const SIGN_OUT = gql`
+    mutation Signout{
+        signOut
+    }
 `
