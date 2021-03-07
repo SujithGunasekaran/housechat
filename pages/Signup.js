@@ -8,12 +8,12 @@ function Signup() {
 
     const { formField, formError, formSuccess, setFormSuccess, setFormError, handleInputFieldChange } = useForm('Signup');
 
-    const [setUserData] = useSignup(formField);
+    const [setUserData] = useSignup();
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await setUserData();
+            const { data } = await setUserData({ variables: formField });
             if (data && data.signUp) {
                 setFormSuccess(true);
             }

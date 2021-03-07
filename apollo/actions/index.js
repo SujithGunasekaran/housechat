@@ -28,13 +28,6 @@ export const useCreatePortfolios = () => useMutation(CREATE_PORTFOLIO, {
     }
 })
 
-export const useSignup = ({ username, email, password, passwordConfirmation }) => useMutation(SIGNUP, {
-    variables: {
-        username: username,
-        email: email,
-        password: password,
-        passwordConfirmation: passwordConfirmation
-    }
-})
+export const useSignup = () => useMutation(SIGNUP)
 
 export const useSignin = () => useMutation(SIGN_IN)
