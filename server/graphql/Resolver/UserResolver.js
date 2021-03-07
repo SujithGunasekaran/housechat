@@ -1,3 +1,10 @@
+exports.userQueries = {
+    user: (root, args, context) => {
+        return context.models.UserModel.getAuthUser(context);
+    }
+}
+
+
 exports.userMutations = {
     signIn: (root, { input }, context) => {
         return context.models.UserModel.signIn(input, context);

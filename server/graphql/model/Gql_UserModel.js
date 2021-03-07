@@ -6,6 +6,13 @@ class UserModel {
         this.Model = model;
     }
 
+    getAuthUser(context) {
+        if (context.isAuthenticated()) {
+            return context.getUser();
+        }
+        return null;
+    }
+
     async signIn(signInData, context) {
         try {
             const user = await context.authenticate(signInData);

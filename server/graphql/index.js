@@ -17,7 +17,7 @@ const { userTypes } = require('./Types/UserTypes');
 // Resolver
 
 const { portfolioQuerys, portfolioMutations } = require('./Resolver/PortfolioResolver');
-const { userMutations } = require('./Resolver/UserResolver');
+const { userMutations, userQueries } = require('./Resolver/UserResolver');
 
 // graphql context
 
@@ -35,6 +35,8 @@ exports.createApolloServer = () => {
         type Query{
             portfolio(id : ID) : Portfolio,
             portfolios : [Portfolio]
+
+            user : User
         }
 
         type Mutation{
@@ -52,7 +54,8 @@ exports.createApolloServer = () => {
 
     const resolvers = {
         Query: {
-            ...portfolioQuerys
+            ...portfolioQuerys,
+            ...userQueries
         },
         Mutation: {
             ...portfolioMutations,
