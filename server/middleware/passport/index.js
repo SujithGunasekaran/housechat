@@ -4,20 +4,20 @@ const User = require('../../database/model/DB_userModel');
 
 exports.initPassportMiddleware = (passport) => {
 
+    passport.serializeUser((user, done) => {
+        done(null, user._id)
+    })
+
+    passport.deserializeUser((id, done) => {
+        User.findById(id, (error, user) => {
+            done(error, user);
+        })
+    })
+
     passport.use('graphql', new GraphqlStrategy((userData, done) => {
 
         // 1. Find user in db if user exist verify user password
         // if user is verified call done.
-
-        passport.serializeUser((user, done) => {
-            done(null, user._id)
-        })
-
-        passport.deserializeUser((id, done) => {
-            User.findById(id, (error, user) => {
-                done(error, user);
-            })
-        })
 
         User.findOne({ email: userData.email }, (err, user) => {
             if (err) {
