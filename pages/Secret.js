@@ -7,4 +7,4 @@ function Secret() {
     )
 }
 
-export default withApollo(withAuth(Secret))
+export default withApollo(withAuth(Secret, 'admin'))
