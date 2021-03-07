@@ -42,3 +42,5 @@ export const useSignin = () => useMutation(SIGN_IN, {
 export const useSignout = () => useMutation(SIGN_OUT)
 
 export const useLazyGetUser = () => useLazyQuery(GET_USER)
+
+export const useGetUser = () => useQuery(GET_USER)
