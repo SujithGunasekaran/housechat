@@ -32,6 +32,52 @@
 {
     margin : 15px 0px;
 }
+.form_text_area
+{
+    margin : 20px 0px;
+    border : 1px solid rgb(214, 213, 213);
+    height : 95px;
+    width : 100%;
+    padding : 8px 7px;
+    font-family: 'Roboto';
+    font-size: 0.940rem;
+    letter-spacing: 0.030rem;
+    border-radius: 5px;
+    color : rgb(36, 35, 35);
+    transition: 0.5s all ease-in-out;
+}
+.form_text_area::placeholder
+{
+    color : rgb(165, 165, 165);
+    font-size: .800rem;
+    letter-spacing: 0.040rem;
+}
+.form_text_area:focus
+{
+    outline: none;
+    border : 1px solid rgb(72, 141, 231);
+}
+.form_text_area:hover
+{
+    border : 1px solid rgb(72, 141, 231);
+}
+.form_text_area_error
+{
+    margin : 20px 0px;
+    border : 1px solid rgb(216, 16, 16);
+    height : 45px;
+    width : 100%;
+    padding : 0px 7px;
+    font-family: 'Roboto';
+    font-size: 0.940rem;
+    letter-spacing: 0.030rem;
+    border-radius: 5px;
+    color : rgb(36, 35, 35);
+    transition: 0.5s all ease-in-out;
+}
+.form_text_area_error:focus{
+    outline: none;
+}
 .form_input_field
 {
     margin : 20px 0px;
@@ -119,6 +165,7 @@
 {
     cursor: pointer;
     background-color: rgb(24, 112, 212);
+    box-shadow : 0 4px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
 }
 .form_having_account
 {
