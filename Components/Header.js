@@ -86,10 +86,10 @@ const Header = () => {
                     (error || !user) &&
                     <div className="header_page_authenticate_container">
                         <div className="header_page_signup">
-                            <HeaderLink href='/Signup'>Signup</HeaderLink>
+                            <HeaderLink href='/Signup'>Sign up</HeaderLink>
                         </div>
                         <div className="header_page_signin">
-                            <HeaderLink href='/Login'>Signin</HeaderLink>
+                            <HeaderLink href='/Login'>Sign in</HeaderLink>
                         </div>
                     </div>
                 }
