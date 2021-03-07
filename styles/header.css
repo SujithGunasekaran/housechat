@@ -99,7 +99,31 @@
 {
     color : var(--header-hover-color)
 }
-
+.header_page_username
+{
+    padding : 0px 15px;
+    list-style: none;
+    font-family: 'Montserrat';
+    font-size: 0.900rem;
+    color : white;
+    font-weight: 500;
+    letter-spacing: 0.035rem;
+}
+.header_page_signout
+{
+    padding : 0px 15px;
+    list-style: none;
+    font-family: 'Montserrat';
+    font-size: 0.900rem;
+    color : rgb(238, 142, 142);
+    font-weight: 500;
+    letter-spacing: 0.035rem;
+}
+.header_page_signout a
+{
+    color : rgb(238, 142, 142);
+    text-decoration: none;
+}
 /* mobile view header css */
 
 .header_page_mobile

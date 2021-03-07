@@ -123,4 +123,14 @@ export const SIGN_IN = gql`
             role
         }
     }
+`;
+
+export const GET_USER = gql`
+    query User{
+        user{
+            _id
+            username
+            role
+        }
+    }
 `

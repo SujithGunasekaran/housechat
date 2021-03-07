@@ -1,13 +1,25 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
 import Link from 'next/link';
+import withApollo from '../hoc/withApollo';
+import { useLazyGetUser } from '../apollo/actions';
 
 const HeaderLink = ({ children, href }) => (
     <Link href={href}>{children}</Link>
 )
 
 const Header = () => {
+
+    const [user, setUser] = useState(null);
+
+    // Mutations
+
+    const [getUser, { data, error }] = useLazyGetUser();
+
+    useEffect(() => {
+        getUser();
+    }, [])
 
     useEffect(() => {
         document.getElementById('hamburger').addEventListener('click', () => {
@@ -17,6 +29,12 @@ const Header = () => {
             document.getElementById('mobileheader').classList.remove('active');
         })
     })
+
+    if (data && data.user) {
+        if (!user) {
+            setUser(data.user);
+        }
+    }
 
     return (
         <div>
@@ -53,14 +71,29 @@ const Header = () => {
                         </li>
                     </ul>
                 </div>
-                <div className="header_page_authenticate_container">
-                    <div className="header_page_signup">
-                        <HeaderLink href='/Signup'>Signup</HeaderLink>
+                {
+                    user &&
+                    <div className="header_page_authenticate_container">
+                        <div className="header_page_username">
+                            Welcome, {user && user.username}
+                        </div>
+                        <div className="header_page_signout">
+                            <HeaderLink href='/Login'>Signout</HeaderLink>
+                        </div>
                     </div>
-                    <div className="header_page_signin">
-                        <HeaderLink href='/Login'>Signin</HeaderLink>
+                }
+                {
+                    (error || !user) &&
+                    <div className="header_page_authenticate_container">
+                        <div className="header_page_signup">
+                            <HeaderLink href='/Signup'>Signup</HeaderLink>
+                        </div>
+                        <div className="header_page_signin">
+                            <HeaderLink href='/Login'>Signin</HeaderLink>
+                        </div>
                     </div>
-                </div>
+                }
+
                 <div className="header_page_mobile">
                     <div className="header_page_hamburger"><MenuIcon id="hamburger" /></div>
                 </div>
@@ -69,4 +102,4 @@ const Header = () => {
     )
 }
 
-export default Header;
+export default withApollo(Header);
