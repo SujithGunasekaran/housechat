@@ -9,7 +9,6 @@ function CreatePortfolio() {
 
     const handlePortfolioFormSubmit = (e) => {
         e.preventDefault();
-        console.log("formField", formField);
     }
 
     return (
@@ -33,4 +32,4 @@ function CreatePortfolio() {
     )
 }
 
-export default withApollo(withAuth(CreatePortfolio, 'guest'));
+export default withApollo(withAuth(CreatePortfolio, ['admin', 'instructor']));

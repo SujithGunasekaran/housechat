@@ -13,7 +13,7 @@ const withAuth = (Component, role) => (props) => {
     }
 
     if (data && data.user) {
-        if (role && data.user.role !== role) {
+        if (role && role.length > 0 && !role.includes(data.user.role)) {
             return <Redirect path="/Login" />
         }
         return <Component {...props} />
