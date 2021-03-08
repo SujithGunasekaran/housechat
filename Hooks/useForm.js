@@ -19,7 +19,7 @@ const useForm = () => {
     const handleDateChange = (dateType, setDate) => date => {
         setFormField({
             ...formField,
-            [dateType]: date.toISOString()
+            [dateType]: date ? new Date(date.setHours(0, 0, 0, 0)).toISOString() : date
         })
         setDate(date);
     }

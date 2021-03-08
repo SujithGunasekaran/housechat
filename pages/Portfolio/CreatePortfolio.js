@@ -9,6 +9,7 @@ function CreatePortfolio() {
 
     const handlePortfolioFormSubmit = (e) => {
         e.preventDefault();
+        console.log(formField);
     }
 
     return (

@@ -70,10 +70,23 @@ function PortfolioForm(props) {
                     className='form_input_field'
                     name="endDate"
                     placeholderText="End Date"
-                    selected={endDate ? endDate : new Date()}
+                    disabled={endDate ? false : true}
+                    selected={endDate ? endDate : ''}
                     onSelect={handleDateChange('endDate', setEndDate)}
                 />
             </div>
+            {
+                endDate &&
+                <button className="form_date_hide" onClick={() => handleDateChange('endDate', setEndDate)(null)} >
+                    No end date
+                </button>
+            }
+            {
+                !endDate &&
+                <button className="form_date_show" onClick={() => handleDateChange('endDate', setEndDate)(new Date())} >
+                    Show end date
+                </button>
+            }
             <button className="form_btn">Create Portfolio</button>
         </form>
     )
