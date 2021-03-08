@@ -1,11 +1,12 @@
-
+import DatePicker from 'react-datepicker';
 
 function PortfolioForm(props) {
 
-    const { formField, formError, handleInputFieldChange, handlePortfolioFormSubmit } = props;
+    const { formField, formError, startDate, endDate, setEndDate, setStartDate, handleInputFieldChange, handlePortfolioFormSubmit, handleDateChange } = props;
 
     return (
         <form onSubmit={handlePortfolioFormSubmit}>
+            <div className="form_label">Portfolio Title</div>
             <input
                 className='form_input_field'
                 type="text"
@@ -14,6 +15,7 @@ function PortfolioForm(props) {
                 value={formField.title}
                 onChange={handleInputFieldChange}
             />
+            <div className="form_label">Company Name</div>
             <input
                 className='form_input_field'
                 type="text"
@@ -22,6 +24,7 @@ function PortfolioForm(props) {
                 value={formField.company}
                 onChange={handleInputFieldChange}
             />
+            <div className="form_label">Location</div>
             <input
                 className='form_input_field'
                 type="text"
@@ -30,6 +33,7 @@ function PortfolioForm(props) {
                 value={formField.location}
                 onChange={handleInputFieldChange}
             />
+            <div className="form_label">Job Title</div>
             <input
                 className='form_input_field'
                 type="text"
@@ -38,6 +42,7 @@ function PortfolioForm(props) {
                 value={formField.jobTitle}
                 onChange={handleInputFieldChange}
             />
+            <div className="form_label">Description</div>
             <textarea
                 className='form_text_area'
                 type="text"
@@ -47,22 +52,28 @@ function PortfolioForm(props) {
                 value={formField.description}
                 onChange={handleInputFieldChange}
             />
-            <input
-                className='form_input_field'
-                type="text"
-                name="startDate"
-                placeholder="Start Date"
-                value={formField.startDate}
-                onChange={handleInputFieldChange}
-            />
-            <input
-                className='form_input_field'
-                type="text"
-                name="endDate"
-                placeholder="End Date"
-                value={formField.endDate}
-                onChange={handleInputFieldChange}
-            />
+            <div className="form_label">Start Date</div>
+            <div>
+                <DatePicker
+                    showYearDropdown
+                    className='form_input_field'
+                    name="startData"
+                    placeholderText="Start Date"
+                    selected={startDate ? startDate : new Date()}
+                    onSelect={handleDateChange('startDate', setStartDate)}
+                />
+            </div>
+            <div className="form_label">End Date</div>
+            <div>
+                <DatePicker
+                    showYearDropdown
+                    className='form_input_field'
+                    name="endDate"
+                    placeholderText="End Date"
+                    selected={endDate ? endDate : new Date()}
+                    onSelect={handleDateChange('endDate', setEndDate)}
+                />
+            </div>
             <button className="form_btn">Create Portfolio</button>
         </form>
     )

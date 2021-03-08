@@ -5,7 +5,7 @@ import useForm from '../../Hooks/useForm';
 
 function CreatePortfolio() {
 
-    const { formField, formError, formSuccess, setFormError, setFormSuccess, handleInputFieldChange } = useForm();
+    const { formField, formError, formSuccess, startDate, endDate, setEndDate, setStartDate, setFormError, setFormSuccess, handleInputFieldChange, handleDateChange } = useForm();
 
     const handlePortfolioFormSubmit = (e) => {
         e.preventDefault();
@@ -21,8 +21,13 @@ function CreatePortfolio() {
                             <PortfolioForm
                                 formField={formField}
                                 formError={formError}
+                                startDate={startDate}
+                                endDate={endDate}
+                                setEndDate={setEndDate}
+                                setStartDate={setStartDate}
                                 handleInputFieldChange={handleInputFieldChange}
                                 handlePortfolioFormSubmit={handlePortfolioFormSubmit}
+                                handleDateChange={handleDateChange}
                             />
                         </div>
                     </div>

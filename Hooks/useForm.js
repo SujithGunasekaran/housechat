@@ -5,6 +5,8 @@ const useForm = () => {
     const [formField, setFormField] = useState({})
     const [formError, setFormError] = useState('');
     const [formSuccess, setFormSuccess] = useState(false);
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
 
     const handleInputFieldChange = (e) => {
         setFormField({
@@ -14,7 +16,15 @@ const useForm = () => {
         if (formError) setFormError('');
     }
 
-    return { formField, formError, formSuccess, setFormSuccess, setFormError, handleInputFieldChange }
+    const handleDateChange = (dateType, setDate) => date => {
+        setFormField({
+            ...formField,
+            [dateType]: date.toISOString()
+        })
+        setDate(date);
+    }
+
+    return { formField, formError, formSuccess, startDate, endDate, setEndDate, setStartDate, setFormSuccess, setFormError, handleInputFieldChange, handleDateChange }
 
 }
 
