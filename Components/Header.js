@@ -28,6 +28,16 @@ const Header = () => {
         document.getElementById('closeicon').addEventListener('click', () => {
             document.getElementById('mobileheader').classList.remove('active');
         })
+
+        document.getElementById('dropdown-title') && document.getElementById('dropdown-title').addEventListener('click', function () {
+            this.classList.toggle('active');
+            let model = this.nextElementSibling;
+            if (model.style.maxHeight) {
+                model.style.maxHeight = null
+            } else {
+                model.style.maxHeight = model.scrollHeight + 'px';
+            }
+        })
     })
 
     if (data && data.user) {
@@ -77,18 +87,33 @@ const Header = () => {
                 </div>
                 {
                     user &&
-                    <div className="header_page_authenticate_container">
-                        <div className="header_page_username">
-                            Welcome, {user && user.username}
+                    <>
+                        <div className="header_dropdown_container">
+                            <div className="header_dropdown_title" id="dropdown-title">
+                                Manage
+                            </div>
+                            <div className="header_manage_dropdown">
+                                <ul>
+                                    <li><HeaderLink href='/Portfolio/CreatePortfolio'>Create Portfolio</HeaderLink></li>
+                                    <li><HeaderLink href='/Portfolio/CreatePortfolio'>Forum</HeaderLink></li>
+                                    <li><HeaderLink href='/Portfolio/CreatePortfolio'>Cv</HeaderLink></li>
+                                </ul>
+                            </div>
                         </div>
-                        <div className="header_page_signout">
-                            <HeaderLink href='/Logout'>Signout</HeaderLink>
+                        <div className="header_page_authenticate_container">
+                            <div className="header_page_username">
+                                Welcome, {user && user.username}
+                            </div>
+                            <div className="header_page_signout">
+                                <HeaderLink href='/Logout'>Signout</HeaderLink>
+                            </div>
                         </div>
-                    </div>
+                    </>
                 }
                 {
                     (error || !user) &&
-                    <div className="header_page_authenticate_container">
+
+                    <div className="header_page_authenticate_container" style={{ marginLeft: "auto" }}>
                         <div className="header_page_signup">
                             <HeaderLink href='/Signup'>Sign up</HeaderLink>
                         </div>
