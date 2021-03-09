@@ -1,6 +1,6 @@
 import PortfolioCard from '../../Components/portfolio/PortfolioCard';
 import Link from 'next/link';
-import { useGetPortfolios, useCreatePortfolios, useUpdatePortfolios, useDeletePortfolios } from '../../apollo/actions';
+import { useGetPortfolios } from '../../apollo/actions';
 import withApollo from '../../hoc/withApollo';
 import { getDataFromTree } from '@apollo/client/react/ssr';
 
@@ -8,9 +8,6 @@ import { getDataFromTree } from '@apollo/client/react/ssr';
 const Portfolio = () => {
 
     const { data } = useGetPortfolios();
-    const [updatePortfolio] = useUpdatePortfolios();
-    const [deletePortfolio] = useDeletePortfolios();
-    const [createPortfolio] = useCreatePortfolios();
 
     const portfolios = data ? data.portfolios : [];
 
@@ -23,7 +20,6 @@ const Portfolio = () => {
                             <div className="portfolio_heading">Portfolio</div>
                         </div>
                     </div>
-                    <button onClick={createPortfolio} >CreatePortfolio</button>
                     <div className="row">
                         {
                             portfolios.map((portfolioInfo) => (
@@ -36,8 +32,6 @@ const Portfolio = () => {
                                             <PortfolioCard portfolioInfo={portfolioInfo} />
                                         </a>
                                     </Link>
-                                    <button onClick={() => updatePortfolio({ variables: { id: portfolioInfo._id } })}>Update Portfolio</button>
-                                    <button onClick={() => deletePortfolio({ variables: { id: portfolioInfo._id } })}>Delete Portfolio</button>
                                 </div>
                             ))
                         }
