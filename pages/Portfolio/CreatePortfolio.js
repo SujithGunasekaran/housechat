@@ -10,12 +10,25 @@ function CreatePortfolio() {
 
     const { formField, formError, formSuccess, startDate, endDate, setEndDate, setStartDate, setFormError, setFormSuccess, handleInputFieldChange, handleDateChange } = useForm();
     const router = useRouter();
-    const [createPortfolio, { error }] = useCreatePortfolio();
+    const [createPortfolio, { loading }] = useCreatePortfolio();
 
     const handlePortfolioFormSubmit = async (e) => {
         e.preventDefault();
-        await createPortfolio({ variables: formField });
-        router.push('/Portfolio');
+        try {
+            const { data } = await createPortfolio({ variables: formField })
+            if (data && data.createPortfolio) {
+                router.push('/Portfolio');
+            }
+        }
+        catch (err) {
+            let errorData = JSON.parse(JSON.stringify(err));
+            if (errorData.graphQLErrors && errorData.graphQLErrors[0].message) {
+                setFormError(errorData.graphQLErrors[0].message);
+            }
+            else {
+                setFormError('Something Went wrong please try again...!')
+            }
+        }
     }
 
     return (
@@ -31,6 +44,7 @@ function CreatePortfolio() {
                                     formError={formError}
                                     startDate={startDate}
                                     endDate={endDate}
+                                    loading={loading}
                                     setEndDate={setEndDate}
                                     setStartDate={setStartDate}
                                     handleInputFieldChange={handleInputFieldChange}

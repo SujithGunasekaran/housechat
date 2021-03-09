@@ -196,6 +196,19 @@
     text-decoration: none;
 }
 
+.form_disable_btn
+{
+    text-align : center;
+    padding : 8px 15px;
+    background-color: whitesmoke;
+    color: black;
+    border-radius: 5px;
+    font-family: 'Montserrat';
+    font-size: 0.880rem;
+    font-weight: 500;
+    letter-spacing: 0.040rem;
+}
+
 .form_error
 {
     margin : 5px 0px;

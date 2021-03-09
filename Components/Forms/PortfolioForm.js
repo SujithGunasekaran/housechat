@@ -2,7 +2,7 @@ import DatePicker from 'react-datepicker';
 
 function PortfolioForm(props) {
 
-    const { formField, formError, startDate, endDate, setEndDate, setStartDate, handleInputFieldChange, handlePortfolioFormSubmit, handleDateChange } = props;
+    const { formField, formError, startDate, loading, endDate, setEndDate, setStartDate, handleInputFieldChange, handlePortfolioFormSubmit, handleDateChange } = props;
 
     return (
         <form onSubmit={handlePortfolioFormSubmit}>
@@ -96,7 +96,9 @@ function PortfolioForm(props) {
                     Show end date
                 </button>
             }
-            <button className="form_btn">Create Portfolio</button>
+            {
+                loading ? <div className="form_disable_btn">Creating Portfolio...</div> : <button className="form_btn">Create Portfolio</button>
+            }
             {
                 formError ? <div className="form_error">{formError}</div> : null
             }

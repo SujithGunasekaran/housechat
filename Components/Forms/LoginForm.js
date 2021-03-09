@@ -24,7 +24,9 @@ const LoginForm = (props) => {
                 onChange={handleInputFieldChange}
             />
             <div className="form_forgot_password">Forgot Password ?</div>
-            <button disabled={loading ? true : false} className="form_btn">{loading ? 'Signing in....' : 'Signin'}</button>
+            {
+                loading ? <div className="form_disable_btn">Signing...</div> : <button className="form_btn">Signin</button>
+            }
             {
                 formError ? <div className="form_error">{formError}</div> : null
             }

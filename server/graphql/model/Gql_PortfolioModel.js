@@ -2,11 +2,12 @@
 
 class PortfolioModel {
 
-    constructor(model) {
+    constructor(model, user) {
 
         // this.Model === portfolio 
         // portfolio is a mongodb model
         this.Model = model;
+        this.user = user;
     }
 
     getAll() {
@@ -18,6 +19,10 @@ class PortfolioModel {
     };
 
     create(portfolioData) {
+        if (!this.user) {
+            throw new Error('Not Authorized!!!')
+        }
+        portfolioData.user = this.user;
         return this.Model.create(portfolioData);
     };
 
