@@ -4,7 +4,7 @@ import PortfolioForm from '../../Components/Forms/PortfolioForm';
 import useForm from '../../Hooks/useForm';
 import { useCreatePortfolio } from '../../apollo/actions';
 import { useRouter } from 'next/router';
-
+import BaseLayout from '../../layouts/BaseLayout';
 
 function CreatePortfolio() {
 
@@ -19,28 +19,30 @@ function CreatePortfolio() {
     }
 
     return (
-        <div className="form_main_container">
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-md-4 mx-auto">
-                        <div className="form_heading">Create Portfolio</div>
-                        <div className="form_container">
-                            <PortfolioForm
-                                formField={formField}
-                                formError={formError}
-                                startDate={startDate}
-                                endDate={endDate}
-                                setEndDate={setEndDate}
-                                setStartDate={setStartDate}
-                                handleInputFieldChange={handleInputFieldChange}
-                                handlePortfolioFormSubmit={handlePortfolioFormSubmit}
-                                handleDateChange={handleDateChange}
-                            />
+        <BaseLayout>
+            <div className="form_main_container">
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-4 mx-auto">
+                            <div className="form_heading">Create Portfolio</div>
+                            <div className="form_container">
+                                <PortfolioForm
+                                    formField={formField}
+                                    formError={formError}
+                                    startDate={startDate}
+                                    endDate={endDate}
+                                    setEndDate={setEndDate}
+                                    setStartDate={setStartDate}
+                                    handleInputFieldChange={handleInputFieldChange}
+                                    handlePortfolioFormSubmit={handlePortfolioFormSubmit}
+                                    handleDateChange={handleDateChange}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </BaseLayout>
     )
 }
 

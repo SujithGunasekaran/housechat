@@ -1,5 +1,8 @@
+import BaseLayout from '../layouts/BaseLayout';
 export default function Cv() {
     return (
-        <div className="cv_main_container">Cv Component</div>
+        <BaseLayout>
+            <div className="cv_main_container">Cv Component</div>
+        </BaseLayout>
     )
 }

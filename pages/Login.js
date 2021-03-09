@@ -3,6 +3,7 @@ import LoginForm from '../Components/Forms/LoginForm';
 import { useSignin } from '../apollo/actions';
 import withApollo from '../hoc/withApollo';
 import RedirectComponent from '../Components/Redirect';
+import BaseLayout from '../layouts/BaseLayout';
 
 function Login() {
 
@@ -35,24 +36,26 @@ function Login() {
     }
 
     return (
-        <div className="form_main_container">
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-md-4 mx-auto">
-                        <div className="form_heading">Login</div>
-                        <div className="form_container">
-                            <LoginForm
-                                formField={formField}
-                                handleInputFieldChange={handleInputFieldChange}
-                                handleLoginFormSubmit={handleLoginFormSubmit}
-                                formError={formError}
-                                loading={loading}
-                            />
+        <BaseLayout>
+            <div className="form_main_container">
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-4 mx-auto">
+                            <div className="form_heading">Login</div>
+                            <div className="form_container">
+                                <LoginForm
+                                    formField={formField}
+                                    handleInputFieldChange={handleInputFieldChange}
+                                    handleLoginFormSubmit={handleLoginFormSubmit}
+                                    formError={formError}
+                                    loading={loading}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </BaseLayout>
     )
 }
 

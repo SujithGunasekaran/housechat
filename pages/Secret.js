@@ -1,9 +1,12 @@
 import withApollo from '../hoc/withApollo';
 import withAuth from '../hoc/withAuth';
+import BaseLayout from '../layouts/BaseLayout';
 
 function Secret() {
     return (
-        <div className="form_main_container">Secret Component</div>
+        <BaseLayout>
+            <div className="form_main_container">Secret Component</div>
+        </BaseLayout>
     )
 }
 
