@@ -18,7 +18,7 @@ export const useDeletePortfolios = () => useMutation(DELETE_PORTFOLIO, {
     }
 });
 
-export const useCreatePortfolios = () => useMutation(CREATE_PORTFOLIO, {
+export const useCreatePortfolio = () => useMutation(CREATE_PORTFOLIO, {
     update(cache, { data: { createPortfolio } }) {
         const { portfolios } = cache.readQuery({ query: GET_PORTFOLIOS });
         cache.writeQuery({

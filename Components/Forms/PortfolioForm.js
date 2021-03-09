@@ -24,6 +24,15 @@ function PortfolioForm(props) {
                 value={formField.company}
                 onChange={handleInputFieldChange}
             />
+            <div className="form_label">Company Website</div>
+            <input
+                className='form_input_field'
+                type="text"
+                name="companyWebsite"
+                placeholder="Enter Company Website"
+                value={formField.companyWebsite}
+                onChange={handleInputFieldChange}
+            />
             <div className="form_label">Location</div>
             <input
                 className='form_input_field'
@@ -88,6 +97,9 @@ function PortfolioForm(props) {
                 </button>
             }
             <button className="form_btn">Create Portfolio</button>
+            {
+                formError ? <div className="form_error">{formError}</div> : null
+            }
         </form>
     )
 

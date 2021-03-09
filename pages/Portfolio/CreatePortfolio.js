@@ -2,14 +2,20 @@ import withApollo from '../../hoc/withApollo';
 import withAuth from '../../hoc/withAuth';
 import PortfolioForm from '../../Components/Forms/PortfolioForm';
 import useForm from '../../Hooks/useForm';
+import { useCreatePortfolio } from '../../apollo/actions';
+import { useRouter } from 'next/router';
+
 
 function CreatePortfolio() {
 
     const { formField, formError, formSuccess, startDate, endDate, setEndDate, setStartDate, setFormError, setFormSuccess, handleInputFieldChange, handleDateChange } = useForm();
+    const router = useRouter();
+    const [createPortfolio, { error }] = useCreatePortfolio();
 
-    const handlePortfolioFormSubmit = (e) => {
+    const handlePortfolioFormSubmit = async (e) => {
         e.preventDefault();
-        console.log(formField);
+        await createPortfolio({ variables: formField });
+        router.push('/Portfolio');
     }
 
     return (
