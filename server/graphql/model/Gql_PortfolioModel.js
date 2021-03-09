@@ -8,6 +8,7 @@ class PortfolioModel {
         // portfolio is a mongodb model
         this.Model = model;
         this.user = user;
+        this.writeAccess = ['admin', 'instructor']
     }
 
     getAll() {
@@ -19,7 +20,7 @@ class PortfolioModel {
     };
 
     create(portfolioData) {
-        if (!this.user) {
+        if (!this.user || !this.writeAccess.includes(this.user.role)) {
             throw new Error('Not Authorized!!!')
         }
         portfolioData.user = this.user;
