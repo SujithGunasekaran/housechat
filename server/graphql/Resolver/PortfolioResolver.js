@@ -5,6 +5,9 @@ exports.portfolioQuerys = {
     },
     portfolios: (root, args, context) => {
         return context.models.PortfolioModel.getAll();
+    },
+    userPortfolio: async (root, args, context) => {
+        return await context.models.PortfolioModel.getAllByUser();
     }
 }
 
