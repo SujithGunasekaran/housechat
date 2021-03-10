@@ -8,7 +8,7 @@ import BaseLayout from '../../layouts/BaseLayout';
 
 function CreatePortfolio() {
 
-    const { formField, formError, formSuccess, startDate, endDate, setEndDate, setStartDate, setFormError, setFormSuccess, handleInputFieldChange, handleDateChange } = useForm();
+    const { formField, formError, startDate, endDate, setEndDate, setStartDate, setFormError, handleInputFieldChange, handleDateChange } = useForm();
     const router = useRouter();
     const [createPortfolio, { loading }] = useCreatePortfolio();
 

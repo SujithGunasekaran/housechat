@@ -6,6 +6,7 @@ import '../styles/forumCategories.css';
 import '../styles/topicPost.css';
 import '../styles/cv.css';
 import '../styles/form.css';
+import '../styles/InstructorDashboard.css';
 import "react-datepicker/dist/react-datepicker.css";
 
 
