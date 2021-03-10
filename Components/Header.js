@@ -5,8 +5,8 @@ import Link from 'next/link';
 import withApollo from '../hoc/withApollo';
 import { useLazyGetUser } from '../apollo/actions';
 
-const HeaderLink = ({ children, href }) => (
-    <Link href={href}>{children}</Link>
+const HeaderLink = ({ children, href, as }) => (
+    <Link href={href} as={as}>{children}</Link>
 )
 
 const Header = () => {
@@ -95,7 +95,7 @@ const Header = () => {
                             <div className="header_manage_dropdown">
                                 <ul>
                                     <li><HeaderLink href='/Portfolio/CreatePortfolio'>Create Portfolio</HeaderLink></li>
-                                    <li><HeaderLink href='/Portfolio/CreatePortfolio'>Forum</HeaderLink></li>
+                                    <li><HeaderLink href='/Instructor/[id]/dashboard' as={`/Instructor/${user._id}/dashboard`}>Dashboard</HeaderLink></li>
                                     <li><HeaderLink href='/Portfolio/CreatePortfolio'>Cv</HeaderLink></li>
                                 </ul>
                             </div>
