@@ -148,4 +148,20 @@ export const SIGN_OUT = gql`
     mutation Signout{
         signOut
     }
+`;
+
+export const GET_USERPORTFOLIO = gql`
+    query Userportfolio{
+        userPortfolio{
+            _id,
+            title,
+            company,
+            companyWebsite,
+            location,
+            jobTitle,
+            description,
+            startDate,
+            endDate
+        }
+    }
 `

@@ -2,10 +2,17 @@ import withApollo from '../../../hoc/withApollo';
 import withAuth from '../../../hoc/withAuth';
 import { useRouter } from 'next/router';
 import BaseLayout from '../../../layouts/BaseLayout';
-import { Card, Button, CardHeader, CardFooter, CardBody, CardTitle, CardText } from 'reactstrap';
+import { useGetUserPortfolio } from '../../../apollo/actions';
+import { getDataFromTree } from '@apollo/client/react/ssr';
 
 function InstructorDashboard() {
+
     const router = useRouter();
+
+    const { data, error } = useGetUserPortfolio();
+
+    const userPortfolios = data ? data.userPortfolio : [];
+
     return (
         <BaseLayout>
             <div className="instructor_main">
@@ -14,15 +21,18 @@ function InstructorDashboard() {
                         <div className="col-md-7 mx-auto">
                             <div className="instructor_heading">Instructor Dashboard</div>
                             <div className="instructor_container">
-                                <Card>
-                                    <CardHeader>Header</CardHeader>
-                                    <CardBody>
-                                        <CardTitle tag="h5">Special Title Treatment</CardTitle>
-                                        <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-                                        <Button>Go somewhere</Button>
-                                    </CardBody>
-                                    <CardFooter>Footer</CardFooter>
-                                </Card>
+                                {
+                                    userPortfolios.map((portfolioInfo, index) => (
+                                        <div className="portfolio_card_container" key={index}>
+                                            <div className="portfolio_card_body">
+                                                <div className="portfolio_card_body_title">{portfolioInfo.title}</div>
+                                                <div className="portfolio_card_body_sub_title">{portfolioInfo.jobTitle}</div>
+                                                <div className="portfolio_card_body_info">{portfolioInfo.description}</div>
+                                            </div>
+                                            <div className="portfolio_card_footer">{portfolioInfo.startDate} - {portfolioInfo.endDate}</div>
+                                        </div>
+                                    ))
+                                }
                             </div>
 
                         </div>
@@ -33,4 +43,4 @@ function InstructorDashboard() {
     )
 }
 
-export default withApollo(withAuth(InstructorDashboard, ['admin', 'instructor']));
+export default withApollo(withAuth(InstructorDashboard, ['admin', 'instructor']), { getDataFromTree });
