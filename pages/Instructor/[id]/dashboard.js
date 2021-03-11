@@ -16,6 +16,19 @@ function InstructorDashboard() {
 
     const userPortfolios = data ? data.userPortfolio : [];
 
+    const handleDeletePortfolio = (id) => {
+        deletePortfolio({ variables: { id: id } })
+            .catch((err) => {
+                let errorData = JSON.parse(JSON.stringify(err));
+                if (errorData.graphQLErrors && errorData.graphQLErrors.length > 0) {
+                    console.log(errorData)
+                }
+                else {
+                    console.log(errorData)
+                }
+            })
+    }
+
     return (
         <BaseLayout>
             <div className="instructor_main">
@@ -40,7 +53,7 @@ function InstructorDashboard() {
                                                     </Link>
                                                 </div>
                                                 <div className="col-md-6">
-                                                    <button className="instructor_delete_btn" onClick={() => deletePortfolio({ variables: { id: portfolioInfo._id } })}>Delete</button>
+                                                    <button className="instructor_delete_btn" onClick={() => { handleDeletePortfolio(portfolioInfo._id) }}>Delete</button>
                                                 </div>
                                             </div>
                                         </div>

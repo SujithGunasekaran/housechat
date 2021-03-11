@@ -32,7 +32,7 @@ class PortfolioModel {
     };
 
     findAndUpdate(portfolioID, portfolioData) {
-        return this.Model.findOneAndUpdate({ _id: portfolioID }, portfolioData, { new: true });
+        return this.Model.findOneAndUpdate({ _id: portfolioID }, portfolioData, { new: true, runValidators: true });
     };
 
     findAndDelete(portfolioID) {

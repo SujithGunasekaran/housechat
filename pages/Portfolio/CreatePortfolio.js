@@ -22,8 +22,11 @@ function CreatePortfolio() {
         }
         catch (err) {
             let errorData = JSON.parse(JSON.stringify(err));
-            if (errorData.graphQLErrors && errorData.graphQLErrors[0].message) {
+            if (errorData.graphQLErrors && errorData.graphQLErrors.length > 0) {
                 setFormError(errorData.graphQLErrors[0].message);
+            }
+            if (errorData.message) {
+                console.log(errorData.message)
             }
             else {
                 setFormError('Something Went wrong please try again...!')
@@ -50,6 +53,7 @@ function CreatePortfolio() {
                                     handleInputFieldChange={handleInputFieldChange}
                                     handlePortfolioFormSubmit={handlePortfolioFormSubmit}
                                     handleDateChange={handleDateChange}
+                                    buttonDisplayValue="Create Portfolio"
                                 />
                             </div>
                         </div>

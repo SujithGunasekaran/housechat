@@ -5,14 +5,14 @@ function PortfolioForm(props) {
 
     const { formField, formError, startDate, loading, endDate, setEndDate, setStartDate, setFormField, handleInputFieldChange, handlePortfolioFormSubmit, handleDateChange } = props;
 
-    const { initialData } = props;
+    const { initialData, buttonDisplayValue } = props;
 
     useEffect(() => {
         if (initialData) {
             setFormField(initialData)
             const { startDate, endDate } = initialData;
-            setStartDate(new Date(parseInt(startDate, 10)));
-            setEndDate(new Date(parseInt(endDate, 10)));
+            setStartDate(startDate ? new Date(parseInt(startDate, 10)) : null);
+            setEndDate(endDate ? new Date(parseInt(endDate, 10)) : null);
         }
     }, [initialData])
 
@@ -81,7 +81,7 @@ function PortfolioForm(props) {
                     className='form_input_field'
                     name="startData"
                     placeholderText="Start Date"
-                    selected={startDate ? startDate : new Date()}
+                    selected={startDate}
                     onSelect={handleDateChange('startDate', setStartDate)}
                 />
             </div>
@@ -93,7 +93,7 @@ function PortfolioForm(props) {
                     name="endDate"
                     placeholderText="End Date"
                     disabled={endDate ? false : true}
-                    selected={endDate ? endDate : ''}
+                    selected={endDate}
                     onSelect={handleDateChange('endDate', setEndDate)}
                 />
             </div>
@@ -110,7 +110,7 @@ function PortfolioForm(props) {
                 </button>
             }
             {
-                loading ? <div className="form_disable_btn">Creating Portfolio...</div> : <button className="form_btn">Create Portfolio</button>
+                loading ? <div className="form_disable_btn">{buttonDisplayValue}....</div> : <button className="form_btn">{buttonDisplayValue}</button>
             }
             {
                 formError ? <div className="form_error">{formError}</div> : null
