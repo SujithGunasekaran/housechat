@@ -7,13 +7,21 @@ export const useGetPortfolios = () => useQuery(GET_PORTFOLIOS);
 
 export const useUpdatePortfolios = () => useMutation(UPDATE_PORTFOLIO);
 
+export const useGetUserPortfolio = () => useQuery(GET_USERPORTFOLIO)
+
 export const useDeletePortfolios = () => useMutation(DELETE_PORTFOLIO, {
     update(cache, { data: { deletePortfolio } }) {
         const { portfolios } = cache.readQuery({ query: GET_PORTFOLIOS });
+        const { userPortfolio } = cache.readQuery({ query: GET_USERPORTFOLIO });
+        const newUserPortfolios = userPortfolio.filter((portfolioID) => portfolioID._id !== deletePortfolio);
         const newPortfolios = portfolios.filter((portfolioID) => portfolioID._id !== deletePortfolio);
         cache.writeQuery({
             query: GET_PORTFOLIOS,
             data: { portfolios: newPortfolios }
+        })
+        cache.writeQuery({
+            query: GET_USERPORTFOLIO,
+            data: { userPortfolio: newUserPortfolios }
         })
     }
 });
@@ -21,6 +29,11 @@ export const useDeletePortfolios = () => useMutation(DELETE_PORTFOLIO, {
 export const useCreatePortfolio = () => useMutation(CREATE_PORTFOLIO, {
     update(cache, { data: { createPortfolio } }) {
         const { portfolios } = cache.readQuery({ query: GET_PORTFOLIOS });
+        const { userPortfolio } = cache.readQuery({ query: GET_USERPORTFOLIO });
+        cache.writeQuery({
+            query: GET_USERPORTFOLIO,
+            data: { userPortfolio: [...userPortfolio, createPortfolio] }
+        })
         cache.writeQuery({
             query: GET_PORTFOLIOS,
             data: { portfolios: [...portfolios, createPortfolio] }
@@ -45,4 +58,3 @@ export const useLazyGetUser = () => useLazyQuery(GET_USER)
 
 export const useGetUser = () => useQuery(GET_USER)
 
-export const useGetUserPortfolio = () => useQuery(GET_USERPORTFOLIO)
