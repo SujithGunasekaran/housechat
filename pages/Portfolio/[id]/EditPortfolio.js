@@ -3,10 +3,16 @@ import withAuth from '../../../hoc/withAuth';
 import PortfolioForm from '../../../Components/Forms/PortfolioForm';
 import useForm from '../../../Hooks/useForm'
 import BaseLayout from '../../../layouts/BaseLayout';
+import { useGetPortfolioById } from '../../../apollo/actions';
+import { useRouter } from 'next/router';
 
 function EditPortfolio() {
 
-    const { formField, formError, startDate, endDate, setEndDate, setStartDate, setFormError, handleInputFieldChange, handleDateChange } = useForm();
+    const router = useRouter();
+
+    const { data } = useGetPortfolioById(router.query.id);
+
+    const { formField, formError, startDate, endDate, setEndDate, setFormField, setStartDate, setFormError, handleInputFieldChange, handleDateChange } = useForm();
 
     return (
         <BaseLayout>
@@ -16,16 +22,21 @@ function EditPortfolio() {
                         <div className="col-md-4 mx-auto">
                             <div className="form_heading">Edit Portfolio</div>
                             <div className="form_container">
-                                <PortfolioForm
-                                    formField={formField}
-                                    formError={formError}
-                                    startDate={startDate}
-                                    endDate={endDate}
-                                    setEndDate={setEndDate}
-                                    setStartDate={setStartDate}
-                                    handleInputFieldChange={handleInputFieldChange}
-                                    handleDateChange={handleDateChange}
-                                />
+                                {
+                                    data && data.portfolio &&
+                                    <PortfolioForm
+                                        formField={formField}
+                                        formError={formError}
+                                        startDate={startDate}
+                                        endDate={endDate}
+                                        initialData={data.portfolio}
+                                        setFormField={setFormField}
+                                        setEndDate={setEndDate}
+                                        setStartDate={setStartDate}
+                                        handleInputFieldChange={handleInputFieldChange}
+                                        handleDateChange={handleDateChange}
+                                    />
+                                }
                             </div>
                         </div>
                     </div>

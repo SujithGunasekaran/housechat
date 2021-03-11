@@ -24,7 +24,7 @@ const useForm = () => {
         setDate(date);
     }
 
-    return { formField, formError, formSuccess, startDate, endDate, setEndDate, setStartDate, setFormSuccess, setFormError, handleInputFieldChange, handleDateChange }
+    return { formField, formError, formSuccess, startDate, endDate, setEndDate, setStartDate, setFormField, setFormSuccess, setFormError, handleInputFieldChange, handleDateChange }
 
 }
 

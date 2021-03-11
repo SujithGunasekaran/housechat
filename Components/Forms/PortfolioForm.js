@@ -1,8 +1,21 @@
 import DatePicker from 'react-datepicker';
+import { useEffect } from 'react';
 
 function PortfolioForm(props) {
 
-    const { formField, formError, startDate, loading, endDate, setEndDate, setStartDate, handleInputFieldChange, handlePortfolioFormSubmit, handleDateChange } = props;
+    const { formField, formError, startDate, loading, endDate, setEndDate, setStartDate, setFormField, handleInputFieldChange, handlePortfolioFormSubmit, handleDateChange } = props;
+
+    const { initialData } = props;
+
+    useEffect(() => {
+        if (initialData) {
+            setFormField(initialData)
+            const { startDate, endDate } = initialData;
+            setStartDate(new Date(parseInt(startDate, 10)));
+            setEndDate(new Date(parseInt(endDate, 10)));
+        }
+    }, [initialData])
+
 
     return (
         <form onSubmit={handlePortfolioFormSubmit}>
