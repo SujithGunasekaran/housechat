@@ -19,9 +19,11 @@ const withAuth = (Component, role) => (props) => {
         return <Component {...props} />
     }
 
-    return (
-        <div className="form_main_container">Authentcation in process....</div>
-    )
+    // return (
+    //     <div className="form_main_container">Authentcation in process....</div>
+    // )
+
+    return null;
 }
 
 export default withAuth;

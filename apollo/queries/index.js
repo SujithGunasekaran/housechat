@@ -155,11 +155,7 @@ export const GET_USERPORTFOLIO = gql`
         userPortfolio{
             _id,
             title,
-            company,
-            companyWebsite,
-            location,
             jobTitle,
-            description,
             startDate,
             endDate
         }

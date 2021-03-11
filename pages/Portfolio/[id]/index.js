@@ -1,7 +1,8 @@
-import { useGetPortfolioById } from '../../apollo/actions';
-import withApollo from '../../hoc/withApollo';
+import { useGetPortfolioById } from '../../../apollo/actions';
+import withApollo from '../../../hoc/withApollo';
 import { getDataFromTree } from '@apollo/client/react/ssr';
-import BaseLayout from '../../layouts/BaseLayout';
+import BaseLayout from '../../../layouts/BaseLayout';
+
 function PortfolioDetails({ query }) {
 
     const { data } = useGetPortfolioById(query.id);
