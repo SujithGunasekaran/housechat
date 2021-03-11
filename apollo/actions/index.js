@@ -11,33 +11,45 @@ export const useGetUserPortfolio = () => useQuery(GET_USERPORTFOLIO)
 
 export const useDeletePortfolios = () => useMutation(DELETE_PORTFOLIO, {
     update(cache, { data: { deletePortfolio } }) {
-        const { portfolios } = cache.readQuery({ query: GET_PORTFOLIOS });
-        const { userPortfolio } = cache.readQuery({ query: GET_USERPORTFOLIO });
-        const newUserPortfolios = userPortfolio.filter((portfolioID) => portfolioID._id !== deletePortfolio);
-        const newPortfolios = portfolios.filter((portfolioID) => portfolioID._id !== deletePortfolio);
-        cache.writeQuery({
-            query: GET_PORTFOLIOS,
-            data: { portfolios: newPortfolios }
-        })
-        cache.writeQuery({
-            query: GET_USERPORTFOLIO,
-            data: { userPortfolio: newUserPortfolios }
-        })
+        const portfoliosData = cache.readQuery({ query: GET_PORTFOLIOS });
+        const userPortfolioData = cache.readQuery({ query: GET_USERPORTFOLIO });
+        if (portfoliosData) {
+            const { portfolios } = portfoliosData;
+            const newPortfolios = portfolios.filter((portfolioID) => portfolioID._id !== deletePortfolio);
+            cache.writeQuery({
+                query: GET_PORTFOLIOS,
+                data: { portfolios: newPortfolios }
+            })
+        }
+        if (userPortfolioData) {
+            const { userPortfolio } = userPortfolioData;
+            const newUserPortfolios = userPortfolio.filter((portfolioID) => portfolioID._id !== deletePortfolio);
+            cache.writeQuery({
+                query: GET_USERPORTFOLIO,
+                data: { userPortfolio: newUserPortfolios }
+            })
+        }
     }
 });
 
 export const useCreatePortfolio = () => useMutation(CREATE_PORTFOLIO, {
     update(cache, { data: { createPortfolio } }) {
-        const { portfolios } = cache.readQuery({ query: GET_PORTFOLIOS });
-        const { userPortfolio } = cache.readQuery({ query: GET_USERPORTFOLIO });
-        cache.writeQuery({
-            query: GET_USERPORTFOLIO,
-            data: { userPortfolio: [...userPortfolio, createPortfolio] }
-        })
-        cache.writeQuery({
-            query: GET_PORTFOLIOS,
-            data: { portfolios: [...portfolios, createPortfolio] }
-        })
+        const portfoliosData = cache.readQuery({ query: GET_PORTFOLIOS });
+        const userPortfolioData = cache.readQuery({ query: GET_USERPORTFOLIO });
+        if (userPortfolioData) {
+            const { userPortfolio } = userPortfolioData;
+            cache.writeQuery({
+                query: GET_USERPORTFOLIO,
+                data: { userPortfolio: [...userPortfolio, createPortfolio] }
+            })
+        }
+        if (portfoliosData) {
+            const { portfolios } = portfoliosData;
+            cache.writeQuery({
+                query: GET_PORTFOLIOS,
+                data: { portfolios: [...portfolios, createPortfolio] }
+            })
+        }
     }
 })
 

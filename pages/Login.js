@@ -22,8 +22,9 @@ function Login() {
             }
         }
         catch (err) {
-            if (JSON.parse(JSON.stringify(err)).graphQLErrors && JSON.parse(JSON.stringify(err)).graphQLErrors.length > 0) {
-                setFormError(JSON.parse(JSON.stringify(err)).graphQLErrors[0].message);
+            let errorData = JSON.parse(JSON.stringify(err));
+            if (errorData.graphQLErrors && errorData.graphQLErrors.length > 0) {
+                setFormError(errorData.graphQLErrors[0].message);
             }
             else {
                 setFormError('Something went wrong please try again...!')
