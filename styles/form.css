@@ -228,12 +228,14 @@
     background-color: var(--text-blue);
     color : white;
     border : none;
+    width : 140px;
     border-radius: 5px;
     padding : 8px 15px;
     font-family: 'Montserrat';
     font-size: 0.800rem;
     font-weight: 500;
     letter-spacing: 0.040rem;
+    cursor: pointer;
 }
 .form_date_hide
 {
@@ -242,11 +244,13 @@
     color : white;
     border : none;
     border-radius: 5px;
+    max-width : 120px;
     padding : 8px 15px;
     font-family: 'Montserrat';
     font-size: 0.800rem;
     font-weight: 500;
     letter-spacing: 0.040rem;
+    cursor: pointer;
 }
 
 @media(max-width:750px){

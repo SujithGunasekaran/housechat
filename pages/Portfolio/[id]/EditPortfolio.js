@@ -5,6 +5,7 @@ import useForm from '../../../Hooks/useForm'
 import BaseLayout from '../../../layouts/BaseLayout';
 import { useGetPortfolioById, useUpdatePortfolios } from '../../../apollo/actions';
 import { useRouter } from 'next/router';
+import Snackbar from '../../../Components/Snackbar';
 
 function EditPortfolio() {
 
@@ -17,13 +18,17 @@ function EditPortfolio() {
     // Query
     const { data } = useGetPortfolioById(id);
 
-    const { formField, formError, startDate, endDate, setEndDate, setFormField, setStartDate, setFormError, handleInputFieldChange, handleDateChange } = useForm();
+    const { formField, formError, startDate, formSuccess, endDate, setFormSuccess, setEndDate, setFormField, setStartDate, setFormError, handleInputFieldChange, handleDateChange } = useForm();
+
+    const handleSnackBarClose = () => {
+        setFormSuccess(false);
+    }
 
     const handlePortfolioFormSubmit = (e) => {
         e.preventDefault();
         updatePortfolio({ variables: { id, ...formField } })
             .then(() => {
-                console.log("Successs");
+                setFormSuccess(true);
             })
             .catch((err) => {
                 let errorData = JSON.parse(JSON.stringify(err));
@@ -65,6 +70,14 @@ function EditPortfolio() {
                             </div>
                         </div>
                     </div>
+                    {
+                        formSuccess &&
+                        <Snackbar
+                            show={formSuccess}
+                            message='Portfolio has been updated successfully..'
+                            handleSnackBarClose={handleSnackBarClose}
+                        />
+                    }
                 </div>
             </div>
         </BaseLayout>

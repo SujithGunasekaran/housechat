@@ -99,15 +99,15 @@ function PortfolioForm(props) {
             </div>
             {
                 endDate &&
-                <button className="form_date_hide" onClick={() => handleDateChange('endDate', setEndDate)(null)} >
+                <div className="form_date_hide" onClick={() => handleDateChange('endDate', setEndDate)(null)} >
                     No end date
-                </button>
+                </div>
             }
             {
                 !endDate &&
-                <button className="form_date_show" onClick={() => handleDateChange('endDate', setEndDate)(new Date())} >
+                <div className="form_date_show" onClick={() => handleDateChange('endDate', setEndDate)(new Date())} >
                     Show end date
-                </button>
+                </div>
             }
             {
                 loading ? <div className="form_disable_btn">{buttonDisplayValue}....</div> : <button className="form_btn">{buttonDisplayValue}</button>
