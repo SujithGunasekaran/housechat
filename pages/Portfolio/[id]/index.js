@@ -2,6 +2,7 @@ import { useGetPortfolioById } from '../../../apollo/actions';
 import withApollo from '../../../hoc/withApollo';
 import { getDataFromTree } from '@apollo/client/react/ssr';
 import BaseLayout from '../../../layouts/BaseLayout';
+import { formatDate } from '../../../utils/Function';
 
 function PortfolioDetails({ query }) {
 
@@ -46,13 +47,13 @@ function PortfolioDetails({ query }) {
                                 <div className="col-md-6">
                                     <div className="portfolio_detail_info_container">
                                         <div className="portfolio_detail_info_heading">Start Date</div>
-                                        <div className="portfolio_detail_info_subheading">{portfolio.startDate}</div>
+                                        <div className="portfolio_detail_info_subheading">{formatDate(portfolio.startDate)}</div>
                                     </div>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="portfolio_detail_info_container">
                                         <div className="portfolio_detail_info_heading">End Date</div>
-                                        <div className="portfolio_detail_info_subheading">{portfolio.endDate}</div>
+                                        <div className="portfolio_detail_info_subheading">{portfolio.endDate ? formatDate(portfolio.endDate) : 'Present'}</div>
                                     </div>
                                 </div>
                             </div>

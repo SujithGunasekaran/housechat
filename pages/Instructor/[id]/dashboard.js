@@ -5,10 +5,9 @@ import BaseLayout from '../../../layouts/BaseLayout';
 import { useGetUserPortfolio, useDeletePortfolios } from '../../../apollo/actions';
 import { getDataFromTree } from '@apollo/client/react/ssr';
 import Link from 'next/link';
+import { formatDate } from '../../../utils/Function';
 
 function InstructorDashboard() {
-
-    const router = useRouter();
 
     // Mutations
     const { data, error } = useGetUserPortfolio();
@@ -45,7 +44,7 @@ function InstructorDashboard() {
                                                 <div className="portfolio_card_body_sub_title">{portfolioInfo.jobTitle}</div>
                                                 <div className="portfolio_card_body_info">{portfolioInfo.description}</div>
                                             </div>
-                                            <div className="portfolio_card_footer">{portfolioInfo.startDate} - {portfolioInfo.endDate}</div>
+                                            <div className="portfolio_card_footer">{formatDate(portfolioInfo.startDate)} - {portfolioInfo.endDate ? formatDate(portfolioInfo.endDate) : 'Present'}</div>
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <Link href="/Portfolio/[id]/EditPortfolio" as={`/Portfolio/${portfolioInfo._id}/EditPortfolio`}>
