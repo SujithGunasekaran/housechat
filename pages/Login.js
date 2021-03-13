@@ -17,7 +17,6 @@ function Login() {
     const { message, type } = router.query;
 
     const disposeMessage = () => {
-        alert('Sample')
         router.replace('/Login', '/Login', { shallow: true })
     }
 
