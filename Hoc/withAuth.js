@@ -1,6 +1,7 @@
 
 import { useGetUser } from '../apollo/actions';
 import Redirect from '../Components/Redirect';
+import Loader from '../Components/Loader';
 
 const withAuth = (Component, role, options = { ssr: false }) => {
 
@@ -22,7 +23,9 @@ const withAuth = (Component, role, options = { ssr: false }) => {
         }
 
         return (
-            <div className="form_main_container">Authentcation in process....</div>
+            <div className="spinner_container">
+                <Loader />
+            </div>
         )
     }
 
