@@ -4,6 +4,6 @@ export const messages = {
     },
     "Error": {
         NOT_AUTHENTICATED: 'You need to login to get an access!',
-        NOT_AUTHORIZED: 'You are not authorize to visit this page!',
+        NOT_AUTHORIZED: 'You are not authorize to visit that page!',
     }
 }

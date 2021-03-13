@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import useForm from '../Hooks/useForm';
 import LoginForm from '../Components/Forms/LoginForm';
 import { useSignin } from '../apollo/actions';
@@ -9,20 +10,27 @@ import { messages } from '../variables/messages';
 
 function Login() {
 
+    let disposeId = useRef(null);
     const { formField, formError, formSuccess, setFormSuccess, setFormError, handleInputFieldChange } = useForm();
 
-    const { message, type } = useRouter().query;
-    if (message) {
-        if (type === 'Success') {
-            if ((typeof formSuccess === 'string' && !formSuccess) || (typeof formSuccess === 'boolean' && !formSuccess)) {
-                console.log("Hello should not happen")
-                setFormSuccess(messages[type][message])
-            }
-        }
-        if (type === 'Error' && !formError) {
-            setFormError(messages[type][message]);
-        }
+    const router = useRouter();
+    const { message, type } = router.query;
+
+    const disposeMessage = () => {
+        alert('Sample')
+        router.replace('/Login', '/Login', { shallow: true })
     }
+
+    useEffect(() => {
+        if (message) {
+            disposeId.current = setTimeout(() => {
+                disposeMessage();
+            }, 3000)
+        }
+        return (() => {
+            clearTimeout(disposeId.current);
+        })
+    }, [messages])
 
     // Mutations
 
@@ -47,7 +55,7 @@ function Login() {
         }
     }
 
-    if (typeof formSuccess === 'boolean' && formSuccess) {
+    if (formSuccess) {
         return <RedirectComponent path="/" />
     }
 
@@ -59,6 +67,12 @@ function Login() {
                         <div className="col-md-4 mx-auto">
                             <div className="form_heading">Login</div>
                             <div className="form_container">
+                                {
+                                    type === 'Success' && <div className="form_success">{messages[type][message]}</div>
+                                }
+                                {
+                                    type === 'Error' && <div className="form_error">{messages[type][message]}</div>
+                                }
                                 <LoginForm
                                     formField={formField}
                                     handleInputFieldChange={handleInputFieldChange}
