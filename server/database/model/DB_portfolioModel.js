@@ -8,7 +8,7 @@ const portfolioSchema = new Schema({
     location: { type: String, required: true },
     jobTitle: { type: String, required: true },
     description: { type: String, required: true },
-    startDate: { type: Date },
+    startDate: { type: Date, required: true },
     endDate: { type: Date },
     user: { type: Schema.Types.ObjectId, ref: 'User' },
     createdAt: { type: Date, default: Date.now }

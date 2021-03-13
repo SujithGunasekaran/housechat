@@ -35,7 +35,7 @@ function PortfolioDetails({ query }) {
                                 <div className="col-md-6">
                                     <div className="portfolio_detail_info_container">
                                         <div className="portfolio_detail_info_heading">Days</div>
-                                        <div className="portfolio_detail_info_subheading">44</div>
+                                        <div className="portfolio_detail_info_subheading">{portfolio.daysOfExperience}</div>
                                     </div>
                                 </div>
                             </div>
