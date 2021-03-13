@@ -30,7 +30,7 @@ function Signup() {
         }
     }
 
-    if (formSuccess) return <RedirectComponent path="/Login" />
+    if (formSuccess) return <RedirectComponent path="/Login" query={{ message: "LOGGED_IN", type: 'Success' }} />
 
     return (
         <BaseLayout>

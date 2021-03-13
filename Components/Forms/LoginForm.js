@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const LoginForm = (props) => {
 
-    const { formField, formError, handleInputFieldChange, handleLoginFormSubmit, loading } = props;
+    const { formField, formError, formSuccess, handleInputFieldChange, handleLoginFormSubmit, loading } = props;
 
     return (
         <form onSubmit={handleLoginFormSubmit}>
@@ -29,6 +29,9 @@ const LoginForm = (props) => {
             }
             {
                 formError ? <div className="form_error">{formError}</div> : null
+            }
+            {
+                formSuccess && <div className="form_success">{formSuccess}</div>
             }
             <div className="form_having_account">
                 Don't have an Account ?

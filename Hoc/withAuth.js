@@ -10,22 +10,20 @@ const withAuth = (Component, role, options = { ssr: false }) => {
 
         if (!loading && (data && !data.user || error) && typeof window !== 'undefined') {
             return (
-                <Redirect path="/Login" />
+                <Redirect path="/Login" query={{ message: 'NOT_AUTHENTICATED', type: 'Error' }} />
             )
         }
 
         if (data && data.user) {
             if (role && role.length > 0 && !role.includes(data.user.role)) {
-                return <Redirect path="/Login" />
+                return <Redirect path="/Login" query={{ message: 'NOT_AUTHORIZED', type: 'Error' }} />
             }
             return <Component {...props} />
         }
 
-        // return (
-        //     <div className="form_main_container">Authentcation in process....</div>
-        // )
-
-        return null;
+        return (
+            <div className="form_main_container">Authentcation in process....</div>
+        )
     }
 
     if (options.ssr) {
@@ -39,10 +37,10 @@ const withAuth = (Component, role, options = { ssr: false }) => {
             if (req) {
                 const { user } = req;
                 if (!user) {
-                    return serverRedirect(res, '/Login');
+                    return serverRedirect(res, '/Login?message=NOT_AUTHENTICATED&type=Error');
                 }
                 if (role && role.length > 0 && user && !role.includes(user.role)) {
-                    return serverRedirect(res, '/Login');
+                    return serverRedirect(res, '/Login?message=NOT_AUTHORIZED&Type=Error');
                 }
             }
 

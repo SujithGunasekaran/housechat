@@ -4,10 +4,25 @@ import { useSignin } from '../apollo/actions';
 import withApollo from '../hoc/withApollo';
 import RedirectComponent from '../Components/Redirect';
 import BaseLayout from '../layouts/BaseLayout';
+import { useRouter } from 'next/router';
+import { messages } from '../variables/messages';
 
 function Login() {
 
     const { formField, formError, formSuccess, setFormSuccess, setFormError, handleInputFieldChange } = useForm();
+
+    const { message, type } = useRouter().query;
+    if (message) {
+        if (type === 'Success') {
+            if ((typeof formSuccess === 'string' && !formSuccess) || (typeof formSuccess === 'boolean' && !formSuccess)) {
+                console.log("Hello should not happen")
+                setFormSuccess(messages[type][message])
+            }
+        }
+        if (type === 'Error' && !formError) {
+            setFormError(messages[type][message]);
+        }
+    }
 
     // Mutations
 
@@ -32,7 +47,7 @@ function Login() {
         }
     }
 
-    if (formSuccess) {
+    if (typeof formSuccess === 'boolean' && formSuccess) {
         return <RedirectComponent path="/" />
     }
 
@@ -48,6 +63,7 @@ function Login() {
                                     formField={formField}
                                     handleInputFieldChange={handleInputFieldChange}
                                     handleLoginFormSubmit={handleLoginFormSubmit}
+                                    formSuccess={formSuccess}
                                     formError={formError}
                                     loading={loading}
                                 />

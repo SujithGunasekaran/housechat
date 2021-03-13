@@ -217,6 +217,20 @@
     padding : 10px 15px;
     font-family: 'Montserrat';
     font-size: 0.820rem;
+    border-radius: 6px;
+    font-weight: 500;
+    letter-spacing: 0.040rem;
+    transition: 0.5s all ease-in-out;
+}
+.form_success
+{
+    margin : 5px 0px;
+    background-color: rgb(220, 245, 228);
+    color : rgb(6, 87, 19);
+    padding : 10px 15px;
+    font-family: 'Montserrat';
+    font-size: 0.820rem;
+    border-radius: 6px;
     font-weight: 500;
     letter-spacing: 0.040rem;
     transition: 0.5s all ease-in-out;
