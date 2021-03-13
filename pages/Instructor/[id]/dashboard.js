@@ -68,4 +68,4 @@ function InstructorDashboard() {
     )
 }
 
-export default withApollo(withAuth(InstructorDashboard, ['admin', 'instructor']), { getDataFromTree });
+export default withApollo(withAuth(InstructorDashboard, ['admin', 'instructor'], { ssr: true }), { getDataFromTree });
