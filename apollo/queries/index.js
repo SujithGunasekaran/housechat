@@ -171,4 +171,18 @@ export const GET_USERPORTFOLIO = gql`
             endDate
         }
     }
+`;
+
+
+/* forum category */
+
+export const GET_FORUM_CATEGORY = gql`
+    query ForumCategories{
+        forumCategories{
+            _id
+            title
+            subTitle
+            slug
+        }
+    }
 `

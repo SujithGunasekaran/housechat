@@ -3,6 +3,10 @@
     width : 100%;
     padding : 100px 10px 100px 10px;
 }
+.forum_categories_main_container a
+{
+    text-decoration: none;
+}
 .forum_categories_heading
 {
     color: var(--text-black);
@@ -31,7 +35,7 @@
     padding : 10px 0px;
     color : var(--text-black);
     font-family: 'Montserrat';
-    font-size: 0.900rem;
+    font-size: 0.800rem;
     line-height: 25px;
     font-weight: 500;
 }
