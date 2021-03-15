@@ -9,12 +9,13 @@ const { ApolloServer, gql } = require('apollo-server-express');
 const PortfolioModel = require('./model/Gql_PortfolioModel');
 const UserModel = require('./model/Gql_UserModel');
 const ForumCategory = require('./model/Gql_ForumCategory');
+const ForumTopics = require('./model/Gql_ForumTopics');
 
 // Types
 
 const { portfolioTypes } = require('./Types/PortfolioTypes');
 const { userTypes } = require('./Types/UserTypes');
-const { forumCategory } = require('./Types/ForumCategory');
+const { forumTypes } = require('./Types/ForumCategory');
 
 // Resolver
 
@@ -34,7 +35,7 @@ exports.createApolloServer = () => {
 
         ${portfolioTypes}
         ${userTypes}
-        ${forumCategory}
+        ${forumTypes}
 
         type Query{
             portfolio(id : ID) : Portfolio,
@@ -44,6 +45,7 @@ exports.createApolloServer = () => {
             user : User
 
             forumCategories : [ForumCategory]
+            topicsByCategory(categoryID : String) : [Topics]
         }
 
         type Mutation{
@@ -80,7 +82,8 @@ exports.createApolloServer = () => {
             models: {
                 PortfolioModel: new PortfolioModel(mongoose.model('portfolio'), req.user),
                 UserModel: new UserModel(mongoose.model('User')),
-                ForumCategory: new ForumCategory(mongoose.model('forumCategories'))
+                ForumCategory: new ForumCategory(mongoose.model('forumCategories')),
+                ForumTopics: new ForumTopics(mongoose.model('topic'))
             }
         })
     });
