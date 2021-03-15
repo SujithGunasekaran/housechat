@@ -1,5 +1,18 @@
 import BaseLayout from '../../../layouts/BaseLayout';
-export default function CategoryTopics() {
+import { useGetTopicsByCategory } from '../../../apollo/actions';
+import { useRouter } from 'next/router';
+import withApollo from '../../../hoc/withApollo';
+import { getDataFromTree } from '@apollo/client/react/ssr';
+
+
+function CategoryTopics() {
+
+    const router = useRouter();
+
+    const { data } = useGetTopicsByCategory(router.query.slug);
+
+    const forumTopics = data && data.topicsByCategory || [];
+
     return (
         <BaseLayout>
             <div>
@@ -7,34 +20,29 @@ export default function CategoryTopics() {
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-md-12">
-                                <div className="forum_categories_heading">Category Topics Component</div>
+                                <div className="forum_categories_heading">Select a Topic</div>
                             </div>
                         </div>
                         <div className="forum_categories_table_container">
-                            <table class="table table-striped">
+                            <table className="table table-striped">
                                 <thead className="forum_categories_table_heading">
                                     <tr>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
+                                        <th scope="col">Topic</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Author</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
+                                    {
+                                        forumTopics &&
+                                        forumTopics.map((topicInfo) => (
+                                            <tr key={topicInfo._id}>
+                                                <td>{topicInfo.title}</td>
+                                                <td>{topicInfo.forumCategory.title}</td>
+                                                <td>{topicInfo.user.username}</td>
+                                            </tr>
+                                        ))
+                                    }
                                 </tbody>
                             </table>
                         </div>
@@ -44,3 +52,5 @@ export default function CategoryTopics() {
         </BaseLayout>
     )
 }
+
+export default withApollo(CategoryTopics, { getDataFromTree });
