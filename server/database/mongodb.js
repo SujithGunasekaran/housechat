@@ -8,6 +8,8 @@ require('../database/model/DB_userModel');
 require('../database/model/DB_forumCategory');
 require('../database/model/DB_topic');
 
+// Connnecting to mongodb
+
 exports.connect = () => {
     mongoose.connect(config.mongoURI,
         {
@@ -19,6 +21,8 @@ exports.connect = () => {
             console.log("Mongodb Connected successfully");
         })
 };
+
+// Creating new mongo collection for storing session information.
 
 exports.initializeMongodbSession = () => {
     const store = new MongoDBStore({

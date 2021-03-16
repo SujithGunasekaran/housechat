@@ -1,4 +1,5 @@
 const slugify = require('slugify');
+const uniqueSlug = require('unique-slug');
 class ForumTopics {
 
     constructor(model, user) {
@@ -8,6 +9,11 @@ class ForumTopics {
 
     getAllTopicsByCategory(categoryID) {
         return this.Model.find({ forumCategory: categoryID }).populate('user').populate('forumCategory');
+    }
+
+    async _create(data) {
+        const createdTopic = await this.Model.create(data);
+        return this.Model.findById(createdTopic._id).populate('user').populate('forumCategory');
     }
 
     async create(topicData) {
@@ -25,8 +31,18 @@ class ForumTopics {
             strict: false,
         });
 
-        const createdTopic = await this.Model.create(topicData);
-        return this.Model.findById(createdTopic._id).populate('user').populate('forumCategory');
+        try {
+            const topic = await this._create(topicData);
+            return topic;
+        }
+        catch (err) {
+            if (err.code === 11000 && err.keyPattern && err.keyPattern.slug) {
+                topicData.slug += `-${uniqueSlug()}`;
+                const topic = await this._create(topicData);
+                return topic;
+            }
+            return null;
+        }
     }
 }
 

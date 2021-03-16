@@ -34,6 +34,8 @@ const UserSchema = new Schema({
     createdAt: { type: Date, default: Date.now }
 })
 
+// Pre will execute before saving the user data to db
+
 UserSchema.pre('save', function (next) {
     const user = this;
     bcrypt.genSalt(10, function (err, salt) {
