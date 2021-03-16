@@ -1,4 +1,4 @@
-
+const slugify = require('slugify');
 class ForumTopics {
 
     constructor(model, user) {
@@ -18,7 +18,12 @@ class ForumTopics {
         topicData.user = this.user;
 
         // generate slug
-        topicData.slug = "Random";
+        topicData.slug = slugify(topicData.title, {
+            replacement: '-',
+            remove: undefined,
+            lower: true,
+            strict: false,
+        });
 
         const createdTopic = await this.Model.create(topicData);
         return this.Model.findById(createdTopic._id).populate('user').populate('forumCategory');
