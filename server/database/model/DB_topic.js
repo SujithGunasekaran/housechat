@@ -10,7 +10,9 @@ const topicSchema = new Schema({
         type: String
     },
     slug: {
-        type: String
+        type: String,
+        unique: true,
+        index: true
     },
     forumCategory: {
         type: Schema.Types.ObjectId, ref: 'forumCategories'

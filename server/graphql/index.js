@@ -21,7 +21,7 @@ const { forumTypes } = require('./Types/ForumCategory');
 
 const { portfolioQuerys, portfolioMutations } = require('./Resolver/PortfolioResolver');
 const { userMutations, userQueries } = require('./Resolver/UserResolver');
-const { forumCategoryQueries } = require('./Resolver/ForumCategory');
+const { forumCategoryQueries, forumCategoryMutations } = require('./Resolver/ForumCategory');
 
 // graphql context
 
@@ -53,6 +53,8 @@ exports.createApolloServer = () => {
             updatePortfolio(id : ID, input : portfolioInput) : Portfolio,
             deletePortfolio(id : ID) : ID
 
+            createTopic(input : TopicInput) : Topics
+
             signIn(input : signInInput) : User,
             signUp(input : signUpInput) : String,
             signOut : Boolean
@@ -69,7 +71,8 @@ exports.createApolloServer = () => {
         },
         Mutation: {
             ...portfolioMutations,
-            ...userMutations
+            ...userMutations,
+            ...forumCategoryMutations
         }
     }
 
@@ -83,7 +86,7 @@ exports.createApolloServer = () => {
                 PortfolioModel: new PortfolioModel(mongoose.model('portfolio'), req.user),
                 UserModel: new UserModel(mongoose.model('User')),
                 ForumCategory: new ForumCategory(mongoose.model('forumCategories')),
-                ForumTopics: new ForumTopics(mongoose.model('topic'))
+                ForumTopics: new ForumTopics(mongoose.model('topic'), req.user)
             }
         })
     });
