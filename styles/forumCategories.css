@@ -15,6 +15,24 @@
     font-weight: 500;
     letter-spacing: 0.030rem;
 }
+.forum_categories_create_btn
+{
+    margin: 15px 0px;
+    padding: 8px 15px;
+    border : none;
+    border-radius: 6px;
+    background-color: var(--text-blue);
+    color : var(--text-white);
+    font-family: 'Montserrat';
+    font-size: .800rem;
+    font-weight: 500;
+    letter-spacing: 0.040rem;
+    cursor: pointer;
+}
+.forum_categories_create_btn:focus
+{
+    outline: none;
+}
 .forum_categories_card_container
 {
     margin : 25px 0px;

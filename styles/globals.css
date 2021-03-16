@@ -20,8 +20,11 @@ a {
   --header-background : rgb(36, 36, 36);
   --header-link-color : rgb(156, 155, 155);
   --header-logo-color : whitesmoke;
+  --text-white: white;
   --text-blue : rgb(51, 133, 226);
   --text-error : red;
+  --text-grey : rgb(156, 155, 155);
+  --text-ligth-grey : rgb(180, 178, 178);
   --header-hover-color : rgb(121, 179, 235);
   --text-black : rgb(32, 32, 32);
 }

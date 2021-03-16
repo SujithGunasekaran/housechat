@@ -7,6 +7,7 @@ import '../styles/topicPost.css';
 import '../styles/cv.css';
 import '../styles/form.css';
 import '../styles/loader.css';
+import '../styles/replyBox.css';
 import '../styles/InstructorDashboard.css';
 import "react-datepicker/dist/react-datepicker.css";
 

@@ -1,17 +1,28 @@
+import { useState } from 'react';
 import BaseLayout from '../../../layouts/BaseLayout';
-import { useGetTopicsByCategory } from '../../../apollo/actions';
+import { useGetTopicsByCategory, useGetUser } from '../../../apollo/actions';
 import { useRouter } from 'next/router';
 import withApollo from '../../../hoc/withApollo';
 import { getDataFromTree } from '@apollo/client/react/ssr';
+import ReplyBox from '../../../Components/ReplyBox';
 
+const useInitialData = () => {
+
+    const router = useRouter();
+    // Queries
+    const { data: topicData } = useGetTopicsByCategory(router.query.slug);
+    const { data: userData } = useGetUser();
+    // Query response
+    const forumTopics = topicData && topicData.topicsByCategory || [];
+    const user = userData && userData.user || null;
+
+    return { forumTopics, user }
+}
 
 function CategoryTopics() {
 
-    const router = useRouter();
-
-    const { data } = useGetTopicsByCategory(router.query.slug);
-
-    const forumTopics = data && data.topicsByCategory || [];
+    const [showReplyPanel, setShowReplyPanel] = useState(false)
+    const { forumTopics, user } = useInitialData();
 
     return (
         <BaseLayout>
@@ -21,6 +32,10 @@ function CategoryTopics() {
                         <div className="row">
                             <div className="col-md-12">
                                 <div className="forum_categories_heading">Select a Topic</div>
+                                {
+                                    user &&
+                                    <button className="forum_categories_create_btn" onClick={() => setShowReplyPanel(true)}>Create Portfolio</button>
+                                }
                             </div>
                         </div>
                         <div className="forum_categories_table_container">
@@ -47,6 +62,12 @@ function CategoryTopics() {
                             </table>
                         </div>
                     </div>
+                </div>
+                <div className={`reply_box_container ${showReplyPanel ? 'show' : ''}`}>
+                    <ReplyBox
+                        showReplyPanel={showReplyPanel}
+                        setShowReplyPanel={setShowReplyPanel}
+                    />
                 </div>
             </div>
         </BaseLayout>
