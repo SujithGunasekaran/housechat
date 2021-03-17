@@ -33,7 +33,6 @@ function CategoryTopics() {
     const handleReplyFormSubmit = (e, formData, resetFormField) => {
         e.preventDefault();
         formData.forumCategory = slug;
-        console.log("formData", formData);
         createTopic({ variables: formData })
             .then(() => {
                 resetFormField();

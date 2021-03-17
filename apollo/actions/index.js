@@ -92,4 +92,19 @@ export const useGetForumCategories = () => useQuery(GET_FORUM_CATEGORY);
 
 export const useGetTopicsByCategory = (slug) => useQuery(GET_TOPICS_BY_CATEGORY, { variables: { categoryName: slug } });
 
-export const useCreateTopic = () => useMutation(CREATE_TOPIC);
+export const useCreateTopic = () => useMutation(CREATE_TOPIC, {
+    update(cache, { data: { createTopic } }) {
+        const topicsByCategoryData = cache.readQuery({ query: GET_TOPICS_BY_CATEGORY, variables: { categoryName: createTopic.forumCategory.slug } })
+        if (topicsByCategoryData) {
+            try {
+                const { topicsByCategory } = topicsByCategoryData;
+                cache.writeQuery({
+                    query: GET_TOPICS_BY_CATEGORY,
+                    data: { topicsByCategory: [...topicsByCategory, createTopic] },
+                    variables: { categoryName: createTopic.forumCategory.slug }
+                })
+            }
+            catch (err) { }
+        }
+    }
+});
