@@ -7,6 +7,9 @@ exports.forumCategoryQueries = {
         let forumCategory = await context.models.ForumCategory.getCategoryBySlug(categoryName);
         if (!forumCategory) return null;
         return context.models.ForumTopics.getAllTopicsByCategory(forumCategory._id);
+    },
+    topicBySlug: (root, { slugName }, context) => {
+        return context.models.ForumTopics.getTopicBySlug(slugName);
     }
 }
 

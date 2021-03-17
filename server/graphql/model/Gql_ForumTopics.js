@@ -11,6 +11,10 @@ class ForumTopics {
         return this.Model.find({ forumCategory: categoryID }).populate('user').populate('forumCategory');
     }
 
+    getTopicBySlug(slugName) {
+        return this.Model.findOne({ slug: slugName }).populate('user').populate('forumCategory');
+    }
+
     async _create(data) {
         const createdTopic = await this.Model.create(data);
         return this.Model.findById(createdTopic._id).populate('user').populate('forumCategory');
