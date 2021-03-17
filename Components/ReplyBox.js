@@ -28,10 +28,10 @@ function ReplyBox(props) {
                 <div className="row">
                     <div className="col-md-6">
                         <textarea
-                            name="comment"
+                            name="content"
                             className="reply_box_input_comment"
-                            placeholder="Comment"
-                            value={formField.comment ? formField.comment : ''}
+                            placeholder="Content"
+                            value={formField.content ? formField.content : ''}
                             onChange={handleInputFieldChange}
                         />
                     </div>

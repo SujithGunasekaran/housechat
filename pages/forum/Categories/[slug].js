@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import BaseLayout from '../../../layouts/BaseLayout';
-import { useGetTopicsByCategory, useGetUser } from '../../../apollo/actions';
+import { useGetTopicsByCategory, useGetUser, useCreateTopic } from '../../../apollo/actions';
 import { useRouter } from 'next/router';
 import withApollo from '../../../hoc/withApollo';
 import { getDataFromTree } from '@apollo/client/react/ssr';
@@ -9,26 +9,39 @@ import ReplyBox from '../../../Components/ReplyBox';
 const useInitialData = () => {
 
     const router = useRouter();
+    const { slug } = router.query;
+
     // Queries
-    const { data: topicData } = useGetTopicsByCategory(router.query.slug);
+    const { data: topicData } = useGetTopicsByCategory(slug);
     const { data: userData } = useGetUser();
+
     // Query response
     const forumTopics = topicData && topicData.topicsByCategory || [];
     const user = userData && userData.user || null;
 
-    return { forumTopics, user }
+    // mutations
+    const [createTopic] = useCreateTopic();
+
+    return { forumTopics, user, slug, createTopic }
 }
 
 function CategoryTopics() {
 
     const [showReplyPanel, setShowReplyPanel] = useState(false)
-    const { forumTopics, user } = useInitialData();
-
+    const { forumTopics, user, slug, createTopic } = useInitialData();
 
     const handleReplyFormSubmit = (e, formData, resetFormField) => {
         e.preventDefault();
-        console.log("Success", formData);
-        resetFormField();
+        formData.forumCategory = slug;
+        console.log("formData", formData);
+        createTopic({ variables: formData })
+            .then(() => {
+                resetFormField();
+                setShowReplyPanel(false);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     }
 
     return (
