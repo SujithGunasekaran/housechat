@@ -12,6 +12,9 @@ exports.forumCategoryQueries = {
 
 exports.forumCategoryMutations = {
     createTopic: async (root, { input }, context) => {
+        const category = await context.models.ForumCategory.getCategoryBySlug(input.forumCategory);
+        if (!category) return null;
+        input.forumCategory = category._id;
         const topic = await context.models.ForumTopics.create(input);
         return topic;
     }
