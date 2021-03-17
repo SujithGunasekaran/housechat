@@ -22,13 +22,13 @@ const useInitialData = () => {
     // mutations
     const [createTopic] = useCreateTopic();
 
-    return { forumTopics, user, slug, createTopic }
+    return { forumTopics, user, slug, router, createTopic }
 }
 
 function CategoryTopics() {
 
     const [showReplyPanel, setShowReplyPanel] = useState(false)
-    const { forumTopics, user, slug, createTopic } = useInitialData();
+    const { forumTopics, user, slug, router, createTopic } = useInitialData();
 
     const handleReplyFormSubmit = (e, formData, resetFormField) => {
         e.preventDefault();
@@ -41,6 +41,10 @@ function CategoryTopics() {
             .catch((err) => {
                 console.log(err);
             })
+    }
+
+    const goToTopicPage = (slug) => {
+        router.push('/forum/Topics/[topicSlug]', `/forum/Topics/${slug}`);
     }
 
     return (
@@ -70,7 +74,7 @@ function CategoryTopics() {
                                     {
                                         forumTopics &&
                                         forumTopics.map((topicInfo) => (
-                                            <tr key={topicInfo._id}>
+                                            <tr key={topicInfo._id} onClick={() => goToTopicPage(topicInfo.slug)}>
                                                 <td>{topicInfo.title}</td>
                                                 <td>{topicInfo.forumCategory.title}</td>
                                                 <td>{topicInfo.user.username}</td>

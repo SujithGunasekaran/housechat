@@ -234,4 +234,24 @@ export const CREATE_TOPIC = gql`
         }
     }
 
+`;
+
+export const GET_TOPIC_BY_SLUG = gql`
+    query TopicBySlug($slugName : String){
+        topicBySlug(slugName : $slugName){
+            _id
+            title
+            content
+            slug
+            user{
+                username
+            }
+            forumCategory{
+                _id
+                title
+                subTitle
+                slug
+            }
+        }
+    }
 `
