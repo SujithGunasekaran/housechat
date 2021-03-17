@@ -1,6 +1,11 @@
+import useForm from '../Hooks/useForm';
 
+function ReplyBox(props) {
 
-function ReplyBox({ setShowReplyPanel, showReplyPanel }) {
+    const { handleReplyFormSubmit, onClose } = props;
+
+    const { formField, handleInputFieldChange, resetFormField } = useForm();
+
     return (
         <div className="container-fluid">
             <div className="row">
@@ -8,27 +13,33 @@ function ReplyBox({ setShowReplyPanel, showReplyPanel }) {
                     <div className="reply_box_head">Reply to :</div>
                 </div>
             </div>
-            <form>
+            <form onSubmit={(e) => handleReplyFormSubmit(e, formField, resetFormField)}>
                 <div className="row">
                     <div className="col-md-6">
                         <input
+                            name="title"
                             className="reply_box_input_field"
                             placeholder="Topic Title"
+                            value={formField.title ? formField.title : ''}
+                            onChange={handleInputFieldChange}
                         />
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-md-6">
                         <textarea
+                            name="comment"
                             className="reply_box_input_comment"
                             placeholder="Comment"
+                            value={formField.comment ? formField.comment : ''}
+                            onChange={handleInputFieldChange}
                         />
                     </div>
                 </div>
                 <div className="reply_box_btn_container">
                     <button className="reply_box_reply_btn">Reply</button>
-                    <div className="reply_box_cancel_btn">Cancel</div>
-                    <div className="reply_box_hide_btn" onClick={() => setShowReplyPanel(false)}>HIDE PREVIEW</div>
+                    <div className="reply_box_cancel_btn" onClick={onClose}>Cancel</div>
+                    <div className="reply_box_hide_btn" onClick={onClose}>HIDE PREVIEW</div>
                 </div>
             </form>
         </div>

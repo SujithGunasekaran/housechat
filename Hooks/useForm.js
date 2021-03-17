@@ -24,7 +24,15 @@ const useForm = () => {
         setDate(date);
     }
 
-    return { formField, formError, formSuccess, startDate, endDate, setEndDate, setStartDate, setFormField, setFormSuccess, setFormError, handleInputFieldChange, handleDateChange }
+    const resetFormField = () => {
+        setFormField((prevFormField) => {
+            let formField = JSON.parse(JSON.stringify(prevFormField));
+            formField = {};
+            return formField;
+        })
+    }
+
+    return { formField, formError, formSuccess, startDate, endDate, resetFormField, setEndDate, setStartDate, setFormField, setFormSuccess, setFormError, handleInputFieldChange, handleDateChange }
 
 }
 

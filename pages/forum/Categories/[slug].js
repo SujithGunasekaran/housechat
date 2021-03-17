@@ -24,6 +24,13 @@ function CategoryTopics() {
     const [showReplyPanel, setShowReplyPanel] = useState(false)
     const { forumTopics, user } = useInitialData();
 
+
+    const handleReplyFormSubmit = (e, formData, resetFormField) => {
+        e.preventDefault();
+        console.log("Success", formData);
+        resetFormField();
+    }
+
     return (
         <BaseLayout>
             <div>
@@ -65,8 +72,8 @@ function CategoryTopics() {
                 </div>
                 <div className={`reply_box_container ${showReplyPanel ? 'show' : ''}`}>
                     <ReplyBox
-                        showReplyPanel={showReplyPanel}
-                        setShowReplyPanel={setShowReplyPanel}
+                        handleReplyFormSubmit={handleReplyFormSubmit}
+                        onClose={() => setShowReplyPanel(false)}
                     />
                 </div>
             </div>
