@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 const userOneId = mongoose.Types.ObjectId();
 const userTwoId = mongoose.Types.ObjectId();
@@ -8,6 +9,18 @@ const forumTwoId = mongoose.Types.ObjectId();
 const forumThreeId = mongoose.Types.ObjectId();
 
 const topicOneId = mongoose.Types.ObjectId();
+
+const postOneId = mongoose.Types.ObjectId();
+const postOneCreatedAt = moment().subtract(7, 'days');
+
+const postTwoId = mongoose.Types.ObjectId();
+const postTwoCreatedAt = moment(postOneCreatedAt).add(1, 'days');
+
+const postThreeId = mongoose.Types.ObjectId();
+const postThreeCreatedAt = moment(postTwoCreatedAt).add(1, 'days');
+
+const postFourId = mongoose.Types.ObjectId();
+const postFourCreatedAt = moment(postThreeCreatedAt).add(1, 'days');
 
 const data = {
     Users: [
@@ -107,6 +120,46 @@ const data = {
             forumCategory: forumOneId,
             user: userOneId
         }
+    ],
+    posts: [
+        {
+            _id: postOneId,
+            content: 'Hey there how are you ?',
+            slug: 'md43',
+            fullSlug: postOneCreatedAt.toISOString() + ':md43',
+            topic: topicOneId,
+            user: userOneId,
+            createdAt: postOneCreatedAt
+        },
+        {
+            _id: postTwoId,
+            content: 'What do you think about this?',
+            slug: 'md59',
+            fullSlug: postTwoCreatedAt.toISOString() + ':md59',
+            topic: topicOneId,
+            user: userTwoId,
+            createdAt: postTwoCreatedAt
+        },
+        {
+            _id: postThreeId,
+            content: 'I think its nice (:',
+            slug: 'md59/md79',
+            fullSlug: postTwoCreatedAt.toISOString() + ':md59' + '/' + postThreeCreatedAt.toISOString() + ':md79',
+            topic: topicOneId,
+            user: userOneId,
+            parent: postTwoId,
+            createdAt: postThreeCreatedAt
+        },
+        {
+            _id: postFourId,
+            content: 'Good to hear that!',
+            slug: 'md59/md79/md89',
+            fullSlug: postTwoCreatedAt.toISOString() + ':md59' + '/' + postThreeCreatedAt.toISOString() + ':md79' + '/' + postFourCreatedAt.toISOString() + ':md89',
+            topic: topicOneId,
+            user: userTwoId,
+            parent: postThreeId,
+            createdAt: postFourCreatedAt
+        },
     ]
 }
 
