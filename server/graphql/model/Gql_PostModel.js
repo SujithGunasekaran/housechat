@@ -10,7 +10,7 @@ class Post {
     }
 
     getAllByTopic(topic) {
-        return this.Model.find({ topic }).populate('user').populate('topic').populate('parent');
+        return this.Model.find({ topic }).populate('user').populate('topic').populate({ path: 'parent', populate: 'user' });
     }
 
 }

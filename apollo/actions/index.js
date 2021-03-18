@@ -13,7 +13,8 @@ import {
     GET_FORUM_CATEGORY,
     GET_TOPICS_BY_CATEGORY,
     CREATE_TOPIC,
-    GET_TOPIC_BY_SLUG
+    GET_TOPIC_BY_SLUG,
+    GET_POST_BY_TOPIC
 } from '../queries';
 
 export const useGetPortfolioById = (id) => useQuery(GET_PORTFOLIOBYID, { variables: { id: id } });
@@ -94,6 +95,8 @@ export const useGetForumCategories = () => useQuery(GET_FORUM_CATEGORY);
 export const useGetTopicsByCategory = (slug) => useQuery(GET_TOPICS_BY_CATEGORY, { variables: { categoryName: slug } });
 
 export const useGetTopicBySlug = (slug) => useQuery(GET_TOPIC_BY_SLUG, { variables: { slugName: slug } });
+
+export const useGetPostByTopic = (slug) => useQuery(GET_POST_BY_TOPIC, { variables: { slug } })
 
 export const useCreateTopic = () => useMutation(CREATE_TOPIC, {
     update(cache, { data: { createTopic } }) {

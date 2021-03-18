@@ -1,7 +1,7 @@
 import PersonIcon from '@material-ui/icons/Person';
 import BaseLayout from '../../../layouts/BaseLayout';
 import { useRouter } from 'next/router';
-import { useGetTopicBySlug } from '../../../apollo/actions';
+import { useGetTopicBySlug, useGetPostByTopic } from '../../../apollo/actions';
 import withApollo from '../../../hoc/withApollo';
 import { getDataFromTree } from '@apollo/client/react/ssr';
 
@@ -11,15 +11,20 @@ const useInitialData = () => {
     const { topicSlug } = router.query;
 
     // Queries
-    const { data } = useGetTopicBySlug(topicSlug);
-    const topicData = data && data.topicBySlug || {};
-    return { topicData }
+    const { data: topic } = useGetTopicBySlug(topicSlug);
+    const { data: post } = useGetPostByTopic(topicSlug);
+
+    const topicData = (topic && topic.topicBySlug) || {};
+    const postData = (post && post.postByTopic) || [];
+
+    return { topicData, postData };
 }
 
 function Post() {
 
-    const { topicData } = useInitialData();
-    console.log(topicData);
+    const { topicData, postData } = useInitialData();
+    console.log("postData", postData);
+    console.log("topicData", topicData);
     return (
         <BaseLayout>
             <div>

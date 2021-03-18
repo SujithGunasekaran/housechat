@@ -254,4 +254,24 @@ export const GET_TOPIC_BY_SLUG = gql`
             }
         }
     }
-`
+`;
+
+export const GET_POST_BY_TOPIC = gql`
+    query PostByTopic($slug: String){
+        postByTopic(slug : $slug){
+            _id
+            content
+            slug
+            createdAt
+            user {
+                username
+            }
+            parent {
+                content
+                user {
+                    username
+                }
+            }
+        }
+    }
+`;
