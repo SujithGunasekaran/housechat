@@ -10,7 +10,12 @@ exports.forumCategoryQueries = {
     },
     topicBySlug: (root, { slugName }, context) => {
         return context.models.ForumTopics.getTopicBySlug(slugName);
+    },
+    postByTopic: async (root, { slug }, context) => {
+        const topic = await context.models.ForumTopics.getTopicBySlug(slug);
+        return context.models.PostModel.getAllByTopic(topic);
     }
+
 }
 
 exports.forumCategoryMutations = {

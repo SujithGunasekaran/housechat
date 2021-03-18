@@ -10,6 +10,7 @@ const PortfolioModel = require('./model/Gql_PortfolioModel');
 const UserModel = require('./model/Gql_UserModel');
 const ForumCategory = require('./model/Gql_ForumCategory');
 const ForumTopics = require('./model/Gql_ForumTopics');
+const PostModel = require('./model/Gql_PostModel');
 
 // Types
 
@@ -48,6 +49,8 @@ exports.createApolloServer = () => {
             topicsByCategory(categoryName : String) : [Topics] 
 
             topicBySlug(slugName : String) : Topics
+
+            postByTopic(slug : String) : [Post]
         }
 
         type Mutation{
@@ -88,7 +91,8 @@ exports.createApolloServer = () => {
                 PortfolioModel: new PortfolioModel(mongoose.model('portfolio'), req.user),
                 UserModel: new UserModel(mongoose.model('User')),
                 ForumCategory: new ForumCategory(mongoose.model('forumCategories')),
-                ForumTopics: new ForumTopics(mongoose.model('topic'), req.user)
+                ForumTopics: new ForumTopics(mongoose.model('topic'), req.user),
+                PostModel: new PostModel(mongoose.model('post'), req.user)
             }
         })
     });

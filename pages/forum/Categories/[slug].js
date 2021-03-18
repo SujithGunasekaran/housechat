@@ -74,7 +74,7 @@ function CategoryTopics() {
                                     {
                                         forumTopics &&
                                         forumTopics.map((topicInfo) => (
-                                            <tr key={topicInfo._id} onClick={() => goToTopicPage(topicInfo.slug)}>
+                                            <tr className="forum_categories_table_body" key={topicInfo._id} onClick={() => goToTopicPage(topicInfo.slug)}>
                                                 <td>{topicInfo.title}</td>
                                                 <td>{topicInfo.forumCategory.title}</td>
                                                 <td>{topicInfo.user.username}</td>

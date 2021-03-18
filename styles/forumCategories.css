@@ -72,6 +72,11 @@
     line-height: 25px;
     font-weight: 400 !important;
 }
+.forum_categories_table_body:hover
+{
+    cursor: pointer;
+    background-color: rgb(204, 228, 236);
+}
 
 @media(max-width:750px){
     .forum_categories_main_container{ padding : 100px 2px }
