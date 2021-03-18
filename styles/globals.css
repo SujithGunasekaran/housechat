@@ -23,6 +23,7 @@ a {
   --text-white: white;
   --text-blue : rgb(51, 133, 226);
   --text-error : red;
+  --text-ligth-dark : rgb(43, 42, 42);
   --text-grey : rgb(156, 155, 155);
   --text-ligth-grey : rgb(180, 178, 178);
   --header-hover-color : rgb(121, 179, 235);
@@ -33,3 +34,4 @@ a {
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap');

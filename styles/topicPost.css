@@ -21,31 +21,38 @@
 }
 .topic_post_user_profile
 {
-    font-size: 3.5rem !important;
+    font-size: 2rem !important;
+}
+
+.topic_post_user_main_display
+{
+    display: flex;
+    width : 100%;
 }
 .topic_post_user_info_display
 {
     display: flex;
     flex-direction: column;
+    width : 100%;
     padding: 0px 0px 0px 15px;
 }
 .topic_post_username
 {
     color : var(--text-black);
-    font-size: 1.1rem;
-    font-family: 'Montserrat';
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
     letter-spacing: 0.020rem;
     font-weight: 500;
 }
 .topic_post_user_answer
 {
     padding : 15px 0px;
-    color : var(--text-black);
-    font-size: 0.900rem;
-    font-family: 'Montserrat';
-    letter-spacing: 0.020rem;
-    line-height: 30px;
-    font-weight: 400;
+    color : var(--text-ligth-dark);
+    font-size: 0.920rem;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.030rem;
+    line-height: 35px;
+    font-weight: 500;
 }
 .topic_post_reply_container
 {
@@ -57,24 +64,37 @@
     margin-left: auto;
     color : var(--text-black);
     font-size: 0.800rem;
-    font-family: 'Montserrat';
+    font-family: 'Inter', sans-serif;
     letter-spacing: 0.020rem;
     font-weight: 500;
 }
 .topic_post_time
 {
     padding : 15px 10px 5px 10px;
-    color : var(--text-black);
+    color : var(--text-ligth-dark);
     font-size: 0.800rem;
-    font-family: 'Montserrat';
+    font-family: 'Inter', sans-serif;
     letter-spacing: 0.020rem;
     font-weight: 500;
+}
+.topic_post_parent_container
+{
+    width: 100%;
+    margin: 15px 0px;
+    padding : 15px 5px;
+    border-radius: 6px;
+    color : var(--text-black);
+    font-size: 0.800rem;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.020rem;
+    font-weight: 500;
+    background-color: rgb(225, 226, 226);
 }
 
 @media(max-width:750px)
 {
     .topic_post_main_container{ padding : 100px 2px }
-    .topic_post_user_info_display{ padding : 0px 0px 0px 25px }
+    .topic_post_user_info_display{ padding : 0px 0px 0px 10px }
     .topic_post_user_profile{ font-size: 2.5rem !important; }
     .topic_post_heading{ text-align: left; }
 }
