@@ -1,7 +1,7 @@
 .topic_post_main_container
 {
     width : 100%;
-    padding : 100px 20px 100px 20px;
+    padding : 100px 20px 10px 20px;
 }
 .topic_post_heading
 {
@@ -67,7 +67,14 @@
     font-family: 'Inter', sans-serif;
     letter-spacing: 0.020rem;
     font-weight: 500;
+    transition: 0.5s all ease-in-out;
 }
+.topic_post_reply:hover
+{
+    color : var(--header-hover-color);
+    cursor: pointer;
+}
+
 .topic_post_time
 {
     padding : 15px 10px 5px 10px;
@@ -91,6 +98,34 @@
     background-color: rgb(225, 226, 226);
 }
 
+/* Topic bottom create post btn */
+
+.topic_post_bottom_container
+{
+    margin : 10px 20px 20px 20px;
+}
+.topic_post_bottom_btn
+{
+    margin : 5px 0px;
+    padding : 8px 15px;
+    border : 1px solid var(--header-hover-color);
+    border-radius: 6px;
+    color : var(--header-hover-color);
+    font-size: 0.800rem;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.020rem;
+    font-weight: 500;
+    transition: 0.5s all ease-in-out;
+}
+.topic_post_bottom_btn:focus
+{
+    outline : none
+}
+.topic_post_bottom_btn:hover
+{
+    background-color: var(--header-hover-color);
+    color : var(--text-white);
+}
 @media(max-width:750px)
 {
     .topic_post_main_container{ padding : 100px 2px }

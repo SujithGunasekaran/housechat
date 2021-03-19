@@ -21,6 +21,10 @@
     color : var(--text-grey);
     letter-spacing: 0.030rem;
 }
+.reply_box_name
+{
+    color : var(--header-hover-color);
+}
 .reply_box_input_field
 {
     margin : 20px 0px;
