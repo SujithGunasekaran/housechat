@@ -275,3 +275,31 @@ export const GET_POST_BY_TOPIC = gql`
         }
     }
 `;
+
+export const CREATE_POST = gql`
+    mutation CreatePost(
+        $content : String
+        $parent : String
+        $topic : String
+    ){
+        createPost(input : {
+            content : $content
+            parent : $parent
+            topic : $topic
+        }){
+            _id
+            content
+            slug
+            createdAt
+            user {
+                username
+            }
+            parent {
+                content
+                user {
+                    username
+                }
+            }
+        }
+    }
+`

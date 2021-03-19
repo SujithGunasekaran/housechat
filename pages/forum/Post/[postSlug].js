@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import BaseLayout from '../../../layouts/BaseLayout';
 import { useRouter } from 'next/router';
 import { useGetTopicBySlug, useGetPostByTopic, useGetUser } from '../../../apollo/actions';
@@ -6,6 +6,7 @@ import withApollo from '../../../hoc/withApollo';
 import { getDataFromTree } from '@apollo/client/react/ssr';
 import PostList from '../../../Components/Post/PostList';
 import ReplyBox from '../../../Components/ReplyBox';
+import { useCreatePost } from '../../../apollo/actions';
 
 const useInitialData = () => {
 
@@ -21,23 +22,44 @@ const useInitialData = () => {
     const postData = (post && post.postByTopic) || [];
     const userData = (user && user.user) || null;
 
-    // form submit method
+    // Mutations
 
-    const handleReplyFormSubmit = (e) => {
-        e.preventDefault();
-        console.log("Successs");
-    }
+    const [createPost] = useCreatePost();
 
-    return { topicData, postData, userData, handleReplyFormSubmit };
+    return { topicData, postData, userData, createPost };
 }
 
 
 function PostPage() {
 
+    // Refs
+    const pageEnd = useRef();
+
     const [showReplyPanel, setShowReplyPanel] = useState(false);
     const [replyTo, setReplyTo] = useState(null);
 
-    const { topicData, postData, userData, handleReplyFormSubmit } = useInitialData();
+    const { topicData, postData, userData, createPost } = useInitialData();
+
+    const handleReplyFormSubmit = async (e, formField, resetFormField) => {
+        e.preventDefault();
+        try {
+            if (replyTo) {
+                formField.parent = replyTo._id;
+            }
+            formField.topic = topicData._id;
+            await createPost({ variables: formField });
+            resetFormField();
+            setShowReplyPanel(false);
+            scrollToBottom();
+        }
+        catch (err) {
+            console.log("Error", err);
+        }
+    }
+
+    const scrollToBottom = () => {
+        pageEnd.current.scrollIntoView({ behavior: 'smooth' });
+    }
 
     return (
         <BaseLayout>
@@ -79,6 +101,7 @@ function PostPage() {
                         </div>
                     </div>
                 }
+                <div ref={pageEnd}></div>
                 <div className={`reply_box_container ${showReplyPanel ? 'show' : ''}`}>
                     <ReplyBox
                         hasTitle={false}

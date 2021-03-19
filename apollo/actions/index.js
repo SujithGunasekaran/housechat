@@ -14,7 +14,8 @@ import {
     GET_TOPICS_BY_CATEGORY,
     CREATE_TOPIC,
     GET_TOPIC_BY_SLUG,
-    GET_POST_BY_TOPIC
+    GET_POST_BY_TOPIC,
+    CREATE_POST
 } from '../queries';
 
 export const useGetPortfolioById = (id) => useQuery(GET_PORTFOLIOBYID, { variables: { id: id } });
@@ -114,3 +115,5 @@ export const useCreateTopic = () => useMutation(CREATE_TOPIC, {
         }
     }
 });
+
+export const useCreatePost = () => useMutation(CREATE_POST);
