@@ -25,5 +25,9 @@ exports.forumCategoryMutations = {
         input.forumCategory = category._id;
         const topic = await context.models.ForumTopics.create(input);
         return topic;
+    },
+    createPost: async (root, { input }, context) => {
+        const post = await context.models.PostModel.create(input);
+        return post;
     }
 }
