@@ -2,29 +2,35 @@ import useForm from '../Hooks/useForm';
 
 function ReplyBox(props) {
 
-    const { handleReplyFormSubmit, onClose } = props;
+    const { handleReplyFormSubmit, onClose, hasTitle, replyTo } = props;
 
     const { formField, handleInputFieldChange, resetFormField } = useForm();
 
     return (
         <div className="container-fluid">
-            <div className="row">
-                <div className="col-md-12">
-                    <div className="reply_box_head">Reply to :</div>
-                </div>
-            </div>
-            <form onSubmit={(e) => handleReplyFormSubmit(e, formField, resetFormField)}>
+            {
+                replyTo &&
                 <div className="row">
-                    <div className="col-md-6">
-                        <input
-                            name="title"
-                            className="reply_box_input_field"
-                            placeholder="Topic Title"
-                            value={formField.title ? formField.title : ''}
-                            onChange={handleInputFieldChange}
-                        />
+                    <div className="col-md-12">
+                        <div className="reply_box_head">Reply to : <span className="reply_box_name">{replyTo}</span></div>
                     </div>
                 </div>
+            }
+            <form onSubmit={(e) => handleReplyFormSubmit(e, formField, resetFormField)}>
+                {
+                    hasTitle &&
+                    <div className="row">
+                        <div className="col-md-6">
+                            <input
+                                name="title"
+                                className="reply_box_input_field"
+                                placeholder="Topic Title"
+                                value={formField.title ? formField.title : ''}
+                                onChange={handleInputFieldChange}
+                            />
+                        </div>
+                    </div>
+                }
                 <div className="row">
                     <div className="col-md-6">
                         <textarea

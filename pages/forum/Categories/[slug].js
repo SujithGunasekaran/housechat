@@ -27,7 +27,8 @@ const useInitialData = () => {
 
 function CategoryTopics() {
 
-    const [showReplyPanel, setShowReplyPanel] = useState(false)
+    const [showReplyPanel, setShowReplyPanel] = useState(false);
+
     const { forumTopics, user, slug, router, createTopic } = useInitialData();
 
     const handleReplyFormSubmit = (e, formData, resetFormField) => {
@@ -44,7 +45,7 @@ function CategoryTopics() {
     }
 
     const goToTopicPage = (slug) => {
-        router.push('/forum/Topics/[topicSlug]', `/forum/Topics/${slug}`);
+        router.push('/forum/Post/[postSlug]', `/forum/Post/${slug}`);
     }
 
     return (
@@ -88,6 +89,7 @@ function CategoryTopics() {
                 </div>
                 <div className={`reply_box_container ${showReplyPanel ? 'show' : ''}`}>
                     <ReplyBox
+                        hasTitle={true}
                         handleReplyFormSubmit={handleReplyFormSubmit}
                         onClose={() => setShowReplyPanel(false)}
                     />

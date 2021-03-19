@@ -1,9 +1,8 @@
-import { formatDate } from '../../utils/Function';
+import { fromNow } from '../../utils/Function';
 import PersonIcon from '@material-ui/icons/Person';
 
 
-function PostItem({ post }) {
-
+function PostItem({ post, onReplyOpen, canCreate }) {
     return (
         <div>
             <div className="topic_post_container">
@@ -42,11 +41,17 @@ function PostItem({ post }) {
                 </div>
                 <div className="row">
                     <div className="col-6 col-sm-6 col-md-6">
-                        <div className="topic_post_time">Posted : {formatDate(post.createdAt)}</div>
+                        {
+                            post.createdAt &&
+                            <div className="topic_post_time">{fromNow(post.createdAt)}</div>
+                        }
                     </div>
                     <div className="col-6 col-sm-6 col-md-6">
                         <div className="topic_post_reply_container">
-                            <div className="topic_post_reply">Reply</div>
+                            {
+                                onReplyOpen && canCreate &&
+                                <div className="topic_post_reply" onClick={() => onReplyOpen({ ...post })}>Reply</div>
+                            }
                         </div>
                     </div>
                 </div>
