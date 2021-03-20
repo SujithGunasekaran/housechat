@@ -70,11 +70,13 @@ function PostPage() {
             // updateQuery will have two parameter one is prevData, updatedData
 
             // Eg. in prevData 10 array list we are creting new post now updatedData will have 11 array list 
-
-            await fetchMore({
+            let lastPage = Math.ceil(count / pagination.pageSize);
+            if (count === 0) lastPage = 1;
+            lastPage === pagination.pageNumber && await fetchMore({
+                variables: { pageSize: pagination.pageSize, pageNumber: lastPage },
                 updateQuery: (previousResult, { fetchMoreResult }) => {
                     return Object.assign({}, previousResult, {
-                        postByTopic: [...fetchMoreResult.postByTopic]
+                        postByTopic: { ...fetchMoreResult.postByTopic }
                     })
                 }
             })
