@@ -9,14 +9,14 @@ import ReplyBox from '../../../Components/ReplyBox';
 import { useCreatePost } from '../../../apollo/actions';
 import AppPagination from '../../../Components/Pagination';
 
-const useInitialData = () => {
+const useInitialData = (pagination) => {
 
     const router = useRouter();
     const { postSlug } = router.query;
 
     // Queries
     const { data: topic } = useGetTopicBySlug(postSlug);
-    const { data: post, fetchMore } = useGetPostByTopic(postSlug);
+    const { data: post, fetchMore } = useGetPostByTopic(postSlug, pagination);
     const { data: user } = useGetUser();
 
     const topicData = (topic && topic.topicBySlug) || {};
@@ -38,10 +38,11 @@ function PostPage() {
 
     const [showReplyPanel, setShowReplyPanel] = useState(false);
     const [replyTo, setReplyTo] = useState(null);
+    const [pagination, setPagination] = useState({ pageNumber: 1, pageSize: 5 });
 
     // posts and count will be in postData.
 
-    const { topicData, posts, count, userData, createPost, fetchMore } = useInitialData();
+    const { topicData, posts, count, userData, createPost, fetchMore } = useInitialData(pagination);
 
     const scrollToBottom = () => {
         pageEnd.current.scrollIntoView({ behavior: 'smooth' });
@@ -124,6 +125,7 @@ function PostPage() {
                                     <div className="topic_post_pagination">
                                         <AppPagination
                                             count={count}
+                                            pageSize={pagination.pageSize}
                                         />
                                     </div>
                                 </div>
