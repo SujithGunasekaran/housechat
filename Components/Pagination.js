@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Pagination from "react-js-pagination";
 
 
-export default function AppPagination() {
+export default function AppPagination({ count }) {
 
     const [activePage, setActivePage] = useState(1);
 
@@ -12,7 +12,7 @@ export default function AppPagination() {
             linkClass="page-link"
             activePage={activePage}
             itemsCountPerPage={10}
-            totalItemsCount={500}
+            totalItemsCount={count ? count : 0}
             pageRangeDisplayed={5}
             onChange={(page) => { setActivePage(page) }}
         />

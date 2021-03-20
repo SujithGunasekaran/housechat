@@ -20,14 +20,14 @@ const useInitialData = () => {
     const { data: user } = useGetUser();
 
     const topicData = (topic && topic.topicBySlug) || {};
-    const postData = (post && post.postByTopic) || [];
+    const postData = (post && post.postByTopic) || { posts: [] };
     const userData = (user && user.user) || null;
 
     // Mutations
 
     const [createPost] = useCreatePost();
 
-    return { topicData, postData, userData, createPost, fetchMore };
+    return { topicData, ...postData, userData, createPost, fetchMore };
 }
 
 
@@ -39,7 +39,9 @@ function PostPage() {
     const [showReplyPanel, setShowReplyPanel] = useState(false);
     const [replyTo, setReplyTo] = useState(null);
 
-    const { topicData, postData, userData, createPost, fetchMore } = useInitialData();
+    // posts and count will be in postData.
+
+    const { topicData, posts, count, userData, createPost, fetchMore } = useInitialData();
 
     const scrollToBottom = () => {
         pageEnd.current.scrollIntoView({ behavior: 'smooth' });
@@ -91,7 +93,7 @@ function PostPage() {
                     <PostList
                         canCreate={userData ? true : false}
                         topicData={topicData}
-                        postData={postData}
+                        postData={posts}
                         onReplyOpen={(replyToInfo) => {
                             setShowReplyPanel(true),
                                 setReplyTo(replyToInfo)
@@ -120,7 +122,9 @@ function PostPage() {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="topic_post_pagination">
-                                        <AppPagination />
+                                        <AppPagination
+                                            count={count}
+                                        />
                                     </div>
                                 </div>
                             </div>
