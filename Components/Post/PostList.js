@@ -17,7 +17,7 @@ function PostList({ topicData, postData, onReplyOpen, canCreate }) {
                 postData &&
                 postData.map((postInfo) => (
                     <div className="row" key={postInfo._id}>
-                        <div className="col-md-8">
+                        <div className="col-md-10">
                             <PostItem
                                 canCreate={canCreate}
                                 post={postInfo}

@@ -7,6 +7,7 @@ import { getDataFromTree } from '@apollo/client/react/ssr';
 import PostList from '../../../Components/Post/PostList';
 import ReplyBox from '../../../Components/ReplyBox';
 import { useCreatePost } from '../../../apollo/actions';
+import AppPagination from '../../../Components/Pagination';
 
 const useInitialData = () => {
 
@@ -63,53 +64,61 @@ function PostPage() {
 
     return (
         <BaseLayout>
-            <div>
-                <div className="topic_post_main_container">
-                    <div className="container-fluid">
-                        <div className="row">
-                            <div className="col-md-12">
-                                <div className="topic_post_heading">{topicData.title}</div>
-                            </div>
+            <div className="topic_post_main_container">
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="topic_post_heading">{topicData.title}</div>
                         </div>
-                        <PostList
-                            canCreate={userData ? true : false}
-                            topicData={topicData}
-                            postData={postData}
-                            onReplyOpen={(replyToInfo) => {
-                                setShowReplyPanel(true),
-                                    setReplyTo(replyToInfo)
-                            }}
-                        />
                     </div>
+                    <PostList
+                        canCreate={userData ? true : false}
+                        topicData={topicData}
+                        postData={postData}
+                        onReplyOpen={(replyToInfo) => {
+                            setShowReplyPanel(true),
+                                setReplyTo(replyToInfo)
+                        }}
+                    />
                 </div>
-                {
-                    userData && userData.username &&
-                    <div className="topic_post_bottom_container">
-                        <div className="container-fluid">
+            </div>
+            <div className="topic_post_bottom_container">
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-10">
                             <div className="row">
-                                <div className="col-md-12">
-                                    <button className="topic_post_bottom_btn"
-                                        onClick={() => {
-                                            setReplyTo(null),
-                                                setShowReplyPanel(true)
-                                        }}
-                                    >
-                                        Create New Topic
+                                <div className="col-md-6">
+                                    {
+                                        userData && userData.username &&
+                                        <button className="topic_post_bottom_btn"
+                                            onClick={() => {
+                                                setReplyTo(null),
+                                                    setShowReplyPanel(true)
+                                            }}
+                                        >
+                                            Create New Topic
                                     </button>
+                                    }
+
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="topic_post_pagination">
+                                        <AppPagination />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                }
-                <div ref={pageEnd}></div>
-                <div className={`reply_box_container ${showReplyPanel ? 'show' : ''}`}>
-                    <ReplyBox
-                        hasTitle={false}
-                        replyTo={(replyTo && replyTo.user.username) || topicData.title}
-                        handleReplyFormSubmit={handleReplyFormSubmit}
-                        onClose={() => setShowReplyPanel(false)}
-                    />
                 </div>
+            </div>
+            <div ref={pageEnd}></div>
+            <div className={`reply_box_container ${showReplyPanel ? 'show' : ''}`}>
+                <ReplyBox
+                    hasTitle={false}
+                    replyTo={(replyTo && replyTo.user.username) || topicData.title}
+                    handleReplyFormSubmit={handleReplyFormSubmit}
+                    onClose={() => setShowReplyPanel(false)}
+                />
             </div>
         </BaseLayout>
     )
