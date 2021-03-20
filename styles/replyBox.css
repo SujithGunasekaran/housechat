@@ -4,6 +4,7 @@
     width: 100%;
     padding : 15px 10px;
     position: fixed;
+    z-index: 999999;
     transform: translateY(100%);
     transition: 0.5s all ease-in-out;
     background-color: var(--header-background);
@@ -147,7 +148,7 @@
 }
 
 
-@media(max-width:760px)
+@media(max-width:770px)
 {
     .reply_box_container{padding : 15px 0px;}
 }

@@ -19,7 +19,7 @@
     letter-spacing: 0.030rem;
 }
 
-@media(max-width:750px){
+@media(max-width:770px){
     .hero_my_name{font-size: 1.8rem;}
     .hero_main{padding: 100px 2px;}
 }

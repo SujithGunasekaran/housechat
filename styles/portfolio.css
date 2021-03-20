@@ -70,7 +70,7 @@
     letter-spacing: 0.020rem;
     font-weight: 500;
 }
-@media(max-width:750px)
+@media(max-width:770px)
 {
     .portfolio_main{ padding : 100px 2px; }
 }
@@ -157,7 +157,7 @@
     font-weight: 500;
 }
 
-@media(max-width:760px)
+@media(max-width:770px)
 {
     .portfolio_detail_info_container{ margin : 10px 0px; }
 }

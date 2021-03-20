@@ -267,6 +267,6 @@
     cursor: pointer;
 }
 
-@media(max-width:750px){
+@media(max-width:770px){
     .form_main_container{ padding: 100px 2px; }
 }

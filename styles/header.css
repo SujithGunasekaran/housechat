@@ -264,7 +264,7 @@
     color : var(--header-hover-color);
 }
 
-@media(max-width:750px){
+@media(max-width:770px){
     .header_page_link_container ul{display: none;}
     .header_page_authenticate_container{display: none;}
     .header_page_mobile{display: block;}

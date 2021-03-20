@@ -78,6 +78,6 @@
     background-color: rgb(204, 228, 236);
 }
 
-@media(max-width:750px){
+@media(max-width:770px){
     .forum_categories_main_container{ padding : 100px 2px }
 }
