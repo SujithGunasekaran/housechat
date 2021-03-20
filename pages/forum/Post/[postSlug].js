@@ -20,7 +20,7 @@ const useInitialData = (pagination) => {
     const { data: user } = useGetUser();
 
     const topicData = (topic && topic.topicBySlug) || {};
-    const postData = (post && post.postByTopic) || { posts: [] };
+    const postData = (post && post.postByTopic) || { posts: [], count: 0 };
     const userData = (user && user.user) || null;
 
     // Mutations
@@ -46,6 +46,10 @@ function PostPage() {
 
     const scrollToBottom = () => {
         pageEnd.current.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    const scrollToTopPage = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     const cleanUp = () => {
@@ -125,7 +129,12 @@ function PostPage() {
                                     <div className="topic_post_pagination">
                                         <AppPagination
                                             count={count}
+                                            pageNumber={pagination.pageNumber}
                                             pageSize={pagination.pageSize}
+                                            onPageChange={(pageNumber, pageSize) => {
+                                                setPagination({ pageNumber, pageSize });
+                                                scrollToTopPage();
+                                            }}
                                         />
                                     </div>
                                 </div>
