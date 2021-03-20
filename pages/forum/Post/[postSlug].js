@@ -16,7 +16,7 @@ const useInitialData = () => {
 
     // Queries
     const { data: topic } = useGetTopicBySlug(postSlug);
-    const { data: post } = useGetPostByTopic(postSlug);
+    const { data: post, fetchMore } = useGetPostByTopic(postSlug);
     const { data: user } = useGetUser();
 
     const topicData = (topic && topic.topicBySlug) || {};
@@ -27,7 +27,7 @@ const useInitialData = () => {
 
     const [createPost] = useCreatePost();
 
-    return { topicData, postData, userData, createPost };
+    return { topicData, postData, userData, createPost, fetchMore };
 }
 
 
@@ -39,7 +39,16 @@ function PostPage() {
     const [showReplyPanel, setShowReplyPanel] = useState(false);
     const [replyTo, setReplyTo] = useState(null);
 
-    const { topicData, postData, userData, createPost } = useInitialData();
+    const { topicData, postData, userData, createPost, fetchMore } = useInitialData();
+
+    const scrollToBottom = () => {
+        pageEnd.current.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    const cleanUp = () => {
+        setShowReplyPanel(false);
+        scrollToBottom();
+    }
 
     const handleReplyFormSubmit = async (e, formField, resetFormField) => {
         e.preventDefault();
@@ -49,17 +58,25 @@ function PostPage() {
             }
             formField.topic = topicData._id;
             await createPost({ variables: formField });
+
+            // updateQuery will have two parameter one is prevData, updatedData
+
+            // Eg. in prevData 10 array list we are creting new post now updatedData will have 11 array list 
+
+            await fetchMore({
+                updateQuery: (previousResult, { fetchMoreResult }) => {
+                    return Object.assign({}, previousResult, {
+                        postByTopic: [...fetchMoreResult.postByTopic]
+                    })
+                }
+            })
+
             resetFormField();
-            setShowReplyPanel(false);
-            scrollToBottom();
+            cleanUp();
         }
         catch (err) {
             console.log("Error", err);
         }
-    }
-
-    const scrollToBottom = () => {
-        pageEnd.current.scrollIntoView({ behavior: 'smooth' });
     }
 
     return (

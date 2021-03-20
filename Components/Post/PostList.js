@@ -1,6 +1,9 @@
 import PostItem from './PostItem';
 
-function PostList({ topicData, postData, onReplyOpen, canCreate }) {
+function PostList(props) {
+
+    const { topicData, postData, onReplyOpen, canCreate } = props;
+
     return (
         <>
             {
