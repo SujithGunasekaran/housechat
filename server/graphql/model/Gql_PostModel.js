@@ -9,9 +9,16 @@ class Post {
         this.user = user;
     }
 
-    async getAllByTopic(topic) {
+    async getAllByTopic(topic, pageNumber, pageSize) {
+        const skipItem = pageSize * (pageNumber - 1);
         const count = await this.Model.countDocuments({ topic });
-        const posts = await this.Model.find({ topic }).populate('user').populate('topic').populate({ path: 'parent', populate: 'user' });
+        const posts = await this.Model
+            .find({ topic })
+            .skip(skipItem) // It will skip the item from db ( eg. if we give like this skip(5) it will skip first five item from db )
+            .limit(pageSize) // Limit the result size
+            .populate('user')
+            .populate('topic')
+            .populate({ path: 'parent', populate: 'user' });
         return { posts, count };
     }
 
