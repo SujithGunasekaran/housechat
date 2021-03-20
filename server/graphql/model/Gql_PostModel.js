@@ -9,8 +9,10 @@ class Post {
         this.user = user;
     }
 
-    getAllByTopic(topic) {
-        return this.Model.find({ topic }).populate('user').populate('topic').populate({ path: 'parent', populate: 'user' });
+    async getAllByTopic(topic) {
+        const count = await this.Model.countDocuments({ topic });
+        const posts = await this.Model.find({ topic }).populate('user').populate('topic').populate({ path: 'parent', populate: 'user' });
+        return { posts, count };
     }
 
     async create(post) {
