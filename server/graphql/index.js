@@ -50,7 +50,7 @@ exports.createApolloServer = () => {
 
             topicBySlug(slugName : String) : Topics
 
-            postByTopic(slug : String) : [Post]
+            postByTopic(slug : String) : paginatePost
         }
 
         type Mutation{
