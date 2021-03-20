@@ -2,12 +2,12 @@ import PostItem from './PostItem';
 
 function PostList(props) {
 
-    const { topicData, postData, onReplyOpen, canCreate } = props;
+    const { topicData, postData, onReplyOpen, canCreate, currentPage } = props;
 
     return (
         <>
             {
-                topicData && topicData._id &&
+                topicData && topicData._id && currentPage === 1 &&
                 <div className="row" key={topicData._id}>
                     <div className="col-md-10">
                         <PostItem

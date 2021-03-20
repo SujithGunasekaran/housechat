@@ -9,10 +9,7 @@ import ReplyBox from '../../../Components/ReplyBox';
 import { useCreatePost } from '../../../apollo/actions';
 import AppPagination from '../../../Components/Pagination';
 
-const useInitialData = (pagination) => {
-
-    const router = useRouter();
-    const { postSlug } = router.query;
+const useInitialData = (postSlug, pagination) => {
 
     // Queries
     const { data: topic } = useGetTopicBySlug(postSlug);
@@ -33,16 +30,20 @@ const useInitialData = (pagination) => {
 
 function PostPage() {
 
+    // Router
+    const router = useRouter();
+    const { postSlug, pageNumber = 1, pageSize = 5 } = router.query;
+
     // Refs
     const pageEnd = useRef();
 
     const [showReplyPanel, setShowReplyPanel] = useState(false);
     const [replyTo, setReplyTo] = useState(null);
-    const [pagination, setPagination] = useState({ pageNumber: 1, pageSize: 5 });
+    const [pagination, setPagination] = useState({ pageNumber: parseInt(pageNumber, 10), pageSize: parseInt(pageSize, 10) });
 
     // posts and count will be in postData.
 
-    const { topicData, posts, count, userData, createPost, fetchMore } = useInitialData(pagination);
+    const { topicData, posts, count, userData, createPost, fetchMore } = useInitialData(postSlug, pagination);
 
     const scrollToBottom = () => {
         pageEnd.current.scrollIntoView({ behavior: 'smooth' });
@@ -85,7 +86,6 @@ function PostPage() {
             console.log("Error", err);
         }
     }
-
     return (
         <BaseLayout>
             <div className="topic_post_main_container">
@@ -96,6 +96,7 @@ function PostPage() {
                         </div>
                     </div>
                     <PostList
+                        currentPage={pagination.pageNumber}
                         canCreate={userData ? true : false}
                         topicData={topicData}
                         postData={posts}
@@ -132,6 +133,7 @@ function PostPage() {
                                             pageNumber={pagination.pageNumber}
                                             pageSize={pagination.pageSize}
                                             onPageChange={(pageNumber, pageSize) => {
+                                                router.push('/forum/Post/[postSlug]', `/forum/Post/${postSlug}?pageNumber=${pageNumber}&pageSize=${pageSize}`, { shallow: true })
                                                 setPagination({ pageNumber, pageSize });
                                                 scrollToTopPage();
                                             }}

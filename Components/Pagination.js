@@ -2,7 +2,6 @@ import Pagination from "react-js-pagination";
 
 
 export default function AppPagination({ count, pageNumber, pageSize, onPageChange }) {
-
     return (
         <Pagination
             itemClass="page-item"
