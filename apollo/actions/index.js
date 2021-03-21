@@ -15,7 +15,8 @@ import {
     CREATE_TOPIC,
     GET_TOPIC_BY_SLUG,
     GET_POST_BY_TOPIC,
-    CREATE_POST
+    CREATE_POST,
+    GET_TOPIC_FOR_HOME_PAGE
 } from '../queries';
 
 export const useGetPortfolioById = (id) => useQuery(GET_PORTFOLIOBYID, { variables: { id: id } });
@@ -125,3 +126,7 @@ export const useCreatePost = () => useMutation(CREATE_POST, {
         } catch (e) { }
     }
 });
+
+// Home page query
+
+export const useGetHomePageTopicData = (limitNumber) => useQuery(GET_TOPIC_FOR_HOME_PAGE, { variables: { limit: limitNumber } })

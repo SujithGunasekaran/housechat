@@ -311,4 +311,22 @@ export const CREATE_POST = gql`
             }
         }
     }
-`
+`;
+
+export const GET_TOPIC_FOR_HOME_PAGE = gql`
+    query Hightlight($limit : Int){
+        highlight(limit : $limit){
+            topics {
+                _id
+                title
+                slug
+                user {
+                    username
+                }
+                forumCategory {
+                    title
+                }
+            }
+        }
+    }
+`;
