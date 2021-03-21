@@ -8,7 +8,7 @@ export default withApollo(
             // uri: 'http://localhost:3000/graphql',
             ssrMode: true,
             link: createHttpLink({
-                uri: 'http://localhost:3000/graphql',
+                uri: process.env.BASE_URL,
                 credentials: 'same-origin',
                 headers: {
                     ...headers
