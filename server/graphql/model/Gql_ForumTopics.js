@@ -1,23 +1,11 @@
 const slugify = require('slugify');
 const uniqueSlug = require('unique-slug');
-class ForumTopics {
-
-    constructor(model, user) {
-        this.Model = model;
-        this.user = user;
-    }
+const BaseModel = require('./Gql_BaseMode');
+class ForumTopics extends BaseModel {
 
     async getRandom(limit) {
-        const count = await this.Model.countDocuments();
-        let randomIndex;
-        if (limit > count) {
-            randomIndex = 0;
-        }
-        else {
-            randomIndex = count - limit;
-        }
-        let randomNumber = Math.round(Math.random() * randomIndex);
-        return this.Model.find({}).populate('user').populate('forumCategory').skip(randomNumber).limit(limit);
+        const query = await super.getRandom(limit);
+        return query().populate('user').populate('forumCategory');
     }
 
     getAllTopicsByCategory(categoryID) {

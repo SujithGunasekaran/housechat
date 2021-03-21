@@ -1,10 +1,6 @@
 
-
-class UserModel {
-
-    constructor(model) {
-        this.Model = model;
-    }
+const BaseModel = require('./Gql_BaseMode');
+class UserModel extends BaseModel {
 
     getAuthUser(context) {
         if (context.isAuthenticated()) {

@@ -1,13 +1,8 @@
 
 const uniqueSlug = require('unique-slug');
 const moment = require('moment');
-
-class Post {
-
-    constructor(model, user) {
-        this.Model = model;
-        this.user = user;
-    }
+const BaseModel = require('./Gql_BaseMode');
+class Post extends BaseModel {
 
     async getAllByTopic(topic, pageNumber, pageSize) {
         const skipItem = pageSize * (pageNumber - 1);

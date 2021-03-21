@@ -1,9 +1,5 @@
-
-class ForumCategory {
-
-    constructor(model) {
-        this.Model = model;
-    }
+const BaseModel = require('./Gql_BaseMode');
+class ForumCategory extends BaseModel {
 
     getAll() {
         return this.Model.find({});

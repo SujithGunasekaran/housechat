@@ -1,13 +1,9 @@
+const BaseModel = require('./Gql_BaseMode');
 
-
-class PortfolioModel {
+class PortfolioModel extends BaseModel {
 
     constructor(model, user) {
-
-        // this.Model === portfolio 
-        // portfolio is a mongodb model
-        this.Model = model;
-        this.user = user;
+        super(model, user);
         this.writeAccess = ['admin', 'instructor']
     }
 
