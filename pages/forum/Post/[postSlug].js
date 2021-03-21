@@ -68,8 +68,8 @@ function PostPage() {
             await createPost({ variables: formField });
 
             // updateQuery will have two parameter one is prevData, updatedData
-
             // Eg. in prevData 10 array list we are creting new post now updatedData will have 11 array list 
+
             let lastPage = Math.ceil(count / pagination.pageSize);
             if (count === 0) lastPage = 1;
             lastPage === pagination.pageNumber && await fetchMore({
