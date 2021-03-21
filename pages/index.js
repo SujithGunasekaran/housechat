@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout';
 import { useGetHomePageTopicData } from '../apollo/actions/index';
 import withApollo from '../hoc/withApollo';
 import { getDataFromTree } from '@apollo/client/react/ssr';
+import HomeTopic from '../Components/HomeTopic';
+import Link from 'next/link';
 
 
 const initialData = () => {
@@ -19,7 +21,26 @@ function Home() {
     <div>
       <BaseLayout>
         <Hero />
-        <p>{JSON.stringify(topicData)}</p>
+        <div className="hero_topic_container">
+          <div className="container-fluid">
+            {
+              topicData && topicData.topics &&
+              topicData.topics.map((topicInfo) => (
+                <div className="row" key={topicInfo._id}>
+                  <div className="col-md-8 mx-auto">
+                    <Link href={'/forum/Post/[postSlug]'} as={`/forum/Post/${topicInfo.slug}`}>
+                      <a>
+                        <HomeTopic
+                          topicInfo={topicInfo}
+                        />
+                      </a>
+                    </Link>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
       </BaseLayout>
     </div>
   )

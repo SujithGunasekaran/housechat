@@ -319,13 +319,12 @@ export const GET_TOPIC_FOR_HOME_PAGE = gql`
             topics {
                 _id
                 title
+                content
                 slug
                 user {
                     username
                 }
-                forumCategory {
-                    title
-                }
+                createdAt
             }
         }
     }

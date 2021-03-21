@@ -7,3 +7,10 @@ export const formatDate = (date) => {
 export const fromNow = (date) => {
     return moment.unix(date / 1000).fromNow();
 }
+
+export const sortingText = (text) => {
+    let maxLength = 80;
+    if (!text) return '';
+    if (text <= maxLength) return text;
+    return `${text.substr(0, maxLength)}.....`;
+}

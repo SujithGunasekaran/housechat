@@ -19,6 +19,94 @@
     letter-spacing: 0.030rem;
 }
 
+/* home page topic data */
+
+.hero_topic_container
+{
+    margin : 25px 0px;
+}
+.hero_topic_container a
+{
+    text-decoration: none;
+}
+.hero_topic_card
+{
+    margin : 15px 0px;
+    padding : 1rem;
+    border : 1px solid rgb(228, 228, 228);
+    background-color: rgb(244, 251, 255);
+    border-radius: 6px;
+    box-shadow: 0 10px 10px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
+    transition: 0.5s all ease-in-out;
+}
+.hero_topic_card:hover
+{
+    cursor: pointer;
+    background-color: rgb(244, 251, 255);
+    box-shadow: 0 10px 10px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
+}
+.hero_topic_heading
+{
+    padding : 20px 0px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.020rem;
+    font-weight: 500;
+    color: var(--text-black);
+}
+.hero_topic_head_section
+{
+    padding: 10px 0px;
+    display: flex;
+    align-items: center;
+}
+.hero_topic_title
+{
+    font-size: 0.850rem;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.020rem;
+    font-weight: 500;
+    color: var(--text-black);
+}
+.hero_topic_date
+{
+    margin-left: auto;
+    font-size: 0.850rem;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.020rem;
+    font-weight: 500;
+    color: var(--text-black);
+}
+.hero_topic_content
+{
+    padding : 15px 0px;
+    font-size: 0.850rem;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.020rem;
+    font-weight: 500;
+    color: var(--text-black);
+}
+.hero_topic_user_display
+{
+    padding : 15px 0px;
+    display: flex;
+}
+.hero_topic_user_avatar
+{
+    width : 10px;
+    height: 10px;
+    color : var(--text-black);
+}
+.hero_topic_username
+{
+    padding: 3px 0px 0px 5px;
+    font-size: 0.850rem;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.020rem;
+    font-weight: 500;
+    color: var(--text-black);
+}
+
 @media(max-width:770px){
     .hero_my_name{font-size: 1.8rem;}
     .hero_main{padding: 100px 2px;}
