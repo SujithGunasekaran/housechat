@@ -47,4 +47,8 @@ exports.forumTypes = `
         parent : String
         topic : String
     }
+
+    type HighlightResponse {
+        topics : [Topics]
+    }
 `;

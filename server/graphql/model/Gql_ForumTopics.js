@@ -7,6 +7,19 @@ class ForumTopics {
         this.user = user;
     }
 
+    async getRandom(limit) {
+        const count = await this.Model.countDocuments();
+        let randomIndex;
+        if (limit > count) {
+            randomIndex = 0;
+        }
+        else {
+            randomIndex = count - limit;
+        }
+        let randomNumber = Math.round(Math.random() * randomIndex);
+        return this.Model.find({}).populate('user').populate('forumCategory').skip(randomNumber).limit(limit);
+    }
+
     getAllTopicsByCategory(categoryID) {
         return this.Model.find({ forumCategory: categoryID }).populate('user').populate('forumCategory');
     }

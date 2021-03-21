@@ -31,3 +31,10 @@ exports.forumCategoryMutations = {
         return post;
     }
 }
+
+exports.hightlightQueries = {
+    highlight: async (root, { limit }, context) => {
+        const topics = await context.models.ForumTopics.getRandom(limit);
+        return { topics };
+    }
+}

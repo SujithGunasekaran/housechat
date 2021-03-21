@@ -22,7 +22,7 @@ const { forumTypes } = require('./Types/ForumCategory');
 
 const { portfolioQuerys, portfolioMutations } = require('./Resolver/PortfolioResolver');
 const { userMutations, userQueries } = require('./Resolver/UserResolver');
-const { forumCategoryQueries, forumCategoryMutations } = require('./Resolver/ForumCategory');
+const { forumCategoryQueries, forumCategoryMutations, hightlightQueries } = require('./Resolver/ForumCategory');
 
 // graphql context
 
@@ -49,8 +49,9 @@ exports.createApolloServer = () => {
             topicsByCategory(categoryName : String) : [Topics] 
 
             topicBySlug(slugName : String) : Topics
-
             postByTopic(slug : String, pageNumber : Int, pageSize : Int) : paginatePost
+
+            highlight(limit : Int) : HighlightResponse
         }
 
         type Mutation{
@@ -74,7 +75,8 @@ exports.createApolloServer = () => {
         Query: {
             ...portfolioQuerys,
             ...userQueries,
-            ...forumCategoryQueries
+            ...forumCategoryQueries,
+            ...hightlightQueries
         },
         Mutation: {
             ...portfolioMutations,
