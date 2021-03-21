@@ -17,6 +17,14 @@ exports.initMiddleware = (server, mongodb) => {
         store: mongodb.initializeMongodbSession() // check out in database > mongodb.js
     }
 
+    if (process.env.NODE_ENV === 'production') {
+        server.use('trust proxy', 1);
+        sessionInfo.cookie.secure = true;
+        sessionInfo.cookie.httpOnly = true;
+        sessionInfo.cookie.sameSite = true;
+        sessionInfo.cookie.domain = process.env.DOMAIN; // yourDomainName.com
+    }
+
     server.use(session(sessionInfo));
 
     server.use(passport.initialize());
