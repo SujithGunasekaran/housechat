@@ -98,7 +98,7 @@ export const useGetTopicsByCategory = (slug) => useQuery(GET_TOPICS_BY_CATEGORY,
 
 export const useGetTopicBySlug = (slug) => useQuery(GET_TOPIC_BY_SLUG, { variables: { slugName: slug } });
 
-export const useGetPostByTopic = (slug, pagination) => useQuery(GET_POST_BY_TOPIC, { variables: { slug, ...pagination } })
+export const useGetPostByTopic = (slug, pagination) => useQuery(GET_POST_BY_TOPIC, { variables: { slug, ...pagination }, fetchPolicy: 'cache-and-network' })
 
 export const useCreateTopic = () => useMutation(CREATE_TOPIC, {
     update(cache, { data: { createTopic } }) {
@@ -117,15 +117,7 @@ export const useCreateTopic = () => useMutation(CREATE_TOPIC, {
     }
 });
 
-export const useCreatePost = () => useMutation(CREATE_POST, {
-    update(cache) {
-        try {
-            Object.keys(cache.data.data).forEach(key => {
-                key.match(/^Post/) && cache.data.delete(key)
-            })
-        } catch (e) { }
-    }
-});
+export const useCreatePost = () => useMutation(CREATE_POST);
 
 // Home page query
 
