@@ -11,7 +11,9 @@ export default function HomeTopic({ topicInfo }) {
             </div>
             <div className="hero_topic_content">{sortingText(topicInfo.content)}</div>
             <div className="hero_topic_user_display">
-                <PersonIcon className="hero_topic_user_avatar" />
+                <div className="hero_topic_avatar_background">
+                    <PersonIcon className="hero_topic_user_avatar" />
+                </div>
                 <div className="hero_topic_username">{topicInfo.user.username}</div>
             </div>
         </div>

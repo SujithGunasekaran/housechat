@@ -9,7 +9,7 @@ export const fromNow = (date) => {
 }
 
 export const sortingText = (text) => {
-    let maxLength = 80;
+    let maxLength = 200;
     if (!text) return '';
     if (text <= maxLength) return text;
     return `${text.substr(0, maxLength)}.....`;

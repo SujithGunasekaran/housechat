@@ -70,7 +70,7 @@ const Header = () => {
             </div>
             <div className="header_main_container">
                 <div className="header_logo">
-                    <HeaderLink href="/">Sujith_Guna</HeaderLink>
+                    <HeaderLink href="/">House Chat</HeaderLink>
                 </div>
                 <div className="header_page_link_container">
                     <ul>
