@@ -28,6 +28,47 @@ a {
   --text-ligth-grey : rgb(180, 178, 178);
   --header-hover-color : rgb(121, 179, 235);
   --text-black : rgb(32, 32, 32);
+
+  /* New dark theme */
+
+  --dark-theme-body-background : #0c0d0e;
+  --dark-theme-header-background : #0c0d0e;
+  --dark-theme-text-grey : #7f8181;
+  --dark-theme-text-light-grey : #9b9b9b;
+  --dark-theme-logo-text-color : #0095ff;
+  --dark-theme-text-hover : #0095ff;
+  --dark-theme-button : #346DFD;
+  --dark-them-button-hover : #3062e0;
+  --dark-theme-text-white : #D1D4F6;
+  --dark-theme-text--dark-white : #e5e7f8;
+  --black-800: #242729;
+  --black-900: #191b1d;
+  --orange-100 : #fee3cf;
+
+
+  /* text font */
+
+  --inter-text : 'Inter', sans-serif;
+  
+  /* --dark-theme-body-background : #0B0E11;
+  --dark-theme-text-color : #7B8480;
+  --dark-theme-text-color : #1B1ED2;
+  --dark-theme-header-background : #151A21; */
+}
+
+.main_page
+{
+  min-height: 100vh !important;
+  width: 100%;
+  background-color: var(--dark-theme-body-background);
+}
+.main_body
+{
+  padding : 0px 20px;
+}
+
+@media(max-width:770px){
+  .main_body{padding: 0px 2px}
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');

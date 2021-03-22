@@ -1,23 +1,58 @@
 .hero_main
 {
     width : 100%;
-    padding : 130px 20px 130px 20px;
+    margin-top: 65px;
+    padding : 80px 0px;
 }
-.hero_my_name
+.hero_top_head_section
 {
-    font-size: 3.5rem;
-    letter-spacing: 0.050rem;
-    text-align: center;
+    width: 100%;
+    padding : 40px 0px 40px 0px;
 }
-.hero_my_info
+.hero_top_title
+{
+    padding : 10px 0px;
+    color: var(--dark-theme-text-white);
+    font-family: var(--inter-text);
+    font-size: 3.2rem;
+    font-weight: 700;
+    letter-spacing: 0.060rem;
+}
+.hero_top_info
 {
     padding : 20px 0px;
-    font-family: 'Montserrat';
-    text-align: center;
+    color: var(--dark-theme-text-grey);
+    font-family: var(--inter-text);
     font-size: 1rem;
     font-weight: 500;
+    line-height: 2.5rem;
+    letter-spacing: 0.060rem;
+}
+
+/* home middle */
+
+.hero_middle_section_container
+{
+    margin: 80px 0px;
+}
+.hero_middle_left_section
+{
+    margin : 50px 0px;
+    text-align: center;
+    background-color: var(--orange-100);
+    padding: 25px;
+    width : 100%;
+    border-radius: 15px;
+}
+.hero_middle_left_para
+{
+    color: var(--black-900);
+    font-family: var(--inter-text);
+    font-size: 1rem;
+    font-weight: 600;
     letter-spacing: 0.030rem;
 }
+
 
 /* home page topic data */
 
@@ -29,20 +64,28 @@
 {
     text-decoration: none;
 }
+.hero_topic_head_title
+{
+    padding : 10px 0px;
+    color: var(--dark-theme-text-white);
+    font-family: var(--inter-text);
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.060rem;
+}
 .hero_topic_card
 {
-    margin : 15px 0px;
+    margin : 25px 0px;
     padding : 1rem;
-    border : 1px solid rgb(228, 228, 228);
-    background-color: rgb(244, 251, 255);
-    border-radius: 6px;
-    box-shadow: 0 10px 10px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
+    background-color: var(--black-900);
+    border-radius: 10px;
+    box-shadow: 0 10px 12px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
     transition: 0.5s all ease-in-out;
 }
 .hero_topic_card:hover
 {
     cursor: pointer;
-    background-color: rgb(244, 251, 255);
+    background-color: var(--black-800);
     box-shadow: 0 10px 10px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
 }
 .hero_topic_heading
@@ -52,7 +95,7 @@
     font-family: 'Inter', sans-serif;
     letter-spacing: 0.020rem;
     font-weight: 500;
-    color: var(--text-black);
+    color: var(--dark-theme-text-white);
 }
 .hero_topic_head_section
 {
@@ -62,11 +105,11 @@
 }
 .hero_topic_title
 {
-    font-size: 0.850rem;
+    font-size: 1.1rem;
     font-family: 'Inter', sans-serif;
-    letter-spacing: 0.020rem;
+    letter-spacing: 0.040rem;
     font-weight: 500;
-    color: var(--text-black);
+    color: var(--dark-theme-text--dark-white);
 }
 .hero_topic_date
 {
@@ -75,39 +118,46 @@
     font-family: 'Inter', sans-serif;
     letter-spacing: 0.020rem;
     font-weight: 500;
-    color: var(--text-black);
+    color: var(--dark-theme-text-grey);
 }
 .hero_topic_content
 {
     padding : 15px 0px;
-    font-size: 0.850rem;
+    font-size: 0.880rem;
     font-family: 'Inter', sans-serif;
     letter-spacing: 0.020rem;
     font-weight: 500;
-    color: var(--text-black);
+    color: var(--dark-theme-text-light-grey);
 }
 .hero_topic_user_display
 {
     padding : 15px 0px;
     display: flex;
 }
+.hero_topic_avatar_background
+{
+    background-color: var(--dark-theme-button);
+    border-radius: 50%;
+    width : 35px;
+    height : 35px;
+}
 .hero_topic_user_avatar
 {
+    margin: 4px 5px 5px 5px;
     width : 10px;
     height: 10px;
     color : var(--text-black);
 }
 .hero_topic_username
 {
-    padding: 3px 0px 0px 5px;
-    font-size: 0.850rem;
+    padding: 6px 0px 0px 12px;
+    font-size: 0.870rem;
     font-family: 'Inter', sans-serif;
-    letter-spacing: 0.020rem;
+    letter-spacing: 0.040rem;
     font-weight: 500;
-    color: var(--text-black);
+    color: var(--dark-theme-text-light-grey);
 }
 
 @media(max-width:770px){
-    .hero_my_name{font-size: 1.8rem;}
-    .hero_main{padding: 100px 2px;}
+    .hero_main{padding: 20px 0px;}
 }

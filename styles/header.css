@@ -1,26 +1,25 @@
 .header_main_container
 {
-    background-color: var(--header-background);
+    background-color: var(--dark-theme-header-background);
     display : flex;
     width : 100%;
     flex-direction: row;
     align-items: center;
-    padding : 20px 20px 20px 20px;
+    padding : 20px 28px 20px 28px;
     position: fixed;
     top : 0;
-    box-shadow : 0 4px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
 }
 .header_logo
 {
-    font-family: 'Montserrat';
-    color : var(--header-logo-color);
-    font-size: 1rem;
+    font-family: var(--inter-text);
+    font-size: 1.2rem;
+    letter-spacing: 0.040rem;
     letter-spacing: 0.030rem;
     text-transform: uppercase;
 }
 .header_logo a
 {
-    color : var(--header-logo-color);
+    color : var(--dark-theme-logo-text-color);
     text-decoration: none;
 }
 .header_page_link_container ul
@@ -36,14 +35,14 @@
     padding : 0px 15px;
     list-style: none;
     font-weight: 500;
-    font-family: 'Montserrat';
-    color : var(--header-link-color);
-    font-size: 0.900rem;
+    font-family: var(--inter-text);
+    color : var(--dark-theme-text-grey);
+    font-size: 1rem;
     letter-spacing: 0.035rem;
 }
 .header_page_link_container ul li a
 {
-    color : var(--header-link-color);
+    color : var(--dark-theme-text-grey);
     text-decoration: none;
     transition: 0.4s all ease-in-out;
 }
@@ -53,7 +52,7 @@
 }
 .header_page_link_container ul li a:hover
 {
-    color : var(--header-hover-color)
+    color : var(--dark-theme-text-hover)
 }
 .header_page_authenticate_container
 {
@@ -63,47 +62,56 @@
 }
 .header_page_signin
 {
-    padding : 0px 15px;
+    padding : 6px 15px;
     list-style: none;
-    font-family: 'Montserrat';
-    font-size: 0.900rem;
+    font-family: var(--inter-text);
+    font-size: 1rem;
+    border-radius: 20px;
     font-weight: 500;
+    background-color: var(--dark-theme-button);
     letter-spacing: 0.035rem;
+    transition: 0.5s all ease-in-out;
+}
+.header_page_signin:hover
+{
+    background-color: var(--dark-them-button-hover);
 }
 .header_page_signin a
 {
-    color : var(--header-hover-color);
+    color : var(--dark-theme-text-white);
     text-decoration: none;
     transition: 0.4s all ease-in-out;
 }
 .header_page_signin a:hover
 {
-    color : var(--header-hover-color)
+    color : var(--dark-theme-text-white)
 }
 .header_page_signup
 {
+    display: flex;
+    align-items: center;
     padding : 0px 15px;
     list-style: none;
-    font-family: 'Montserrat';
-    font-size: 0.900rem;
+    font-family: var(--inter-text);
+    font-size: 1rem;
     letter-spacing: 0.030rem;
 }
 .header_page_signup a
 {
-    color : var(--header-link-color);
+    color : var(--dark-theme-text-grey);
     text-decoration: none;
     font-weight: 500;
     transition: 0.4s all ease-in-out;
 }
 .header_page_signup a:hover
 {
-    color : var(--header-hover-color)
+    color : var(--dark-theme-text-hover)
 }
 .header_page_username
 {
     padding : 0px 15px;
     list-style: none;
-    font-family: 'Montserrat';
+    font-family: var(--inter-text);
     font-size: 0.900rem;
     color : white;
     font-weight: 500;
