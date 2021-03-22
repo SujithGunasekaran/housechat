@@ -8,14 +8,14 @@ import Link from 'next/link';
 
 
 const initialData = () => {
-  const { data } = useGetHomePageTopicData(3);
+  const { data, error } = useGetHomePageTopicData(3);
   const topicData = data && data.highlight || [];
-  return { topicData };
+  return { topicData, error };
 }
 
 function Home() {
 
-  const { topicData } = initialData();
+  const { topicData, error } = initialData();
 
   return (
     <div>
@@ -25,19 +25,19 @@ function Home() {
           <div className="container-fluid">
             {
               topicData && topicData.topics &&
-              topicData.topics.map((topicInfo) => (
-                <div className="row" key={topicInfo._id}>
-                  <div className="col-md-8 mx-auto">
-                    <Link href={'/forum/Post/[postSlug]'} as={`/forum/Post/${topicInfo.slug}`}>
-                      <a>
-                        <HomeTopic
-                          topicInfo={topicInfo}
-                        />
-                      </a>
-                    </Link>
+                !error ? topicData.topics.map((topicInfo) => (
+                  <div className="row" key={topicInfo._id}>
+                    <div className="col-md-8 mx-auto">
+                      <Link href={'/forum/Post/[postSlug]'} as={`/forum/Post/${topicInfo.slug}`}>
+                        <a>
+                          <HomeTopic
+                            topicInfo={topicInfo}
+                          />
+                        </a>
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              ))
+                )) : ''
             }
           </div>
         </div>
