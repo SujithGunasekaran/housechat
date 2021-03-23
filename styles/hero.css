@@ -2,7 +2,7 @@
 {
     width : 100%;
     margin-top: 65px;
-    padding : 80px 0px;
+    padding : 40px 0px;
 }
 .hero_top_head_section
 {
@@ -21,7 +21,7 @@
 .hero_top_info
 {
     padding : 20px 0px;
-    color: var(--dark-theme-text-grey);
+    color: var(--black-400);
     font-family: var(--inter-text);
     font-size: 1rem;
     font-weight: 500;
@@ -33,24 +33,34 @@
 
 .hero_middle_section_container
 {
-    margin: 80px 0px;
+    margin: 80px 0px 20px 0px;
 }
-.hero_middle_left_section
+.hero_middle_section
 {
-    margin : 50px 0px;
+    margin : 50px 0px 20px 0px;
     text-align: center;
-    background-color: var(--orange-100);
-    padding: 25px;
+    background-color: var(--black-800);
+    padding: 25px 15px;
     width : 100%;
+    min-height: 255px;
+    box-shadow: 0 10px 12px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
     border-radius: 15px;
 }
-.hero_middle_left_para
+.hero_middle_para
 {
-    color: var(--black-900);
+    padding : 15px 0px;
+    color: var(--dark-theme-text-white);
     font-family: var(--inter-text);
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 500;
+    line-height: 35px;
     letter-spacing: 0.030rem;
+}
+.hero_middle_icon
+{
+    color : var(--blue-500);
+    width: 48px !important;
+    height: 48px !important;
 }
 
 
@@ -88,6 +98,11 @@
     background-color: var(--black-800);
     box-shadow: 0 10px 10px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
 }
+.hero_card_hr
+{
+    margin-top: 20px;
+    color : var(--black-600);
+}
 .hero_topic_heading
 {
     padding : 20px 0px;
@@ -99,47 +114,57 @@
 }
 .hero_topic_head_section
 {
-    padding: 10px 0px;
+    padding: 5px 13px;
     display: flex;
-    align-items: center;
+    width: 100%;
+    flex-direction: column;
 }
 .hero_topic_title
 {
-    font-size: 1.1rem;
-    font-family: 'Inter', sans-serif;
+    padding : 5px 0px 15px 0px;
+    font-size: 1.3rem;
+    font-family: var(--inter-text);
     letter-spacing: 0.040rem;
     font-weight: 500;
-    color: var(--dark-theme-text--dark-white);
+    color: var(--dark-theme-text-dark-white);
 }
 .hero_topic_date
 {
-    margin-left: auto;
-    font-size: 0.850rem;
-    font-family: 'Inter', sans-serif;
+    /* margin-left: auto; */
+    padding : 0px 12px;
+    font-size: 0.780rem;
+    font-family: var(--inter-text);
     letter-spacing: 0.020rem;
     font-weight: 500;
-    color: var(--dark-theme-text-grey);
+    color: var(--black-500);
 }
 .hero_topic_content
 {
-    padding : 15px 0px;
-    font-size: 0.880rem;
-    font-family: 'Inter', sans-serif;
+    padding : 0px 14px 15px 13px;
+    font-size: 0.890rem;
+    font-family: var(--inter-text);
     letter-spacing: 0.020rem;
     font-weight: 500;
-    color: var(--dark-theme-text-light-grey);
+    line-height: 25px;
+    color: var(--black-400);
 }
 .hero_topic_user_display
 {
-    padding : 15px 0px;
     display: flex;
 }
 .hero_topic_avatar_background
 {
-    background-color: var(--dark-theme-button);
+    margin-top: 4px;
+    background-color: var(--blue-600);
     border-radius: 50%;
     width : 35px;
     height : 35px;
+}
+.hero_topic_user_info_display
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 .hero_topic_user_avatar
 {
@@ -150,12 +175,13 @@
 }
 .hero_topic_username
 {
-    padding: 6px 0px 0px 12px;
-    font-size: 0.870rem;
+    padding: 0px 13px;
+    font-size: 1rem;
     font-family: 'Inter', sans-serif;
     letter-spacing: 0.040rem;
     font-weight: 500;
-    color: var(--dark-theme-text-light-grey);
+    letter-spacing: 0.040rem;
+    color: var(--black-300);
 }
 
 @media(max-width:770px){
