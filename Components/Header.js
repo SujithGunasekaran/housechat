@@ -67,6 +67,28 @@ const Header = () => {
                         </li>
                     </ul>
                 </div>
+                {
+                    (error || !user) &&
+                    <div className="header_page_mobile_auth_container">
+                        <div className="header_page_mobile_signup">
+                            <HeaderLink href='/Signup'>Sign up</HeaderLink>
+                        </div>
+                        <div className="header_page_mobile_signin">
+                            <HeaderLink href='/Login'>Sign in</HeaderLink>
+                        </div>
+                    </div>
+                }
+                {
+                    user &&
+                    <div className="header_page_mobile_auth_container user">
+                        <div className="header_page_mobile_username">
+                            Welcome, {user && user.username}
+                        </div>
+                        <div className="header_page_mobile_signout">
+                            <HeaderLink href='/Logout'>Signout</HeaderLink>
+                        </div>
+                    </div>
+                }
             </div>
             <div className="header_main_container">
                 <div className="header_logo">
@@ -88,7 +110,7 @@ const Header = () => {
                 {
                     user &&
                     <>
-                        <div className="header_dropdown_container">
+                        {/* <div className="header_dropdown_container">
                             <div className="header_dropdown_title" id="dropdown-title">
                                 Manage
                             </div>
@@ -99,7 +121,7 @@ const Header = () => {
                                     <li><HeaderLink href='/Portfolio/CreatePortfolio'>Cv</HeaderLink></li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="header_page_authenticate_container">
                             <div className="header_page_username">
                                 Welcome, {user && user.username}

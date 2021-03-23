@@ -19,7 +19,7 @@
 }
 .header_logo a
 {
-    color : var(--dark-theme-logo-text-color);
+    color : var(--blue-500);
     text-decoration: none;
 }
 .header_page_link_container ul
@@ -36,13 +36,13 @@
     list-style: none;
     font-weight: 500;
     font-family: var(--inter-text);
-    color : var(--dark-theme-text-grey);
+    color : var(--black-600);
     font-size: 1rem;
     letter-spacing: 0.035rem;
 }
 .header_page_link_container ul li a
 {
-    color : var(--dark-theme-text-grey);
+    color : var(--black-400);
     text-decoration: none;
     transition: 0.4s all ease-in-out;
 }
@@ -52,13 +52,13 @@
 }
 .header_page_link_container ul li a:hover
 {
-    color : var(--dark-theme-text-hover)
+    color : var(--blue-500)
 }
 .header_page_authenticate_container
 {
     display: flex;
     flex-direction: row;
-    /* margin-left: auto; */
+    margin-left: auto;
 }
 .header_page_signin
 {
@@ -67,24 +67,20 @@
     font-family: var(--inter-text);
     font-size: 1rem;
     border-radius: 20px;
-    font-weight: 500;
-    background-color: var(--dark-theme-button);
+    font-weight: 400;
+    background-color: var(--blue-600);
     letter-spacing: 0.035rem;
     transition: 0.5s all ease-in-out;
 }
 .header_page_signin:hover
 {
-    background-color: var(--dark-them-button-hover);
+    background-color: var(--blue-700);
 }
 .header_page_signin a
 {
     color : var(--dark-theme-text-white);
     text-decoration: none;
     transition: 0.4s all ease-in-out;
-}
-.header_page_signin a:hover
-{
-    color : var(--dark-theme-text-white)
 }
 .header_page_signup
 {
@@ -98,40 +94,46 @@
 }
 .header_page_signup a
 {
-    color : var(--dark-theme-text-grey);
+    color : var(--black-400);
     text-decoration: none;
     font-weight: 500;
     transition: 0.4s all ease-in-out;
 }
 .header_page_signup a:hover
 {
-    color : var(--dark-theme-text-hover)
+    color : var(--blue-500)
 }
 .header_page_username
 {
+    display: flex;
+    align-items: center;
     padding : 0px 15px;
     list-style: none;
     font-family: var(--inter-text);
-    font-size: 0.900rem;
-    color : white;
+    font-size: 1rem;
+    color : var(--black-200);
     font-weight: 500;
     letter-spacing: 0.035rem;
 }
 .header_page_signout
 {
-    padding : 0px 15px;
+    padding : 6px 15px;
     list-style: none;
-    font-family: 'Montserrat';
-    font-size: 0.900rem;
-    color : rgb(238, 142, 142);
-    font-weight: 500;
-    letter-spacing: 0.035rem;
+    font-family: var(--inter-text);
+    font-size: .9rem;
+    border-radius: 20px;
+    font-weight: 400;
+    background-color: var(--red-500);
+    letter-spacing: 0.040rem;
+    transition: 0.5s all ease-in-out;
 }
 .header_page_signout a
 {
-    color : rgb(238, 142, 142);
+    color: var(--red-050);
     text-decoration: none;
 }
+
+
 /* mobile view header css */
 
 .header_page_mobile
@@ -142,9 +144,13 @@
 .header_page_hamburger
 {
     display: flex;
-    color : white !important;
+    color : var(--black-025) !important;
+    padding : 5px 6px;
+    background-color: var(--blue-600);
+    width: 35px;
+    height : 35px;
+    border-radius: 50%;
 }
-
 .header_page_mobile_container
 {
     display: none;
@@ -152,7 +158,7 @@
     position: fixed;
     top : 0;
     left : 0;
-    background-color: var(--dark-background);
+    background-color: var(--dark-theme-header-background);
     width: 100%;
     height: 100vh;
     transition: all 0.5s ease-in-out;
@@ -168,8 +174,13 @@
 {
     display: flex !important;
     margin-left: auto !important;
-    color : var(--header-logo-color) !important;
+    color : var(--dark-theme-text-dark-white) !important;
     font-size: 2rem !important;
+    padding : 5px 6px;
+    background-color: var(--blue-600);
+    width: 35px;
+    height : 35px;
+    border-radius: 50%;
 }
 .header_page_mobile_list ul li
 {
@@ -177,12 +188,98 @@
     display: flex;
     flex-direction: column;
     padding : 15px 0px;
-    color : var(--header-link-color);
+    color : var(--black-500);
 } 
 .header_page_mobile_list ul li a
 {
-    color : var(--header-link-color);
+    color : var(--black-500);
+    font-weight: 500;
+    letter-spacing: 0.040rem;
+    font-family: var(--inter-text);
     text-decoration: none;
+}
+.header_page_mobile_auth_container
+{
+    display: flex;
+}
+.header_page_mobile_auth_container.user
+{
+    flex-direction: column;
+}
+.header_page_mobile_signin
+{
+    margin : 0px 5px;
+    padding : 6px 15px;
+    list-style: none;
+    font-family: var(--inter-text);
+    font-size: 1rem;
+    width : 90px;
+    border-radius: 20px;
+    font-weight: 500;
+    background-color: var(--blue-600);
+    letter-spacing: 0.035rem;
+    transition: 0.5s all ease-in-out;
+}
+.header_page_mobile_signin:hover
+{
+    background-color: var(--blue-700);
+}
+.header_page_mobile_signin a
+{
+    color : var(--dark-theme-text-white);
+    text-decoration: none;
+    transition: 0.4s all ease-in-out;
+}
+.header_page_mobile_signup
+{
+    display: flex;
+    align-items: center;
+    padding : 0px 30px;
+    list-style: none;
+    font-family: var(--inter-text);
+    font-size: 1rem;
+    letter-spacing: 0.030rem;
+}
+.header_page_mobile_signup a
+{
+    color : var(--black-500);
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.4s all ease-in-out;
+}
+.header_page_mobile_signup a:hover
+{
+    color : var(--blue-500)
+}
+.header_page_mobile_username
+{
+    padding : 0px 31px;
+    list-style: none;
+    font-family: var(--inter-text);
+    font-size: 1rem;
+    color : var(--black-300);
+    font-weight: 500;
+    letter-spacing: 0.035rem;
+}
+.header_page_mobile_signout
+{
+    margin: 30px 25px;
+    padding : 6px 15px;
+    list-style: none;
+    font-family: var(--inter-text);
+    font-size: .9rem;
+    border-radius: 20px;
+    width: 90px;
+    font-weight: 400;
+    background-color: var(--red-500);
+    letter-spacing: 0.035rem;
+    transition: 0.5s all ease-in-out;
+}
+.header_page_mobile_signout a
+{
+    text-decoration: none;
+    letter-spacing: 0.040rem;
+    color : var(--red-050)
 }
 
 /* header dropdown */
@@ -196,21 +293,21 @@
 }
 .header_dropdown_title_container
 {
-    color: var(--header-link-color);
+    color: var(--dark-theme-header-background);
 }
 .header_dropdown_title
 {
     padding : 0px 15px;
     font-weight: 500;
-    font-family: 'Montserrat';
-    color : var(--header-link-color);
-    font-size: 0.900rem;
+    font-family: var(--inter-text);
+    color : var(--black-600);
+    font-size: 1rem;
     letter-spacing: 0.035rem;
     transition: 0.5s all ease-in-out;
 }
 .header_dropdown_title.active
 {
-    color : var(--header-hover-color);
+    color : var(--blue-400);
 }
 .header_dropdown_title.active::after{
     content: '\2212';
