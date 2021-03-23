@@ -1,20 +1,3 @@
-/* html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-} */
-
-/* * {
-  box-sizing: border-box;
-} */
-
 :root{
   --dark-background : rgb(20, 19, 19);
   --header-background : rgb(36, 36, 36);
@@ -33,27 +16,51 @@ a {
 
   --dark-theme-body-background : #0c0d0e;
   --dark-theme-header-background : #0c0d0e;
-  --dark-theme-text-grey : #7f8181;
-  --dark-theme-text-light-grey : #9b9b9b;
-  --dark-theme-logo-text-color : #0095ff;
-  --dark-theme-text-hover : #0095ff;
-  --dark-theme-button : #346DFD;
-  --dark-them-button-hover : #3062e0;
   --dark-theme-text-white : #D1D4F6;
-  --dark-theme-text--dark-white : #e5e7f8;
+  --dark-theme-text-dark-white : #e5e7f8;
+  --black-025: #fafafb;
+  --black-050: #eff0f1;
+  --black-075: #e4e6e8;
+  --black-100: #d6d9dc;
+  --black-150: #c8ccd0;
+  --black-200: #bbc0c4;
+  --black-300: #9fa6ad;
+  --black-350: #9199a1;
+  --black-400: #848d95;
+  --black-500: #6a737c;
+  --black-600: #535a60;
+  --black-700: #3c4146;
+  --black-750: #2f3337;
   --black-800: #242729;
   --black-900: #191b1d;
   --orange-100 : #fee3cf;
+  --orange-500 : #f2720c;
+  --blue-050: #f2f9ff;
+  --blue-100: #cfeafe;
+  --blue-200: #addafc;
+  --blue-300: #6cbbf7;
+  --blue-400: #379fef;
+  --blue-500: #0095ff;
+  --blue-600: #0077cc;
+  --blue-700: #0064bd;
+  --blue-800: #0054a3;
+  --blue-900: #004487;
+  --red-050: #fdf3f4;
+  --red-100: #f9d3d7;
+  --red-200: #f4b4bb;
+  --red-300: #e87c87;
+  --red-400: #de535e;
+  --red-500: #d1383d;
+  --red-600: #c02d2e;
+  --red-700: #ac2726;
+  --red-800: #942121;
+  --red-900: #7a1819;
 
 
   /* text font */
 
   --inter-text : 'Inter', sans-serif;
-  
-  /* --dark-theme-body-background : #0B0E11;
-  --dark-theme-text-color : #7B8480;
-  --dark-theme-text-color : #1B1ED2;
-  --dark-theme-header-background : #151A21; */
+
 }
 
 .main_page
@@ -64,7 +71,7 @@ a {
 }
 .main_body
 {
-  padding : 0px 20px;
+  padding : 20px 20px;
 }
 
 @media(max-width:770px){
