@@ -17,8 +17,8 @@ function BaseLayout({ children }) {
                 <div className="main_body">
                     {children}
                 </div>
+                <hr className="hero_card_hr" />
                 <Footer />
-
             </div>
 
         </>
