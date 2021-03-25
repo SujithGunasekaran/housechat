@@ -55,8 +55,18 @@
   --red-700: #ac2726;
   --red-800: #942121;
   --red-900: #7a1819;
-
-
+  --green-025: #eef8f1;
+  --green-050: #dcf0e2;
+  --green-100: #cae8d4;
+  --green-200: #a6d9b7;
+  --green-300: #82ca9a;
+  --green-400: #5eba7d;
+  --green-500: #48a868;
+  --green-600: #3d8f58;
+  --green-700: #2f6f44;
+  --green-800: #29603b;
+  --green-900: #1e472c;
+  --green-950: #12351e;
   /* text font */
 
   --inter-text : 'Inter', sans-serif;
