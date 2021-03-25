@@ -22,7 +22,7 @@ const Hero = () => {
                         <div className="col-md-4">
                             <div className="hero_middle_section_container">
                                 <div className="hero_middle_section">
-                                    <SearchRoundedIcon className="hero_middle_icon" width="48" height="48" />
+                                    <SearchRoundedIcon className="hero_middle_icon" />
                                     <div className="hero_middle_para">A public platform building the definitive collection of coding questions & answers. Knowledge is reused.</div>
                                 </div>
                             </div>

@@ -38,7 +38,8 @@ function Signup() {
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-4 mx-auto">
-                            <div className="form_heading">signup</div>
+                            <div className="form_heading">Create Account</div>
+                            <div className="form_heading_line" style={{ width: '90px' }}></div>
                             <div className="form_container">
                                 <SignupForm
                                     formField={formField}

@@ -34,7 +34,7 @@ const LoginForm = (props) => {
                 formSuccess && <div className="form_success">{formSuccess}</div>
             }
             <div className="form_having_account">
-                Don't have an Account ?
+                New to HouseChat Join our community ?
                 <Link href='/Signup'>Signup</Link>
             </div>
         </form>

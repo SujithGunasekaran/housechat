@@ -6,22 +6,30 @@ const SignupForm = (props) => {
 
     return (
         <form onSubmit={onFormSubmit}>
-            <input
-                className='form_input_field'
-                type="text"
-                name="username"
-                placeholder="Username"
-                value={formField.username}
-                onChange={handleInputFieldChange}
-            />
-            <input
-                className='form_input_field'
-                type="text"
-                name="email"
-                placeholder="Email Address"
-                value={formField.email}
-                onChange={handleInputFieldChange}
-            />
+            <div className="row">
+                <div className="col-md-6">
+                    <input
+                        className='form_input_field'
+                        type="text"
+                        name="username"
+                        placeholder="Username"
+                        value={formField.username}
+                        onChange={handleInputFieldChange}
+                    />
+                </div>
+                <div className="col-md-6">
+
+                    <input
+                        className='form_input_field'
+                        type="text"
+                        name="email"
+                        placeholder="Email Address"
+                        value={formField.email}
+                        onChange={handleInputFieldChange}
+                    />
+                </div>
+            </div>
+
             <input
                 className='form_input_field'
                 type="password"

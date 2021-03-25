@@ -5,12 +5,18 @@
 }
 .form_heading
 {
-    text-align: center;
-    color: var(--text-black);
+    padding : 5px 0px;
+    color: var(--black-200);
     font-family: 'Montserrat';
     font-size: 2rem;
     font-weight: 500;
     letter-spacing: 0.030rem;
+}
+.form_heading_line
+{
+    margin: 5px 0px;
+    border-top : 3px solid var(--blue-500);
+    width: 90px;
 }
 .form_heading_line
 {
@@ -90,44 +96,44 @@
 .form_input_field
 {
     margin : 20px 0px;
-    border : 1px solid rgb(214, 213, 213);
+    border : none;
     height : 45px;
+    color : var(--black-100);
     width : 100% !important;
     padding : 0px 7px;
-    font-family: 'Roboto';
+    font-family: var(--inter-text);
     font-size: 0.940rem;
-    letter-spacing: 0.030rem;
+    letter-spacing: 0.040rem;
     border-radius: 5px;
-    color : rgb(36, 35, 35);
+    font-weight: 500;
+    background-color: var(--black-700);
     transition: 0.5s all ease-in-out;
 }
 .form_input_field::placeholder
 {
-    color : rgb(165, 165, 165);
+    color : var(--black-300);
     font-size: .800rem;
     letter-spacing: 0.040rem;
 }
 .form_input_field:focus
 {
     outline: none;
-    border : 1px solid rgb(72, 141, 231);
-}
-.form_input_field:hover
-{
-    border : 1px solid rgb(72, 141, 231);
+    color : var(--black-900);
+    background-color: var(--blue-100);
 }
 .form_input_field_error
 {
     margin : 20px 0px;
-    border : 1px solid rgb(216, 16, 16);
     height : 45px;
+    border : none;
     width : 100%;
     padding : 0px 7px;
     font-family: 'Roboto';
     font-size: 0.940rem;
     letter-spacing: 0.030rem;
     border-radius: 5px;
-    color : rgb(36, 35, 35);
+    color : var(--red-600);
+    background-color: var(--red-300);
     transition: 0.5s all ease-in-out;
 }
 .form_input_field_error:focus{
@@ -146,21 +152,21 @@
 {
     text-align: right;
     padding : 10px 3px 10px 0px;
-    color: var(--text-blue);
-    font-family: 'Montserrat';
-    font-size: 0.880rem;
+    color: var(--blue-500);
+    font-family: var(--inter-text);
+    font-size: 0.920rem;
     font-weight: 500;
-    letter-spacing: 0.040rem;
+    letter-spacing: 0.035rem;
 }
 .form_btn
 {
     border : none;
     width : 100%;
     margin : 20px 0px;
-    border-radius: 5px;
+    border-radius: 50px;
     height : 45px;
-    background-color: var(--text-blue);
-    color : white;
+    background-color: var(--blue-600);
+    color : var(--dark-theme-text-dark-white);
     font-family: 'Montserrat';
     font-size: 0.880rem;
     font-weight: 500;
@@ -173,23 +179,23 @@
 .form_btn:hover
 {
     cursor: pointer;
-    background-color: rgb(24, 112, 212);
+    background-color: var(--blue-700);
     box-shadow : 0 4px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
 }
 .form_having_account
 {
     text-align: center;
     padding : 15px 0px;
-    color: var(--text-black);
-    font-family: 'Montserrat';
-    font-size: 0.880rem;
+    color: var(--black-400);
+    font-family: var(--inter-text);
+    font-size: 0.920rem;
     font-weight: 500;
     letter-spacing: 0.040rem;
 }
 .form_having_account a
 {
     padding-left: 5px;
-    color : var(--text-blue);
+    color : var(--blue-500);
     text-decoration: none;
 }
 .form_having_account a:focus{
@@ -198,25 +204,30 @@
 
 .form_disable_btn
 {
-    text-align : center;
-    padding : 8px 15px;
-    background-color: whitesmoke;
-    color: black;
-    border-radius: 5px;
+    border : none;
+    width : 100%;
+    margin : 20px 0px;
+    border-radius: 50px;
+    height : 45px;
+    padding : 11px 0px;
+    text-align: center;
+    background-color: var(--blue-200);
+    color : var(--black-800);
     font-family: 'Montserrat';
     font-size: 0.880rem;
     font-weight: 500;
     letter-spacing: 0.040rem;
+    transition: 0.5s all ease-in-out;
 }
 
 .form_error
 {
     margin : 5px 0px;
-    background-color: rgb(245, 220, 220);
-    color : red;
+    background-color: var(--red-400);
+    color : var(--dark-theme-text-dark-white);
     padding : 10px 15px;
-    font-family: 'Montserrat';
-    font-size: 0.820rem;
+    font-family: var(--inter-text);
+    font-size: 0.840rem;
     border-radius: 6px;
     font-weight: 500;
     letter-spacing: 0.040rem;
@@ -225,14 +236,14 @@
 .form_success
 {
     margin : 5px 0px;
-    background-color: rgb(220, 245, 228);
-    color : rgb(6, 87, 19);
+    background-color: var(--green-200);
+    color : var(--green-950);
     padding : 10px 15px;
-    font-family: 'Montserrat';
-    font-size: 0.820rem;
+    font-family: var(--inter-text);
+    font-size: 0.900rem;
     border-radius: 6px;
     font-weight: 500;
-    letter-spacing: 0.040rem;
+    letter-spacing: 0.035rem;
     transition: 0.5s all ease-in-out;
 }
 
