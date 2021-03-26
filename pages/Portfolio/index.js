@@ -7,7 +7,7 @@ import BaseLayout from '../../layouts/BaseLayout';
 
 const Portfolio = () => {
 
-    const { data } = useGetPortfolios();
+    const { data, error } = useGetPortfolios();
 
     const portfolios = data ? data.portfolios : [];
 
@@ -23,7 +23,7 @@ const Portfolio = () => {
                         </div>
                         <div className="row">
                             {
-                                portfolios.map((portfolioInfo) => (
+                                !error ? portfolios.map((portfolioInfo) => (
                                     <div className="col-md-4" key={portfolioInfo._id}>
                                         <Link
                                             href='/Portfolio/[id]'
@@ -34,7 +34,7 @@ const Portfolio = () => {
                                             </a>
                                         </Link>
                                     </div>
-                                ))
+                                )) : <div></div>
                             }
                         </div>
                     </div>
