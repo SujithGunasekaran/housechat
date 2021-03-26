@@ -15,7 +15,7 @@ const Hero = () => {
                             </div>
                         </div>
                         <div className="col-md-6">
-                            <img src='/assert/home_search.svg' width='100%' height='100%' />
+                            <img src='/assert/home_search.svg' width='100%' height='100%' loading="lazy" />
                         </div>
                     </div>
                     <div className="row">
