@@ -186,4 +186,6 @@
 
 @media(max-width:770px){
     .hero_main{padding: 20px 0px;}
+    .hero_middle_section_container{margin : 40px 0px 0px 0px};
+    .hero_middle_section{margin : 0px};
 }

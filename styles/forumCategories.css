@@ -21,9 +21,9 @@
     padding: 8px 15px;
     border : none;
     border-radius: 6px;
-    background-color: var(--text-blue);
-    color : var(--text-white);
-    font-family: 'Montserrat';
+    background-color: var(--blue-500);
+    color : var(--dark-theme-text-dark-white);
+    font-family: var(--inter-text);
     font-size: .800rem;
     font-weight: 500;
     letter-spacing: 0.040rem;
@@ -41,7 +41,6 @@
     border-radius: 10px;
     max-height: 200px;
     text-align: center;
-    /* border-left: 3px solid var(--blue-500); */
     box-shadow: 0 10px 10px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
 }
 .forum_categories_card_heading
@@ -94,19 +93,53 @@
 }
 .forum_categories_table_heading
 {
-    background-color: var(--header-background);
-    color : var(--text-black);
-    /* font-family: 'Montserrat'; */
-    color : var(--header-logo-color);
-    font-size: 1rem;
+    /* background-color: var(--black-800); */
+    border-bottom: 1px solid var(--black-800);
+    color : var(--black-100);
+    font-family: var(--inter-text);
+    font-size: 0.900rem;
     letter-spacing: 0.050rem;
     line-height: 25px;
     font-weight: 400 !important;
 }
+.forum_categories_table_heading tr
+{
+    border : none !important;
+    font-weight: 500 !important;
+    font-family: var(--inter-text) !important;
+    padding : 15px 0px !important;
+}
+.forum_categories_table_heading th
+{
+    border : none !important;
+    padding : 10px .5rem !important;
+    color : var(--black-100) !important;
+    font-family: var(--inter-text) !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    font-size: 0.780rem !important;
+    letter-spacing: 0.010rem !important;
+}
+.forum_categories_table_body
+{
+    transition: 0.5s all ease-in-out;
+}
+.forum_categories_table_body td
+{
+    border : none !important;
+    padding : 1rem .5rem !important;
+    font-family: var(--inter-text);
+    color : var(--black-300);
+    font-size: .8rem;
+    font-weight: 500;
+    letter-spacing: 0.030rem;
+}
 .forum_categories_table_body:hover
 {
     cursor: pointer;
-    background-color: rgb(204, 228, 236);
+    color : var(--black-900);
+    transition: 0.5s all ease-in-out;
+    background-color: var(--black-800);
 }
 
 @media(max-width:770px){
