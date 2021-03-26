@@ -12,7 +12,7 @@ const useInitialData = () => {
     const { slug } = router.query;
 
     // Queries
-    const { data: topicData } = useGetTopicsByCategory(slug);
+    const { data: topicData, error: topicError } = useGetTopicsByCategory(slug);
     const { data: userData } = useGetUser();
 
     // Query response
@@ -22,14 +22,14 @@ const useInitialData = () => {
     // mutations
     const [createTopic] = useCreateTopic();
 
-    return { forumTopics, user, slug, router, createTopic }
+    return { forumTopics, topicError, user, slug, router, createTopic }
 }
 
 function CategoryTopics() {
 
     const [showReplyPanel, setShowReplyPanel] = useState(false);
 
-    const { forumTopics, user, slug, router, createTopic } = useInitialData();
+    const { forumTopics, topicError, user, slug, router, createTopic } = useInitialData();
 
     const handleReplyFormSubmit = (e, formData, resetFormField) => {
         e.preventDefault();
@@ -74,13 +74,13 @@ function CategoryTopics() {
                                 <tbody>
                                     {
                                         forumTopics &&
-                                        forumTopics.map((topicInfo) => (
-                                            <tr className="forum_categories_table_body" key={topicInfo._id} onClick={() => goToTopicPage(topicInfo.slug)}>
-                                                <td>{topicInfo.title}</td>
-                                                <td>{topicInfo.forumCategory.title}</td>
-                                                <td>{topicInfo.user.username}</td>
-                                            </tr>
-                                        ))
+                                            !topicError ? forumTopics.map((topicInfo) => (
+                                                <tr className="forum_categories_table_body" key={topicInfo._id} onClick={() => goToTopicPage(topicInfo.slug)}>
+                                                    <td>{topicInfo.title}</td>
+                                                    <td>{topicInfo.forumCategory.title}</td>
+                                                    <td>{topicInfo.user.username}</td>
+                                                </tr>
+                                            )) : <div></div>
                                     }
                                 </tbody>
                             </table>
