@@ -1,7 +1,7 @@
 .forum_categories_main_container
 {
     width : 100%;
-    padding : 100px 10px 100px 10px;
+    padding : 100px 0px 100px 0px;
 }
 .forum_categories_main_container a
 {
@@ -9,9 +9,9 @@
 }
 .forum_categories_heading
 {
-    color: var(--text-black);
-    font-family: 'Montserrat';
-    font-size: 2rem;
+    color: var(--dark-theme-text-white);
+    font-family: var(--inter-text);
+    font-size: 1.7rem;
     font-weight: 500;
     letter-spacing: 0.030rem;
 }
@@ -36,27 +36,58 @@
 .forum_categories_card_container
 {
     margin : 25px 0px;
-    padding : 15px 10px;
-    border : 1px solid rgb(228, 228, 228);
-    border-radius: 6px;
+    padding : 15px 15px;
+    background-color: var(--black-900);
+    border-radius: 10px;
+    max-height: 200px;
+    text-align: center;
+    /* border-left: 3px solid var(--blue-500); */
     box-shadow: 0 10px 10px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
 }
 .forum_categories_card_heading
 {
-    color : var(--text-black);
-    font-family: 'Montserrat';
+    color : var(--dark-theme-text-white);
+    font-family: var(--inter-text);
     font-size: 1.1rem;
-    font-weight: 600;
+    letter-spacing: 0.040rem;
+    text-transform: uppercase;
+    font-weight: 500;
 }
 .forum_categories_card_info
 {
-    padding : 10px 0px;
-    color : var(--text-black);
-    font-family: 'Montserrat';
-    font-size: 0.800rem;
+    padding : 15px 0px;
+    color : var(--black-400);
+    font-family: var(--inter-text);
+    font-size: .960rem;
     line-height: 25px;
+    letter-spacing: 0.030rem;
     font-weight: 500;
 }
+.forum_categories_card_view_info
+{
+    color: var(--blue-500);
+    font-family: var(--inter-text);
+    font-size: 0.900rem;
+    font-weight: 500;
+    letter-spacing: 0.030rem;
+    cursor: pointer;
+    transition: 0.5s all ease-in-out;
+}
+.forum_categories_card_view_info::after
+{
+    content: '→';
+    padding-left: 3px;
+    opacity: 0;
+    transition: 0.4s all ease-in-out;
+}
+.forum_categories_card_view_info:hover::after, .forum_categories_card_view_info
+{
+    opacity: 1;
+    margin-right: 10px;
+}
+
+/* category table */
+
 .forum_categories_table_container
 {
     margin : 50px 0px 50px 0px;

@@ -3,7 +3,6 @@ import BaseLayout from '../../../layouts/BaseLayout';
 import { useGetForumCategories } from '../../../apollo/actions';
 import withApollo from '../../../hoc/withApollo';
 import { getDataFromTree } from '@apollo/client/react/ssr';
-import Link from 'next/link';
 
 function ForumCategories() {
 
@@ -26,13 +25,9 @@ function ForumCategories() {
                                 data && data.forumCategories &&
                                 data.forumCategories.map((forumCategoryInfo) => (
                                     <div className="col-md-4" key={forumCategoryInfo._id}>
-                                        <Link href='/forum/Categories/[slug]' as={`/forum/Categories/${forumCategoryInfo.slug}`}>
-                                            <a>
-                                                <ForumCategoriesComponent
-                                                    forumCategoryInfo={forumCategoryInfo}
-                                                />
-                                            </a>
-                                        </Link>
+                                        <ForumCategoriesComponent
+                                            forumCategoryInfo={forumCategoryInfo}
+                                        />
                                     </div>
                                 ))
                             }
