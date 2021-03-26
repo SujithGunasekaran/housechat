@@ -64,7 +64,7 @@ function Login() {
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-4 mx-auto">
-                            <div className="form_heading">Login</div>
+                            <div className="form_heading">Sign in to HouseChat</div>
                             <div className="form_heading_line"></div>
                             <div className="form_container">
                                 {

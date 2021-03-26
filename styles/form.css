@@ -3,26 +3,30 @@
     width : 100%;
     padding : 100px 20px 100px 20px;
 }
+.form_signup_heading
+{
+    padding : 0px 0px 10px 0px;
+    color : var(--black-200);
+    text-align: center;
+    font-family: var(--inter-text);
+    font-size: 0.9rem;
+    letter-spacing: 0.040rem;
+    font-weight: 500;
+}
 .form_heading
 {
     padding : 5px 0px;
     color: var(--black-200);
-    font-family: 'Montserrat';
-    font-size: 2rem;
+    font-family: var(--inter-text);
+    font-size: 1.2rem;
     font-weight: 500;
-    letter-spacing: 0.030rem;
+    letter-spacing: 0.040rem;
 }
 .form_heading_line
 {
-    margin: 5px 0px;
+    margin: 5px 2px;
     border-top : 3px solid var(--blue-500);
-    width: 90px;
-}
-.form_heading_line
-{
-    margin : 0px 0px 0px 5px;
-    width : 50px;
-    border-bottom: 3px solid black;
+    width: 80px;
 }
 .form_info
 {

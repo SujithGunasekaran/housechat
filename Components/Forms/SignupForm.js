@@ -18,18 +18,16 @@ const SignupForm = (props) => {
                     />
                 </div>
                 <div className="col-md-6">
-
                     <input
                         className='form_input_field'
                         type="text"
                         name="email"
-                        placeholder="Email Address"
+                        placeholder="Email"
                         value={formField.email}
                         onChange={handleInputFieldChange}
                     />
                 </div>
             </div>
-
             <input
                 className='form_input_field'
                 type="password"

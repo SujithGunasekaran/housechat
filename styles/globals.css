@@ -75,13 +75,14 @@
 
 .main_page
 {
-  min-height: 100vh !important;
+  /* min-height: 100vh !important; */
   width: 100%;
   background-color: var(--dark-theme-body-background);
 }
 .main_body
 {
   padding : 20px 20px;
+  min-height: 100vh !important;
 }
 
 @media(max-width:770px){
