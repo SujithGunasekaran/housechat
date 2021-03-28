@@ -15,41 +15,59 @@
 .topic_post_container
 {
     margin : 30px 0px;
-    border-top: 1px solid rgb(223, 220, 220);
-    border-bottom: 1px solid rgb(223, 220, 220);
+    /* border-top: 1px solid rgb(223, 220, 220); */
+    border-bottom: 1px solid var(--black-800);
     padding : 25px 0px;
+    width: 100%;
 }
 .topic_post_user_profile
 {
-    font-size: 2rem !important;
+    margin-top: 4px;
+    background-color: var(--blue-500);
+    border-radius: 50%;
+    width : 35px;
+    height : 35px;
 }
 
 .topic_post_user_main_display
 {
-    display: flex;
+    /* display: flex; */
     width : 100%;
 }
-.topic_post_user_info_display
+.topic_post_user_content_display
 {
     display: flex;
     flex-direction: column;
     width : 100%;
-    padding: 0px 0px 0px 15px;
+    padding : 0px 40px;
+}
+.topic_post_user_content_display.show_relation
+{
+    border-left: 1px solid var(--black-700);
+}
+.topic_post_user_info_display
+{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    padding: 9px 5px 5px 15px;
 }
 .topic_post_username
 {
-    color : var(--text-black);
+    padding : 0px 15px;
+    color : var(--dark-theme-text-white);
     font-size: 1rem;
-    font-family: 'Inter', sans-serif;
-    letter-spacing: 0.020rem;
+    font-family: var(--inter-text);
+    letter-spacing: 0.040rem;
     font-weight: 500;
 }
 .topic_post_user_answer
 {
-    padding : 15px 0px;
-    color : var(--text-ligth-dark);
-    font-size: 0.920rem;
-    font-family: 'Inter', sans-serif;
+    padding : 10px 15px 0px 25px;
+    color : var(--black-400);
+    font-size: 0.940rem;
+    font-family: var(--inter-text);
     letter-spacing: 0.030rem;
     line-height: 35px;
     font-weight: 500;
@@ -62,41 +80,73 @@
 {
     padding : 15px 8px 5px 10px;
     margin-left: auto;
-    color : var(--text-black);
+    color : var(--blue-500);
     font-size: 0.800rem;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--inter-text);
     letter-spacing: 0.020rem;
     font-weight: 500;
     transition: 0.5s all ease-in-out;
 }
 .topic_post_reply:hover
 {
-    color : var(--header-hover-color);
+    color : var(--blue-300);
     cursor: pointer;
 }
 
 .topic_post_time
 {
-    padding : 15px 10px 5px 10px;
-    color : var(--text-ligth-dark);
+    padding : 0px 0px 0px 0px;
+    color : var(--black-500);
     font-size: 0.800rem;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--inter-text);
     letter-spacing: 0.020rem;
     font-weight: 500;
 }
+
+/* parent container */
+
 .topic_post_parent_container
 {
     width: 100%;
-    margin: 15px 0px;
-    padding : 15px 5px;
-    border-radius: 6px;
+    margin: 10px 26px;
+    padding : 10px 10px;
+    /* border-radius: 6px; */
     color : var(--text-black);
     font-size: 0.800rem;
     font-family: 'Inter', sans-serif;
     letter-spacing: 0.020rem;
     font-weight: 500;
-    background-color: rgb(225, 226, 226);
+    border-left: 4px solid var(--black-500);
+    /* background-color: var(--black-900); */
 }
+
+.topic_post_parent_user_info_display
+{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+}
+
+.topic_post_parent_user_content_display
+{
+    display: flex;
+    flex-direction: column;
+    width : 100%;
+    padding : 0px 1px;
+}
+
+.topic_post_parent_user_answer
+{
+    padding : 10px 15px 0px 15px;
+    color : var(--black-400);
+    font-size: 0.940rem;
+    font-family: var(--inter-text);
+    letter-spacing: 0.030rem;
+    line-height: 35px;
+    font-weight: 500;
+}
+
 
 /* Topic bottom create post btn */
 
@@ -137,9 +187,10 @@
 @media(max-width:750px)
 {
     .topic_post_main_container{ padding : 100px 2px 10px 2px }
-    .topic_post_user_info_display{ padding : 0px 0px 0px 10px }
+    .topic_post_user_info_display{ padding: 9px 0px 5px 5px; }
     .topic_post_user_profile{ font-size: 2.5rem !important; }
     .topic_post_heading{ text-align: left; }
     .topic_post_pagination{ float: left; }
     .topic_post_bottom_container{ margin: 10px 2px 20px 2px; }
+    .topic_post_user_content_display{ padding : 0px 30px; }
 }
