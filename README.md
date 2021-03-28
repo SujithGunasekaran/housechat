@@ -9,4 +9,4 @@
   3. `Apollo`
   4. `graphql`
   5. `mongodb`
-  6. `expressn.js`
+  6. `express.js`
