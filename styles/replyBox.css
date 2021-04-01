@@ -2,12 +2,12 @@
 {
     bottom : 0;
     width: 100%;
-    padding : 15px 10px;
+    padding : 15px 5px;
     position: fixed;
     z-index: 999999;
     transform: translateY(100%);
     transition: 0.5s all ease-in-out;
-    background-color: var(--header-background);
+    background-color: var(--black-800);
 }
 .reply_box_container.show
 {
@@ -16,43 +16,37 @@
 .reply_box_head
 {
     padding : 10px 0px;
-    font-family: 'Montserrat';
+    font-family: var(--inter-text);
     font-size: 0.900rem;
     font-weight: 500;
-    color : var(--text-grey);
+    color : var(--black-500);
     letter-spacing: 0.030rem;
 }
 .reply_box_name
 {
-    color : var(--header-hover-color);
+    color : var(--blue-500);
 }
 .reply_box_input_field
 {
     margin : 20px 0px;
     padding : 0px 7px;
-    border: 1px solid rgb(68, 67, 67);
     height : 45px;
     width: 100%;
     border-radius: 6px;
-    background-color: var(--header-background);
+    background-color: var(--black-750);
     color : var(--text-ligth-grey);
-    font-family: 'Roboto';
+    font-family: var(--inter-text);
     font-size: 0.940rem;
     letter-spacing: 0.070rem;
     transition: 0.5s all ease-in-out;
 }
-.reply_box_input_field:hover
-{
-    border : 1px solid var(--header-hover-color);
-}
 .reply_box_input_field:focus
 {
     outline: none;
-    border : 1px solid var(--header-hover-color);
 }
 .reply_box_input_field::placeholder
 {
-    color : var(--text-grey);
+    color : var(--black-400);
     font-size: 0.800rem;
     font-weight: 500;
 }
@@ -60,29 +54,23 @@
 {
     margin : 10px 0px;
     padding : 10px 7px;
-    border: 1px solid rgb(68, 67, 67);
     height : 110px;
     width: 100%;
     border-radius: 6px;
-    background-color: var(--header-background);
-    color : var(--text-ligth-grey);
-    font-family: 'Roboto';
+    background-color: var(--black-800);
+    color : var(--black-350);
+    font-family: var(--inter-text);
     font-size: 0.940rem;
     letter-spacing: 0.070rem;
     transition: 0.5s all ease-in-out;
 }
-.reply_box_input_comment:hover
-{
-    border : 1px solid var(--header-hover-color);
-}
 .reply_box_input_comment:focus
 {
     outline: none;
-    border : 1px solid var(--header-hover-color);
 }
 .reply_box_input_comment::placeholder
 {
-    color : var(--text-grey);
+    color : var(--black-400);
     font-size: 0.800rem;
     font-weight: 500;
 }
@@ -98,18 +86,18 @@
     padding : 8px 15px;
     border : none;
     border-radius: 6px;
-    font-family: 'Montserrat';
+    font-family: var(--inter-text);
     font-size: 0.800rem;
     font-weight: 500;
-    color : var(--text-white);
+    color : var(--dark-theme-text-dark-white);
     letter-spacing: 0.040rem;
-    background-color: rgb(80, 80, 209);
+    background-color: var(--blue-600);
     transition: 0.5s all ease-in-out;
 }
 .reply_box_reply_btn:hover
 {
     cursor: pointer;
-    background-color: rgb(68, 68, 175);
+    background-color: var(--blue-500);
 }
 .reply_box_reply_btn:focus
 {
@@ -119,17 +107,17 @@
 {
     margin: 0px 0px 0px 15px;
     padding : 8px 15px;
-    font-family: 'Montserrat';
+    font-family: var(--inter-text);
     font-size: 0.800rem;
     font-weight: 500;
-    color : var(--text-white);
+    color : var(--black-350);
     letter-spacing: 0.040rem;
     transition: 0.5s all ease-in-out;
 }
 .reply_box_cancel_btn:hover
 {
     cursor: pointer;
-    color: rgb(236, 117, 117);
+    color: var(--red-400);
 }
 .reply_box_hide_btn
 {
