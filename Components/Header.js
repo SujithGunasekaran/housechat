@@ -21,13 +21,19 @@ const Header = () => {
         getUser();
     }, [])
 
+    const removeHeaderModel = function () {
+        document.getElementById('mobileheader').classList.remove('active');
+        document.getElementById('overlay').classList.add('hidden');
+    }
+
     useEffect(() => {
-        document.getElementById('hamburger').addEventListener('click', () => {
+        document.getElementById('hamburger').addEventListener('click', function () {
             document.getElementById('mobileheader').classList.add('active');
+            document.getElementById('overlay').classList.remove('hidden');
         })
-        document.getElementById('closeicon').addEventListener('click', () => {
-            document.getElementById('mobileheader').classList.remove('active');
-        })
+        document.getElementById('closeicon').addEventListener('click', removeHeaderModel)
+
+        document.getElementById('overlay').addEventListener('click', removeHeaderModel)
 
         document.getElementById('dropdown-title') && document.getElementById('dropdown-title').addEventListener('click', function () {
             this.classList.toggle('active');
@@ -149,6 +155,7 @@ const Header = () => {
                     <div className="header_page_hamburger"><MenuIcon id="hamburger" /></div>
                 </div>
             </div>
+            <div className="header_page_mobile_overlay hidden" id="overlay"></div>
         </div>
     )
 }

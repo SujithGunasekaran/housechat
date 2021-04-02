@@ -158,12 +158,26 @@
     position: fixed;
     top : 0;
     left : 0;
-    background-color: var(--dark-theme-header-background);
-    width: 100%;
+    background-color: var(--black-900);
+    width: 75%;
     height: 100vh;
     transition: all 0.5s ease-in-out;
     transform: translate(-80rem);
     z-index: 10000;
+}
+.header_page_mobile_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 5;
+    transition: 0.5s all ease-in-out;
+}
+.header_page_mobile_overlay.hidden {
+    display : none;
 }
 .header_page_mobile_container.active
 {
@@ -188,11 +202,11 @@
     display: flex;
     flex-direction: column;
     padding : 15px 0px;
-    color : var(--black-500);
+    color : var(--black-400);
 } 
 .header_page_mobile_list ul li a
 {
-    color : var(--black-500);
+    color : var(--black-400);
     font-weight: 500;
     letter-spacing: 0.040rem;
     font-family: var(--inter-text);
@@ -214,6 +228,7 @@
     font-family: var(--inter-text);
     font-size: 1rem;
     width : 90px;
+    letter-spacing: 0.040rem;
     border-radius: 20px;
     font-weight: 500;
     background-color: var(--blue-600);
@@ -242,7 +257,7 @@
 }
 .header_page_mobile_signup a
 {
-    color : var(--black-500);
+    color : var(--black-400);
     text-decoration: none;
     font-weight: 500;
     transition: 0.4s all ease-in-out;
