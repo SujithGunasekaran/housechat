@@ -5,6 +5,11 @@ import Link from 'next/link';
 import withApollo from '../hoc/withApollo';
 import { useLazyGetUser } from '../apollo/actions';
 
+/*
+    TODO : Need to fix bug in header component
+
+*/
+
 const HeaderLink = ({ children, href, as }) => (
     <Link href={href} as={as}>{children}</Link>
 )
@@ -63,13 +68,13 @@ const Header = () => {
                 <div className="header_page_mobile_list">
                     <ul>
                         <li>
-                            <HeaderLink href="/Portfolio">Portfolio</HeaderLink>
+                            <HeaderLink id="closeicon" href="/Portfolio">Portfolio</HeaderLink>
                         </li>
                         <li>
-                            <HeaderLink href="/forum/Categories">Forum</HeaderLink>
+                            <HeaderLink id="closeicon" href="/forum/Categories">Forum</HeaderLink>
                         </li>
                         <li>
-                            <HeaderLink href="/Cv">Cv</HeaderLink>
+                            <HeaderLink id="closeicon" href="/Cv" id="closeicon">Cv</HeaderLink>
                         </li>
                     </ul>
                 </div>
@@ -77,10 +82,10 @@ const Header = () => {
                     (error || !user) &&
                     <div className="header_page_mobile_auth_container">
                         <div className="header_page_mobile_signup">
-                            <HeaderLink href='/Signup'>Sign up</HeaderLink>
+                            <HeaderLink href='/Signup' id="closeicon">Sign up</HeaderLink>
                         </div>
                         <div className="header_page_mobile_signin">
-                            <HeaderLink href='/Login'>Sign in</HeaderLink>
+                            <HeaderLink href='/Login' id="closeicon">Sign in</HeaderLink>
                         </div>
                     </div>
                 }
@@ -91,7 +96,7 @@ const Header = () => {
                             Welcome, {user && user.username}
                         </div>
                         <div className="header_page_mobile_signout">
-                            <HeaderLink href='/Logout'>Signout</HeaderLink>
+                            <HeaderLink href='/Logout' id="closeicon">Signout</HeaderLink>
                         </div>
                     </div>
                 }
