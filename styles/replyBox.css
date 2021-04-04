@@ -7,7 +7,7 @@
     z-index: 999999;
     transform: translateY(100%);
     transition: 0.5s all ease-in-out;
-    background-color: var(--black-800);
+    background-color: var(--black-900);
 }
 .reply_box_container.show
 {
@@ -24,6 +24,7 @@
 }
 .reply_box_name
 {
+    padding-left: 3px;
     color : var(--blue-500);
 }
 .reply_box_input_field
@@ -32,17 +33,20 @@
     padding : 0px 7px;
     height : 45px;
     width: 100%;
+    border : none;
     border-radius: 6px;
-    background-color: var(--black-750);
-    color : var(--text-ligth-grey);
+    background-color: var(--black-800);
+    color : var(--black-200);
     font-family: var(--inter-text);
-    font-size: 0.940rem;
-    letter-spacing: 0.070rem;
+    font-size: 0.830rem;
+    letter-spacing: 0.050rem;
     transition: 0.5s all ease-in-out;
 }
 .reply_box_input_field:focus
 {
     outline: none;
+    background-color: var(--blue-100);
+    color : var(--black-950);
 }
 .reply_box_input_field::placeholder
 {
@@ -55,13 +59,14 @@
     margin : 10px 0px;
     padding : 10px 7px;
     height : 110px;
+    border : none;
     width: 100%;
     border-radius: 6px;
     background-color: var(--black-800);
-    color : var(--black-350);
+    color : var(--black-200);
     font-family: var(--inter-text);
-    font-size: 0.940rem;
-    letter-spacing: 0.070rem;
+    font-size: 0.830rem;
+    letter-spacing: 0.050rem;
     transition: 0.5s all ease-in-out;
 }
 .reply_box_input_comment:focus
@@ -108,7 +113,7 @@
     margin: 0px 0px 0px 15px;
     padding : 8px 15px;
     font-family: var(--inter-text);
-    font-size: 0.800rem;
+    font-size: 0.850rem;
     font-weight: 500;
     color : var(--black-350);
     letter-spacing: 0.040rem;
@@ -122,11 +127,11 @@
 .reply_box_hide_btn
 {
     margin-left: auto;
-    font-family: 'Montserrat';
+    font-family: var(--inter-text);
     font-size: 0.900rem;
     letter-spacing: 0.040rem;
     font-weight: 500;
-    color: var(--text-white);
+    color: var(--black-400);
     cursor: pointer;
     transition: 0.5s all ease-in-out;
 }

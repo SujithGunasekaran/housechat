@@ -119,6 +119,7 @@ function CategoryTopics() {
                     onClose={() => setShowReplyPanel(false)}
                 />
             </div>
+            {showReplyPanel && <div className="header_page_mobile_overlay"></div>}
         </div>
         // </BaseLayout>
     )

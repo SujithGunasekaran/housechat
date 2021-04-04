@@ -89,7 +89,7 @@ function PostPage() {
         }
     }
     return (
-        <BaseLayout>
+        <>
             <div className="topic_post_main_container">
                 <div className="container-fluid">
                     <div className="row">
@@ -156,7 +156,8 @@ function PostPage() {
                     onClose={() => setShowReplyPanel(false)}
                 />
             </div>
-        </BaseLayout>
+            {showReplyPanel && <div className="header_page_mobile_overlay"></div>}
+        </>
     )
 }
 
