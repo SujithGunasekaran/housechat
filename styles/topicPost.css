@@ -1,10 +1,11 @@
 .topic_post_main_container
 {
     width : 100%;
-    padding : 100px 5px 10px 5px;
+    padding : 100px 20px 10px 20px;
 }
 .topic_post_heading
 {
+    padding : 0px 0px 50px 0px;
     color: var(--dark-theme-text-white);
     font-family: var(--inter-text);
     font-size: 2rem;
@@ -14,11 +15,18 @@
 }
 .topic_post_container
 {
-    margin : 30px 0px;
-    /* border-top: 1px solid rgb(223, 220, 220); */
-    border-bottom: 1px solid var(--black-800);
-    padding : 25px 0px;
+    border : 1px solid var(--black-800);
+    border-radius: 7px;
+    background-color: var(--black-900);
+    padding : 20px 0px;
     width: 100%;
+    box-shadow: 0 10px 10px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
+}
+.topic_post_link_line
+{
+    margin-left: 30px;
+    height : 70px;
+    border-left: 2px solid var(--black-800);
 }
 .topic_post_user_profile
 {
@@ -78,7 +86,7 @@
 }
 .topic_post_reply
 {
-    padding : 15px 8px 5px 10px;
+    padding : 5px 25px 5px 10px;
     margin-left: auto;
     color : var(--blue-500);
     font-size: 0.800rem;
@@ -159,11 +167,12 @@
 {
     margin : 13px 0px;
     padding : 8px 15px;
-    border : 1px solid var(--header-hover-color);
+    border : none;
     border-radius: 6px;
-    color : var(--header-hover-color);
+    background-color : var(--blue-600);
+    color : var(--dark-theme-text-white);
     font-size: 0.800rem;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--inter-text);
     letter-spacing: 0.020rem;
     font-weight: 500;
     transition: 0.5s all ease-in-out;
@@ -174,8 +183,7 @@
 }
 .topic_post_bottom_btn:hover
 {
-    background-color: var(--header-hover-color);
-    color : var(--text-white);
+    background-color: var(--blue-500);
 }
 
 .topic_post_pagination
@@ -183,6 +191,22 @@
     float: right;
     margin-top: 13px;
 }
+
+.topic_post_pagination ul li a
+{
+    background-color: var(--dark-theme-body-background) !important;
+    border : none !important;
+    font-size: 1.1rem !important;
+}
+.topic_post_pagination ul li a:hover
+{
+    background-color: var(--black-800) !important;
+}
+.topic_post_pagination ul li a:focus
+{
+    outline : none !important;
+}
+
 
 @media(max-width:750px)
 {
