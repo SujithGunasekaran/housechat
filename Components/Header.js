@@ -5,14 +5,15 @@ import Link from 'next/link';
 import withApollo from '../hoc/withApollo';
 import { useLazyGetUser } from '../apollo/actions';
 
-/*
-    TODO : Need to fix bug in header component
 
-*/
+const HeaderLink = ({ children, href, as }) => {
 
-const HeaderLink = ({ children, href, as }) => (
-    <Link href={href} as={as}>{children}</Link>
-)
+    return (
+        <Link href={href} as={as}>
+            {children}
+        </Link>
+    )
+}
 
 const Header = () => {
 
@@ -68,13 +69,7 @@ const Header = () => {
                 <div className="header_page_mobile_list">
                     <ul>
                         <li>
-                            <HeaderLink id="closeicon" href="/Portfolio">Portfolio</HeaderLink>
-                        </li>
-                        <li>
                             <HeaderLink id="closeicon" href="/forum/Categories">Forum</HeaderLink>
-                        </li>
-                        <li>
-                            <HeaderLink id="closeicon" href="/Cv" id="closeicon">Cv</HeaderLink>
                         </li>
                     </ul>
                 </div>
@@ -108,13 +103,7 @@ const Header = () => {
                 <div className="header_page_link_container">
                     <ul>
                         <li>
-                            <HeaderLink href="/Portfolio">Portfolio</HeaderLink>
-                        </li>
-                        <li>
                             <HeaderLink href="/forum/Categories">Forum</HeaderLink>
-                        </li>
-                        <li>
-                            <HeaderLink href="/Cv">Cv</HeaderLink>
                         </li>
                     </ul>
                 </div>
