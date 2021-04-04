@@ -277,6 +277,7 @@ export const GET_POST_BY_TOPIC = gql`
                     user {
                         username
                     }
+                    createdAt
                 }
                 createdAt
             }
