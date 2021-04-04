@@ -25,7 +25,7 @@ function PostItem({ post, onReplyOpen, canCreate }) {
                                                 <div className="topic_post_user_main_display">
                                                     <div className="topic_post_parent_user_info_display">
                                                         <div className="topic_post_username">{post.parent.user.username}</div>
-                                                        <div className="topic_post_time">{post.createdAt && fromNow(post.createdAt)}</div>
+                                                        <div className="topic_post_time">{post.createdAt && fromNow(post.parent.createdAt)}</div>
                                                     </div>
                                                     <div className="topic_post_parent_user_content_display">
                                                         <div className="topic_post_parent_user_answer">{post.parent.content}</div>
