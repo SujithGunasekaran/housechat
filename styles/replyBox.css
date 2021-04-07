@@ -39,7 +39,8 @@
     color : var(--black-200);
     font-family: var(--inter-text);
     font-size: 0.830rem;
-    letter-spacing: 0.050rem;
+    font-weight: 500;
+    letter-spacing: 0.030rem;
     transition: 0.5s all ease-in-out;
 }
 .reply_box_input_field:focus
@@ -97,6 +98,19 @@
     color : var(--dark-theme-text-dark-white);
     letter-spacing: 0.040rem;
     background-color: var(--blue-600);
+    transition: 0.5s all ease-in-out;
+}
+.reply_box_reply_btn_loading
+{
+    padding : 8px 15px;
+    border : none;
+    border-radius: 6px;
+    font-family: var(--inter-text);
+    font-size: 0.800rem;
+    font-weight: 500;
+    color : var(--black-950);
+    letter-spacing: 0.040rem;
+    background-color: var(--blue-200);
     transition: 0.5s all ease-in-out;
 }
 .reply_box_reply_btn:hover
