@@ -45,6 +45,8 @@ function CategoryTopics() {
             .catch((err) => {
                 const pareseError = JSON.parse(JSON.stringify(err));
                 if (pareseError.message.includes('Please Enter')) setReplyError(pareseError.message);
+                if (!formData.title || formData.content) setReplyError('Please Enter Content or Title');
+                if (pareseError.message.includes('Something')) setReplyError(pareseError.message);
             })
     }
 
@@ -75,7 +77,7 @@ function CategoryTopics() {
                             <div className="forum_categories_heading">Select a Topic</div>
                             {
                                 user &&
-                                <button className="forum_categories_create_btn" onClick={() => setShowReplyPanel(true)}>Create Portfolio</button>
+                                <button className="forum_categories_create_btn" onClick={() => setShowReplyPanel(true)}>Create Topic</button>
                             }
                         </div>
                     </div>
@@ -131,7 +133,6 @@ function CategoryTopics() {
             </div>
             <div className={`reply_box_container ${showReplyPanel ? 'show' : ''}`}>
                 <ReplyBox
-                    removeError={() => setReplyError('')}
                     loading={createTopicLoading}
                     btnDisplayContent='Create Topic'
                     hasTitle={true}
