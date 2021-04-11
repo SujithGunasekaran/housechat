@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
     content: {
-        type: String
+        type: String,
+        required: true
     },
     slug: {
         type: String,
