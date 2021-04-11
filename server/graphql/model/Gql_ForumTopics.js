@@ -56,7 +56,7 @@ class ForumTopics extends BaseModel {
                 }
             })
             if (emptyDataErrorMessage) throw new Error(`Please Enter ${emptyDataErrorMessage}`);
-            return null;
+            return 'Something went wrong';
         }
     }
 }

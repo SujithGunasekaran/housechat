@@ -4,8 +4,9 @@ const moment = require('moment');
 const BaseModel = require('./Gql_BaseMode');
 class Post extends BaseModel {
 
+
     async getAllByTopic(topic, pageNumber, pageSize) {
-        const skipItem = pageSize * (pageNumber - 1);
+        const skipItem = pageNumber;
         const count = await this.Model.countDocuments({ topic });
         const posts = await this.Model
             .find({ topic })
@@ -17,7 +18,14 @@ class Post extends BaseModel {
         return { posts, count };
     }
 
+    async _createPost(post) {
+        return await this.Model.create(post);
+    }
+
     async create(post) {
+
+        const data = ['content'];
+        let emptyDataErrorMessage = '';
 
         if (!this.user) {
             throw new Error('You must be signed in to create post!');
@@ -39,8 +47,21 @@ class Post extends BaseModel {
             post.fullSlug = fullSlugPart;
         }
 
-        const createdPost = await this.Model.create(post);
-        return this.Model.findById(createdPost).populate('topic').populate('user').populate({ path: 'parent', populate: 'user' })
+        try {
+            const createPost = await this._createPost(post);
+            return this.Model.findById(createPost).populate('topic').populate('user').populate({ path: 'parent', populate: 'user' })
+        }
+        catch (err) {
+            data.map((fieldName, index) => {
+                if (err.message.includes(fieldName)) {
+                    emptyDataErrorMessage += `${index > 0 ? ', ' : ''}${fieldName}`;
+                }
+            })
+            if (emptyDataErrorMessage) throw new Error(`Please Enter ${emptyDataErrorMessage}`);
+            return 'Something went wrong';
+        }
+        // const createdPost = await this.Model.create(post);
+        // return this.Model.findById(createdPost).populate('topic').populate('user').populate({ path: 'parent', populate: 'user' })
 
     }
 
