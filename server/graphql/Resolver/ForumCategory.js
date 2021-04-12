@@ -11,9 +11,9 @@ exports.forumCategoryQueries = {
     topicBySlug: (root, { slugName }, context) => {
         return context.models.ForumTopics.getTopicBySlug(slugName);
     },
-    postByTopic: async (root, { slug, pageNumber, pageSize }, context) => {
+    postByTopic: async (root, { slug, skipLength, pageSize }, context) => {
         const topic = await context.models.ForumTopics.getTopicBySlug(slug);
-        return context.models.PostModel.getAllByTopic(topic, pageNumber, pageSize);
+        return context.models.PostModel.getAllByTopic(topic, skipLength, pageSize);
     }
 
 }
