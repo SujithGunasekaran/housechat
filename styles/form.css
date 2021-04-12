@@ -32,10 +32,11 @@
 {
     padding : 20px 0px;
     text-align: center;
-    color: var(--text-black);
-    font-family: 'Montserrat';
+    color: var(--black-100);
+    font-family: var(--inter-text);
     font-size: 1.5rem;
     font-weight: 500;
+    letter-spacing: 0.040rem;
     letter-spacing: 0.030rem;
 }
 .form_container
