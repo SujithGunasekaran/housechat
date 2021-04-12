@@ -1,5 +1,20 @@
 exports.userTypes = `
 
+    type following {
+        _id : ID,
+        name : String,
+        username : String,
+        email : String,
+        following : [following]
+    }
+
+    type followers {
+        _id : ID,
+        name : String,
+        username : String,
+        email : String
+    }
+
     type User {
         _id : ID,
         name : String,
