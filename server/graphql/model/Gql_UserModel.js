@@ -9,6 +9,22 @@ class UserModel extends BaseModel {
         return null;
     }
 
+    async getUserFollowingList() {
+        if (this.user) {
+            const userData = await this.Model.findOne({ _id: this.user._id }).populate('following');
+            return userData.following;
+        }
+        return null;
+    }
+
+    async getUserFollowersList() {
+        if (this.user) {
+            const userData = await this.Model.findOne({ _id: this.user._id }).populate('followers');
+            return userData.followers;
+        }
+        return null;
+    }
+
     async signIn(signInData, context) {
         try {
             const user = await context.authenticate(signInData);

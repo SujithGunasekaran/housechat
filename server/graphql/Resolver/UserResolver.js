@@ -1,6 +1,12 @@
 exports.userQueries = {
     user: (root, args, context) => {
         return context.models.UserModel.getAuthUser(context);
+    },
+    getUserFollowing: (root, args, context) => {
+        return context.models.UserModel.getUserFollowingList();
+    },
+    getUserFollowers: (root, args, context) => {
+        return context.models.UserModel.getUserFollowersList()
     }
 }
 
