@@ -13,7 +13,7 @@ const useInitialData = (postSlug) => {
 
     // Queries
     const { data: topic, error: topicError } = useGetTopicBySlug(postSlug);
-    const { data: post, error: postError, fetchMore } = useGetPostByTopic(postSlug, { pageNumber: 0, pageSize: 5 });
+    const { data: post, error: postError, fetchMore } = useGetPostByTopic(postSlug, { skipLength: 0, pageSize: 5 });
     const { data: user } = useGetUser();
 
     const topicData = (topic && topic.topicBySlug) || {};
@@ -77,7 +77,7 @@ function PostPage() {
         setDataLoading(true);
         try {
             await fetchMore({
-                variables: { slug: postSlug, pageSize: pagination.pageSize, pageNumber: postData.posts.length },
+                variables: { slug: postSlug, pageSize: pagination.pageSize, skipLength: postData.posts.length },
                 updateQuery: (previousResult, { fetchMoreResult }) => {
                     if (!fetchMoreResult) return previousResult;
                     return {
@@ -114,7 +114,7 @@ function PostPage() {
             let lastPage = Math.ceil(postData.count / pagination.pageSize);
             if (postData.count === 0) lastPage = 1;
             lastPage * pagination.pageSize >= pagination.pageNumber && await fetchMore({
-                variables: { slug: postSlug, pageSize: pagination.pageSize, pageNumber: postData.posts.length },
+                variables: { slug: postSlug, pageSize: pagination.pageSize, skipLength: postData.posts.length },
                 updateQuery: (previousResult, { fetchMoreResult }) => {
                     return {
                         postByTopic: {

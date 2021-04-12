@@ -257,8 +257,8 @@ export const GET_TOPIC_BY_SLUG = gql`
 `;
 
 export const GET_POST_BY_TOPIC = gql`
-    query PostByTopic($slug: String, $pageNumber : Int, $pageSize : Int){
-        postByTopic(slug : $slug, pageNumber : $pageNumber, pageSize : $pageSize){
+    query PostByTopic($slug: String, $skipLength : Int, $pageSize : Int){
+        postByTopic(slug : $slug, skipLength : $skipLength, pageSize : $pageSize){
             posts {
                 _id
                 content

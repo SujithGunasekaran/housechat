@@ -5,8 +5,8 @@ const BaseModel = require('./Gql_BaseMode');
 class Post extends BaseModel {
 
 
-    async getAllByTopic(topic, pageNumber, pageSize) {
-        const skipItem = pageNumber;
+    async getAllByTopic(topic, skipLength, pageSize) {
+        const skipItem = skipLength;
         const count = await this.Model.countDocuments({ topic });
         const posts = await this.Model
             .find({ topic })
