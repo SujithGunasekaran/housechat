@@ -31,7 +31,9 @@ const data = {
             username: "sujith",
             info: "Hello I am Sujith and I am developer",
             password: "password123",
-            role: "admin"
+            role: "admin",
+            followers: [userTwoId],
+            following: [userTwoId]
         },
         {
             _id: userTwoId,
@@ -39,7 +41,9 @@ const data = {
             email: "test@gmail.com",
             username: "test99",
             password: "password123",
-            info: "Hello I am testUser"
+            info: "Hello I am testUser",
+            followers: [userOneId],
+            following: [userOneId]
         }
     ],
     Portfolios: [
