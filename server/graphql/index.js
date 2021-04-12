@@ -44,12 +44,14 @@ exports.createApolloServer = () => {
             userPortfolio : [Portfolio]
 
             user : User
+            getUserFollowing : [following]
+            getUserFollowers : [followers]
 
             forumCategories : [ForumCategory]
             topicsByCategory(categoryName : String) : [Topics] 
 
             topicBySlug(slugName : String) : Topics
-            postByTopic(slug : String, pageNumber : Int, pageSize : Int) : paginatePost
+            postByTopic(slug : String, skipLength : Int, pageSize : Int) : paginatePost
 
             highlight(limit : Int) : HighlightResponse
         }
@@ -93,7 +95,7 @@ exports.createApolloServer = () => {
             ...buildAuthContext(req),
             models: {
                 PortfolioModel: new PortfolioModel(mongoose.model('portfolio'), req.user),
-                UserModel: new UserModel(mongoose.model('User')),
+                UserModel: new UserModel(mongoose.model('User'), req.user),
                 ForumCategory: new ForumCategory(mongoose.model('forumCategories')),
                 ForumTopics: new ForumTopics(mongoose.model('topic'), req.user),
                 PostModel: new PostModel(mongoose.model('post'), req.user)
