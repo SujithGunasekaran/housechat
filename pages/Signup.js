@@ -33,27 +33,27 @@ function Signup() {
     if (formSuccess) return <RedirectComponent path="/Login" query={{ message: "LOGGED_IN", type: 'Success' }} />
 
     return (
-        <BaseLayout>
-            <div className="form_main_container">
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-md-4 mx-auto">
-                            <div className="form_signup_heading">Join HouseChat</div>
-                            <div className="form_heading" style={{ textAlign: 'center', fontSize: '1.7rem', marginBottom: '2px' }}>Create Account</div>
-                            <div className="form_heading_line" style={{ width: '90px', margin: 'auto' }}></div>
-                            <div className="form_container">
-                                <SignupForm
-                                    formField={formField}
-                                    formError={formError}
-                                    handleInputFieldChange={handleInputFieldChange}
-                                    onFormSubmit={handleFormSubmit}
-                                />
-                            </div>
+        // <BaseLayout>
+        <div className="form_main_container">
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-md-4 mx-auto">
+                        <div className="form_signup_heading">Join HouseChat</div>
+                        <div className="form_heading" style={{ textAlign: 'center', fontSize: '1.7rem', marginBottom: '2px' }}>Create Account</div>
+                        <div className="form_heading_line" style={{ width: '90px', margin: 'auto' }}></div>
+                        <div className="form_container">
+                            <SignupForm
+                                formField={formField}
+                                formError={formError}
+                                handleInputFieldChange={handleInputFieldChange}
+                                onFormSubmit={handleFormSubmit}
+                            />
                         </div>
                     </div>
                 </div>
             </div>
-        </BaseLayout>
+        </div>
+        // </BaseLayout>
     )
 }
 
