@@ -2,11 +2,11 @@ exports.userQueries = {
     user: (root, args, context) => {
         return context.models.UserModel.getAuthUser(context);
     },
-    getUserFollowing: (root, args, context) => {
-        return context.models.UserModel.getUserFollowingList();
+    getUserFollowing: async (root, args, context) => {
+        return await context.models.UserFollowingModel.getUserFollowingList();
     },
     getUserFollowers: (root, args, context) => {
-        return context.models.UserModel.getUserFollowersList()
+        return context.models.UserModel.getUserFollowersList();
     }
 }
 
