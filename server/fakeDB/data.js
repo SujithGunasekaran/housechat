@@ -46,6 +46,20 @@ const data = {
             following: [userOneId]
         }
     ],
+    UserFollowing: [
+        {
+            userId: userOneId,
+            userFollowingId: userTwoId
+        },
+        {
+            userId: userOneId,
+            userFollowingId: userOneId
+        },
+        {
+            userId: userTwoId,
+            userFollowingId: userOneId
+        }
+    ],
     Portfolios: [
         {
             title: 'Job in Netcentric',
