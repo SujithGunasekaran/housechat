@@ -11,6 +11,7 @@ const UserModel = require('./model/Gql_UserModel');
 const ForumCategory = require('./model/Gql_ForumCategory');
 const ForumTopics = require('./model/Gql_ForumTopics');
 const PostModel = require('./model/Gql_PostModel');
+const UserFollowingModel = require('./model/Gql_UserFollowingModel');
 
 // Types
 
@@ -44,7 +45,7 @@ exports.createApolloServer = () => {
             userPortfolio : [Portfolio]
 
             user : User
-            getUserFollowing : [following]
+            getUserFollowing : followingList
             getUserFollowers : [followers]
 
             forumCategories : [ForumCategory]
@@ -96,6 +97,7 @@ exports.createApolloServer = () => {
             models: {
                 PortfolioModel: new PortfolioModel(mongoose.model('portfolio'), req.user),
                 UserModel: new UserModel(mongoose.model('User'), req.user),
+                UserFollowingModel: new UserFollowingModel(mongoose.model('userFollowings'), req.user),
                 ForumCategory: new ForumCategory(mongoose.model('forumCategories')),
                 ForumTopics: new ForumTopics(mongoose.model('topic'), req.user),
                 PostModel: new PostModel(mongoose.model('post'), req.user)
