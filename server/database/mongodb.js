@@ -8,6 +8,7 @@ require('../database/model/DB_userModel');
 require('../database/model/DB_forumCategory');
 require('../database/model/DB_topic');
 require('../database/model/DB_postModel');
+require('../database/model/DB_userFollowingModel');
 
 // Connnecting to mongodb
 
