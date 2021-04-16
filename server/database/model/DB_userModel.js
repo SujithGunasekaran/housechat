@@ -30,18 +30,6 @@ const UserSchema = new Schema({
         required: true,
         default: 'guest'
     },
-    following: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'User'
-        }
-    ],
-    followers: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'User'
-        }
-    ],
     info: String,
     createdAt: { type: Date, default: Date.now }
 })
