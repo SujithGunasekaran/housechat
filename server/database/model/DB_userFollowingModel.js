@@ -3,11 +3,11 @@ const Schema = mongoose.Schema;
 
 
 const UserFollowingSchema = new Schema({
-    userId: {
+    userInfo: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    userFollowingId: {
+    userFollowingInfo: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     }
