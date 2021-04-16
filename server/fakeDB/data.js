@@ -3,6 +3,7 @@ const moment = require('moment');
 
 const userOneId = mongoose.Types.ObjectId();
 const userTwoId = mongoose.Types.ObjectId();
+const userThreeId = mongoose.Types.ObjectId();
 
 const forumOneId = mongoose.Types.ObjectId();
 const forumTwoId = mongoose.Types.ObjectId();
@@ -31,9 +32,7 @@ const data = {
             username: "sujith",
             info: "Hello I am Sujith and I am developer",
             password: "password123",
-            role: "admin",
-            followers: [userTwoId],
-            following: [userTwoId]
+            role: "admin"
         },
         {
             _id: userTwoId,
@@ -41,23 +40,29 @@ const data = {
             email: "test@gmail.com",
             username: "test99",
             password: "password123",
-            info: "Hello I am testUser",
-            followers: [userOneId],
-            following: [userOneId]
+            info: "Hello I am testUser"
+        },
+        {
+            _id: userThreeId,
+            name: "sample",
+            email: "sample@gmail.com",
+            username: "sample",
+            password: "password123",
+            info: "Hello I am Sample"
         }
     ],
     UserFollowing: [
         {
-            userId: userOneId,
-            userFollowingId: userTwoId
+            userInfo: userOneId,
+            userFollowingInfo: userTwoId
         },
         {
-            userId: userOneId,
-            userFollowingId: userOneId
+            userInfo: userTwoId,
+            userFollowingInfo: userOneId
         },
         {
-            userId: userTwoId,
-            userFollowingId: userOneId
+            userInfo: userOneId,
+            userFollowingInfo: userThreeId
         }
     ],
     Portfolios: [
