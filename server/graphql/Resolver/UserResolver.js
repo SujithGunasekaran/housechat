@@ -4,9 +4,6 @@ exports.userQueries = {
     },
     getUserFollowing: async (root, args, context) => {
         return await context.models.UserFollowingModel.getUserFollowingList();
-    },
-    getUserFollowers: (root, args, context) => {
-        return context.models.UserModel.getUserFollowersList();
     }
 }
 
