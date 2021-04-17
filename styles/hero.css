@@ -87,7 +87,7 @@
 {
     margin : 25px 0px;
     padding : 1rem;
-    background-color: var(--black-900);
+    background-color: var(--black-800);
     border-radius: 10px;
     box-shadow: 0 10px 12px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
     transition: 0.5s all ease-in-out;

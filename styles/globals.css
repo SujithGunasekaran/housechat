@@ -14,8 +14,9 @@
 
   /* New dark theme */
 
-  --dark-theme-body-background : #0c0d0e;
-  --dark-theme-header-background : #0c0d0e;
+  /* --dark-theme-body-background : #0c0d0e; */
+  --dark-theme-body-background : #0b0e11;
+  --dark-theme-header-background : #0b0e11;
   --dark-theme-text-white : #D1D4F6;
   --dark-theme-text-dark-white : #e5e7f8;
   --black-025: #fafafb;
@@ -29,9 +30,9 @@
   --black-400: #848d95;
   --black-500: #6a737c;
   --black-600: #535a60;
-  --black-700: #3c4146;
+  --black-700: #242c37;
   --black-750: #2f3337;
-  --black-800: #242729;
+  --black-800: #151a21;
   --black-900: #191b1d;
   --orange-100 : #fee3cf;
   --orange-500 : #f2720c;
