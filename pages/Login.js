@@ -64,15 +64,15 @@ function Login() {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-4 mx-auto">
-                        <div className="form_heading">Sign in to HouseChat</div>
-                        <div className="form_heading_line"></div>
+                        {/* <div className="form_heading_line"></div> */}
+                        {
+                            type === 'Success' && <div className="form_success">{messages[type][message]}</div>
+                        }
+                        {
+                            type === 'Error' && <div className="form_error">{messages[type][message]}</div>
+                        }
                         <div className="form_container">
-                            {
-                                type === 'Success' && <div className="form_success">{messages[type][message]}</div>
-                            }
-                            {
-                                type === 'Error' && <div className="form_error">{messages[type][message]}</div>
-                            }
+                            <div className="form_heading">Welcome</div>
                             <LoginForm
                                 formField={formField}
                                 handleInputFieldChange={handleInputFieldChange}

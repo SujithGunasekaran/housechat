@@ -9,7 +9,7 @@ function Signup() {
 
     const { formField, formError, formSuccess, setFormSuccess, setFormError, handleInputFieldChange } = useForm('Signup');
 
-    const [setUserData] = useSignup();
+    const [setUserData, { loading }] = useSignup();
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
@@ -38,15 +38,15 @@ function Signup() {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-4 mx-auto">
-                        <div className="form_signup_heading">Join HouseChat</div>
-                        <div className="form_heading" style={{ textAlign: 'center', fontSize: '1.7rem', marginBottom: '2px' }}>Create Account</div>
-                        <div className="form_heading_line" style={{ width: '90px', margin: 'auto' }}></div>
+                        {/* <div className="form_signup_heading">Join HouseChat</div> */}
                         <div className="form_container">
+                            <div className="form_heading">Create Account</div>
                             <SignupForm
                                 formField={formField}
                                 formError={formError}
                                 handleInputFieldChange={handleInputFieldChange}
                                 onFormSubmit={handleFormSubmit}
+                                loading={loading}
                             />
                         </div>
                     </div>
