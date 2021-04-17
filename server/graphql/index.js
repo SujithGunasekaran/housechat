@@ -68,6 +68,8 @@ exports.createApolloServer = () => {
             signIn(input : signInInput) : User,
             signUp(input : signUpInput) : String,
             signOut : Boolean
+
+            createUserFollowing( input : followingInput ) : followingList
         }
     `);
 
