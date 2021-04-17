@@ -2,8 +2,8 @@ exports.userQueries = {
     user: (root, args, context) => {
         return context.models.UserModel.getAuthUser(context);
     },
-    getUserFollowing: async (root, args, context) => {
-        return await context.models.UserFollowingModel.getUserFollowingList();
+    getUserFollowing: (root, args, context) => {
+        return context.models.UserFollowingModel.getUserFollowingList();
     }
 }
 
@@ -18,5 +18,8 @@ exports.userMutations = {
     },
     signOut: (root, args, context) => {
         return context.models.UserModel.signOut(context);
+    },
+    createUserFollowing: (root, { input }, context) => {
+        return context.models.UserFollowingModel.createUserFollowingData(input);
     }
 }
