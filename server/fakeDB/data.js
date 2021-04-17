@@ -59,10 +59,6 @@ const data = {
         {
             userInfo: userTwoId,
             userFollowingInfo: userOneId
-        },
-        {
-            userInfo: userOneId,
-            userFollowingInfo: userThreeId
         }
     ],
     Portfolios: [

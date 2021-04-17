@@ -30,8 +30,8 @@ exports.userTypes = `
     }
 
     input followingInput {
-        userId : ID,
-        userFollowingId : ID
+        userInfo : ID,
+        userFollowingInfo : ID
     }
 
     type followers {
