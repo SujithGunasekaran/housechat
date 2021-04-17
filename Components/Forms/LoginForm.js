@@ -25,7 +25,7 @@ const LoginForm = (props) => {
             />
             <div className="form_forgot_password">Forgot Password ?</div>
             {
-                loading ? <div className="form_disable_btn">Signing...</div> : <button className="form_btn">Signin</button>
+                <button disabled={loading ? true : false} className={loading ? "form_disable_btn" : "form_btn"}>{loading ? 'Signing in...' : 'Signin'}</button>
             }
             {
                 formError ? <div className="form_error">{formError}</div> : null
@@ -34,7 +34,7 @@ const LoginForm = (props) => {
                 formSuccess && <div className="form_success">{formSuccess}</div>
             }
             <div className="form_having_account">
-                New to HouseChat Join our community ?
+                New to HouseChat ?
                 <Link href='/Signup'>Signup</Link>
             </div>
         </form>
