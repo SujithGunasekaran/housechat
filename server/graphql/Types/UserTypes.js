@@ -13,20 +13,16 @@ exports.userTypes = `
     }
 
     type following {
-        _id : ID
         userFollowingInfo : UserFollowingsData
     }
 
     type follower {
-        _id : ID
         userInfo : UserFollowerData
     }
 
     type followingList {
         userFollowingData : [following]
-        userFollowersData : [follower]
-        followingCount : Int
-        followersCount : Int 
+        userFollowersData : [follower] 
     }
 
     input followingInput {
@@ -41,12 +37,23 @@ exports.userTypes = `
         email : String
     }
 
+    type userFollowAndFollowingCount {
+        followingCount : Int
+        followersCount : Int
+    }
+
     type User {
         _id : ID,
         name : String,
         username : String,
         email : String,
         role : String
+    }
+
+    type userInfo {
+        userData : User
+        followingCount : Int
+        followersCount : Int
     }
 
     input signUpInput {
