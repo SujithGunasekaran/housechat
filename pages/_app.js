@@ -9,6 +9,7 @@ import '../styles/form.css';
 import '../styles/loader.css';
 import '../styles/replyBox.css';
 import '../styles/footer.css';
+import '../styles/profile.css';
 import '../styles/InstructorDashboard.css';
 import "react-datepicker/dist/react-datepicker.css";
 import Head from 'next/head';
