@@ -45,7 +45,8 @@ exports.createApolloServer = () => {
             userPortfolio : [Portfolio]
 
             user : User
-            getUserFollowing : followingList
+            getUserFollowing(userId : ID) : followingList
+            getUserInfo(userId : ID) : userInfo
 
             forumCategories : [ForumCategory]
             topicsByCategory(categoryName : String) : [Topics] 
@@ -69,7 +70,7 @@ exports.createApolloServer = () => {
             signUp(input : signUpInput) : String,
             signOut : Boolean
 
-            createUserFollowing( input : followingInput ) : followingList
+            createUserFollowing( input : followingInput ) : userFollowAndFollowingCount
         }
     `);
 
