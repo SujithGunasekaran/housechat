@@ -9,6 +9,11 @@ class UserModel extends BaseModel {
         return null;
     }
 
+    // method will call from userFollowing graphql    
+    async getUserInfo(userId) {
+        return await this.Model.findOne({ _id: userId })
+    }
+
     async signIn(signInData, context) {
         try {
             const user = await context.authenticate(signInData);
