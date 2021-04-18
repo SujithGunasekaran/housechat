@@ -330,3 +330,23 @@ export const GET_TOPIC_FOR_HOME_PAGE = gql`
         }
     }
 `;
+
+/* User Profile queries */
+
+export const GET_USER_INFO = gql`
+    query GetUserInfo($userId : ID){
+        getUserInfo(userId : $userId){
+            userData {
+                _id
+                username
+                name
+                email
+            }
+            followingCount
+            followersCount
+        }
+    }
+`;
+
+/* User Profile queries  */
+
