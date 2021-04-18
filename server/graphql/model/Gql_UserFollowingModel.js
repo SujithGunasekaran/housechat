@@ -4,17 +4,27 @@ const BaseModel = require('./Gql_BaseMode');
 
 class UserFollowingModel extends BaseModel {
 
-    async _getUserInfoData() {
-        const followingCount = await this.Model.countDocuments({ userInfo: this.user._id });
-        const followersCount = await this.Model.countDocuments({ userFollowingInfo: this.user._id });
-        const userFollowingData = await this.Model.find({ userInfo: this.user._id }).populate('userFollowingInfo');
-        const userFollowersData = await this.Model.find({ userFollowingInfo: this.user._id }).populate('userInfo');
-        return { userFollowingData, userFollowersData, followingCount, followersCount };
+    async _getUserFollowingAndFollowersCount(userId) {
+        const followingCount = await this.Model.countDocuments({ userInfo: userId });
+        const followersCount = await this.Model.countDocuments({ userFollowingInfo: userId });
+        return { followersCount, followingCount };
     }
 
-    async getUserFollowingList() {
+    async getUserData(userId, context) {
+        const userFollowInfo = await this._getUserFollowingAndFollowersCount(userId);
+        const userData = await context.models.UserModel.getUserInfo(userId);
+        return { userData, ...userFollowInfo };
+    }
+
+    async _getUserFollowInfoData(userId) {
+        const userFollowingData = await this.Model.find({ userInfo: userId }).populate('userFollowingInfo');
+        const userFollowersData = await this.Model.find({ userFollowingInfo: userId }).populate('userInfo');
+        return { userFollowingData, userFollowersData };
+    }
+
+    async getUserFollowingList(userId) {
         if (this.user) {
-            const userInfoData = await this._getUserInfoData();
+            const userInfoData = await this._getUserFollowInfoData(userId);
             return userInfoData;
         }
         return null;
@@ -23,7 +33,7 @@ class UserFollowingModel extends BaseModel {
     async createUserFollowingData({ userInfo, userFollowingInfo }) {
         if (this.user) {
             await this.Model.create({ userInfo, userFollowingInfo });
-            const userInfoData = await this._getUserInfoData();
+            const userInfoData = await this._getUserFollowingAndFollowersCount(userInfo);
             return userInfoData;
         }
         return null;
