@@ -95,7 +95,7 @@
 .hero_topic_card:hover
 {
     cursor: pointer;
-    background-color: var(--black-800);
+    background-color: var(--black-700);
     box-shadow: 0 10px 10px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
 }
 .hero_card_hr

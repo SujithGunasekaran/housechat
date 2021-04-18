@@ -17,7 +17,7 @@
 {
     border : 1px solid var(--black-800);
     border-radius: 7px;
-    background-color: var(--black-900);
+    background-color: var(--black-800);
     padding : 20px 0px;
     width: 100%;
     box-shadow: 0 10px 10px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
