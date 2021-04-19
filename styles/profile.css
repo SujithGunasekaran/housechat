@@ -2,9 +2,131 @@
 {
     width : 100%;
     margin-top: 65px;
-    padding : 40px 28px;
+    padding : 40px 18px;
+}
+.profile_page_sticky_column
+{
+    position : -webkit-sticky;
+    position: sticky;
+    top : 85px;
+    bottom : 0;
+}
+.profile_card_container
+{
+    padding : 25px 25px;
+    border-radius: 8px;
+    background-color: var(--black-800);
+}
+.profile_card_user_container
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.profile_card_avatar_background
+{
+    margin-top: 4px;
+    background-color: var(--blue-500);
+    border-radius: 50%;
+    width : 200px;
+    height : 200px;
+}
+.profile_card_avatar
+{
+    margin: 50px 50px 50px 50px;
+    width : 95px !important; 
+    height: 95px !important;
+    color : var(--text-black);
+}
+.profile_user_info_container
+{
+    width: 100%;
+    padding : 15px 15px;
+    align-items: flex-start;
+}
+.profile_card_user_name
+{
+    padding: 10px 0px 5px 0px;
+    color: var(--black-100);
+    font-family: var(--inter-text);
+    font-size: 1.2rem;
+    letter-spacing: 0.055rem;
+    font-weight: 600;
+}
+.profile_card_edit_btn
+{
+    margin : 10px 0px;
+    background-color: var(--black-700);
+    padding : 8px 15px;
+    width : 100%;
+    border-radius: 8px;
+    font-family: var(--inter-text);
+    font-weight: 400;
+    font-size: .9rem;
+    letter-spacing: 0.040rem;
+    color : var(--dark-theme-text-dark-white);
+    border : 1px solid var(--black-700);
+    transition: 0.5s all ease-in-out;
+}
+.profile_card_edit_btn:hover
+{
+    border: 1px solid var(--black-600);
+}
+.profile_card_edit_btn:focus
+{
+    outline: none;
+}
+.profile_card_following_container
+{
+    display: flex;
+    padding: 10px 0px;
+}
+.profile_card_followers
+{
+    padding-right: 10px;
+    color : var(--black-400);
+    font-family: var(--inter-text);
+    font-size: 1rem;
+    letter-spacing: 0.045rem;
+    font-weight: 500;
+    transition: 0.5s all ease-in-out;
+    cursor : pointer;
+}
+.profile_card_followers:hover
+{
+    color : var(--blue-500);
+}
+.profile_card_followings
+{
+    color : var(--black-400);
+    font-family: var(--inter-text);
+    font-size: 1rem;
+    letter-spacing: 0.045rem;
+    font-weight: 500;
+    transition: 0.5s all ease-in-out;
+    cursor : pointer;
+}
+.profile_card_followings:hover
+{
+    color : var(--blue-500);
+}
+.profile_active
+{
+    color : var(--blue-500);
+}
+.profile_card_count
+{
+    padding-right: 5px;
+    color : var(--dark-theme-text-dark-white);
+    font-family: var(--inter-text);
+    font-size: 1rem;
+    letter-spacing: 0.040rem;
+    font-weight: 500;
 }
 
 @media(max-width:770px){
-    .profile_main_container{ padding: 100px 8px; }
+    .profile_main_container{ padding: 100px 2px; }
+    .profile_card_container{ padding : 25px 10px }
+    .profile_user_info_container{ padding : 15px 0px }
 }
