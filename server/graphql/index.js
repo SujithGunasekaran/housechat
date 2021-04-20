@@ -46,6 +46,7 @@ exports.createApolloServer = () => {
 
             user : User
             getUserFollowing(userId : ID) : followingList
+            getUserFollowers(userId : ID) : follwersList
             getUserInfo(userId : ID) : userInfo
 
             forumCategories : [ForumCategory]
