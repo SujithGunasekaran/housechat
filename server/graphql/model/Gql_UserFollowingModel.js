@@ -16,18 +16,24 @@ class UserFollowingModel extends BaseModel {
         return { userData, ...userFollowInfo };
     }
 
-    async _getUserFollowInfoData(userId) {
+    async _getUserFollowingInfoData(userId) {
         const userFollowingData = await this.Model.find({ userInfo: userId }).populate('userFollowingInfo');
+        return { userFollowingData };
+    }
+
+    async _getUserFollowerInfoData(userId) {
         const userFollowersData = await this.Model.find({ userFollowingInfo: userId }).populate('userInfo');
-        return { userFollowingData, userFollowersData };
+        return { userFollowersData };
     }
 
     async getUserFollowingList(userId) {
-        if (this.user) {
-            const userInfoData = await this._getUserFollowInfoData(userId);
-            return userInfoData;
-        }
-        return null;
+        const userInfoData = await this._getUserFollowingInfoData(userId);
+        return userInfoData;
+    }
+
+    async getUserFollowersList(userId) {
+        const userInfoData = await this._getUserFollowerInfoData(userId);
+        return userInfoData;
     }
 
     async createUserFollowingData({ userInfo, userFollowingInfo }) {
