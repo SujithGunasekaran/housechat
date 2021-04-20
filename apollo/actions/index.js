@@ -17,7 +17,9 @@ import {
     GET_POST_BY_TOPIC,
     CREATE_POST,
     GET_TOPIC_FOR_HOME_PAGE,
-    GET_USER_INFO
+    GET_USER_INFO,
+    GET_USER_FOLLOWING,
+    GET_USER_FOLLOWER
 } from '../queries';
 
 export const useGetPortfolioById = (id) => useQuery(GET_PORTFOLIOBYID, { variables: { id: id } });
@@ -127,6 +129,10 @@ export const useGetHomePageTopicData = (limitNumber) => useQuery(GET_TOPIC_FOR_H
 /* user profile */
 
 export const useGetUserInfo = (userId) => useQuery(GET_USER_INFO, { variables: { userId } });
+
+export const useGetUserFollower = (userId) => useQuery(GET_USER_FOLLOWER, { variables: { userId } });
+
+export const useGetUserFollowing = (userId) => useQuery(GET_USER_FOLLOWING, { variables: { userId } });
 
 
 /* user profile */

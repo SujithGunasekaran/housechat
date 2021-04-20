@@ -348,5 +348,33 @@ export const GET_USER_INFO = gql`
     }
 `;
 
+export const GET_USER_FOLLOWING = gql`
+    query GetUserFollowing($userId : ID) {
+        getUserFollowing(userId : $userId){
+            userFollowingData {
+                userFollowingInfo {
+                  _id
+                  username
+                  name
+                }
+            }
+        }
+    }
+`;
+
+export const GET_USER_FOLLOWER = gql`
+    query GetUserFollower($userId : ID){
+        getUserFollowers(userId : $userId) {
+            userFollowersData {
+              userInfo {
+                _id
+                username
+                name
+              }
+            }
+        }
+    }
+`
+
 /* User Profile queries  */
 
