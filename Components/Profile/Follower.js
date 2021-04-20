@@ -1,9 +1,22 @@
+import CircularLoading from '../CircularLoading';
+import { useGetUserFollower } from '../../apollo/actions';
 
+export default function Followers(props) {
 
-export default function Followers() {
+    const { userId } = props;
+
+    // query
+
+    const { data, loading, error } = useGetUserFollower(userId);
+
+    const userFollowerData = data?.getUserFollowers?.userFollowersData ?? [];
+
+    console.log("userFollowerData", userFollowerData);
+
     return (
         <div>
-            Followers Component
+            { loading && <CircularLoading />}
+            Follower component
         </div>
     )
 }
