@@ -7,6 +7,9 @@ exports.userQueries = {
     },
     getUserFollowing: (root, { userId }, context) => {
         return context.models.UserFollowingModel.getUserFollowingList(userId);
+    },
+    getUserFollowers: (root, { userId }, context) => {
+        return context.models.UserFollowingModel.getUserFollowersList(userId);
     }
 }
 
