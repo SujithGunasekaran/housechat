@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { useGetUserInfo } from '../../../apollo/actions';
 import withApollo from '../../../hoc/withApollo';
-import { getDataFromTree } from '@apollo/client/react/ssr';
-import PersonIcon from '@material-ui/icons/Person';
 import Following from '../../../Components/Profile/Following';
 import Followers from '../../../Components/Profile/Follower';
 import EditProfile from '../../../Components/Profile/EditProfile';
+import UserCard from '../../../Components/Profile/UserCard';
 
 function Profile(props) {
 
@@ -17,39 +16,20 @@ function Profile(props) {
     // query
     const { data, loading, error } = useGetUserInfo(query.id);
 
-    console.log("data", data);
-    console.log("error", error);
+    const userInfo = data && data.getUserInfo;
 
     return (
         <div className="profile_main_container">
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-4">
-                        <div className="profile_page_sticky_column">
-                            <div className="profile_card_container">
-                                <div className="profile_card_user_container">
-                                    <div className="profile_card_avatar_background">
-                                        <PersonIcon className="profile_card_avatar" />
-                                    </div>
-                                    <div className="profile_user_info_container">
-                                        <div className="profile_card_user_name">Sujith</div>
-                                        <button className="profile_card_edit_btn" onClick={() => setUserFollowType('editProfile')}>Edit Profile</button>
-                                        <div className="profile_card_following_container">
-                                            <div className={`profile_card_followers ${userFollowType === 'follower' ? 'profile_active' : ''}`} onClick={() => setUserFollowType('follower')}>
-                                                <span className="profile_card_count">0</span>
-                                                followers
-                                            </div>
-                                            <div className={`profile_card_followings ${userFollowType === 'following' ? 'profile_active' : ''}`} onClick={() => setUserFollowType('following')}>
-                                                <span className="profile_card_count">0</span>
-                                                followings
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
+                        <UserCard
+                            userFollowType={userFollowType}
+                            setUserFollowType={setUserFollowType}
+                            loading={loading}
+                            error={error}
+                            userInfo={userInfo}
+                        />
                     </div>
                     <div className="col-md-6">
                         {
@@ -58,15 +38,20 @@ function Profile(props) {
                         }
                         {
                             userFollowType === 'following' &&
-                            <Following />
+                            <Following
+                                userId={query.id}
+                            />
                         }
                         {
                             userFollowType === 'follower' &&
-                            <Followers />
+                            <Followers
+                                userId={query.id}
+                            />
                         }
                     </div>
                 </div>
             </div>
+            {error && <div className="profile_error">Something went Wrong..</div>}
         </div>
     )
 
@@ -76,5 +61,5 @@ Profile.getInitialProps = ({ query }) => {
     return { query };
 }
 
-export default withApollo(Profile, { getDataFromTree });
+export default withApollo(Profile);
 
