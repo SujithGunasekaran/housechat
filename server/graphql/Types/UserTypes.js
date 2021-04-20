@@ -22,6 +22,9 @@ exports.userTypes = `
 
     type followingList {
         userFollowingData : [following]
+    }
+
+    type follwersList {
         userFollowersData : [follower] 
     }
 
