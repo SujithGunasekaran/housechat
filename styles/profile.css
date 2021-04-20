@@ -54,6 +54,15 @@
     letter-spacing: 0.055rem;
     font-weight: 600;
 }
+.profile_card_name
+{
+    padding: 0px 0px 5px 0px;
+    color: var(--black-300);
+    font-family: var(--inter-text);
+    font-size: .9rem;
+    letter-spacing: 0.055rem;
+    font-weight: 400;
+}
 .profile_card_edit_btn
 {
     margin : 10px 0px;
@@ -113,7 +122,7 @@
 }
 .profile_active
 {
-    color : var(--blue-500);
+    color : var(--blue-500) !important;
 }
 .profile_card_count
 {
@@ -123,6 +132,11 @@
     font-size: 1rem;
     letter-spacing: 0.040rem;
     font-weight: 500;
+}
+.profile_error
+{
+    color : var(--red-400);
+    padding : 10px
 }
 
 @media(max-width:770px){
