@@ -1,6 +1,6 @@
 import { fromNow } from '../../utils/Function';
 import PersonIcon from '@material-ui/icons/Person';
-
+import Link from 'next/link';
 
 function PostItem({ post, onReplyOpen, canCreate }) {
     return (
@@ -13,7 +13,9 @@ function PostItem({ post, onReplyOpen, canCreate }) {
                                 <div className="hero_topic_avatar_background">
                                     <PersonIcon className="hero_topic_user_avatar" />
                                 </div>
-                                <div className="topic_post_username">{post.user.username}</div>
+                                <Link href={`/profile/[id]`} as={`/profile/${post.user._id}`}>
+                                    <div className="topic_post_username">{post.user.username}</div>
+                                </Link>
                                 <div className="topic_post_time">{post.createdAt && fromNow(post.createdAt)}</div>
                             </div>
                             <div className="topic_post_user_content_display">
@@ -24,7 +26,9 @@ function PostItem({ post, onReplyOpen, canCreate }) {
                                             <div className="col-12 col-sm-12 col-md-12">
                                                 <div className="topic_post_user_main_display">
                                                     <div className="topic_post_parent_user_info_display">
-                                                        <div className="topic_post_username">{post.parent.user.username}</div>
+                                                        <Link href={`/profile/[id]`} as={`/profile/${post.parent.user._id}`}>
+                                                            <div className="topic_post_username">{post.parent.user.username}</div>
+                                                        </Link>
                                                         <div className="topic_post_time">{post.createdAt && fromNow(post.parent.createdAt)}</div>
                                                     </div>
                                                     <div className="topic_post_parent_user_content_display">
