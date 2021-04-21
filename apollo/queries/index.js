@@ -265,6 +265,7 @@ export const GET_POST_BY_TOPIC = gql`
                 slug
                 fullSlug
                 user{
+                    _id
                     username
                 }
                 topic {
@@ -275,6 +276,7 @@ export const GET_POST_BY_TOPIC = gql`
                     content
                     slug
                     user {
+                        _id
                         username
                     }
                     createdAt
