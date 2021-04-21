@@ -22,7 +22,7 @@ function Profile(props) {
         <div className="profile_main_container">
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-md-3">
                         <UserCard
                             userFollowType={userFollowType}
                             setUserFollowType={setUserFollowType}
@@ -30,8 +30,9 @@ function Profile(props) {
                             error={error}
                             userInfo={userInfo}
                         />
+                        {error && <div className="profile_error">Something went Wrong or Please check you internet connection..</div>}
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-8">
                         {
                             userFollowType === 'editProfile' &&
                             <EditProfile />
@@ -51,7 +52,6 @@ function Profile(props) {
                     </div>
                 </div>
             </div>
-            {error && <div className="profile_error">Something went Wrong..</div>}
         </div>
     )
 
