@@ -69,6 +69,12 @@
     font-family: var(--inter-text);
     letter-spacing: 0.040rem;
     font-weight: 500;
+    transition: 0.5s all ease-in-out;
+}
+.topic_post_username:hover
+{
+    color : var(--blue-300);
+    cursor: pointer;
 }
 .topic_post_user_answer
 {

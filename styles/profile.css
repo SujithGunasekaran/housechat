@@ -42,7 +42,7 @@
 .profile_user_info_container
 {
     width: 100%;
-    padding : 15px 15px;
+    padding : 15px 0px;
     align-items: flex-start;
 }
 .profile_card_user_name
@@ -89,6 +89,7 @@
 .profile_card_following_container
 {
     display: flex;
+    flex-wrap: wrap;
     padding: 10px 0px;
 }
 .profile_card_followers
@@ -139,8 +140,106 @@
     padding : 10px
 }
 
+
+/* Following component style */
+
+.follow_container
+{
+    padding : 0px 5px;
+    width: 100%;
+}
+.follow_card_container
+{
+    width: 100%;
+    padding : 20px 8px 20px 8px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.follow_card_avatar_background
+{
+    margin-top: 4px;
+    background-color: var(--blue-500);
+    border-radius: 50%;
+    width : 30px;
+    height : 30px;
+}
+.follow_card_avatar
+{
+    margin: 5px 6px 5px 6px;
+    width : 18px !important; 
+    height: 18px !important;
+    color : var(--text-black);
+}
+.follow_card_user_info
+{
+    padding : 0px 10px;
+    display: flex;
+    flex-direction: column;
+}
+.follow_card_user_name
+{
+    padding : 0px 15px;
+    color: var(--black-100);
+    font-family: var(--inter-text);
+    font-size: 1rem;
+    letter-spacing: 0.055rem;
+    font-weight: 400;
+    transition: 0.5s all ease-in-out;
+}
+.follow_card_user_name:hover
+{
+    color: var(--blue-500);
+}
+.follow_card_unfollow_btn
+{
+    margin-left: auto;
+    background-color: var(--black-700);
+    padding : 4px 15px;
+    border-radius: 8px;
+    font-family: var(--inter-text);
+    font-weight: 400;
+    font-size: .9rem;
+    letter-spacing: 0.040rem;
+    color : var(--dark-theme-text-dark-white);
+    border : 1px solid var(--black-700);
+    transition: 0.5s all ease-in-out;
+}
+.follow_card_unfollow_btn:focus
+{
+    outline: none;
+}
+.follow_card_unfollow_btn:hover
+{
+    border: 1px solid var(--black-600);
+}
+.follow_card_hr
+{
+    width: 100%;
+    color : var(--black-500);
+}
+
 @media(max-width:770px){
+    .profile_card_avatar_background{
+        width : 100px;
+        height : 100px;
+    }
+    .profile_card_avatar{
+        margin : 23px;
+        width : 50px !important;
+        height : 50px !important
+    }
     .profile_main_container{ padding: 100px 2px; }
     .profile_card_container{ padding : 25px 10px }
     .profile_user_info_container{ padding : 15px 0px }
+    .follow_container{ padding : 25px 3px }
+    .follow_card_user_info { padding : 15px 0px }
+    .follow_card_container { 
+        padding : 10px 5px;
+        
+    }
+}
+
+@media(max-width:340px){
+    .follow_card_unfollow_btn { margin: 15px auto 0px 0px !important; }
 }
