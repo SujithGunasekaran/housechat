@@ -244,6 +244,7 @@ export const GET_TOPIC_BY_SLUG = gql`
             content
             slug
             user{
+                _id
                 username
             }
             forumCategory{

@@ -28,11 +28,6 @@ exports.userTypes = `
         userFollowersData : [follower] 
     }
 
-    input followingInput {
-        userInfo : ID,
-        userFollowingInfo : ID
-    }
-
     type followers {
         _id : ID,
         name : String,
@@ -71,5 +66,20 @@ exports.userTypes = `
     input signInInput {
         email : String!
         password : String!
+    }
+
+    type userId {
+        userInfo : ID
+        userFollowingInfo : ID
+    }
+
+    input followingInput {
+        userInfo : ID,
+        userFollowingInfo : ID
+    }
+
+    input deleteUserInput {
+        userInfo : ID
+        userFollowingInfo : ID
     }
 `
