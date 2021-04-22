@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useGetUserInfo } from '../../../apollo/actions';
+import { useGetUserInfo, useGetUser } from '../../../apollo/actions';
 import withApollo from '../../../hoc/withApollo';
 import Following from '../../../Components/Profile/Following';
 import Followers from '../../../Components/Profile/Follower';
@@ -9,14 +9,24 @@ import UserCard from '../../../Components/Profile/UserCard';
 function Profile(props) {
 
     const [userFollowType, setUserFollowType] = useState('follower');
+    const [showFollowBtn, setShowFollowBtn] = useState(false);
 
     // routes
     const { query } = props;
 
     // query
-    const { data, loading, error } = useGetUserInfo(query.id);
+    const { data: userData, loading: userLoading, error: userError } = useGetUserInfo(query.id);
+    const { data: loginUserData, loading: loginUserLoading, error: loginUserError } = useGetUser();
 
-    const userInfo = data && data.getUserInfo;
+    const userInfo = userData?.getUserInfo ?? null;
+    const loginUserInfo = loginUserData?.user ?? null;
+
+    // methods or functions
+
+    const handleFollow = (state) => {
+        state(true);
+    }
+
 
     return (
         <div className="profile_main_container">
@@ -26,11 +36,12 @@ function Profile(props) {
                         <UserCard
                             userFollowType={userFollowType}
                             setUserFollowType={setUserFollowType}
-                            loading={loading}
-                            error={error}
+                            loading={userLoading}
                             userInfo={userInfo}
+                            loginUserInfo={loginUserInfo}
+                            showFollowBtn={showFollowBtn}
                         />
-                        {error && <div className="profile_error">Something went Wrong or Please check you internet connection..</div>}
+                        {userError || loginUserError && <div className="profile_error">Something went Wrong or Please check you internet connection..</div>}
                     </div>
                     <div className="col-md-8">
                         {
@@ -41,12 +52,16 @@ function Profile(props) {
                             userFollowType === 'following' &&
                             <Following
                                 userId={query.id}
+                                loginUserInfo={loginUserInfo}
                             />
                         }
                         {
                             userFollowType === 'follower' &&
                             <Followers
                                 userId={query.id}
+                                loginUserInfo={loginUserInfo}
+                                handleFollow={handleFollow}
+                                setShowFollowBtn={setShowFollowBtn}
                             />
                         }
                     </div>
