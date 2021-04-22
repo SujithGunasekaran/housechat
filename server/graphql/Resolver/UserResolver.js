@@ -27,5 +27,8 @@ exports.userMutations = {
     },
     createUserFollowing: (root, { input }, context) => {
         return context.models.UserFollowingModel.createUserFollowingData(input);
+    },
+    deleteUserFollowing: (root, { input }, context) => {
+        return context.models.UserFollowingModel.deleteUserFollowing(input);
     }
 }
