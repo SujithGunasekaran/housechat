@@ -5,7 +5,7 @@ import PersonIcon from '@material-ui/icons/Person';
 
 export default function Following(props) {
 
-    const { userId } = props;
+    const { userId, loginUserInfo } = props;
 
     // query
     const { data, loading, error } = useGetUserFollowing(userId);
@@ -27,7 +27,10 @@ export default function Following(props) {
                                 <div className="follow_card_user_info">
                                     <div className="follow_card_user_name">{userData.userFollowingInfo.name}</div>
                                 </div>
-                                <button className="follow_card_unfollow_btn">unfollow</button>
+                                {
+                                    loginUserInfo && loginUserInfo._id === userId &&
+                                    <button className="follow_card_unfollow_btn">unfollow</button>
+                                }
                             </div>
                             { userFollowing.length - 1 > index && <hr className="follow_card_hr"></hr>}
                         </div>
