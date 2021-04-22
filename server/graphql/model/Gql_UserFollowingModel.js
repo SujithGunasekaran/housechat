@@ -45,6 +45,11 @@ class UserFollowingModel extends BaseModel {
         return null;
     }
 
+    async deleteUserFollowing({ userInfo, userFollowingInfo }) {
+        const deletedUserId = await this.Model.findOneAndRemove({ userInfo, userFollowingInfo });
+        return deletedUserId;
+    }
+
 }
 
 module.exports = UserFollowingModel;
