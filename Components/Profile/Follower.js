@@ -6,18 +6,34 @@ import PersonIcon from '@material-ui/icons/Person';
 
 export default function Followers(props) {
 
-    const { userId } = props;
+    const { userId, loginUserInfo, handleFollow, setShowFollowBtn } = props;
 
     // query
     const { data, loading, error } = useGetUserFollower(userId);
 
-    const userFollower = data?.getUserFollowers?.userFollowersData ?? [];
+    const userFollower = data ? data?.getUserFollowers?.userFollowersData ?? [] : null;
+
+    const checkLoginUser = () => {
+        if (userFollower && userFollower.length > 0 && loginUserInfo && userId !== loginUserInfo._id) {
+            let isLoggedInUserFollower = null;
+            isLoggedInUserFollower = userFollower.find(userData => userData.userInfo._id === loginUserInfo._id);
+            if (!isLoggedInUserFollower) handleFollow(setShowFollowBtn);
+        }
+        else if (userFollower && userFollower.length === 0 && loginUserInfo && userId !== loginUserInfo._id) {
+            handleFollow(setShowFollowBtn);
+        }
+    }
+
+    useEffect(() => {
+        checkLoginUser();
+    }, [userFollower])
 
     return (
         <div>
             { loading && <CircularLoading />}
             <div className="follow_container">
                 {
+                    userFollower &&
                     userFollower.length > 0 &&
                     userFollower.map((userData, index) => (
                         <div key={index}>
