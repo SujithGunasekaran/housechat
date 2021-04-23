@@ -52,6 +52,7 @@ exports.userTypes = `
         userData : User
         followingCount : Int
         followersCount : Int
+        showFollow : Boolean
     }
 
     input signUpInput {

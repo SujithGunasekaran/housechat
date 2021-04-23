@@ -5,9 +5,14 @@ const BaseModel = require('./Gql_BaseMode');
 class UserFollowingModel extends BaseModel {
 
     async _getUserFollowingAndFollowersCount(userId) {
+        let showFollow = false;
+        if (this.user && userId !== this.user._id) {
+            const userData = await this.Model.findOne({ userInfo: this.user._id, userFollowingInfo: userId });
+            if (!userData) showFollow = true;
+        }
         const followingCount = await this.Model.countDocuments({ userInfo: userId });
         const followersCount = await this.Model.countDocuments({ userFollowingInfo: userId });
-        return { followersCount, followingCount };
+        return { followersCount, followingCount, showFollow };
     }
 
     async getUserData(userId, context) {
