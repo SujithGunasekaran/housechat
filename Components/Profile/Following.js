@@ -1,5 +1,5 @@
 import CircularLoading from '../CircularLoading';
-import { useGetUserFollowing } from '../../apollo/actions';
+import { useGetUserFollowing, useDeleteFollowingUser } from '../../apollo/actions';
 import PersonIcon from '@material-ui/icons/Person';
 
 
@@ -8,13 +8,20 @@ export default function Following(props) {
     const { userId, loginUserInfo } = props;
 
     // query
-    const { data, loading, error } = useGetUserFollowing(userId);
+    const { data: getUserData, loading: getUserLoading, error: getUserError } = useGetUserFollowing(userId);
 
-    const userFollowing = data?.getUserFollowing?.userFollowingData ?? [];
+    // mutation
+    const [deleteFollowingUser, { data: deleteUserData, loading: deleteUserLoading, error: deleteUserError }] = useDeleteFollowingUser();
+
+    const userFollowing = getUserData?.getUserFollowing?.userFollowingData ?? [];
+
+    const handleUnFollow = (followingUserId) => {
+        deleteFollowingUser({ variables: { userInfo: userId, userFollowingInfo: followingUserId } });
+    }
 
     return (
         <div>
-            { loading && <CircularLoading />}
+            { getUserLoading && <CircularLoading />}
             <div className="follow_container">
                 {
                     userFollowing.length > 0 &&
@@ -29,14 +36,14 @@ export default function Following(props) {
                                 </div>
                                 {
                                     loginUserInfo && loginUserInfo._id === userId &&
-                                    <button className="follow_card_unfollow_btn">unfollow</button>
+                                    <button className="follow_card_unfollow_btn" onClick={() => handleUnFollow(userData.userFollowingInfo._id)}>unfollow</button>
                                 }
                             </div>
                             { userFollowing.length - 1 > index && <hr className="follow_card_hr"></hr>}
                         </div>
                     ))
                 }
-                {error && <div></div>}
+                {getUserError || deleteUserError && <div></div>}
             </div>
         </div>
     )
