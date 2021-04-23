@@ -3,7 +3,7 @@ import PersonIcon from '@material-ui/icons/Person';
 
 export default function UserCard(props) {
 
-    const { userInfo, loginUserInfo, loading, setUserFollowType, userFollowType, showFollowBtn } = props;
+    const { userInfo, loginUserInfo, loading, setUserFollowType, userFollowType } = props;
 
     return (
         <div className="profile_page_sticky_column">
@@ -19,7 +19,7 @@ export default function UserCard(props) {
                             loginUserInfo && userInfo && loginUserInfo._id === userInfo.userData._id ?
                                 <button className="profile_card_edit_btn" onClick={() => setUserFollowType('editProfile')}>Edit Profile</button>
                                 :
-                                showFollowBtn && <button className="profile_card_edit_btn">Follow</button>
+                                userInfo && userInfo.showFollow && <button className="profile_card_edit_btn">Follow</button>
                         }
                         <div className="profile_card_following_container">
                             <div className={`profile_card_followers ${userFollowType === 'follower' ? 'profile_active' : ''}`} onClick={() => setUserFollowType('follower')}>

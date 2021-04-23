@@ -9,7 +9,6 @@ import UserCard from '../../../Components/Profile/UserCard';
 function Profile(props) {
 
     const [userFollowType, setUserFollowType] = useState('follower');
-    const [showFollowBtn, setShowFollowBtn] = useState(false);
 
     // routes
     const { query } = props;
@@ -20,13 +19,6 @@ function Profile(props) {
 
     const userInfo = userData?.getUserInfo ?? null;
     const loginUserInfo = loginUserData?.user ?? null;
-
-    // methods or functions
-
-    const handleFollow = (state) => {
-        state(true);
-    }
-
 
     return (
         <div className="profile_main_container">
@@ -39,7 +31,6 @@ function Profile(props) {
                             loading={userLoading}
                             userInfo={userInfo}
                             loginUserInfo={loginUserInfo}
-                            showFollowBtn={showFollowBtn}
                         />
                         {userError || loginUserError && <div className="profile_error">Something went Wrong or Please check you internet connection..</div>}
                     </div>
@@ -60,8 +51,6 @@ function Profile(props) {
                             <Followers
                                 userId={query.id}
                                 loginUserInfo={loginUserInfo}
-                                handleFollow={handleFollow}
-                                setShowFollowBtn={setShowFollowBtn}
                             />
                         }
                     </div>

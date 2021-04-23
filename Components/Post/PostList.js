@@ -8,7 +8,7 @@ function PostList(props) {
         <>
             {
                 topicData && topicData._id &&
-                <>
+                <div>
                     <div className="row" key={topicData._id}>
                         <div className="col-md-10 mx-auto">
                             <PostItem
@@ -24,7 +24,7 @@ function PostList(props) {
                             </div>
                         </div>
                     }
-                </>
+                </div>
             }
             {
                 postData &&
