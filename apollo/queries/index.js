@@ -347,6 +347,7 @@ export const GET_USER_INFO = gql`
             }
             followingCount
             followersCount
+            showFollow
         }
     }
 `;
@@ -375,6 +376,17 @@ export const GET_USER_FOLLOWER = gql`
                 name
               }
             }
+        }
+    }
+`;
+
+export const DELETE_FOLLOWING_USER = gql`
+    mutation DeleteUserFollowing($userInfo : ID $userFollowingInfo : ID){
+        deleteUserFollowing(input : {
+            userInfo : $userInfo userFollowingInfo : $userFollowingInfo
+        }){
+            userInfo
+            userFollowingInfo
         }
     }
 `
