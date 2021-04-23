@@ -19,7 +19,8 @@ import {
     GET_TOPIC_FOR_HOME_PAGE,
     GET_USER_INFO,
     GET_USER_FOLLOWING,
-    GET_USER_FOLLOWER
+    GET_USER_FOLLOWER,
+    DELETE_FOLLOWING_USER
 } from '../queries';
 
 export const useGetPortfolioById = (id) => useQuery(GET_PORTFOLIOBYID, { variables: { id: id } });
@@ -128,11 +129,57 @@ export const useGetHomePageTopicData = (limitNumber) => useQuery(GET_TOPIC_FOR_H
 
 /* user profile */
 
-export const useGetUserInfo = (userId) => useQuery(GET_USER_INFO, { variables: { userId } });
+export const useGetUserInfo = (userId) => useQuery(GET_USER_INFO, { variables: { userId }, fetchPolicy: 'cache-and-network' });
 
 export const useGetUserFollower = (userId) => useQuery(GET_USER_FOLLOWER, { variables: { userId } });
 
 export const useGetUserFollowing = (userId) => useQuery(GET_USER_FOLLOWING, { variables: { userId } });
+
+export const useDeleteFollowingUser = () => useMutation(DELETE_FOLLOWING_USER, {
+    update(cache, { data: { deleteUserFollowing } }) {
+        const userFollowingList = cache.readQuery({ query: GET_USER_FOLLOWING, variables: { userId: deleteUserFollowing.userInfo } });
+        const userInfo = cache.readQuery({ query: GET_USER_INFO, variables: { userId: deleteUserFollowing.userInfo } });
+        if (userInfo) {
+            try {
+                const { getUserInfo } = userInfo;
+                cache.writeQuery({
+                    query: GET_USER_INFO,
+                    variables: { userId: deleteUserFollowing.userInfo },
+                    data: {
+                        getUserInfo: {
+                            ...getUserInfo,
+                            followingCount: getUserInfo.followingCount - 1
+                        }
+                    }
+                })
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+        if (userFollowingList) {
+            try {
+                const { getUserFollowing } = userFollowingList;
+                const newUserFollowing = getUserFollowing.userFollowingData.filter(user => user.userFollowingInfo._id !== deleteUserFollowing.userFollowingInfo);
+                cache.writeQuery({
+                    query: GET_USER_FOLLOWING,
+                    variables: { userId: deleteUserFollowing.userInfo },
+                    data: {
+                        getUserFollowing: {
+                            ...getUserFollowing,
+                            userFollowingData: [
+                                ...newUserFollowing
+                            ]
+                        }
+                    }
+                })
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+    }
+});
 
 
 /* user profile */
