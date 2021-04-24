@@ -140,11 +140,11 @@ export const useDeleteFollowingUser = () => useMutation(DELETE_FOLLOWING_USER, {
     update(cache, { data: { deleteUserFollowing } }) {
         const userFollowingList = cache.readQuery({ query: GET_USER_FOLLOWING, variables: { userId: deleteUserFollowing.userInfo } });
         const userFollowerList = cache.readQuery({ query: GET_USER_FOLLOWER, variables: { userId: deleteUserFollowing.userFollowingInfo } });
-        const userInfo = cache.readQuery({ query: GET_USER_INFO, variables: { userId: deleteUserFollowing.userInfo } });
-        const loggedUser = cache.readQuery({ query: GET_USER_INFO, variables: { userId: deleteUserFollowing.userFollowingInfo } });
-        if (userInfo) {
+        const loggedInUser = cache.readQuery({ query: GET_USER_INFO, variables: { userId: deleteUserFollowing.userInfo } });
+        const userInfo = cache.readQuery({ query: GET_USER_INFO, variables: { userId: deleteUserFollowing.userFollowingInfo } });
+        if (loggedInUser) {
             try {
-                const { getUserInfo } = userInfo;
+                const { getUserInfo } = loggedInUser;
                 cache.writeQuery({
                     query: GET_USER_INFO,
                     variables: { userId: deleteUserFollowing.userInfo },
@@ -160,9 +160,9 @@ export const useDeleteFollowingUser = () => useMutation(DELETE_FOLLOWING_USER, {
                 console.log(err);
             }
         }
-        if (loggedUser) {
+        if (userInfo) {
             try {
-                const { getUserInfo } = loggedUser;
+                const { getUserInfo } = userInfo;
                 cache.writeQuery({
                     query: GET_USER_INFO,
                     variables: { userId: deleteUserFollowing.userFollowingInfo },
@@ -300,7 +300,7 @@ export const useFollowUser = () => useMutation(FOLLOW_USER, {
                 })
             }
             catch (err) {
-
+                console.log(err);
             }
         }
         if (loggedUser) {
