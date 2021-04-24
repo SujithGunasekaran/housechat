@@ -11,9 +11,9 @@
   5. `mongodb`
   6. `express.js`
 
-## Instructions 
+## Instructions
 
-  If you would have like to clone and use, Follow the below Instructions.
+  Follow the below Instructions to run in your local machine.
   
   1. Create a file called dev.js in following path `server/config/`
   2. Copy below code and paste it in dev.js
