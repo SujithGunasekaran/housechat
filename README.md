@@ -15,7 +15,7 @@
 
   If you would have like to clone and use, Follow the below Instructions.
   
-  1. Create a file called dev.js in following path `server/config/dev.js`
+  1. Create a file called dev.js in following path `server/config/`
   2. Copy below code and paste it in dev.js
       
       <code>
