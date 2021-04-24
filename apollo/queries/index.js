@@ -389,7 +389,27 @@ export const DELETE_FOLLOWING_USER = gql`
             userFollowingInfo
         }
     }
-`
+`;
+
+export const FOLLOW_USER = gql`
+    mutation FollowUser($userInfo : ID, $userFollowingInfo : ID){
+        followUser(input : {
+            userInfo : $userInfo
+            userFollowingInfo : $userFollowingInfo
+        }){
+            userInfo {
+                _id
+                username
+                name
+            }
+            userFollowingInfo {
+                _id
+                username
+                name
+            }
+        }
+    }
+`;
 
 /* User Profile queries  */
 
