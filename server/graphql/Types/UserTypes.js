@@ -64,6 +64,11 @@ exports.userTypes = `
         password : String!
     }
 
+    type userFollowId {
+        userInfo : UserFollowerData
+        userFollowingInfo : UserFollowingsData
+    }
+
     type userId {
         userInfo : ID
         userFollowingInfo : ID

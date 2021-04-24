@@ -72,7 +72,7 @@ exports.createApolloServer = () => {
             signOut : Boolean
 
             deleteUserFollowing(input : deleteUserInput) : userId
-            followUser(input : followUserInput) : userId
+            followUser(input : followUserInput) : userFollowId
 
         }
     `);
