@@ -43,9 +43,14 @@ class UserFollowingModel extends BaseModel {
 
     async createUserFollowingData({ userInfo, userFollowingInfo }) {
         if (this.user) {
-            await this.Model.create({ userInfo, userFollowingInfo });
-            const userInfoData = await this._getUserFollowingAndFollowersCount(userInfo);
-            return userInfoData;
+            const checkIfUserIsFollower = this.Model.findOne({ userInfo, userFollowingInfo });
+            if (!checkIfUserIsFollower) {
+                const userData = await this.Model.create({ userInfo, userFollowingInfo });
+                return userData;
+            }
+            else {
+                return null;
+            }
         }
         return null;
     }

@@ -35,11 +35,6 @@ exports.userTypes = `
         email : String
     }
 
-    type userFollowAndFollowingCount {
-        followingCount : Int
-        followersCount : Int
-    }
-
     type User {
         _id : ID,
         name : String,
@@ -74,13 +69,14 @@ exports.userTypes = `
         userFollowingInfo : ID
     }
 
-    input followingInput {
-        userInfo : ID,
-        userFollowingInfo : ID
-    }
-
     input deleteUserInput {
         userInfo : ID
         userFollowingInfo : ID
     }
+
+    input followUserInput {
+        userInfo : ID
+        userFollowingInfo : ID
+    } 
+
 `

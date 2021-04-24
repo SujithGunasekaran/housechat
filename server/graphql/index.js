@@ -72,8 +72,8 @@ exports.createApolloServer = () => {
             signOut : Boolean
 
             deleteUserFollowing(input : deleteUserInput) : userId
+            followUser(input : followUserInput) : userId
 
-            createUserFollowing( input : followingInput ) : userFollowAndFollowingCount
         }
     `);
 

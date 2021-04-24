@@ -25,7 +25,7 @@ exports.userMutations = {
     signOut: (root, args, context) => {
         return context.models.UserModel.signOut(context);
     },
-    createUserFollowing: (root, { input }, context) => {
+    followUser: (root, { input }, context) => {
         return context.models.UserFollowingModel.createUserFollowingData(input);
     },
     deleteUserFollowing: (root, { input }, context) => {
