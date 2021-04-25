@@ -69,6 +69,7 @@ exports.createApolloServer = () => {
 
             signIn(input : signInInput) : User,
             signUp(input : signUpInput) : String,
+            updateUser(userId : ID, input : updateUserInput) : User
             signOut : Boolean
 
             deleteUserFollowing(input : deleteUserInput) : userId

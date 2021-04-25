@@ -41,6 +41,9 @@ exports.userTypes = `
         username : String,
         email : String,
         role : String
+        bio : String
+        company : String
+        location : String
     }
 
     type userInfo {
@@ -57,6 +60,15 @@ exports.userTypes = `
         email : String!
         password : String!
         passwordConfirmation : String!
+    }
+
+    input updateUserInput {
+        username : String!
+        name : String!
+        email : String!
+        bio : String
+        company : String
+        location : String
     }
 
     input signInInput {
