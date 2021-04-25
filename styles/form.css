@@ -58,15 +58,16 @@
 .form_text_area
 {
     margin : 10px 0px 10px 0px;
-    border : 1px solid rgb(214, 213, 213);
+    border : 1px solid var(--black-700);
+    background-color: var(--black-700);
     height : 95px;
     width : 100%;
     padding : 8px 7px;
-    font-family: 'Roboto';
+    font-family: var(--inter-text);
     font-size: 0.940rem;
     letter-spacing: 0.030rem;
     border-radius: 5px;
-    color : rgb(36, 35, 35);
+    color : var(--black-100);
     transition: 0.5s all ease-in-out;
 }
 .form_text_area::placeholder
@@ -151,7 +152,7 @@
 {
     padding : 0px 5px;
     color: var(--text-error);
-    font-family: 'Montserrat';
+    font-family: var(--inter-text);
     font-size: 0.650rem;
     font-weight: 500;
     letter-spacing: 0.030rem;
@@ -175,7 +176,7 @@
     height : 45px;
     background-color: var(--blue-600);
     color : var(--dark-theme-text-dark-white);
-    font-family: 'Montserrat';
+    font-family: var(--inter-text);
     font-size: 0.880rem;
     font-weight: 500;
     letter-spacing: 0.040rem;
@@ -221,11 +222,10 @@
     text-align: center;
     background-color: var(--blue-200);
     color : var(--black-800);
-    font-family: 'Montserrat';
+    font-family: var(--inter-text);
     font-size: 0.880rem;
     font-weight: 500;
     letter-spacing: 0.040rem;
-    transition: 0.5s all ease-in-out;
 }
 
 .form_error

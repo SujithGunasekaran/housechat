@@ -219,6 +219,20 @@
     color : var(--black-500);
 }
 
+.follow_edit_card
+{
+    padding : 0px 10px;
+}
+
+.follow_edit_heading
+{
+    padding : 0px 0px 15px 0px;
+    color : var(--dark-theme-text-dark-white);
+    font-family: var(--inter-text);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
 @media(max-width:770px){
     .profile_card_avatar_background{
         width : 100px;
