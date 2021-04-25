@@ -344,6 +344,9 @@ export const GET_USER_INFO = gql`
                 username
                 name
                 email
+                bio
+                company
+                location
             }
             followingCount
             followersCount
@@ -407,6 +410,39 @@ export const FOLLOW_USER = gql`
                 username
                 name
             }
+        }
+    }
+`;
+
+export const EDIT_USER_INFO = gql`
+    mutation UpdateUser(
+        $userId : ID
+        $username : String!
+        $name : String!
+        $email : String!
+        $bio : String
+        $company : String
+        $location : String
+    ){
+        updateUser(
+            userId : $userId
+            input : {
+                username : $username
+                name : $name
+                email : $email
+                bio : $bio
+                company : $company
+                location : $location
+            }
+        ){
+            _id
+            name
+            username
+            email
+            role
+            bio
+            company
+            location
         }
     }
 `;
