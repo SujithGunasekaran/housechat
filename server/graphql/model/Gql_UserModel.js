@@ -26,7 +26,7 @@ class UserModel extends BaseModel {
 
     async signUp(signUpData) {
         let data = ['username', 'email', 'password', 'passwordConfirmation'];
-        let emptyDataErrorMessage = ''
+        let emptyDataErrorMessage = '';
         if (signUpData.password !== signUpData.passwordConfirmation) {
             throw new Error('Password must be same as passwordConfirmation');
         }
@@ -57,8 +57,21 @@ class UserModel extends BaseModel {
     };
 
     async updateUserData(userId, input) {
-        const updatedUserInfo = await this.Model.findOneAndUpdate({ _id: userId }, { $set: { ...input } }, { new: true, runValidators: true });
-        return updatedUserInfo;
+        let data = ['username', 'email', 'name'];
+        let emptyDataErrorMessage = [];
+        try {
+            const updatedUserInfo = await this.Model.findOneAndUpdate({ _id: userId }, { $set: { ...input } }, { new: true, runValidators: true });
+            return updatedUserInfo;
+        }
+        catch (err) {
+            data.map((fieldName) => {
+                if (err.message.includes(fieldName)) {
+                    emptyDataErrorMessage.push(fieldName);
+                }
+            })
+            if (emptyDataErrorMessage) throw new Error(`Please Enter ${emptyDataErrorMessage.join(', ')}`)
+            return null;
+        }
     }
 }
 
