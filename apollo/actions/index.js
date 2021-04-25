@@ -21,7 +21,8 @@ import {
     GET_USER_FOLLOWING,
     GET_USER_FOLLOWER,
     DELETE_FOLLOWING_USER,
-    FOLLOW_USER
+    FOLLOW_USER,
+    EDIT_USER_INFO
 } from '../queries';
 
 export const useGetPortfolioById = (id) => useQuery(GET_PORTFOLIOBYID, { variables: { id: id } });
@@ -323,6 +324,8 @@ export const useFollowUser = () => useMutation(FOLLOW_USER, {
         }
     }
 });
+
+export const useEditUserData = () => useMutation(EDIT_USER_INFO);
 
 
 /* user profile */
