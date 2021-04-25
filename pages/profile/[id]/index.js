@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import { useGetUserInfo, useGetUser } from '../../../apollo/actions';
 import withApollo from '../../../hoc/withApollo';
 import Following from '../../../Components/Profile/Following';
@@ -6,12 +7,14 @@ import Followers from '../../../Components/Profile/Follower';
 import EditProfile from '../../../Components/Profile/EditProfile';
 import UserCard from '../../../Components/Profile/UserCard';
 
-function Profile(props) {
+function Profile() {
 
     const [userFollowType, setUserFollowType] = useState('follower');
 
+    const router = useRouter();
+
     // routes
-    const { query } = props;
+    const { query } = router;
 
     // query
     const { data: userData, loading: userLoading, error: userError } = useGetUserInfo(query.id);
@@ -37,7 +40,17 @@ function Profile(props) {
                     <div className="col-md-8">
                         {
                             userFollowType === 'editProfile' &&
-                            <EditProfile />
+                            <div className="row">
+                                <div className="col-md-8 mx-auto">
+                                    <div className="follow_edit_card">
+                                        <div className="follow_edit_heading">Edit Profile</div>
+                                        <EditProfile
+                                            userId={query.id}
+                                            userData={userData}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
                         }
                         {
                             userFollowType === 'following' &&
@@ -59,10 +72,6 @@ function Profile(props) {
         </div>
     )
 
-}
-
-Profile.getInitialProps = ({ query }) => {
-    return { query };
 }
 
 export default withApollo(Profile);
