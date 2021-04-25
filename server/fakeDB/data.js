@@ -30,7 +30,7 @@ const data = {
             name: "Sujith",
             email: "sujith@gmail.com",
             username: "sujith",
-            info: "Hello I am Sujith and I am developer",
+            bio: "Hello I am Sujith and I am developer",
             password: "password123",
             role: "admin"
         },
@@ -40,7 +40,7 @@ const data = {
             email: "test@gmail.com",
             username: "test99",
             password: "password123",
-            info: "Hello I am testUser"
+            bio: "Hello I am testUser"
         },
         {
             _id: userThreeId,
@@ -48,7 +48,7 @@ const data = {
             email: "sample@gmail.com",
             username: "sample",
             password: "password123",
-            info: "Hello I am Sample"
+            bio: "Hello I am Sample"
         }
     ],
     UserFollowing: [
