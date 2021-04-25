@@ -33,6 +33,6 @@
       
   4. Before starting, Run the below command it will populate sample data in your mongodb.
       
-     `npm run PopulateDB`
+     `npm run populateDB`
   
   5. Finally run `npm run dev` command. 
