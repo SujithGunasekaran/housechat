@@ -55,6 +55,11 @@ class UserModel extends BaseModel {
             return false;
         }
     };
+
+    async updateUserData(userId, input) {
+        const updatedUserInfo = await this.Model.findOneAndUpdate({ _id: userId }, { $set: { ...input } }, { new: true, runValidators: true });
+        return updatedUserInfo;
+    }
 }
 
 module.exports = UserModel;
