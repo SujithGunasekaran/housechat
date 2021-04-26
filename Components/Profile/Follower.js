@@ -1,8 +1,7 @@
-import { useEffect } from 'react';
 import CircularLoading from '../CircularLoading';
 import { useGetUserFollower } from '../../apollo/actions';
 import PersonIcon from '@material-ui/icons/Person';
-
+import Link from 'next/link';
 
 export default function Followers(props) {
 
@@ -27,7 +26,9 @@ export default function Followers(props) {
                                     <PersonIcon className="follow_card_avatar" />
                                 </div>
                                 <div className="follow_card_user_info">
-                                    <div className="follow_card_user_name">{userData.userInfo.name}</div>
+                                    <Link href={`/profile/[id]`} as={`/profile/${userData.userInfo._id}`}>
+                                        <div className="follow_card_user_name">{userData.userInfo.name}</div>
+                                    </Link>
                                 </div>
                             </div>
                             { userFollower.length - 1 > index && <hr className="follow_card_hr"></hr>}
