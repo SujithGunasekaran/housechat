@@ -1,7 +1,7 @@
 import CircularLoading from '../CircularLoading';
 import { useGetUserFollowing, useDeleteFollowingUser } from '../../apollo/actions';
 import PersonIcon from '@material-ui/icons/Person';
-
+import Link from 'next/link';
 
 export default function Following(props) {
 
@@ -32,7 +32,9 @@ export default function Following(props) {
                                     <PersonIcon className="follow_card_avatar" />
                                 </div>
                                 <div className="follow_card_user_info">
-                                    <div className="follow_card_user_name">{userData.userFollowingInfo.name}</div>
+                                    <Link href={`/profile/[id]`} as={`/profile/${userData.userFollowingInfo._id}`}>
+                                        <div className="follow_card_user_name">{userData.userFollowingInfo.name}</div>
+                                    </Link>
                                 </div>
                                 {
                                     loginUserInfo && loginUserInfo._id === userId &&
