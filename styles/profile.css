@@ -140,6 +140,43 @@
     padding : 10px
 }
 
+.profile_card_bio
+{
+    padding : 10px 0px;
+    font-family: var(--inter-text);
+    font-size: .9rem;
+    color : var(--black-300);
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: 0.040rem;
+}
+.profile_card_personal_container
+{
+    padding : 15px 0px;
+    display: flex;
+    align-items: center;
+}
+.profile_card_personal_icon
+{
+    color: var(--dark-theme-text-dark-white);   
+    width: 20px !important;
+    height : 20px !important;
+    font-size: 20px !important;
+}
+.profile_card_personal_name
+{
+    max-width: 1000px;
+    padding : 0px 0px 0px 10px;
+    font-family: var(--inter-text);
+    font-size: .9rem;
+    color : var(--black-300);
+    font-weight: 400;
+    letter-spacing: 0.040rem;
+    overflow : hidden;
+    display : inline-block;
+    text-overflow : ellipsis;
+    white-space : nowrap;
+}
 
 /* Following component style */
 
@@ -189,7 +226,9 @@
 }
 .follow_card_user_name:hover
 {
-    color: var(--blue-500);
+    color: var(--blue-300);
+    cursor: pointer;
+    text-decoration: none;
 }
 .follow_card_unfollow_btn
 {
