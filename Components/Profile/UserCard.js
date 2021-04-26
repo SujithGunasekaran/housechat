@@ -1,5 +1,7 @@
-import PersonIcon from '@material-ui/icons/Person';
 import { useFollowUser } from '../../apollo/actions';
+import PersonIcon from '@material-ui/icons/Person';
+import BusinessIcon from '@material-ui/icons/Business';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 export default function UserCard(props) {
 
@@ -20,8 +22,8 @@ export default function UserCard(props) {
                         <PersonIcon className="profile_card_avatar" />
                     </div>
                     <div className="profile_user_info_container">
-                        <div className="profile_card_user_name">{userInfo && userInfo.userData.username}</div>
-                        {/* <div className="profile_card_name">{userInfo && userInfo.userData.name}</div> */}
+                        <div className="profile_card_user_name">{userInfo?.userData?.username}</div>
+                        <div className="profile_card_bio">{userInfo?.userData?.bio}</div>
                         {
                             loginUserInfo && userInfo && loginUserInfo._id === userInfo.userData._id ?
                                 <button className="profile_card_edit_btn" onClick={() => setUserFollowType('editProfile')}>Edit Profile</button>
@@ -38,6 +40,20 @@ export default function UserCard(props) {
                                 followings
                             </div>
                         </div>
+                        {
+                            userInfo?.userData?.company &&
+                            <div className="profile_card_personal_container">
+                                <BusinessIcon className="profile_card_personal_icon" />
+                                <div className="profile_card_personal_name">{userInfo?.userData?.company}</div>
+                            </div>
+                        }
+                        {
+                            userInfo?.userData?.location &&
+                            <div className="profile_card_personal_container">
+                                <LocationOnIcon className="profile_card_personal_icon" />
+                                <div className="profile_card_personal_name">{userInfo?.userData?.location}</div>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
