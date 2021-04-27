@@ -325,7 +325,35 @@ export const useFollowUser = () => useMutation(FOLLOW_USER, {
     }
 });
 
-export const useEditUserData = () => useMutation(EDIT_USER_INFO);
+export const useEditUserData = () => useMutation(EDIT_USER_INFO, {
+    update(cache, { data: { updateUser } }) {
+        const userInfo = cache.readQuery({
+            query: GET_USER_INFO,
+            variables: { userId: updateUser._id }
+        })
+        if (userInfo) {
+            try {
+                const { getUserInfo } = userInfo;
+                cache.writeQuery({
+                    query: GET_USER_INFO,
+                    variables: { userId: updateUser._id },
+                    data: {
+                        getUserInfo: {
+                            ...getUserInfo,
+                            userData: {
+                                ...getUserInfo.userData,
+                                ...updateUser
+                            }
+                        }
+                    }
+                })
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+    }
+});
 
 
 /* user profile */
