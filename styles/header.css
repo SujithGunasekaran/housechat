@@ -464,6 +464,34 @@
     max-height: 40rem;
 }
 
+/* logout popup */
+
+.header_page_logout_model_container
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    overflow-y: hidden !important;
+    z-index: 5;
+    transition: 0.5s all ease-in-out;
+}
+.header_page_logout_model
+{
+    background-color: var(--black-700);
+    border-radius: 10px;
+    position: absolute;
+    top : 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding : 30px;
+    z-index: 99999;
+    transition: 0.5s all ease-in-out;
+}
+
 @media(max-width:770px){
     .header_page_link_container ul{display: none;}
     .header_page_authenticate_container{display: none;}
