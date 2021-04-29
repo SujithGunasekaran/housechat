@@ -45,6 +45,7 @@ function PostPage() {
     const [pagination, setPagination] = useState({ pageNumber: 5, pageSize: 5 });
     const [dataLoading, setDataLoading] = useState(false);
     const [replyError, setReplyError] = useState(null);
+    const [commentValue, setCommentValue] = useState('');
 
     useEffect(() => {
         let updatePagination = JSON.parse(JSON.stringify(pagination));
@@ -153,7 +154,9 @@ function PostPage() {
                         postError={postError}
                         canCreate={userData ? true : false}
                         topicData={topicData}
+                        postCount={postData.count}
                         postData={postData.posts ? postData.posts : []}
+                        setCommentValue={setCommentValue}
                         onReplyOpen={(replyToInfo) => {
                             setShowReplyPanel(true),
                                 setReplyTo(replyToInfo)
@@ -163,14 +166,6 @@ function PostPage() {
             </div>
             <div className="topic_post_bottom_container">
                 <div className="container-fluid">
-                    {/* {
-                        Math.ceil(postData.count / pagination.pageSize) * pagination.pageSize >= pagination.pageNumber &&
-                        <div className="row">
-                            <div className="col-md-4 mx-auto">
-                                <button onClick={() => loadMoreData(pagination)}>Show more</button>
-                            </div>
-                        </div>
-                    } */}
                     <div className="row">
                         {
                             postData.count > pagination.pageNumber &&
@@ -186,36 +181,20 @@ function PostPage() {
 
                     <div className="row">
                         <div className="col-md-10 mx-auto">
-                            {/* <div className="row">
-                                <div className="col-md-6"> */}
                             {
                                 userData && userData.username && postData.count <= pagination.pageNumber &&
-                                <button className="topic_post_bottom_btn"
-                                    onClick={() => {
-                                        setReplyTo(null),
-                                            setShowReplyPanel(true)
-                                    }}
-                                >
-                                    Add Comments
-                                </button>
+                                <div>
+                                    {
+                                        !commentValue || (commentValue && JSON.parse(commentValue).blocks[0].text === '') ?
+                                            <div className="topic_error">*Please click save option on right before posting your comments..</div> : null
+                                    }
+                                    <button className={`topic_post_bottom_btn ${!commentValue || (commentValue && JSON.parse(commentValue).blocks[0].text === '') ? 'hide' : ''}`}
+                                        onClick={(e) => { commentValue || (commentValue && JSON.parse(commentValue).blocks[0].text !== '') ? handleReplyFormSubmit(e, commentValue) : null }}
+                                    >
+                                        Add Comments
+                                    </button>
+                                </div>
                             }
-
-                            {/* </div> */}
-                            {/* <div className="col-md-6">
-                                    <div className="topic_post_pagination"> */}
-                            {/* <AppPagination
-                                            count={count}
-                                            pageNumber={pagination.pageNumber}
-                                            pageSize={pagination.pageSize}
-                                            onPageChange={(pageNumber, pageSize) => {
-                                                router.push('/forum/Post/[postSlug]', `/forum/Post/${postSlug}?pageNumber=${pageNumber}&pageSize=${pageSize}`, { shallow: true })
-                                                setPagination({ pageNumber, pageSize });
-                                                scrollToTopPage();
-                                            }}
-                                        /> */}
-                            {/* </div> */}
-                            {/* </div> */}
-                            {/* </div> */}
                         </div>
                     </div>
                 </div>
