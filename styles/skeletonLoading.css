@@ -1,0 +1,38 @@
+.card_skeleton
+{
+    margin : 20px 0px;
+    padding : 15px 20px;
+    width : 100%;
+    border-radius: 8px;
+    background-color: var(--black-700);
+    transition: 0.5s all ease-in-out;
+    box-shadow: 0 10px 10px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
+}
+.circle
+{
+    margin : 20px 15px;
+    width : 40px;
+    height : 40px;
+    border-radius: 50%;
+    background-size: 100px;
+    background-image: linear-gradient(90deg, #50535a 0%, #656871 20%, #50535a 40%, #50535a 100%);
+    animation: shine 2.7s infinite linear;
+}
+.line 
+{
+    margin : 20px 15px;
+    width : 80%;
+    height : 20px;
+    border-radius: 7px;
+    background-size: 90%;
+    background-image: linear-gradient(90deg, #50535a 0%, #656871 20%, #50535a 40%, #50535a 100%);
+    animation: shine .8s infinite linear;
+}
+@keyframes shine {
+    0%{
+        background-position: -200px;
+    }
+    100%{
+        background-position: 300px;
+    }
+}
