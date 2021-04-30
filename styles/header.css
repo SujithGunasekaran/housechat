@@ -13,10 +13,9 @@
 .header_logo
 {
     font-family: var(--inter-text);
-    font-size: 1.2rem;
-    letter-spacing: 0.040rem;
-    letter-spacing: 0.030rem;
-    text-transform: uppercase;
+    font-size: 1.130rem;
+    font-family: 500;
+    letter-spacing: 0.050rem;
 }
 .header_logo a
 {
@@ -462,6 +461,11 @@
     opacity: 10;
     width : 200px;
     max-height: 40rem;
+}
+
+.header_hamburger_left
+{
+    margin-left: auto;
 }
 
 /* logout popup */
