@@ -155,7 +155,7 @@ const Header = () => {
                     </div>
                 }
 
-                <div className="header_page_mobile">
+                <div className={`header_page_mobile ${!user ? 'header_hamburger_left' : ''}`}>
                     <div className="header_page_hamburger"><MenuIcon id="hamburger" /></div>
                 </div>
             </div>
