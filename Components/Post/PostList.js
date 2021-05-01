@@ -3,7 +3,7 @@ import RichText from '../RichText';
 
 function PostList(props) {
 
-    const { topicData, postData, postCount, onReplyOpen, canCreate, topicError, postError, setCommentValue } = props;
+    const { topicData, postData, postCount, onReplyOpen, canCreate, topicError, postError, setCommentValue, handleRichText } = props;
 
     return (
         <>
@@ -14,6 +14,8 @@ function PostList(props) {
                         <div className="col-md-10 mx-auto">
                             <PostItem
                                 post={topicData}
+                                setCommentValue={setCommentValue}
+                                handleRichText={handleRichText}
                             />
                         </div>
                     </div>
@@ -37,6 +39,8 @@ function PostList(props) {
                                     canCreate={canCreate}
                                     post={postInfo}
                                     onReplyOpen={onReplyOpen}
+                                    setCommentValue={setCommentValue}
+                                    handleRichText={handleRichText}
                                 />
                             </div>
                         </div>
@@ -53,9 +57,10 @@ function PostList(props) {
                 postData && postCount && postData.length === postCount &&
                 <div className="row">
                     <div className="col-md-10 mx-auto">
-                        <div className="mui_root mui_btn mui_text mui_initial_text mui_code mui_block_quote">
+                        <div className="mui_root mui_container mui_btn mui_button_hide mui_text mui_initial_text mui_code mui_block_quote">
                             <RichText
                                 setCommentValue={setCommentValue}
+                                handleRichText={handleRichText}
                             />
                         </div>
                     </div>
