@@ -256,6 +256,27 @@
 
 /* rich text css */
 
+.mui_post_root #mui-rte-root
+{
+    background-color: var(--black-800);
+    margin : 0px 0px;
+}
+.mui_post_toolbar #mui-rte-toolbar
+{
+    display: none !important;
+}
+.mui_post_container #mui-rte-container
+{
+    padding : 0px;
+}
+.mui_post_text #mui-rte-editor
+{
+    color : var(--black-100);
+    letter-spacing: 0.050rem;
+    font-family: var(--inter-text);
+    font-size: .950rem;
+}
+
 .mui_root #mui-rte-root
 {
     background-color: var(--black-800);
@@ -263,6 +284,11 @@
     margin : 0px 0px;
     border-radius: 7px !important;
     box-shadow: 0 10px 10px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%) !important;
+}
+
+.mui_container #mui-rte-container
+{
+    padding : 20px 20px;
 }
 
 .mui_btn .MuiIconButton-root
@@ -293,10 +319,25 @@
     letter-spacing: 0.050rem;
 }
 
+.mui_initial_text .MUIRichTextEditor-placeHolder-9
+{
+    position: relative;
+    padding : 10px 20px;
+    color : var(--black-500);
+    font-size: .9rem;
+    letter-spacing: 0.050rem;
+}
+
+.mui_button_hide #mui-rte-media-control-button
+{
+    display: none;
+}
+
 .mui_code .CodeBlock-root-16
 {
     background-color: var(--black-700);
     color : var(--black-100);
+    border-radius: 8px;
 }
 
 .mui_code .CodeBlock-root-17
