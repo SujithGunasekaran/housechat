@@ -1,8 +1,31 @@
+import { useEffect, useState } from 'react';
 import { fromNow } from '../../utils/Function';
 import PersonIcon from '@material-ui/icons/Person';
 import Link from 'next/link';
+import RichText from '../RichText';
 
-function PostItem({ post, onReplyOpen, canCreate }) {
+function PostItem({ post, onReplyOpen, canCreate, setCommentValue, handleRichText }) {
+
+    const [showRichText, setShowRichText] = useState(false);
+
+    const checkContent = (content) => {
+        try {
+            if (content) {
+                let replacedData = content.replace(/'/g, '"');
+                let parsedData = JSON.parse(replacedData);
+                if (parsedData) setShowRichText(true);
+            }
+        }
+        catch (err) {
+            setShowRichText(false);
+        }
+    }
+
+    useEffect(() => {
+        checkContent(post.content);
+    }, [])
+
+
     return (
         <div>
             <div className="topic_post_container">
@@ -39,7 +62,22 @@ function PostItem({ post, onReplyOpen, canCreate }) {
                                         </div>
                                     </div>
                                 }
-                                <div className="topic_post_user_answer">{post.content}</div>
+                                {/* <div className="topic_post_user_answer">{post.content}</div> */}
+                                {
+                                    showRichText ?
+                                        <div className="topic_post_user_answer">
+                                            <div className="mui_post_root mui_post_toolbar mui_post_container mui_btn mui_button_hide mui_post_text mui_initial_text mui_code mui_block_quote">
+                                                <RichText
+                                                    setCommentValue={setCommentValue}
+                                                    handleRichText={handleRichText}
+                                                    defaultData={post.content && post.content.replace(/'/g, '"')}
+                                                />
+                                            </div>
+                                        </div> :
+                                        <div className="topic_post_user_answer">
+                                            {post.content}
+                                        </div>
+                                }
                             </div>
                         </div>
                     </div>
