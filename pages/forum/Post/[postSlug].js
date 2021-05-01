@@ -45,7 +45,7 @@ function PostPage() {
     const [pagination, setPagination] = useState({ pageNumber: 5, pageSize: 5 });
     const [dataLoading, setDataLoading] = useState(false);
     const [replyError, setReplyError] = useState(null);
-    const [commentValue, setCommentValue] = useState('');
+    const [commentValue, setCommentValue] = useState({});
 
     useEffect(() => {
         let updatePagination = JSON.parse(JSON.stringify(pagination));
@@ -128,15 +128,40 @@ function PostPage() {
                     }
                 }
             })
-            resetFormField();
+            // resetFormField();
             cleanUp();
         }
         catch (err) {
             const pareseError = JSON.parse(JSON.stringify(err));
-            if (pareseError.message.includes('Please Enter')) setReplyError(pareseError.message);
+            if (pareseError?.message.includes('Please Enter')) setReplyError(pareseError.message);
             if (!formField.content) setReplyError('Please Enter Content');
-            if (pareseError.message.includes('Something')) setReplyError(pareseError.message);
+            if (pareseError?.message.includes('Something')) setReplyError(pareseError.message);
         }
+    }
+
+    const handleRichText = (keyName, stateName) => (data) => {
+        stateName(prevStateCommentValue => {
+            let commentValue = JSON.parse(JSON.stringify(prevStateCommentValue));
+            let parsedData = JSON.parse(data);
+            let minifiedData = {};
+            minifiedData.blocks = parsedData.blocks.filter(dataInfo => dataInfo.text !== '');
+            if (minifiedData.blocks && minifiedData.blocks.length > 0) {
+                commentValue[keyName] = JSON.stringify(minifiedData).replace(/"/g, "'");
+            } else {
+                commentValue = {};
+            }
+            return commentValue;
+        })
+    }
+
+    const handleReplyPanel = () => {
+        setShowReplyPanel(false);
+        setReplyTo(null);
+    }
+
+    const handleReplyPanelOpen = (replyUserInfo = null) => {
+        setShowReplyPanel(true);
+        setReplyTo(replyUserInfo);
     }
 
     return (
@@ -157,10 +182,8 @@ function PostPage() {
                         postCount={postData.count}
                         postData={postData.posts ? postData.posts : []}
                         setCommentValue={setCommentValue}
-                        onReplyOpen={(replyToInfo) => {
-                            setShowReplyPanel(true),
-                                setReplyTo(replyToInfo)
-                        }}
+                        handleRichText={handleRichText}
+                        onReplyOpen={(replyToInfo) => handleReplyPanelOpen(replyToInfo)}
                     />
                 </div>
             </div>
@@ -185,11 +208,11 @@ function PostPage() {
                                 userData && userData.username && postData.count <= pagination.pageNumber &&
                                 <div>
                                     {
-                                        !commentValue || (commentValue && JSON.parse(commentValue).blocks[0].text === '') ?
+                                        Object.keys(commentValue).length === 0 || (commentValue && !commentValue.content) ?
                                             <div className="topic_error">*Please click save option on right before posting your comments..</div> : null
                                     }
-                                    <button className={`topic_post_bottom_btn ${!commentValue || (commentValue && JSON.parse(commentValue).blocks[0].text === '') ? 'hide' : ''}`}
-                                        onClick={(e) => { commentValue || (commentValue && JSON.parse(commentValue).blocks[0].text !== '') ? handleReplyFormSubmit(e, commentValue) : null }}
+                                    <button className={`topic_post_bottom_btn ${Object.keys(commentValue).length === 0 || (commentValue && !commentValue.content) ? 'hide' : ''}`}
+                                        onClick={(e) => { Object.keys(commentValue).length === 0 || (commentValue && commentValue.content) ? handleReplyFormSubmit(e, commentValue) : null }}
                                     >
                                         Add Comments
                                     </button>
@@ -208,10 +231,10 @@ function PostPage() {
                     replyError={replyError}
                     replyTo={(replyTo && replyTo.user.username) || topicData.title}
                     handleReplyFormSubmit={handleReplyFormSubmit}
-                    onClose={() => setShowReplyPanel(false)}
+                    onClose={() => handleReplyPanel()}
                 />
             </div>
-            {showReplyPanel && <div className="header_page_mobile_overlay" onClick={() => setShowReplyPanel(false)}></div>}
+            {showReplyPanel && <div className="header_page_mobile_overlay" onClick={() => handleReplyPanel()}></div>}
         </>
     )
 }

@@ -25,7 +25,7 @@ function Home() {
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-8 mx-auto">
-              <div className="hero_topic_head_title">Explore Topics...</div>
+              <div className="hero_topic_head_title">Your Feeds...</div>
             </div>
           </div>
           {
