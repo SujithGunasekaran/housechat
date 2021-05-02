@@ -114,7 +114,7 @@
 .model_title
 {
     font-family: var(--inter-text);
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     color: var(--black-100);
     font-weight: 500;
     letter-spacing: 0.040rem;
@@ -127,8 +127,8 @@
 }
 .model_success_btn
 {
-    background-color: var(--blue-500);
-    padding : 6px 15px;
+    background-color: var(--blue-600);
+    padding : 6px 20px;
     font-family: var(--inter-text);
     font-size: 1rem;
     color: var(--dark-theme-text-dark-white);

@@ -64,7 +64,7 @@
 .topic_post_username
 {
     padding : 0px 15px;
-    color : var(--dark-theme-text-white);
+    color : var(--black-100);
     font-size: 1.1rem;
     font-family: var(--inter-text);
     letter-spacing: 0.050rem;
@@ -80,8 +80,8 @@
 .topic_post_parent_username
 {
     padding : 0px 15px;
-    color : var(--dark-theme-text-white);
-    font-size: .9rem;
+    color : var(--black-200);
+    font-size: 1rem;
     font-family: var(--inter-text);
     letter-spacing: 0.050rem;
     font-weight: 400;
@@ -92,15 +92,24 @@
     color : var(--blue-300);
     cursor: pointer;
 }
+.topic_post_parent_time
+{
+    padding: 5px 0px 0px 0px;
+    color: var(--black-500);
+    font-size: 0.750rem;
+    font-family: var(--inter-text);
+    letter-spacing: 0.020rem;
+    font-weight: 500;
+}
 .topic_post_user_answer
 {
     padding : 10px 15px 0px 25px;
-    color : var(--black-400);
+    color : var(--black-200);
     font-size: 0.940rem;
     font-family: var(--inter-text);
     letter-spacing: 0.030rem;
     line-height: 35px;
-    font-weight: 500;
+    font-weight: 400;
 }
 .topic_post_reply_container
 {
@@ -140,14 +149,12 @@
     width: 100%;
     margin: 10px 26px;
     padding : 10px 10px;
-    /* border-radius: 6px; */
     color : var(--text-black);
     font-size: 0.800rem;
     font-family: var(--inter-text);
     letter-spacing: 0.020rem;
     font-weight: 500;
-    border-left: 4px solid var(--black-500);
-    /* background-color: var(--black-900); */
+    border-left: 4px solid var(--black-600);
 }
 
 .topic_post_parent_user_info_display
