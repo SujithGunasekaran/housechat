@@ -67,11 +67,27 @@
     color : var(--dark-theme-text-white);
     font-size: 1.1rem;
     font-family: var(--inter-text);
-    letter-spacing: 0.040rem;
-    font-weight: 500;
+    letter-spacing: 0.050rem;
+    font-weight: 400;
     transition: 0.5s all ease-in-out;
 }
 .topic_post_username:hover
+{
+    color : var(--blue-300);
+    cursor: pointer;
+}
+
+.topic_post_parent_username
+{
+    padding : 0px 15px;
+    color : var(--dark-theme-text-white);
+    font-size: .9rem;
+    font-family: var(--inter-text);
+    letter-spacing: 0.050rem;
+    font-weight: 400;
+    transition: 0.5s all ease-in-out;
+}
+.topic_post_parent_username:hover
 {
     color : var(--blue-300);
     cursor: pointer;
@@ -310,50 +326,37 @@
     font-size: .950rem;
 } 
 
-.mui_initial_text .MUIRichTextEditor-placeHolder-10
+.mui_initial_text .MUIRichTextEditor-placeHolder-10,
+.MUIRichTextEditor-placeHolder-9, .MUIRichTextEditor-placeHolder-11,
+.MUIRichTextEditor-placeHolder-12
 {
-    position: relative;
-    padding : 10px 15px;
-    color : var(--black-500);
-    font-size: .9rem;
-    letter-spacing: 0.050rem;
+    position: relative !important;
+    padding : 10px 15px !important;
+    color : var(--black-500) !important;
+    font-size: .9rem !important;
+    letter-spacing: 0.050rem !important;
 }
 
-.mui_initial_text .MUIRichTextEditor-placeHolder-9
-{
-    position: relative;
-    padding : 10px 20px;
-    color : var(--black-500);
-    font-size: .9rem;
-    letter-spacing: 0.050rem;
-}
-
-.mui_button_hide #mui-rte-media-control-button
+.mui_button_hide #mui-rte-media-control-button, 
+#mui-rte-Highlight-button, #mui-rte-Clear-button,
+#mui-rte-Strikethrough-button, #mui-rte-Undo-button,
+#mui-rte-Redo-button, #mui-rte-link-control-button
 {
     display: none;
 }
 
-.mui_code .CodeBlock-root-16
+.mui_code .CodeBlock-root-15,
+.CodeBlock-root-16,.CodeBlock-root-17,
+.CodeBlock-root-18, .CodeBlock-root-19
 {
-    background-color: var(--black-700);
-    color : var(--black-100);
-    border-radius: 8px;
+    background-color: var(--black-700) !important;
+    color : var(--black-100) !important;
+    border-radius: 8px !important;
 }
 
-.mui_code .CodeBlock-root-17
-{
-    background-color: var(--black-700);
-    color : var(--black-100);
-}
-
-.mui_block_quote .Blockquote-root-16
-{
-    padding : 0px 10px !important;
-    color : var(--black-300) !important;
-    border-left: 4px solid var(--black-300) !important;
-}
-
-.mui_block_quote .Blockquote-root-17
+.mui_block_quote .Blockquote-root-15,
+.Blockquote-root-16, .Blockquote-root-17,
+.Blockquote-root-18, .Blockquote-root-19
 {
     padding : 0px 10px !important;
     color : var(--black-300) !important;
