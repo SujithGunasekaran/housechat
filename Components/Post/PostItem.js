@@ -7,22 +7,31 @@ import RichText from '../RichText';
 function PostItem({ post, onReplyOpen, canCreate, setCommentValue, handleRichText }) {
 
     const [showRichText, setShowRichText] = useState(false);
+    const [showParentRichText, setShowParentRichText] = useState(false);
+    const [parentContent, setParentContent] = useState(null);
+    const [content, setContent] = useState(null);
 
-    const checkContent = (content) => {
+    const checkContent = (content, showStateName, contentStateName) => {
         try {
             if (content) {
                 let replacedData = content.replace(/'/g, '"');
                 let parsedData = JSON.parse(replacedData);
-                if (parsedData) setShowRichText(true);
+                if (parsedData) {
+                    showStateName(true);
+                    contentStateName(replacedData);
+                }
             }
         }
         catch (err) {
-            setShowRichText(false);
+            showStateName(false);
         }
     }
 
     useEffect(() => {
-        checkContent(post.content);
+        checkContent(post.content, setShowRichText, setContent);
+        if (post.parent) {
+            checkContent(post.parent.content, setShowParentRichText, setParentContent);
+        }
     }, [])
 
 
@@ -50,19 +59,32 @@ function PostItem({ post, onReplyOpen, canCreate, setCommentValue, handleRichTex
                                                 <div className="topic_post_user_main_display">
                                                     <div className="topic_post_parent_user_info_display">
                                                         <Link href={`/profile/[id]`} as={`/profile/${post.parent.user._id}`}>
-                                                            <div className="topic_post_username">{post.parent.user.username}</div>
+                                                            <div className="topic_post_parent_username"><i>@{post.parent.user.username}</i></div>
                                                         </Link>
                                                         <div className="topic_post_time">{post.createdAt && fromNow(post.parent.createdAt)}</div>
                                                     </div>
                                                     <div className="topic_post_parent_user_content_display">
-                                                        <div className="topic_post_parent_user_answer">{post.parent.content}</div>
+                                                        {
+                                                            showParentRichText ?
+                                                                <div className="topic_post_user_answer">
+                                                                    <div className="mui_post_root mui_post_toolbar mui_post_container mui_btn mui_button_hide mui_post_text mui_initial_text mui_code mui_block_quote">
+                                                                        <RichText
+                                                                            setCommentValue={setCommentValue}
+                                                                            handleRichText={handleRichText}
+                                                                            defaultData={parentContent}
+                                                                        />
+                                                                    </div>
+                                                                </div> :
+                                                                <div className="topic_post_parent_user_answer">
+                                                                    {post.parent.content}
+                                                                </div>
+                                                        }
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 }
-                                {/* <div className="topic_post_user_answer">{post.content}</div> */}
                                 {
                                     showRichText ?
                                         <div className="topic_post_user_answer">
@@ -70,7 +92,7 @@ function PostItem({ post, onReplyOpen, canCreate, setCommentValue, handleRichTex
                                                 <RichText
                                                     setCommentValue={setCommentValue}
                                                     handleRichText={handleRichText}
-                                                    defaultData={post.content && post.content.replace(/'/g, '"')}
+                                                    defaultData={content}
                                                 />
                                             </div>
                                         </div> :
