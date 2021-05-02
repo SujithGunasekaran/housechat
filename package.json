@@ -1,7 +1,10 @@
 {
-  "name": "forum",
+  "name": "housechat",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "SujithGunasekaran"
+  },
   "scripts": {
     "test": "next dev",
     "build": "next build",
