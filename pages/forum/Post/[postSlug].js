@@ -12,8 +12,8 @@ import CircularLoading from '../../../Components/CircularLoading';
 const useInitialData = (postSlug) => {
 
     // Queries
-    const { data: topic, error: topicError } = useGetTopicBySlug(postSlug);
-    const { data: post, error: postError, fetchMore } = useGetPostByTopic(postSlug, { skipLength: 0, pageSize: 5 });
+    const { data: topic, error: topicError, loading: topicLoading } = useGetTopicBySlug(postSlug);
+    const { data: post, error: postError, loading: postLoading, fetchMore } = useGetPostByTopic(postSlug, { skipLength: 0, pageSize: 5 });
     const { data: user } = useGetUser();
 
     const topicData = (topic && topic.topicBySlug) || {};
@@ -24,7 +24,7 @@ const useInitialData = (postSlug) => {
 
     const [createPost, { loading: createPostLoading }] = useCreatePost();
 
-    return { topicData, postData, createPostLoading, topicError, postError, userData, createPost, fetchMore };
+    return { topicData, postData, createPostLoading, topicError, postError, userData, topicLoading, postLoading, createPost, fetchMore };
 }
 
 
@@ -38,7 +38,7 @@ function PostPage() {
     const pageEnd = useRef();
     const disposeId = useRef(null);
 
-    const { topicData, postData, userData, createPostLoading, topicError, postError, createPost, fetchMore } = useInitialData(postSlug);
+    const { topicData, postData, userData, createPostLoading, topicError, postError, topicLoading, postLoading, createPost, fetchMore } = useInitialData(postSlug);
 
     const [showReplyPanel, setShowReplyPanel] = useState(false);
     const [replyTo, setReplyTo] = useState(null);
@@ -171,7 +171,8 @@ function PostPage() {
                         </div>
                     </div>
                     <PostList
-                        // currentPage={pagination.pageNumber}
+                        topicLoading={topicLoading}
+                        postLoading={postLoading}
                         topicError={topicError}
                         postError={postError}
                         canCreate={userData ? true : false}
