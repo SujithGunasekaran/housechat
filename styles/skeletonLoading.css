@@ -4,7 +4,7 @@
     padding : 15px 20px;
     width : 100%;
     border-radius: 8px;
-    background-color: var(--black-700);
+    background-color: var(--black-800);
     transition: 0.5s all ease-in-out;
     box-shadow: 0 10px 10px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
 }
