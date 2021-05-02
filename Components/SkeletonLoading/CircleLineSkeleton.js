@@ -6,8 +6,8 @@ export default function CircleLineSkeleton({ lineCount = 2 }) {
         <div>
             <div className="circle"></div>
             {
-                [...Array(lineCount)].map(() => (
-                    <div className="line"></div>
+                [...Array(lineCount)].map((_, index) => (
+                    <div className="line" key={index}></div>
                 ))
             }
         </div>
