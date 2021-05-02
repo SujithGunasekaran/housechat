@@ -70,7 +70,9 @@ function PostPage() {
     }
 
     const cleanUp = () => {
+        setCommentValue({});
         setShowReplyPanel(false);
+        setReplyTo(null);
         scrollToBottom();
     }
 
@@ -128,28 +130,23 @@ function PostPage() {
                     }
                 }
             })
-            // resetFormField();
+            if (resetFormField) {
+                resetFormField();
+            }
             cleanUp();
         }
         catch (err) {
-            const pareseError = JSON.parse(JSON.stringify(err));
-            if (pareseError?.message.includes('Please Enter')) setReplyError(pareseError.message);
+            const parseError = JSON.parse(JSON.stringify(err));
+            if (Object.keys(parseError).length > 0 && parseError?.message.includes('Please Enter')) setReplyError(pareseError.message);
             if (!formField.content) setReplyError('Please Enter Content');
-            if (pareseError?.message.includes('Something')) setReplyError(pareseError.message);
+            if (Object.keys(parseError).length > 0 && parseError?.message.includes('Something')) setReplyError(pareseError.message);
         }
     }
 
     const handleRichText = (keyName, stateName) => (data) => {
         stateName(prevStateCommentValue => {
             let commentValue = JSON.parse(JSON.stringify(prevStateCommentValue));
-            let parsedData = JSON.parse(data);
-            let minifiedData = {};
-            minifiedData.blocks = parsedData.blocks.filter(dataInfo => dataInfo.text !== '');
-            if (minifiedData.blocks && minifiedData.blocks.length > 0) {
-                commentValue[keyName] = JSON.stringify(minifiedData).replace(/"/g, "'");
-            } else {
-                commentValue = {};
-            }
+            commentValue[keyName] = data.replace(/"/g, "'");
             return commentValue;
         })
     }
