@@ -8,7 +8,7 @@
   "scripts": {
     "test": "next dev",
     "build": "next build",
-    "start": "node server/index.js",
+    "start": "cross-env NODE_ENV=production node server/index",
     "dev": "nodemon server/index.js",
     "populateDB": "node server/fakeDB/populate.js"
   },
