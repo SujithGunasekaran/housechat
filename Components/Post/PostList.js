@@ -1,12 +1,24 @@
 import PostItem from './PostItem';
 import RichText from '../RichText';
+import CardSkeleton from '../SkeletonLoading/CardSkeleton';
 
 function PostList(props) {
 
-    const { topicData, postData, postCount, onReplyOpen, canCreate, topicError, postError, setCommentValue, handleRichText } = props;
+    const { topicData, postData, postCount, onReplyOpen, topicLoading, postLoading, canCreate, topicError, postError, setCommentValue, handleRichText } = props;
 
     return (
         <>
+            {
+                topicLoading &&
+                <div className="row">
+                    <div className="col-md-10 mx-auto">
+                        <CardSkeleton
+                            cardCount={1}
+                            lineCount={2}
+                        />
+                    </div>
+                </div>
+            }
             {
                 topicData && topicData._id &&
                 <div>
@@ -27,6 +39,17 @@ function PostList(props) {
                             </div>
                         </div>
                     }
+                </div>
+            }
+            {
+                postLoading &&
+                <div className="row">
+                    <div className="col-md-10 mx-auto">
+                        <CardSkeleton
+                            cardCount={2}
+                            lineCount={2}
+                        />
+                    </div>
                 </div>
             }
             {
