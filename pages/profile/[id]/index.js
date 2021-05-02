@@ -31,7 +31,7 @@ function Profile() {
                         <UserCard
                             userFollowType={userFollowType}
                             setUserFollowType={setUserFollowType}
-                            loading={userLoading}
+                            userLoading={userLoading}
                             userInfo={userInfo}
                             loginUserInfo={loginUserInfo}
                         />
