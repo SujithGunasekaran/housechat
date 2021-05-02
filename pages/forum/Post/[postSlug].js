@@ -209,7 +209,7 @@ function PostPage() {
                                             <div className="topic_error">*Please click save option on right before posting your comments..</div> : null
                                     }
                                     <button className={`topic_post_bottom_btn ${Object.keys(commentValue).length === 0 || (commentValue && !commentValue.content) ? 'hide' : ''}`}
-                                        onClick={(e) => { Object.keys(commentValue).length === 0 || (commentValue && commentValue.content) ? handleReplyFormSubmit(e, commentValue) : null }}
+                                        onClick={(e) => { Object.keys(commentValue).length !== 0 && commentValue.content ? handleReplyFormSubmit(e, commentValue) : null }}
                                     >
                                         Add Comments
                                     </button>

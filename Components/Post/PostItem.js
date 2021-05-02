@@ -61,7 +61,7 @@ function PostItem({ post, onReplyOpen, canCreate, setCommentValue, handleRichTex
                                                         <Link href={`/profile/[id]`} as={`/profile/${post.parent.user._id}`}>
                                                             <div className="topic_post_parent_username"><i>@{post.parent.user.username}</i></div>
                                                         </Link>
-                                                        <div className="topic_post_time">{post.createdAt && fromNow(post.parent.createdAt)}</div>
+                                                        <div className="topic_post_parent_time">{post.createdAt && fromNow(post.parent.createdAt)}</div>
                                                     </div>
                                                     <div className="topic_post_parent_user_content_display">
                                                         {
