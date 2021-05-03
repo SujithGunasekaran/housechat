@@ -17,6 +17,7 @@ app.prepare().then(() => {
     const server = express();
 
     server.use(cors());
+    server.use(express.json());
 
     // Initializing middleware 
 
