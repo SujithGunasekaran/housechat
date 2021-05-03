@@ -33,6 +33,8 @@ class GraphqlStrategy extends Strategy {
             return this.success(user, info);
         }
 
+        console.log("userData", userData);
+
         this.verify(userData, done)
     }
 
