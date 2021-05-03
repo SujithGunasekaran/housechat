@@ -12,7 +12,9 @@ export default withApollo(
                 credentials: 'same-origin',
                 headers: {
                     ...headers,
-                    'content-type': 'application/json'
+                    'content-type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Credentials': true,
                 },
             }),
             cache: new InMemoryCache().restore(initialState || {}),
