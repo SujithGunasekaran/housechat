@@ -11,7 +11,8 @@ export default withApollo(
                 uri: process.env.BASE_URL,
                 credentials: 'same-origin',
                 headers: {
-                    ...headers
+                    ...headers,
+                    'content-type': 'application/json'
                 },
             }),
             cache: new InMemoryCache().restore(initialState || {}),
