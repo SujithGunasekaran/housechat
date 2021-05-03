@@ -9,9 +9,7 @@ exports.initPassportMiddleware = (passport) => {
     })
 
     passport.deserializeUser((id, done) => {
-        console.log("deserialize", id);
         User.findById(id, (error, user) => {
-            console.log("deserialize", user);
             done(error, user);
         })
     })
