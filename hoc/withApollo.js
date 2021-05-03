@@ -10,10 +10,9 @@ export default withApollo(
             link: createHttpLink({
                 uri: process.env.BASE_URL,
                 credentials: 'same-origin',
-                headers
-                // headers: {
-                //     ...headers
-                // },
+                headers: {
+                    ...headers
+                }
             }),
             cache: new InMemoryCache().restore(initialState || {}),
             resolvers: {

@@ -1,6 +1,6 @@
 const express = require('express');
 const next = require('next');
-const cors = require('cors');
+// const cors = require('cors');
 
 const port = process.env.PORT || 3000;
 const dev = process.env.NODE_ENV !== 'production';
@@ -15,13 +15,6 @@ mongodb.connect();
 app.prepare().then(() => {
 
     const server = express();
-
-    const options = {
-        origin: "https://housechat.vercel.app",
-        Credential: true,
-    };
-
-    server.use(cors(options));
 
     // server.use(cors());
     // server.use(express.json());
