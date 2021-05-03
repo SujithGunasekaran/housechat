@@ -9,7 +9,7 @@ export default withApollo(
             ssrMode: true,
             link: createHttpLink({
                 uri: process.env.BASE_URL,
-                credentials: 'same-origin',
+                credentials: 'include',
                 headers: {
                     ...headers
                 }
