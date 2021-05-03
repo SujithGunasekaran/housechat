@@ -11,10 +11,7 @@ export default withApollo(
                 uri: process.env.BASE_URL,
                 credentials: 'same-origin',
                 headers: {
-                    ...headers,
-                    'content-type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Credentials': true,
+                    ...headers
                 },
             }),
             cache: new InMemoryCache().restore(initialState || {}),
