@@ -1,4 +1,3 @@
-
 import { useGetUser } from '../apollo/actions';
 import Redirect from '../Components/Redirect';
 import Loader from '../Components/Loader';

@@ -8,14 +8,14 @@
     padding : 20px 28px 20px 28px;
     position: fixed;
     top : 0;
+    z-index: 1;
 }
 .header_logo
 {
     font-family: var(--inter-text);
-    font-size: 1.2rem;
-    letter-spacing: 0.040rem;
-    letter-spacing: 0.030rem;
-    text-transform: uppercase;
+    font-size: 1.130rem;
+    font-family: 500;
+    letter-spacing: 0.050rem;
 }
 .header_logo a
 {
@@ -117,20 +117,19 @@
 }
 .header_page_signout
 {
-    padding : 6px 15px;
     list-style: none;
     font-family: var(--inter-text);
     font-size: .9rem;
     border-radius: 20px;
-    font-weight: 400;
-    background-color: var(--red-500);
+    font-weight: 500;
     letter-spacing: 0.040rem;
     transition: 0.5s all ease-in-out;
 }
-.header_page_signout a
+
+.header_page_signout:hover
 {
-    color: var(--red-050);
-    text-decoration: none;
+    color : var(--red-300) !important;
+    cursor: pointer !important;
 }
 
 
@@ -139,7 +138,6 @@
 .header_page_mobile
 {
     display: none;
-    margin-left: auto;
 }
 .header_page_hamburger
 {
@@ -170,9 +168,10 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(3px);
+    overflow-y: hidden !important;
     z-index: 5;
     transition: 0.5s all ease-in-out;
 }
@@ -384,10 +383,127 @@
     color : var(--header-hover-color);
 }
 
+/* user Profile dropdown */
+
+.header_page_user_dropdown_container
+{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+.header_page_user_background
+{
+    background-color: var(--blue-600);
+    border-radius: 50%;
+    width : 35px;
+    height : 35px;
+    cursor: pointer;
+}
+.header_page_user_profile
+{
+    margin : 7px;
+    font-size: 1.3rem !important;
+    border-radius: 50px;
+    color : white;
+}
+.header_page_user_profile_info > div
+{
+    padding : 15px 20px;
+    font-family: var(--inter-text);
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.050rem;
+    color : var(--black-100);
+}
+
+.header_page_user_profile_info > hr
+{
+    color : var(--black-100);
+}
+
+.header_page_user_profile_info > div a
+{
+    text-decoration: none;
+    color : var(--black-100);
+}
+
+.header_page_user_profile_info > div a:hover
+{
+    cursor: pointer;
+    color: var(--blue-300);
+    transition: 0.5s all ease-in-out;
+}
+
+.header_page_user_profile_info > div:hover
+{
+    cursor: pointer;
+    color : var(--blue-300);
+    transition: 0.5s all ease-in-out;
+}
+
+.header_page_user_profile_info
+{
+    position: absolute;
+    border-radius: 8px;
+    background-color: var(--black-700);
+    z-index: 10;
+    width : 200px;
+    max-height : 40px;
+    overflow : hidden;
+    margin-top: 55px;
+    right : 5%;
+    opacity: 0;
+    transition: all 0.4s;
+}
+
+.header_page_user_profile_info.active
+{
+    opacity: 10;
+    width : 200px;
+    max-height: 40rem;
+}
+
+.header_hamburger_left
+{
+    margin-left: auto;
+}
+
+/* logout popup */
+
+.header_page_logout_model_container
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 2000;
+    transition: 0.5s all ease-in-out;
+}
+.header_page_logout_model
+{
+    background-color: var(--black-700);
+    border-radius: 10px;
+    position: absolute;
+    top : 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding : 30px;
+    z-index: 99999;
+    transition: 0.5s all ease-in-out;
+}
+
+@media(max-width:600px){
+    .header_page_logout_model{width : 90%}
+}
+
 @media(max-width:770px){
     .header_page_link_container ul{display: none;}
     .header_page_authenticate_container{display: none;}
     .header_page_mobile{display: block;}
     .header_page_mobile_container{display: block;}
-    .header_main_container{padding : 20px 15px}
+    .header_main_container{padding : 20px 14px}
+    .header_page_user_dropdown_container{margin-left: auto; margin-right: 15px;}
 }

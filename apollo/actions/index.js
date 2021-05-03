@@ -16,7 +16,13 @@ import {
     GET_TOPIC_BY_SLUG,
     GET_POST_BY_TOPIC,
     CREATE_POST,
-    GET_TOPIC_FOR_HOME_PAGE
+    GET_TOPIC_FOR_HOME_PAGE,
+    GET_USER_INFO,
+    GET_USER_FOLLOWING,
+    GET_USER_FOLLOWER,
+    DELETE_FOLLOWING_USER,
+    FOLLOW_USER,
+    EDIT_USER_INFO
 } from '../queries';
 
 export const useGetPortfolioById = (id) => useQuery(GET_PORTFOLIOBYID, { variables: { id: id } });
@@ -121,4 +127,233 @@ export const useCreatePost = () => useMutation(CREATE_POST);
 
 // Home page query
 
-export const useGetHomePageTopicData = (limitNumber) => useQuery(GET_TOPIC_FOR_HOME_PAGE, { variables: { limit: limitNumber } })
+export const useGetHomePageTopicData = (limitNumber) => useQuery(GET_TOPIC_FOR_HOME_PAGE, { variables: { limit: limitNumber } });
+
+/* user profile */
+
+export const useGetUserInfo = (userId) => useQuery(GET_USER_INFO, { variables: { userId }, fetchPolicy: "network-only" });
+
+export const useGetUserFollower = (userId) => useQuery(GET_USER_FOLLOWER, { variables: { userId } });
+
+export const useGetUserFollowing = (userId) => useQuery(GET_USER_FOLLOWING, { variables: { userId } });
+
+export const useDeleteFollowingUser = () => useMutation(DELETE_FOLLOWING_USER, {
+    update(cache, { data: { deleteUserFollowing } }) {
+        const userFollowingList = cache.readQuery({ query: GET_USER_FOLLOWING, variables: { userId: deleteUserFollowing.userInfo } });
+        const userFollowerList = cache.readQuery({ query: GET_USER_FOLLOWER, variables: { userId: deleteUserFollowing.userFollowingInfo } });
+        const loggedInUser = cache.readQuery({ query: GET_USER_INFO, variables: { userId: deleteUserFollowing.userInfo } });
+        const userInfo = cache.readQuery({ query: GET_USER_INFO, variables: { userId: deleteUserFollowing.userFollowingInfo } });
+        if (loggedInUser) {
+            try {
+                const { getUserInfo } = loggedInUser;
+                cache.writeQuery({
+                    query: GET_USER_INFO,
+                    variables: { userId: deleteUserFollowing.userInfo },
+                    data: {
+                        getUserInfo: {
+                            ...getUserInfo,
+                            followingCount: getUserInfo.followingCount - 1
+                        }
+                    }
+                })
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+        if (userInfo) {
+            try {
+                const { getUserInfo } = userInfo;
+                cache.writeQuery({
+                    query: GET_USER_INFO,
+                    variables: { userId: deleteUserFollowing.userFollowingInfo },
+                    data: {
+                        getUserInfo: {
+                            ...getUserInfo,
+                            followersCount: getUserInfo.followersCount - 1,
+                            showFollow: true
+                        }
+                    }
+                })
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+        if (userFollowingList) {
+            try {
+                const { getUserFollowing } = userFollowingList;
+                const newUserFollowing = getUserFollowing.userFollowingData.filter(user => user.userFollowingInfo._id !== deleteUserFollowing.userFollowingInfo);
+                cache.writeQuery({
+                    query: GET_USER_FOLLOWING,
+                    variables: { userId: deleteUserFollowing.userInfo },
+                    data: {
+                        getUserFollowing: {
+                            ...getUserFollowing,
+                            userFollowingData: [
+                                ...newUserFollowing
+                            ]
+                        }
+                    }
+                })
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+        if (userFollowerList) {
+            try {
+                const { getUserFollowers } = userFollowerList;
+                const newUserFollower = getUserFollowers.userFollowersData.filter(user => user.userInfo._id !== deleteUserFollowing.userInfo);
+                cache.writeQuery({
+                    query: GET_USER_FOLLOWER,
+                    variables: { userId: deleteUserFollowing.userFollowingInfo },
+                    data: {
+                        getUserFollowers: {
+                            ...getUserFollowers,
+                            userFollowersData: [
+                                ...newUserFollower
+                            ],
+                        }
+                    }
+                })
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+    }
+});
+
+export const useFollowUser = () => useMutation(FOLLOW_USER, {
+    update(cache, { data: { followUser } }) {
+        const userFollowerList = cache.readQuery({
+            query: GET_USER_FOLLOWER,
+            variables: { userId: followUser.userFollowingInfo._id }
+        });
+        const userFollowingList = cache.readQuery({
+            query: GET_USER_FOLLOWING,
+            variables: { userId: followUser.userInfo._id }
+        });
+        const userInfo = cache.readQuery({
+            query: GET_USER_INFO,
+            variables: { userId: followUser.userFollowingInfo._id }
+        })
+        const loggedUser = cache.readQuery({
+            query: GET_USER_INFO,
+            variables: { userId: followUser.userInfo._id }
+        })
+        if (userFollowerList) {
+            try {
+                const { getUserFollowers } = userFollowerList;
+                cache.writeQuery({
+                    query: GET_USER_FOLLOWER,
+                    variables: { userId: followUser.userFollowingInfo._id },
+                    data: {
+                        getUserFollowers: {
+                            ...getUserFollowers,
+                            userFollowersData: [
+                                ...getUserFollowers.userFollowersData,
+                                followUser.userInfo
+                            ],
+                        }
+                    }
+                })
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+        if (userFollowingList) {
+            try {
+                const { getUserFollowing } = userFollowingList;
+                cache.writeQuery({
+                    query: GET_USER_FOLLOWING,
+                    variables: { userId: followUser.userInfo._id },
+                    data: {
+                        getUserFollowing: {
+                            ...getUserFollowing,
+                            userFollowingData: [
+                                ...getUserFollowing.userFollowingData,
+                                followUser.userFollowingInfo
+                            ]
+                        }
+                    }
+                })
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+        if (userInfo) {
+            try {
+                const { getUserInfo } = userInfo;
+                cache.writeQuery({
+                    query: GET_USER_INFO,
+                    variables: { userId: followUser.userFollowingInfo._id },
+                    data: {
+                        getUserInfo: {
+                            ...getUserInfo,
+                            followersCount: getUserInfo.followersCount + 1,
+                            showFollow: false
+                        }
+                    }
+                })
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+        if (loggedUser) {
+            try {
+                const { getUserInfo } = loggedUser;
+                cache.writeQuery({
+                    query: GET_USER_INFO,
+                    variables: { userId: followUser.userInfo._id },
+                    data: {
+                        getUserInfo: {
+                            ...getUserInfo,
+                            followingCount: getUserInfo.followingCount + 1
+                        }
+                    }
+                })
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+    }
+});
+
+export const useEditUserData = () => useMutation(EDIT_USER_INFO, {
+    update(cache, { data: { updateUser } }) {
+        const userInfo = cache.readQuery({
+            query: GET_USER_INFO,
+            variables: { userId: updateUser._id }
+        })
+        if (userInfo) {
+            try {
+                const { getUserInfo } = userInfo;
+                cache.writeQuery({
+                    query: GET_USER_INFO,
+                    variables: { userId: updateUser._id },
+                    data: {
+                        getUserInfo: {
+                            ...getUserInfo,
+                            userData: {
+                                ...getUserInfo.userData,
+                                ...updateUser
+                            }
+                        }
+                    }
+                })
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+    }
+});
+
+
+/* user profile */

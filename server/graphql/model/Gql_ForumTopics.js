@@ -22,6 +22,10 @@ class ForumTopics extends BaseModel {
     }
 
     async create(topicData) {
+
+        const data = ['content', 'title'];
+        let emptyDataErrorMessage = '';
+
         if (!this.user) {
             throw new Error('You need to authenticate to create topic!')
         }
@@ -46,7 +50,13 @@ class ForumTopics extends BaseModel {
                 const topic = await this._create(topicData);
                 return topic;
             }
-            return null;
+            data.map((fieldName, index) => {
+                if (err.message.includes(fieldName)) {
+                    emptyDataErrorMessage += `${index > 0 ? ', ' : ''}${fieldName}`;
+                }
+            })
+            if (emptyDataErrorMessage) throw new Error(`Please Enter ${emptyDataErrorMessage}`);
+            return 'Something went wrong';
         }
     }
 }

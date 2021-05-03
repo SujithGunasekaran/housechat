@@ -45,6 +45,7 @@ function Login() {
         }
         catch (err) {
             let errorData = JSON.parse(JSON.stringify(err));
+            console.log("login error", errorData);
             if (errorData.graphQLErrors && errorData.graphQLErrors.length > 0) {
                 setFormError(errorData.graphQLErrors[0].message);
             }
@@ -59,34 +60,34 @@ function Login() {
     }
 
     return (
-        <BaseLayout>
-            <div className="form_main_container">
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-md-4 mx-auto">
-                            <div className="form_heading">Sign in to HouseChat</div>
-                            <div className="form_heading_line"></div>
-                            <div className="form_container">
-                                {
-                                    type === 'Success' && <div className="form_success">{messages[type][message]}</div>
-                                }
-                                {
-                                    type === 'Error' && <div className="form_error">{messages[type][message]}</div>
-                                }
-                                <LoginForm
-                                    formField={formField}
-                                    handleInputFieldChange={handleInputFieldChange}
-                                    handleLoginFormSubmit={handleLoginFormSubmit}
-                                    formSuccess={formSuccess}
-                                    formError={formError}
-                                    loading={loading}
-                                />
-                            </div>
+        // <BaseLayout>
+        <div className="form_main_container">
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-md-4 mx-auto">
+                        {/* <div className="form_heading_line"></div> */}
+                        {
+                            type === 'Success' && <div className="form_success">{messages[type][message]}</div>
+                        }
+                        {
+                            type === 'Error' && <div className="form_error">{messages[type][message]}</div>
+                        }
+                        <div className="form_container">
+                            <div className="form_heading">Welcome</div>
+                            <LoginForm
+                                formField={formField}
+                                handleInputFieldChange={handleInputFieldChange}
+                                handleLoginFormSubmit={handleLoginFormSubmit}
+                                formSuccess={formSuccess}
+                                formError={formError}
+                                loading={loading}
+                            />
                         </div>
                     </div>
                 </div>
             </div>
-        </BaseLayout>
+        </div>
+        // </BaseLayout>
     )
 }
 

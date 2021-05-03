@@ -7,6 +7,7 @@ exports.forumTypes = `
     }
 
     type Author {
+        _id : ID
         username : String
     }
 

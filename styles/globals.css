@@ -14,8 +14,9 @@
 
   /* New dark theme */
 
-  --dark-theme-body-background : #0c0d0e;
-  --dark-theme-header-background : #0c0d0e;
+  /* --dark-theme-body-background : #0c0d0e; */
+  --dark-theme-body-background : #0b0e11;
+  --dark-theme-header-background : #0b0e11;
   --dark-theme-text-white : #D1D4F6;
   --dark-theme-text-dark-white : #e5e7f8;
   --black-025: #fafafb;
@@ -29,9 +30,9 @@
   --black-400: #848d95;
   --black-500: #6a737c;
   --black-600: #535a60;
-  --black-700: #3c4146;
+  --black-700: #242c37;
   --black-750: #2f3337;
-  --black-800: #242729;
+  --black-800: #151a21;
   --black-900: #191b1d;
   --orange-100 : #fee3cf;
   --orange-500 : #f2720c;
@@ -84,6 +85,86 @@
   padding : 20px 0px;
   min-height: 100vh !important;
 }
+
+/* Scroll bar css */
+
+::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 0px;
+  background-color: var(--dark-theme-body-background);
+}
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  -webkit-border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 20px;
+  background: var(--black-600); 
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+/* Scroll bar css */
+
+/* common model css */
+
+.model_title
+{
+    font-family: var(--inter-text);
+    font-size: 1.1rem;
+    color: var(--black-100);
+    font-weight: 500;
+    letter-spacing: 0.040rem;
+}
+.model_btn_display
+{
+    margin : 25px 0px 10px 0px;
+    display: flex;
+    align-items: center;
+}
+.model_success_btn
+{
+    background-color: var(--blue-600);
+    padding : 6px 20px;
+    font-family: var(--inter-text);
+    font-size: 1rem;
+    color: var(--dark-theme-text-dark-white);
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    transition: 0.5s all ease-in-out;
+}
+.model_success_btn:focus
+{
+    outline: none;
+}
+.model_success_btn:hover
+{
+    background-color: var(--blue-600);
+}
+
+.model_cancel_btn
+{
+    padding : 6px 15px;
+    font-family: var(--inter-text);
+    font-size: 1rem;
+    color: var(--black-200);
+    cursor: pointer;
+    transition: 0.5s all ease-in-out;
+}
+.model_cancel_btn:focus
+{
+    outline: none;
+}
+.model_cancel_btn:hover
+{
+    color : var(--red-400);
+}
+
+/* common model css */
 
 @media(max-width:770px){
   .main_body{padding: 0px 2px}

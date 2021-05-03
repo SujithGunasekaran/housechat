@@ -244,6 +244,7 @@ export const GET_TOPIC_BY_SLUG = gql`
             content
             slug
             user{
+                _id
                 username
             }
             forumCategory{
@@ -257,14 +258,15 @@ export const GET_TOPIC_BY_SLUG = gql`
 `;
 
 export const GET_POST_BY_TOPIC = gql`
-    query PostByTopic($slug: String, $pageNumber : Int, $pageSize : Int){
-        postByTopic(slug : $slug, pageNumber : $pageNumber, pageSize : $pageSize){
+    query PostByTopic($slug: String, $skipLength : Int, $pageSize : Int){
+        postByTopic(slug : $slug, skipLength : $skipLength, pageSize : $pageSize){
             posts {
                 _id
                 content
                 slug
                 fullSlug
                 user{
+                    _id
                     username
                 }
                 topic {
@@ -275,6 +277,7 @@ export const GET_POST_BY_TOPIC = gql`
                     content
                     slug
                     user {
+                        _id
                         username
                     }
                     createdAt
@@ -330,3 +333,119 @@ export const GET_TOPIC_FOR_HOME_PAGE = gql`
         }
     }
 `;
+
+/* User Profile queries */
+
+export const GET_USER_INFO = gql`
+    query GetUserInfo($userId : ID){
+        getUserInfo(userId : $userId){
+            userData {
+                _id
+                username
+                name
+                email
+                bio
+                company
+                location
+            }
+            followingCount
+            followersCount
+            showFollow
+        }
+    }
+`;
+
+export const GET_USER_FOLLOWING = gql`
+    query GetUserFollowing($userId : ID) {
+        getUserFollowing(userId : $userId){
+            userFollowingData {
+                userFollowingInfo {
+                  _id
+                  username
+                  name
+                }
+            }
+        }
+    }
+`;
+
+export const GET_USER_FOLLOWER = gql`
+    query GetUserFollower($userId : ID){
+        getUserFollowers(userId : $userId) {
+            userFollowersData {
+              userInfo {
+                _id
+                username
+                name
+              }
+            }
+        }
+    }
+`;
+
+export const DELETE_FOLLOWING_USER = gql`
+    mutation DeleteUserFollowing($userInfo : ID $userFollowingInfo : ID){
+        deleteUserFollowing(input : {
+            userInfo : $userInfo userFollowingInfo : $userFollowingInfo
+        }){
+            userInfo
+            userFollowingInfo
+        }
+    }
+`;
+
+export const FOLLOW_USER = gql`
+    mutation FollowUser($userInfo : ID, $userFollowingInfo : ID){
+        followUser(input : {
+            userInfo : $userInfo
+            userFollowingInfo : $userFollowingInfo
+        }){
+            userInfo {
+                _id
+                username
+                name
+            }
+            userFollowingInfo {
+                _id
+                username
+                name
+            }
+        }
+    }
+`;
+
+export const EDIT_USER_INFO = gql`
+    mutation UpdateUser(
+        $userId : ID
+        $username : String!
+        $name : String!
+        $email : String!
+        $bio : String
+        $company : String
+        $location : String
+    ){
+        updateUser(
+            userId : $userId
+            input : {
+                username : $username
+                name : $name
+                email : $email
+                bio : $bio
+                company : $company
+                location : $location
+            }
+        ){
+            _id
+            name
+            username
+            email
+            role
+            bio
+            company
+            location
+        }
+    }
+`;
+
+/* User Profile queries  */
+

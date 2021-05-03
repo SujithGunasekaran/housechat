@@ -4,7 +4,9 @@ import CloseIcon from '@material-ui/icons/Close';
 import Link from 'next/link';
 import withApollo from '../hoc/withApollo';
 import { useLazyGetUser } from '../apollo/actions';
-
+import PersonIcon from '@material-ui/icons/Person';
+import Model from './Model';
+import { useRouter } from 'next/router';
 
 const HeaderLink = ({ children, href, as }) => {
 
@@ -18,10 +20,13 @@ const HeaderLink = ({ children, href, as }) => {
 const Header = () => {
 
     const [user, setUser] = useState(null);
+    const [showUserDropdown, setShowUserDropDown] = useState(false);
+    const [showLogoutModel, setShowLogoutModel] = useState(false);
 
     // Mutations
-
     const [getUser, { data, error }] = useLazyGetUser();
+
+    const router = useRouter();
 
     useEffect(() => {
         getUser();
@@ -62,6 +67,17 @@ const Header = () => {
             setUser(null);
         }
     }
+
+    const handleLogout = () => {
+        setShowLogoutModel(false);
+        router.push('/Logout');
+    }
+
+    const handleSignoutBtn = () => {
+        setShowUserDropDown(false);
+        setShowLogoutModel(true);
+    }
+
     return (
         <div>
             <div className="header_page_mobile_container" id="mobileheader">
@@ -84,21 +100,10 @@ const Header = () => {
                         </div>
                     </div>
                 }
-                {
-                    user &&
-                    <div className="header_page_mobile_auth_container user">
-                        <div className="header_page_mobile_username">
-                            Welcome, {user && user.username}
-                        </div>
-                        <div className="header_page_mobile_signout">
-                            <HeaderLink href='/Logout' id="closeicon">Signout</HeaderLink>
-                        </div>
-                    </div>
-                }
             </div>
             <div className="header_main_container">
                 <div className="header_logo">
-                    <HeaderLink href="/">House Chat</HeaderLink>
+                    <HeaderLink href="/">HouseChat</HeaderLink>
                 </div>
                 <div className="header_page_link_container">
                     <ul>
@@ -110,24 +115,29 @@ const Header = () => {
                 {
                     user &&
                     <>
-                        {/* <div className="header_dropdown_container">
-                            <div className="header_dropdown_title" id="dropdown-title">
-                                Manage
-                            </div>
-                            <div className="header_manage_dropdown">
-                                <ul>
-                                    <li><HeaderLink href='/Portfolio/CreatePortfolio'>Create Portfolio</HeaderLink></li>
-                                    <li><HeaderLink href='/Instructor/[id]/dashboard' as={`/Instructor/${user._id}/dashboard`}>Dashboard</HeaderLink></li>
-                                    <li><HeaderLink href='/Portfolio/CreatePortfolio'>Cv</HeaderLink></li>
-                                </ul>
-                            </div>
-                        </div> */}
                         <div className="header_page_authenticate_container">
                             <div className="header_page_username">
                                 Welcome, {user && user.username}
                             </div>
-                            <div className="header_page_signout">
+
+                            {/* <div className="header_page_signout">
                                 <HeaderLink href='/Logout'>Signout</HeaderLink>
+                            </div> */}
+                        </div>
+                        <div className="header_page_user_dropdown_container">
+                            <div className="header_page_user_background" onClick={() => setShowUserDropDown(!showUserDropdown)}>
+                                <PersonIcon className="header_page_user_profile" />
+                            </div>
+                            <div className={`header_page_user_profile_info ${showUserDropdown ? 'active' : ''}`} onClick={() => setShowUserDropDown(false)}>
+                                <div id="closeProfile">
+                                    <Link href={`/profile/[id]`} as={`/profile/${user?._id}`}>
+                                        Profile
+                                    </Link>
+                                </div>
+                                <div className="header_page_signout" onClick={() => handleSignoutBtn()}>
+                                    Signout
+                                    {/* <HeaderLink href='/Logout'>Signout</HeaderLink> */}
+                                </div>
                             </div>
                         </div>
                     </>
@@ -145,10 +155,26 @@ const Header = () => {
                     </div>
                 }
 
-                <div className="header_page_mobile">
+                <div className={`header_page_mobile ${!user ? 'header_hamburger_left' : ''}`}>
                     <div className="header_page_hamburger"><MenuIcon id="hamburger" /></div>
                 </div>
             </div>
+            {
+                showLogoutModel &&
+                <div className="header_page_logout_model_container">
+                    <div className="header_page_logout_model">
+                        <Model
+                            title="Are you sure, You want to logout"
+                            successBtn="Yes"
+                            cancelBtn="cancel"
+                            onSuccess={handleLogout}
+                            onCancel={() => {
+                                setShowLogoutModel(false);
+                            }}
+                        />
+                    </div>
+                </div>
+            }
             <div className="header_page_mobile_overlay hidden" id="overlay"></div>
         </div>
     )

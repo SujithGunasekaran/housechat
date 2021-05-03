@@ -1,7 +1,7 @@
 .form_main_container
 {
     width : 100%;
-    padding : 100px 20px 100px 20px;
+    padding : 80px 20px 100px 20px;
 }
 .form_signup_heading
 {
@@ -16,10 +16,10 @@
 .form_heading
 {
     padding : 5px 0px;
-    color: var(--black-200);
+    color: var(--black-100);
     font-family: var(--inter-text);
-    font-size: 1.2rem;
-    font-weight: 500;
+    font-size: 1.6rem;
+    font-weight: 600;
     letter-spacing: 0.040rem;
 }
 .form_heading_line
@@ -32,15 +32,19 @@
 {
     padding : 20px 0px;
     text-align: center;
-    color: var(--text-black);
-    font-family: 'Montserrat';
+    color: var(--black-100);
+    font-family: var(--inter-text);
     font-size: 1.5rem;
     font-weight: 500;
+    letter-spacing: 0.040rem;
     letter-spacing: 0.030rem;
 }
 .form_container
 {
     margin : 15px 0px;
+    padding : 20px 20px;
+    border-radius: 8px;
+    background-color: var(--black-800);
 }
 .form_label
 {
@@ -54,15 +58,16 @@
 .form_text_area
 {
     margin : 10px 0px 10px 0px;
-    border : 1px solid rgb(214, 213, 213);
+    border : 1px solid var(--black-700);
+    background-color: var(--black-700);
     height : 95px;
     width : 100%;
     padding : 8px 7px;
-    font-family: 'Roboto';
+    font-family: var(--inter-text);
     font-size: 0.940rem;
     letter-spacing: 0.030rem;
     border-radius: 5px;
-    color : rgb(36, 35, 35);
+    color : var(--black-100);
     transition: 0.5s all ease-in-out;
 }
 .form_text_area::placeholder
@@ -104,12 +109,13 @@
     height : 45px;
     color : var(--black-100);
     width : 100% !important;
-    padding : 0px 7px;
+    padding : 0px 12px;
     font-family: var(--inter-text);
     font-size: 0.940rem;
-    letter-spacing: 0.040rem;
+    letter-spacing: 0.050rem;
     border-radius: 5px;
-    font-weight: 500;
+    font-weight: 400;
+    border : 1px solid var(--black-700);
     background-color: var(--black-700);
     transition: 0.5s all ease-in-out;
 }
@@ -122,8 +128,7 @@
 .form_input_field:focus
 {
     outline: none;
-    color : var(--black-900);
-    background-color: var(--blue-100);
+    border : 1px solid var(--blue-700);
 }
 .form_input_field_error
 {
@@ -147,7 +152,7 @@
 {
     padding : 0px 5px;
     color: var(--text-error);
-    font-family: 'Montserrat';
+    font-family: var(--inter-text);
     font-size: 0.650rem;
     font-weight: 500;
     letter-spacing: 0.030rem;
@@ -171,7 +176,7 @@
     height : 45px;
     background-color: var(--blue-600);
     color : var(--dark-theme-text-dark-white);
-    font-family: 'Montserrat';
+    font-family: var(--inter-text);
     font-size: 0.880rem;
     font-weight: 500;
     letter-spacing: 0.040rem;
@@ -217,17 +222,16 @@
     text-align: center;
     background-color: var(--blue-200);
     color : var(--black-800);
-    font-family: 'Montserrat';
+    font-family: var(--inter-text);
     font-size: 0.880rem;
     font-weight: 500;
     letter-spacing: 0.040rem;
-    transition: 0.5s all ease-in-out;
 }
 
 .form_error
 {
     margin : 5px 0px;
-    background-color: var(--red-400);
+    background-color: var(--red-600);
     color : var(--dark-theme-text-dark-white);
     padding : 10px 15px;
     font-family: var(--inter-text);
@@ -245,9 +249,9 @@
     padding : 10px 15px;
     font-family: var(--inter-text);
     font-size: 0.900rem;
-    border-radius: 6px;
+    border-radius: 8px;
     font-weight: 500;
-    letter-spacing: 0.035rem;
+    letter-spacing: 0.025rem;
     transition: 0.5s all ease-in-out;
 }
 

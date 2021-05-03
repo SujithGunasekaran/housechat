@@ -5,17 +5,17 @@ import withApollo from '../hoc/withApollo';
 import { getDataFromTree } from '@apollo/client/react/ssr';
 import HomeTopic from '../Components/HomeTopic';
 import Link from 'next/link';
-
+import CardSkeleton from '../Components/SkeletonLoading/CardSkeleton';
 
 const initialData = () => {
-  const { data, error } = useGetHomePageTopicData(5);
+  const { data, error, loading } = useGetHomePageTopicData(5);
   const topicData = data && data.highlight || [];
-  return { topicData, error };
+  return { topicData, error, loading };
 }
 
 function Home() {
 
-  const { topicData, error } = initialData();
+  const { topicData, error, loading } = initialData();
 
   return (
     <div>
@@ -25,9 +25,20 @@ function Home() {
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-8 mx-auto">
-              <div className="hero_topic_head_title">Explore Topics...</div>
+              <div className="hero_topic_head_title">Your Feeds...</div>
             </div>
           </div>
+          {
+            loading &&
+            <div className="row">
+              <div className="col-md-8 mx-auto">
+                <CardSkeleton
+                  cardCount={3}
+                  lineCount={2}
+                />
+              </div>
+            </div>
+          }
           {
             topicData && topicData.topics &&
               !error ? topicData.topics.map((topicInfo) => (

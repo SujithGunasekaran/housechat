@@ -30,7 +30,15 @@ const UserSchema = new Schema({
         required: true,
         default: 'guest'
     },
-    info: String,
+    bio: {
+        type: String
+    },
+    company: {
+        type: String
+    },
+    location: {
+        type: String
+    },
     createdAt: { type: Date, default: Date.now }
 })
 

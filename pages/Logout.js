@@ -18,20 +18,19 @@ const Logout = ({ apollo }) => {
     }, [])
 
     return (
-        <BaseLayout>
-            <div className="form_main_container">
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-md-4 mx-auto">
-                            <div className="form_heading">Logout</div>
-                            <div className="form_container">
-                                <div className="form_info">Signing out.....</div>
-                            </div>
+        // <BaseLayout>
+        <div className="form_main_container">
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-md-4 mx-auto">
+                        <div className="form_container">
+                            <div className="form_info">Signing out.....</div>
                         </div>
                     </div>
                 </div>
             </div>
-        </BaseLayout>
+        </div>
+        // </BaseLayout>
     )
 }
 

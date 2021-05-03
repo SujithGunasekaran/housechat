@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import BaseLayout from '../../../layouts/BaseLayout';
 import { useGetTopicsByCategory, useGetUser, useCreateTopic } from '../../../apollo/actions';
 import { useRouter } from 'next/router';
@@ -20,16 +20,19 @@ const useInitialData = () => {
     const user = userData && userData.user || null;
 
     // mutations
-    const [createTopic] = useCreateTopic();
+    const [createTopic, { loading: createTopicLoading }] = useCreateTopic();
 
-    return { forumTopics, topicError, user, slug, router, createTopic }
+    return { forumTopics, topicError, user, slug, router, createTopic, createTopicLoading }
 }
 
 function CategoryTopics() {
 
     const [showReplyPanel, setShowReplyPanel] = useState(false);
+    const [replyError, setReplyError] = useState('');
 
-    const { forumTopics, topicError, user, slug, router, createTopic } = useInitialData();
+    const disposeId = useRef(null);
+
+    const { forumTopics, topicError, user, slug, router, createTopic, createTopicLoading } = useInitialData();
 
     const handleReplyFormSubmit = (e, formData, resetFormField) => {
         e.preventDefault();
@@ -40,13 +43,29 @@ function CategoryTopics() {
                 setShowReplyPanel(false);
             })
             .catch((err) => {
-                console.log(err);
+                const pareseError = JSON.parse(JSON.stringify(err));
+                if (pareseError.message.includes('Please Enter')) setReplyError(pareseError.message);
+                if (!formData.title || formData.content) setReplyError('Please Enter Content or Title');
+                if (pareseError.message.includes('Something')) setReplyError(pareseError.message);
             })
     }
 
     const goToTopicPage = (slug) => {
         router.push('/forum/Post/[postSlug]', `/forum/Post/${slug}`);
     }
+
+    useEffect(() => {
+        if (replyError) {
+            disposeId.current = setTimeout(() => {
+                setReplyError('');
+            }, 3000)
+        }
+
+        return (() => {
+            clearTimeout(disposeId.current);
+        })
+
+    }, [replyError])
 
     return (
         // <BaseLayout>
@@ -58,7 +77,7 @@ function CategoryTopics() {
                             <div className="forum_categories_heading">Select a Topic</div>
                             {
                                 user &&
-                                <button className="forum_categories_create_btn" onClick={() => setShowReplyPanel(true)}>Create Portfolio</button>
+                                <button className="forum_categories_create_btn" onClick={() => setShowReplyPanel(true)}>Create Topic</button>
                             }
                         </div>
                     </div>
@@ -114,12 +133,15 @@ function CategoryTopics() {
             </div>
             <div className={`reply_box_container ${showReplyPanel ? 'show' : ''}`}>
                 <ReplyBox
+                    loading={createTopicLoading}
+                    btnDisplayContent='Create Topic'
                     hasTitle={true}
+                    replyError={replyError}
                     handleReplyFormSubmit={handleReplyFormSubmit}
                     onClose={() => setShowReplyPanel(false)}
                 />
             </div>
-            {showReplyPanel && <div className="header_page_mobile_overlay"></div>}
+            {showReplyPanel && <div className="header_page_mobile_overlay" onClick={() => setShowReplyPanel(false)}></div>}
         </div>
         // </BaseLayout>
     )

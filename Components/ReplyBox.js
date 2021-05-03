@@ -2,7 +2,7 @@ import useForm from '../Hooks/useForm';
 
 function ReplyBox(props) {
 
-    const { handleReplyFormSubmit, onClose, hasTitle, replyTo } = props;
+    const { handleReplyFormSubmit, onClose, hasTitle, replyTo, replyError, btnDisplayContent, loading } = props;
 
     const { formField, handleInputFieldChange, resetFormField } = useForm();
 
@@ -43,8 +43,14 @@ function ReplyBox(props) {
                     </div>
                 </div>
                 <div className="reply_box_btn_container">
-                    <button className="reply_box_reply_btn">Reply</button>
+                    {
+                        loading ? <div className="reply_box_reply_btn_loading">{btnDisplayContent === 'Reply' ? 'Replying...' : 'Commenting...'}</div>
+                            : <button className="reply_box_reply_btn">{btnDisplayContent}</button>
+                    }
                     <div className="reply_box_cancel_btn" onClick={onClose}>Cancel</div>
+                    {
+                        replyError && <div className="form_error">{replyError}</div>
+                    }
                     <div className="reply_box_hide_btn" onClick={onClose}>HIDE PREVIEW</div>
                 </div>
             </form>

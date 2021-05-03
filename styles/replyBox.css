@@ -2,12 +2,12 @@
 {
     bottom : 0;
     width: 100%;
-    padding : 15px 5px;
+    padding : 15px 0px;
     position: fixed;
     z-index: 999999;
     transform: translateY(100%);
     transition: 0.5s all ease-in-out;
-    background-color: var(--black-900);
+    background-color: var(--black-800);
 }
 .reply_box_container.show
 {
@@ -35,18 +35,19 @@
     width: 100%;
     border : none;
     border-radius: 6px;
-    background-color: var(--black-800);
-    color : var(--black-200);
+    background-color: var(--black-700);
+    border : 1px solid var(--black-700);
+    color : var(--black-100);
     font-family: var(--inter-text);
     font-size: 0.830rem;
-    letter-spacing: 0.050rem;
+    font-weight: 500;
+    letter-spacing: 0.030rem;
     transition: 0.5s all ease-in-out;
 }
 .reply_box_input_field:focus
 {
     outline: none;
-    background-color: var(--blue-100);
-    color : var(--black-950);
+    border : 1px solid var(--blue-700);
 }
 .reply_box_input_field::placeholder
 {
@@ -62,8 +63,9 @@
     border : none;
     width: 100%;
     border-radius: 6px;
-    background-color: var(--black-800);
-    color : var(--black-200);
+    background-color: var(--black-700);
+    border : 1px solid var(--black-700);
+    color : var(--black-100);
     font-family: var(--inter-text);
     font-size: 0.830rem;
     letter-spacing: 0.050rem;
@@ -72,6 +74,7 @@
 .reply_box_input_comment:focus
 {
     outline: none;
+    border : 1px solid var(--blue-700);
 }
 .reply_box_input_comment::placeholder
 {
@@ -97,6 +100,19 @@
     color : var(--dark-theme-text-dark-white);
     letter-spacing: 0.040rem;
     background-color: var(--blue-600);
+    transition: 0.5s all ease-in-out;
+}
+.reply_box_reply_btn_loading
+{
+    padding : 8px 15px;
+    border : none;
+    border-radius: 6px;
+    font-family: var(--inter-text);
+    font-size: 0.800rem;
+    font-weight: 500;
+    color : var(--black-950);
+    letter-spacing: 0.040rem;
+    background-color: var(--blue-200);
     transition: 0.5s all ease-in-out;
 }
 .reply_box_reply_btn:hover

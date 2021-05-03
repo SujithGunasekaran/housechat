@@ -12,7 +12,7 @@ export default withApollo(
                 credentials: 'same-origin',
                 headers: {
                     ...headers
-                },
+                }
             }),
             cache: new InMemoryCache().restore(initialState || {}),
             resolvers: {
@@ -39,4 +39,3 @@ export default withApollo(
         }
     }
 );
-

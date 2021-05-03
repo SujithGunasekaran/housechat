@@ -4,10 +4,12 @@ const Schema = mongoose.Schema;
 
 const topicSchema = new Schema({
     title: {
-        type: String
+        type: String,
+        required: true
     },
     content: {
-        type: String
+        type: String,
+        required: true
     },
     slug: {
         type: String,

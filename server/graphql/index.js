@@ -11,6 +11,7 @@ const UserModel = require('./model/Gql_UserModel');
 const ForumCategory = require('./model/Gql_ForumCategory');
 const ForumTopics = require('./model/Gql_ForumTopics');
 const PostModel = require('./model/Gql_PostModel');
+const UserFollowingModel = require('./model/Gql_UserFollowingModel');
 
 // Types
 
@@ -44,12 +45,15 @@ exports.createApolloServer = () => {
             userPortfolio : [Portfolio]
 
             user : User
+            getUserFollowing(userId : ID) : followingList
+            getUserFollowers(userId : ID) : follwersList
+            getUserInfo(userId : ID) : userInfo
 
             forumCategories : [ForumCategory]
             topicsByCategory(categoryName : String) : [Topics] 
 
             topicBySlug(slugName : String) : Topics
-            postByTopic(slug : String, pageNumber : Int, pageSize : Int) : paginatePost
+            postByTopic(slug : String, skipLength : Int, pageSize : Int) : paginatePost
 
             highlight(limit : Int) : HighlightResponse
         }
@@ -65,7 +69,12 @@ exports.createApolloServer = () => {
 
             signIn(input : signInInput) : User,
             signUp(input : signUpInput) : String,
+            updateUser(userId : ID, input : updateUserInput) : User
             signOut : Boolean
+
+            deleteUserFollowing(input : deleteUserInput) : userId
+            followUser(input : followUserInput) : userFollowId
+
         }
     `);
 
@@ -93,12 +102,15 @@ exports.createApolloServer = () => {
             ...buildAuthContext(req),
             models: {
                 PortfolioModel: new PortfolioModel(mongoose.model('portfolio'), req.user),
-                UserModel: new UserModel(mongoose.model('User')),
+                UserModel: new UserModel(mongoose.model('User'), req.user),
+                UserFollowingModel: new UserFollowingModel(mongoose.model('userFollowings'), req.user),
                 ForumCategory: new ForumCategory(mongoose.model('forumCategories')),
                 ForumTopics: new ForumTopics(mongoose.model('topic'), req.user),
                 PostModel: new PostModel(mongoose.model('post'), req.user)
             }
-        })
+        }),
+        introspection: true,
+        playground: true,
     });
 
     return apolloServer;
