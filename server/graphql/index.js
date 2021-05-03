@@ -108,7 +108,9 @@ exports.createApolloServer = () => {
                 ForumTopics: new ForumTopics(mongoose.model('topic'), req.user),
                 PostModel: new PostModel(mongoose.model('post'), req.user)
             }
-        })
+        }),
+        introspection: true,
+        playground: true,
     });
 
     return apolloServer;
