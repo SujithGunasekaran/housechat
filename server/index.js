@@ -16,11 +16,12 @@ app.prepare().then(() => {
 
     const server = express();
 
-    server.use(cors({
+    let corsOptions = {
         origin: process.env.DOMAIN,
         credentials: true
-    }));
-    server.use(express.json());
+    };
+
+    server.use(cors(corsOptions));
 
     // Initializing middleware 
 
