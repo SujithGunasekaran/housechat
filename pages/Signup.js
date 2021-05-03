@@ -21,6 +21,7 @@ function Signup() {
         }
         catch (err) {
             let errorData = JSON.parse(JSON.stringify(err));
+            console.log("signup error", errorData);
             if (errorData.graphQLErrors && errorData.graphQLErrors.length > 0) {
                 setFormError(errorData.graphQLErrors[0].message);
             }
