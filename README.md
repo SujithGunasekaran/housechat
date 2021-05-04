@@ -1,6 +1,8 @@
-<h1>HouseChat</h1>
+
+<h1 align="Center">HouseChat</h1>
+<h3 align="Center"> Knowledge Sharing Platform 🚀 Explore technical topics </h3>
 <a href="https://housechat.herokuapp.com/">HouseChat.herokuapp.com</a>
-<h3> Knowledge Sharing Platform 🚀 Explore technical topics </h3>
+
 <h4>community platform to find and contribute answers to technical challenges</h4>
 
 ## Tech Stack 📋
