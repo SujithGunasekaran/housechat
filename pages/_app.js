@@ -22,19 +22,22 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+
         <title>HouseChat</title>
-        <meta name="title" content="HouseChat"></meta>
-        <meta name="description" content="Community Platform to find and contribute answer to the technical challenges" />
-        <meta name="keywords" content="How to learn js, How to learn React, How to learn C, How to learn C++, Java, Reactjs, Javascript" />
-        <meta name="author" content="Sujith Gunasekaran"></meta>
-        <meta property="og:type" content="HouseChat" />
-        <meta property="og:url" content="" />
-        <meta property="og:title" content="HouseChat - Free knowledge sharing platform" />
-        <meta property="og:description" content="Community Platform to find and contribute answer to the technical challenges..." />
-        <meta property="twitter:card" content="HouseChat" />
-        <meta property="twitter:url" content="" />
-        <meta property="twitter:title" content="HouseChat - Free knowledge sharing platform" />
-        <meta property="twitter:description" content="Community Platform to find and contribute answer to the technical challenges..." />
+        <meta name="title" content="HouseChat" />
+        <meta name="description" content="Free knowledge sharing platform" />
+        <meta name="keywords" content="HouseChat, housechat, Free knowledge sharing platform, How to learn js, How to learn React, How to learn C, How to learn C++, Java, Reactjs, Javascript" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://housechat.herokuapp.com/" />
+        <meta property="og:title" content="HouseChat" />
+        <meta property="og:description" content="Free knowledge sharing platform" />
+        <meta property="og:image" content="" />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://housechat.herokuapp.com/" />
+        <meta property="twitter:title" content="HouseChat" />
+        <meta property="twitter:description" content="Free knowledge sharing platform" />
+        <meta property="twitter:image" content="" />
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossOrigin="anonymous"></link>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossOrigin="anonymous"></script>

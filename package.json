@@ -5,6 +5,7 @@
   "author": {
     "name": "SujithGunasekaran"
   },
+  "license": "MIT",
   "scripts": {
     "test": "next dev",
     "build": "next build",
