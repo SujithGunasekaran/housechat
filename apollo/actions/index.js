@@ -47,7 +47,7 @@ export const useGetTopicsByCategory = (slug) => useQuery(GET_TOPICS_BY_CATEGORY,
 
 export const useGetTopicBySlug = (slug) => useQuery(GET_TOPIC_BY_SLUG, { variables: { slugName: slug } });
 
-export const useGetPostByTopic = (slug, pagination) => useQuery(GET_POST_BY_TOPIC, { variables: { slug, ...pagination }, fetchPolicy: 'cache-and-network' })
+export const useGetPostByTopic = (slug, pagination) => useQuery(GET_POST_BY_TOPIC, { variables: { slug, ...pagination } })
 
 export const useCreateTopic = () => useMutation(CREATE_TOPIC, {
     update(cache, { data: { createTopic } }) {

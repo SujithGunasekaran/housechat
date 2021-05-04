@@ -42,7 +42,7 @@ function PostPage() {
 
     const [showReplyPanel, setShowReplyPanel] = useState(false);
     const [replyTo, setReplyTo] = useState(null);
-    const [pagination, setPagination] = useState({ pageNumber: 5, pageSize: 5 });
+    const [pagination, setPagination] = useState({ pageNumber: 0, pageSize: 5 });
     const [dataLoading, setDataLoading] = useState(false);
     const [replyError, setReplyError] = useState(null);
     const [commentValue, setCommentValue] = useState({});
@@ -114,9 +114,7 @@ function PostPage() {
             // updateQuery will have two parameter one is prevData, updatedData
             // Eg. in prevData 10 array list we are creting new post now updatedData will have 11 array list 
 
-            let lastPage = Math.ceil(postData.count / pagination.pageSize);
-            if (postData.count === 0) lastPage = 1;
-            lastPage * pagination.pageSize >= pagination.pageNumber && await fetchMore({
+            pagination.pageNumber >= postData.count && await fetchMore({
                 variables: { slug: postSlug, pageSize: pagination.pageSize, skipLength: postData.posts.length },
                 updateQuery: (previousResult, { fetchMoreResult }) => {
                     return {
