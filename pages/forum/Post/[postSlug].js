@@ -137,9 +137,9 @@ function PostPage() {
         }
         catch (err) {
             const parseError = JSON.parse(JSON.stringify(err));
-            if (Object.keys(parseError).length > 0 && parseError?.message.includes('Please Enter')) setReplyError(pareseError.message);
+            if (Object.keys(parseError).length > 0 && parseError?.message.includes('Please Enter')) setReplyError(parseError.message);
             if (!formField.content) setReplyError('Please Enter Content');
-            if (Object.keys(parseError).length > 0 && parseError?.message.includes('Something')) setReplyError(pareseError.message);
+            if (Object.keys(parseError).length > 0 && parseError?.message.includes('Something')) setReplyError(parseError.message);
         }
     }
 
