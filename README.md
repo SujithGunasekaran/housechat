@@ -1,4 +1,5 @@
 <h1>HouseChat</h1>
+<a href="https://housechat.herokuapp.com/">HouseChat.herokuapp.com</a>
 <h3> Knowledge Sharing Platform 🚀 Explore technical topics </h3>
 <h4>community platform to find and contribute answers to technical challenges</h4>
 
