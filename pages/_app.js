@@ -1,10 +1,8 @@
 import '../styles/globals.css';
 import '../styles/header.css';
 import '../styles/hero.css';
-import '../styles/portfolio.css';
 import '../styles/forumCategories.css';
 import '../styles/topicPost.css';
-import '../styles/cv.css';
 import '../styles/form.css';
 import '../styles/loader.css';
 import '../styles/replyBox.css';
