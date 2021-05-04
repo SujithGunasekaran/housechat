@@ -7,6 +7,7 @@ export default withApollo(
         return new ApolloClient({
             // uri: 'http://localhost:3000/graphql',
             ssrMode: true,
+            credentials: "include",
             link: createHttpLink({
                 uri: process.env.BASE_URL,
                 headers: {
