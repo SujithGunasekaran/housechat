@@ -106,29 +106,6 @@ function CategoryTopics() {
                             </tbody>
                         </table>
                     </div>
-                    {/* <div className="forum_categories_table_container">
-                            <table className="table table-striped">
-                                <thead className="forum_categories_table_heading">
-                                    <tr>
-                                        <th scope="col">Topic</th>
-                                        <th scope="col">Category</th>
-                                        <th scope="col">Author</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        forumTopics &&
-                                            !topicError ? forumTopics.map((topicInfo) => (
-                                                <tr className="forum_categories_table_body" key={topicInfo._id} onClick={() => goToTopicPage(topicInfo.slug)}>
-                                                    <td>{topicInfo.title}</td>
-                                                    <td>{topicInfo.forumCategory.title}</td>
-                                                    <td>{topicInfo.user.username}</td>
-                                                </tr>
-                                            )) : <div></div>
-                                    }
-                                </tbody>
-                            </table>
-                        </div> */}
                 </div>
             </div>
             <div className={`reply_box_container ${showReplyPanel ? 'show' : ''}`}>

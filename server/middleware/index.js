@@ -21,7 +21,7 @@ exports.initMiddleware = (server, mongodb) => {
         server.set('trust proxy', 1);
         sessionInfo.cookie.secure = true;
         sessionInfo.cookie.httpOnly = true;
-        sessionInfo.cookie.sameSite = true;
+        sessionInfo.cookie.sameSite = 'none';
         sessionInfo.cookie.domain = process.env.DOMAIN; // yourDomainName.com
     }
 

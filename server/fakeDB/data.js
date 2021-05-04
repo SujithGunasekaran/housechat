@@ -61,41 +61,6 @@ const data = {
             userFollowingInfo: userOneId
         }
     ],
-    Portfolios: [
-        {
-            title: 'Job in Netcentric',
-            company: 'Netcentric',
-            companyWebsite: 'https://www.google.com',
-            location: 'Spain, Barcelona',
-            jobTitle: 'Engineer',
-            description: 'Doing something, programing....',
-            startDate: '01/01/2014',
-            endDate: '01/01/2016',
-            user: userOneId
-        },
-        {
-            title: 'Job in Siemens',
-            company: 'Siemens',
-            companyWebsite: 'https://www.google.com',
-            location: 'Slovakia, Kosice',
-            jobTitle: 'Software Engineer',
-            description: 'Responsible for parsing framework for JSON medical data.',
-            startDate: '01/01/2011',
-            endDate: '01/01/2013',
-            user: userOneId
-        },
-        {
-            title: 'Work in USA',
-            company: 'WhoKnows',
-            companyWebsite: 'https://www.google.com',
-            location: 'USA, Montana',
-            jobTitle: 'Full Stack Developer',
-            description: 'Building Responsive and Configurable Website',
-            startDate: '01/01/2010',
-            endDate: '01/01/2011',
-            user: userOneId
-        }
-    ],
     forumCategories: [
         {
             _id: forumOneId,

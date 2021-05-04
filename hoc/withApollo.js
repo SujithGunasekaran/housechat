@@ -1,19 +1,19 @@
 import withApollo from 'next-with-apollo';
-import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import moment from 'moment';
 
 export default withApollo(
     ({ initialState, headers }) => {
         return new ApolloClient({
-            // uri: 'http://localhost:3000/graphql',
-            ssrMode: true,
-            link: createHttpLink({
-                uri: process.env.BASE_URL,
-                credentials: 'same-origin',
-                headers: {
-                    ...headers
-                }
-            }),
+            request: (operation) => {
+                operation.setContext({
+                    fetchOptions: {
+                        credentials: "include",
+                    },
+                    headers,
+                });
+            },
+            uri: process.env.BASE_URL,
             cache: new InMemoryCache().restore(initialState || {}),
             resolvers: {
                 Portfolio: {

@@ -6,7 +6,6 @@ const { ApolloServer, gql } = require('apollo-server-express');
 
 // Graphql Model
 
-const PortfolioModel = require('./model/Gql_PortfolioModel');
 const UserModel = require('./model/Gql_UserModel');
 const ForumCategory = require('./model/Gql_ForumCategory');
 const ForumTopics = require('./model/Gql_ForumTopics');
@@ -15,13 +14,11 @@ const UserFollowingModel = require('./model/Gql_UserFollowingModel');
 
 // Types
 
-const { portfolioTypes } = require('./Types/PortfolioTypes');
 const { userTypes } = require('./Types/UserTypes');
 const { forumTypes } = require('./Types/ForumCategory');
 
 // Resolver
 
-const { portfolioQuerys, portfolioMutations } = require('./Resolver/PortfolioResolver');
 const { userMutations, userQueries } = require('./Resolver/UserResolver');
 const { forumCategoryQueries, forumCategoryMutations, hightlightQueries } = require('./Resolver/ForumCategory');
 
@@ -35,14 +32,10 @@ exports.createApolloServer = () => {
 
     const typeDefs = gql(`
 
-        ${portfolioTypes}
         ${userTypes}
         ${forumTypes}
 
         type Query{
-            portfolio(id : ID) : Portfolio,
-            portfolios : [Portfolio]
-            userPortfolio : [Portfolio]
 
             user : User
             getUserFollowing(userId : ID) : followingList
@@ -59,9 +52,6 @@ exports.createApolloServer = () => {
         }
 
         type Mutation{
-            createPortfolio(input : portfolioInput) : Portfolio,
-            updatePortfolio(id : ID, input : portfolioInput) : Portfolio,
-            deletePortfolio(id : ID) : ID
 
             createTopic(input : TopicInput) : Topics
 
@@ -82,13 +72,11 @@ exports.createApolloServer = () => {
 
     const resolvers = {
         Query: {
-            ...portfolioQuerys,
             ...userQueries,
             ...forumCategoryQueries,
             ...hightlightQueries
         },
         Mutation: {
-            ...portfolioMutations,
             ...userMutations,
             ...forumCategoryMutations
         }
@@ -101,7 +89,6 @@ exports.createApolloServer = () => {
         context: ({ req }) => ({
             ...buildAuthContext(req),
             models: {
-                PortfolioModel: new PortfolioModel(mongoose.model('portfolio'), req.user),
                 UserModel: new UserModel(mongoose.model('User'), req.user),
                 UserFollowingModel: new UserFollowingModel(mongoose.model('userFollowings'), req.user),
                 ForumCategory: new ForumCategory(mongoose.model('forumCategories')),

@@ -1,5 +1,4 @@
-const { Portfolios, Users, forumCategories, topics, posts, UserFollowing } = require('./data');
-const Portfolio = require('../database/model/DB_portfolioModel');
+const { Users, forumCategories, topics, posts, UserFollowing } = require('./data');
 const User = require('../database/model/DB_userModel');
 const ForumCategory = require('../database/model/DB_forumCategory');
 const Topics = require('../database/model/DB_topic');
@@ -10,7 +9,6 @@ class fakeDB {
 
     async cleanData() {
         await User.deleteMany({});
-        await Portfolio.deleteMany({});
         await ForumCategory.deleteMany({});
         await Topics.deleteMany({});
         await Post.deleteMany({});
@@ -19,7 +17,6 @@ class fakeDB {
 
     async addData() {
         await User.create(Users);
-        await Portfolio.create(Portfolios);
         await ForumCategory.create(forumCategories);
         await Topics.create(topics);
         await Post.create(posts);
