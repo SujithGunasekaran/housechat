@@ -16,12 +16,12 @@ app.prepare().then(() => {
 
     const server = express();
 
-    let corsOptions = {
-        origin: process.env.DOMAIN,
-        credentials: true
-    };
+    // let corsOptions = {
+    //     origin: process.env.DOMAIN,
+    //     credentials: true
+    // };
 
-    server.use(cors(corsOptions));
+    // server.use(cors(corsOptions));
 
     // Initializing middleware 
 
@@ -30,7 +30,10 @@ app.prepare().then(() => {
     // check out -> grapql index.js for ( creating apollo server ) 
 
     const apolloServer = require('./graphql').createApolloServer();
-    apolloServer.applyMiddleware({ app: server });
+    apolloServer.applyMiddleware({
+        app: server,
+        cors: { credentials: true, origin: `${process.env.DOMAIN}` }
+    });
 
     server.all('*', (req, res) => {
         return handle(req, res);
