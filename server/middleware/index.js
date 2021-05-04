@@ -22,7 +22,7 @@ exports.initMiddleware = (server, mongodb) => {
         sessionInfo.cookie.secure = true;
         sessionInfo.cookie.httpOnly = true;
         sessionInfo.cookie.sameSite = 'none';
-        // sessionInfo.cookie.domain = process.env.DOMAIN; // yourDomainName.com
+        sessionInfo.cookie.domain = process.env.DOMAIN; // yourDomainName.com
     }
 
     server.use(session(sessionInfo));
