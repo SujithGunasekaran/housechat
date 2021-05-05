@@ -44,8 +44,7 @@ function ReplyBox(props) {
                 </div>
                 <div className="reply_box_btn_container">
                     {
-                        loading ? <div className="reply_box_reply_btn_loading">{btnDisplayContent === 'Reply' ? 'Replying...' : btnDisplayContent.includes('Create') ? 'Creating...' : 'Commenting...'}</div>
-                            : <button className="reply_box_reply_btn">{btnDisplayContent}</button>
+                        <button disabled={loading ? true : false} className={loading ? 'reply_box_reply_btn_loading' : 'reply_box_reply_btn'}>{loading ? (btnDisplayContent === 'Reply' ? 'Replying...' : btnDisplayContent.includes('Create') ? 'Creating...' : 'Commenting...') : btnDisplayContent}</button>
                     }
                     <div className="reply_box_cancel_btn" onClick={onClose}>Cancel</div>
                     {
