@@ -31,12 +31,12 @@ function Home() {
           {
             loading &&
             <div className="row">
-              <div className="col-md-8 mx-auto">
-                <CardSkeleton
-                  cardCount={3}
-                  lineCount={2}
-                />
-              </div>
+              <CardSkeleton
+                cardCount={3}
+                columnSize={8}
+                isCircleNeeded={true}
+                lineCount={2}
+              />
             </div>
           }
           {

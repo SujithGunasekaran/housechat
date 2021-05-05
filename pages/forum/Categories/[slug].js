@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import BaseLayout from '../../../layouts/BaseLayout';
 import { useGetTopicsByCategory, useGetUser, useCreateTopic } from '../../../apollo/actions';
 import { useRouter } from 'next/router';
 import withApollo from '../../../hoc/withApollo';
 import { getDataFromTree } from '@apollo/client/react/ssr';
 import ReplyBox from '../../../Components/ReplyBox';
+import TableSkeleton from '../../../Components/SkeletonLoading/TableSkeleton';
 
 const useInitialData = () => {
 
@@ -12,7 +12,7 @@ const useInitialData = () => {
     const { slug } = router.query;
 
     // Queries
-    const { data: topicData, error: topicError } = useGetTopicsByCategory(slug);
+    const { data: topicData, error: topicError, loading: topicLoading } = useGetTopicsByCategory(slug);
     const { data: userData } = useGetUser();
 
     // Query response
@@ -22,7 +22,7 @@ const useInitialData = () => {
     // mutations
     const [createTopic, { loading: createTopicLoading }] = useCreateTopic();
 
-    return { forumTopics, topicError, user, slug, router, createTopic, createTopicLoading }
+    return { forumTopics, topicError, user, slug, topicLoading, router, createTopic, createTopicLoading }
 }
 
 function CategoryTopics() {
@@ -32,7 +32,7 @@ function CategoryTopics() {
 
     const disposeId = useRef(null);
 
-    const { forumTopics, topicError, user, slug, router, createTopic, createTopicLoading } = useInitialData();
+    const { forumTopics, topicError, user, slug, topicLoading, router, createTopic, createTopicLoading } = useInitialData();
 
     const handleReplyFormSubmit = (e, formData, resetFormField) => {
         e.preventDefault();
@@ -68,7 +68,6 @@ function CategoryTopics() {
     }, [replyError])
 
     return (
-        // <BaseLayout>
         <div>
             <div className="forum_categories_main_container">
                 <div className="container-fluid">
@@ -93,6 +92,13 @@ function CategoryTopics() {
                             </thead>
                             <tbody className="forum_categories_table_body">
                                 {
+                                    topicLoading &&
+                                    <TableSkeleton
+                                        rowCount={3}
+                                        cellCount={4}
+                                    />
+                                }
+                                {
                                     forumTopics &&
                                         !topicError ? forumTopics.map((topicInfo, index) => (
                                             <tr key={topicInfo._id} onClick={() => goToTopicPage(topicInfo.slug)}>
@@ -102,6 +108,10 @@ function CategoryTopics() {
                                                 <td>{topicInfo.user.username}</td>
                                             </tr>
                                         )) : <div></div>
+                                }
+                                {
+                                    !topicLoading && forumTopics.length === 0 &&
+                                    <div>No post has been created...</div>
                                 }
                             </tbody>
                         </table>
@@ -120,7 +130,6 @@ function CategoryTopics() {
             </div>
             {showReplyPanel && <div className="header_page_mobile_overlay" onClick={() => setShowReplyPanel(false)}></div>}
         </div>
-        // </BaseLayout>
     )
 }
 

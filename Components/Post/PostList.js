@@ -11,12 +11,12 @@ function PostList(props) {
             {
                 topicLoading &&
                 <div className="row">
-                    <div className="col-md-10 mx-auto">
-                        <CardSkeleton
-                            cardCount={1}
-                            lineCount={2}
-                        />
-                    </div>
+                    <CardSkeleton
+                        isCircleNeeded={true}
+                        columnSize={10}
+                        cardCount={1}
+                        lineCount={2}
+                    />
                 </div>
             }
             {
@@ -44,12 +44,12 @@ function PostList(props) {
             {
                 postLoading &&
                 <div className="row">
-                    <div className="col-md-10 mx-auto">
-                        <CardSkeleton
-                            cardCount={2}
-                            lineCount={2}
-                        />
-                    </div>
+                    <CardSkeleton
+                        columnSize={10}
+                        isCircleNeeded={true}
+                        cardCount={2}
+                        lineCount={2}
+                    />
                 </div>
             }
             {

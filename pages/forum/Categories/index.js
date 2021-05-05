@@ -1,15 +1,14 @@
 import ForumCategoriesComponent from '../../../Components/ForumCaterogiesComponent';
-import BaseLayout from '../../../layouts/BaseLayout';
 import { useGetForumCategories } from '../../../apollo/actions';
 import withApollo from '../../../hoc/withApollo';
 import { getDataFromTree } from '@apollo/client/react/ssr';
+import CardSkeleton from '../../../Components/SkeletonLoading/CardSkeleton';
 
 function ForumCategories() {
 
-    const { data } = useGetForumCategories();
+    const { data, loading, error } = useGetForumCategories();
 
     return (
-        // <BaseLayout>
         <div>
             <div className="forum_categories_main_container">
                 <div className="container-fluid">
@@ -21,6 +20,15 @@ function ForumCategories() {
                 </div>
                 <div className="container-fluid">
                     <div className="row">
+                        {
+                            loading &&
+                            <CardSkeleton
+                                columnSize={4}
+                                isCircleNeeded={false}
+                                cardCount={3}
+                                lineCount={2}
+                            />
+                        }
                         {
                             data && data.forumCategories &&
                             data.forumCategories.map((forumCategoryInfo) => (
@@ -35,7 +43,6 @@ function ForumCategories() {
                 </div>
             </div>
         </div>
-        // </BaseLayout>
     )
 }
 
