@@ -100,7 +100,6 @@
     color : var(--dark-theme-text-dark-white);
     letter-spacing: 0.040rem;
     background-color: var(--blue-600);
-    transition: 0.5s all ease-in-out;
 }
 .reply_box_reply_btn_loading
 {
@@ -113,11 +112,11 @@
     color : var(--black-950);
     letter-spacing: 0.040rem;
     background-color: var(--blue-200);
-    transition: 0.5s all ease-in-out;
 }
 .reply_box_reply_btn:hover
 {
     cursor: pointer;
+    transition: 0.5s all ease-in-out;
     background-color: var(--blue-500);
 }
 .reply_box_reply_btn:focus

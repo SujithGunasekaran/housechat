@@ -205,7 +205,6 @@
     font-family: var(--inter-text);
     letter-spacing: 0.020rem;
     font-weight: 500;
-    transition: 0.5s all ease-in-out;
 }
 .topic_post_bottom_btn:focus
 {
@@ -213,6 +212,7 @@
 }
 .topic_post_bottom_btn:hover
 {
+    transition: 0.5s all ease-in-out;
     background-color: var(--blue-500);
 }
 
@@ -335,7 +335,8 @@
 
 .mui_initial_text .MUIRichTextEditor-placeHolder-10,
 .MUIRichTextEditor-placeHolder-9, .MUIRichTextEditor-placeHolder-11,
-.MUIRichTextEditor-placeHolder-12
+.MUIRichTextEditor-placeHolder-12,
+.jss10
 {
     position: relative !important;
     padding : 10px 15px !important;
@@ -352,23 +353,39 @@
     display: none;
 }
 
-.mui_code .CodeBlock-root-15,
+/* .mui_code .CodeBlock-root-15,
 .CodeBlock-root-16,.CodeBlock-root-17,
-.CodeBlock-root-18, .CodeBlock-root-19
+.CodeBlock-root-18, .CodeBlock-root-19,
+.jss17
+{
+    background-color: var(--black-700) !important;
+    color : var(--black-100) !important;
+    border-radius: 8px !important;
+} */
+
+.mui_code .DraftEditor-editorContainer pre
 {
     background-color: var(--black-700) !important;
     color : var(--black-100) !important;
     border-radius: 8px !important;
 }
 
-.mui_block_quote .Blockquote-root-15,
+.mui_block_quote .DraftEditor-editorContainer blockquote
+{
+    padding : 0px 10px !important;
+    color : var(--black-300) !important;
+    border-left: 0px solid var(--black-300) !important;
+}
+
+/* .mui_block_quote .Blockquote-root-15,
 .Blockquote-root-16, .Blockquote-root-17,
-.Blockquote-root-18, .Blockquote-root-19
+.Blockquote-root-18, .Blockquote-root-19,
+.jss18
 {
     padding : 0px 10px !important;
     color : var(--black-300) !important;
     border-left: 4px solid var(--black-300) !important;
-}
+} */
 
 @media(max-width:750px)
 {
