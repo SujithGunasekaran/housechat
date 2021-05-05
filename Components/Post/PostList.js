@@ -32,10 +32,23 @@ function PostList(props) {
                         </div>
                     </div>
                     {
-                        postData.length > 0 &&
+                        (postData.length > 0 || postCount === 0) &&
                         <div className="row">
                             <div className="col-md-10 mx-auto">
                                 <div className="topic_post_link_line"></div>
+                            </div>
+                        </div>
+                    }
+                    {
+                        postCount === 0 &&
+                        <div className="row">
+                            <div className="col-md-10 mx-auto">
+                                <div className="mui_root mui_container mui_btn mui_button_hide mui_text mui_initial_text mui_code mui_block_quote">
+                                    <RichText
+                                        setCommentValue={setCommentValue}
+                                        handleRichText={handleRichText}
+                                    />
+                                </div>
                             </div>
                         </div>
                     }
