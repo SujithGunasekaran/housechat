@@ -353,22 +353,17 @@
     display: none;
 }
 
-/* .mui_code .CodeBlock-root-15,
+.mui_code .CodeBlock-root-15,
 .CodeBlock-root-16,.CodeBlock-root-17,
 .CodeBlock-root-18, .CodeBlock-root-19,
-.jss17
-{
-    background-color: var(--black-700) !important;
-    color : var(--black-100) !important;
-    border-radius: 8px !important;
-} */
-
-.mui_code .DraftEditor-editorContainer pre
+.jss16, .jss17, .jss18, .jss19, .jss20, .jss21,
+.jss22, .jss23, .jss24
 {
     background-color: var(--black-700) !important;
     color : var(--black-100) !important;
     border-radius: 8px !important;
 }
+
 
 .mui_block_quote .DraftEditor-editorContainer blockquote
 {

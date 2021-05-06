@@ -64,7 +64,6 @@ function PostPage() {
         })
     }, [replyError])
 
-
     const scrollToBottom = () => {
         pageEnd.current.scrollIntoView({ behavior: 'smooth' });
     }
