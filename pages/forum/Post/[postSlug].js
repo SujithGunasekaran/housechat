@@ -64,6 +64,31 @@ function PostPage() {
         })
     }, [replyError])
 
+    useEffect(() => {
+        let codeElement = document.querySelectorAll('pre');
+        let richContainer = document.querySelector('#mui-rte-container');
+        if (richContainer) {
+            let childELement = richContainer.children;
+            if (childELement && childELement.length > 0) {
+                for (let i = 0; i < childELement.length; i++) {
+                    if (childELement[i].innerHTML.includes('Add')) {
+                        childELement[i].style.padding = "10px 15px";
+                    }
+                }
+            }
+        }
+        if (codeElement.length > 0) {
+            codeElement.forEach((element) => {
+                let parentElement = element.closest('.DraftEditor-root');
+                if (parentElement) {
+                    element.parentElement.style.backgroundColor = `var(--black-700)`;
+                    element.parentElement.style.color = `var(--black-100)`;
+                    element.style.color = "var(--black-100)";
+                }
+            })
+        }
+    })
+
     const scrollToBottom = () => {
         pageEnd.current.scrollIntoView({ behavior: 'smooth' });
     }
