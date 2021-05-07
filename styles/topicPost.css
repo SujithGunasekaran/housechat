@@ -305,6 +305,7 @@
     background-color: var(--black-800);
     border: 1px solid var(--black-700);
     margin : 0px 0px;
+    padding-bottom: 20px;
     border-radius: 7px !important;
     box-shadow: 0 10px 10px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%) !important;
 }
@@ -319,7 +320,12 @@
     color: var(--black-300);
 }
 
-.mui_active_btn .MuiIconButton_colorPrimary
+.mui_btn .MuiIconButton-root:hover
+{
+    color: var(--blue-400);
+}
+
+.mui_active_btn .MuiIconButton-colorPrimary
 {
     color : var(--blue-400);
 }
@@ -335,8 +341,7 @@
 
 .mui_initial_text .MUIRichTextEditor-placeHolder-10,
 .MUIRichTextEditor-placeHolder-9, .MUIRichTextEditor-placeHolder-11,
-.MUIRichTextEditor-placeHolder-12,
-.jss10
+.MUIRichTextEditor-placeHolder-12
 {
     position: relative !important;
     padding : 10px 15px !important;
@@ -353,17 +358,10 @@
     display: none;
 }
 
-.mui_code .CodeBlock-root-15,
-.CodeBlock-root-16,.CodeBlock-root-17,
-.CodeBlock-root-18, .CodeBlock-root-19,
-.jss16, .jss17, .jss18, .jss19, .jss20, .jss21,
-.jss22, .jss23, .jss24
+.mui_code pre
 {
-    background-color: var(--black-700) !important;
-    color : var(--black-100) !important;
-    border-radius: 8px !important;
+    color : var(--black-900);
 }
-
 
 .mui_block_quote .DraftEditor-editorContainer blockquote
 {
@@ -371,16 +369,6 @@
     color : var(--black-300) !important;
     border-left: 0px solid var(--black-300) !important;
 }
-
-/* .mui_block_quote .Blockquote-root-15,
-.Blockquote-root-16, .Blockquote-root-17,
-.Blockquote-root-18, .Blockquote-root-19,
-.jss18
-{
-    padding : 0px 10px !important;
-    color : var(--black-300) !important;
-    border-left: 4px solid var(--black-300) !important;
-} */
 
 @media(max-width:750px)
 {
