@@ -1,5 +1,6 @@
 
 const BaseModel = require('./Gql_BaseMode');
+const bcrypt = require('bcryptjs');
 class UserModel extends BaseModel {
 
     getAuthUser(context) {
@@ -72,6 +73,25 @@ class UserModel extends BaseModel {
             if (emptyDataErrorMessage) throw new Error(`Please Enter ${emptyDataErrorMessage.join(', ')}`)
             return null;
         }
+    }
+
+    async forgotUser(data) {
+        const userData = await this.Model.findOne({ email: data.email });
+        if (userData) return true;
+        return false;
+    }
+
+    async _encryptUserPassword(userPassword) {
+        const salt = await bcrypt.genSalt(10);
+        const password = await bcrypt.hash(userPassword, salt);
+        return password;
+    }
+
+    async resetPassword(data) {
+        const encryptedPassword = await this._encryptUserPassword(data.password);
+        const userData = await this.Model.findOneAndUpdate({ email: data.email }, { $set: { password: encryptedPassword } }, { new: true, runValidators: true });
+        if (userData) return 'Password updated successfully';
+        return Error('Password not updated, Please try again later');
     }
 }
 
