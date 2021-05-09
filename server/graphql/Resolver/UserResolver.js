@@ -33,5 +33,11 @@ exports.userMutations = {
     },
     deleteUserFollowing: (root, { input }, context) => {
         return context.models.UserFollowingModel.deleteUserFollowing(input);
+    },
+    forgotUser: (root, { input }, context) => {
+        return context.models.UserModel.forgotUser(input);
+    },
+    forgotPassword: (root, { input }, context) => {
+        return context.models.UserModel.resetPassword(input);
     }
 }
