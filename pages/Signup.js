@@ -3,7 +3,6 @@ import useForm from '../Hooks/useForm';
 import withApollo from '../hoc/withApollo';
 import { useSignup } from '../apollo/actions';
 import RedirectComponent from '../Components/Redirect';
-import BaseLayout from '../layouts/BaseLayout';
 
 function Signup() {
 
@@ -34,17 +33,17 @@ function Signup() {
     if (formSuccess) return <RedirectComponent path="/Login" query={{ message: "LOGGED_IN", type: 'Success' }} />
 
     return (
-        // <BaseLayout>
         <div className="form_main_container">
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-4 mx-auto">
-                        {/* <div className="form_signup_heading">Join HouseChat</div> */}
+                        {
+                            formError ? <div className="form_error">{formError}</div> : null
+                        }
                         <div className="form_container">
                             <div className="form_heading">Create Account</div>
                             <SignupForm
                                 formField={formField}
-                                formError={formError}
                                 handleInputFieldChange={handleInputFieldChange}
                                 onFormSubmit={handleFormSubmit}
                                 loading={loading}
@@ -54,7 +53,6 @@ function Signup() {
                 </div>
             </div>
         </div>
-        // </BaseLayout>
     )
 }
 

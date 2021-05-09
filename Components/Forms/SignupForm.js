@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const SignupForm = (props) => {
 
-    const { formField, handleInputFieldChange, onFormSubmit, formError, loading } = props;
+    const { formField, handleInputFieldChange, onFormSubmit, loading } = props;
 
     return (
         <form onSubmit={onFormSubmit}>
@@ -45,9 +45,6 @@ const SignupForm = (props) => {
                 onChange={handleInputFieldChange}
             />
             <button disabled={loading ? true : false} className={loading ? 'form_disable_btn' : 'form_btn'}>{loading ? 'Creating...' : 'Create Account'}</button>
-            {
-                formError ? <div className="form_error">{formError}</div> : null
-            }
             <div className="form_having_account">
                 Already having Account ?
                 <Link href='/Login'>Signin</Link>
