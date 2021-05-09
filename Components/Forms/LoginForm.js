@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const LoginForm = (props) => {
 
-    const { formField, formError, formSuccess, handleInputFieldChange, handleLoginFormSubmit, loading } = props;
+    const { formField, handleInputFieldChange, handleLoginFormSubmit, loading } = props;
 
     return (
         <form onSubmit={handleLoginFormSubmit}>
@@ -23,15 +23,9 @@ const LoginForm = (props) => {
                 value={formField.password}
                 onChange={handleInputFieldChange}
             />
-            <div className="form_forgot_password">Forgot Password ?</div>
+            <div className="form_forgot_password"><Link href="/ForgotPassword">Forgot Password ?</Link></div>
             {
                 <button disabled={loading ? true : false} className={loading ? "form_disable_btn" : "form_btn"}>{loading ? 'Signing in...' : 'Signin'}</button>
-            }
-            {
-                formError ? <div className="form_error">{formError}</div> : null
-            }
-            {
-                formSuccess && <div className="form_success">{formSuccess}</div>
             }
             <div className="form_having_account">
                 New to HouseChat ?

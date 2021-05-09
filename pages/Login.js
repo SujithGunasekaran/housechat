@@ -72,14 +72,18 @@ function Login() {
                         {
                             type === 'Error' && <div className="form_error">{messages[type][message]}</div>
                         }
+                        {
+                            formError ? <div className="form_error">{formError}</div> : null
+                        }
+                        {
+                            formSuccess && <div className="form_success">{formSuccess}</div>
+                        }
                         <div className="form_container">
                             <div className="form_heading">Welcome</div>
                             <LoginForm
                                 formField={formField}
                                 handleInputFieldChange={handleInputFieldChange}
                                 handleLoginFormSubmit={handleLoginFormSubmit}
-                                formSuccess={formSuccess}
-                                formError={formError}
                                 loading={loading}
                             />
                         </div>
