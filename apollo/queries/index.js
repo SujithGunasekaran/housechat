@@ -50,6 +50,24 @@ export const SIGN_OUT = gql`
     }
 `;
 
+export const FORGOT_USER = gql`
+    mutation ForgotUser($email : String) {
+        forgotUser(input : {
+            email : $email
+        })
+    }
+`;
+
+export const FORGOT_USER_PASSWORD = gql`
+    mutation ForgotUserPassword($email : String!, $password : String!) {
+        forgotPassword(input : {
+            email : $email
+            password : $password
+        })
+    }
+`
+
+
 
 /* forum category */
 
