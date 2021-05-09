@@ -96,4 +96,13 @@ exports.userTypes = `
         userFollowingInfo : ID
     } 
 
+    input forgotUserInput {
+        email : String
+    }
+
+    input forgotPasswordInput {
+        email : String!,
+        password : String!
+    }
+
 `
