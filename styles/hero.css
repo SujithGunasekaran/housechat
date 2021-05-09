@@ -24,7 +24,7 @@
     color: var(--black-400);
     font-family: var(--inter-text);
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 2.5rem;
     letter-spacing: 0.060rem;
 }
@@ -52,7 +52,7 @@
     color: var(--dark-theme-text-white);
     font-family: var(--inter-text);
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 35px;
     letter-spacing: 0.030rem;
 }
@@ -134,8 +134,8 @@
     padding : 2px 12px;
     font-size: 0.700rem;
     font-family: var(--inter-text);
-    letter-spacing: 0.020rem;
-    font-weight: 500;
+    letter-spacing: 0.040rem;
+    font-weight: 400;
     color: var(--black-500);
 }
 .hero_topic_content
@@ -143,8 +143,8 @@
     padding : 0px 14px 15px 13px;
     font-size: 0.890rem;
     font-family: var(--inter-text);
-    letter-spacing: 0.020rem;
-    font-weight: 500;
+    letter-spacing: 0.040rem;
+    font-weight: 400;
     line-height: 25px;
     color: var(--black-400);
 }
@@ -179,7 +179,7 @@
     font-size: 1rem;
     font-family: 'Inter', sans-serif;
     letter-spacing: 0.040rem;
-    font-weight: 500;
+    font-weight: 400;
     letter-spacing: 0.040rem;
     color: var(--black-300);
 }

@@ -22,6 +22,10 @@
     font-weight: 600;
     letter-spacing: 0.040rem;
 }
+.form_text_medium
+{
+    font-size: 1.3rem !important;
+}
 .form_heading_line
 {
     margin: 5px 2px;
@@ -167,6 +171,15 @@
     font-weight: 500;
     letter-spacing: 0.035rem;
 }
+.form_forgot_password a
+{
+    text-decoration: none;
+    color : var(--blue--500);
+}
+.form_forgot_password a:hover
+{
+    text-decoration: none;
+}
 .form_btn
 {
     border : none;
@@ -231,20 +244,22 @@
 .form_error
 {
     margin : 5px 0px;
-    background-color: var(--red-600);
-    color : var(--dark-theme-text-dark-white);
+    background-color: var(--red-100);
+    color : var(--red-700);
     padding : 10px 15px;
     font-family: var(--inter-text);
-    font-size: 0.840rem;
+    font-size: 0.880rem;
     border-radius: 6px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.040rem;
+    border: 1px solid var(--red-600);
     transition: 0.5s all ease-in-out;
 }
 .form_success
 {
     margin : 5px 0px;
-    background-color: var(--green-200);
+    background-color: var(--green-100);
+    border: 1px solid var(--green-950);
     color : var(--green-950);
     padding : 10px 15px;
     font-family: var(--inter-text);
@@ -284,6 +299,68 @@
     font-weight: 500;
     letter-spacing: 0.040rem;
     cursor: pointer;
+}
+
+.forgot_btn_display
+{
+    margin : 10px 0px 0px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.forgot_back_btn::before
+{
+    content: '←';
+    padding-right: 4px;
+    opacity: 1;
+    transition: 0.4s all ease-in-out;
+}
+
+.forgot_back_btn
+{
+    color: var(--blue-500);
+    font-family: var(--inter-text);
+    font-size: 0.900rem;
+    font-weight: 500;
+    letter-spacing: 0.030rem;
+    cursor: pointer;
+    transition: 0.5s all ease-in-out;
+}
+.forgot_form_reset_hide
+{
+    margin-left: auto;
+    background-color: var(--blue-200);
+    color: var(--black-900);
+    border-radius: 30px;
+    border: none;
+    padding : 5px 15px;
+    font-family: var(--inter-text);
+    font-weight: 400;
+    font-size: .9rem;
+    letter-spacing: 0.040rem;
+}
+
+.forgot_form_reset_btn
+{
+    margin-left: auto;
+    border-radius: 30px;
+    border: none;
+    padding : 5px 15px;
+    background-color: var(--blue-600);
+    font-family: var(--inter-text);
+    font-weight: 400;
+    font-size: .9rem;
+    color : var(--black-100);
+    letter-spacing: 0.040rem;
+}
+.forgot_form_reset_btn:hover
+{
+    background-color: var(--blue-700);
+    transition: 0.5s all ease-in-out;
+}
+.forgot_form_reset_btn:focus
+{
+    outline: none;
 }
 
 @media(max-width:770px){
