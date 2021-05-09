@@ -16,7 +16,9 @@ import {
     GET_USER_FOLLOWER,
     DELETE_FOLLOWING_USER,
     FOLLOW_USER,
-    EDIT_USER_INFO
+    EDIT_USER_INFO,
+    FORGOT_USER,
+    FORGOT_USER_PASSWORD
 } from '../queries';
 
 
@@ -36,6 +38,10 @@ export const useSignout = () => useMutation(SIGN_OUT)
 export const useLazyGetUser = () => useLazyQuery(GET_USER)
 
 export const useGetUser = () => useQuery(GET_USER)
+
+export const useForgotUser = () => useMutation(FORGOT_USER);
+
+export const useResetPassword = () => useMutation(FORGOT_USER_PASSWORD);
 
 
 /* forum Category */
