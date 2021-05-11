@@ -109,12 +109,12 @@ function CategoryTopics() {
                                             </tr>
                                         )) : <div></div>
                                 }
-                                {
-                                    !topicLoading && forumTopics.length === 0 &&
-                                    <div>No post has been created...</div>
-                                }
                             </tbody>
                         </table>
+                        {
+                            !topicLoading && forumTopics.length === 0 &&
+                            <div className="forum_categories_empty_message">No topic has been created...</div>
+                        }
                     </div>
                 </div>
             </div>

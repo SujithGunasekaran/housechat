@@ -35,6 +35,10 @@ export default function Followers(props) {
                         </div>
                     ))
                 }
+                {
+                    !loading && userFollower && userFollower.length === 0 &&
+                    <div className="profile_empty_message">No one follows you..</div>
+                }
                 {error && <div></div>}
             </div>
         </div>
