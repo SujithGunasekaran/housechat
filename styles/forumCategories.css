@@ -148,6 +148,16 @@
     transition: 0.5s all ease-in-out !important;
 }
 
+.forum_categories_empty_message
+{
+    padding : 15px 0px;
+    text-align: center;
+    font-family: var(--inter-text);
+    color : var(--black-300);
+    font-size: 1rem;
+    letter-spacing: 0.040rem;
+}
+
 @media(max-width:770px){
     .forum_categories_main_container{ padding : 100px 0px }
     .forum_categories_card_container{ margin : 25px 0px; }

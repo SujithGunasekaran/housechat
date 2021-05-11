@@ -271,6 +271,15 @@
     font-size: 1.2rem;
     font-weight: 500;
 }
+.profile_empty_message
+{
+    padding : 15px 0px;
+    text-align: center;
+    font-family: var(--inter-text);
+    color : var(--black-300);
+    font-size: 1rem;
+    letter-spacing: 0.040rem;
+}
 
 @media(max-width:770px){
     .profile_card_avatar_background{
