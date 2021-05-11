@@ -38,3 +38,19 @@
      `npm run populateDB`
   
   5. Finally run `npm run dev` command. 
+
+
+## App Info
+
+<h3>Author</h3>
+
+<h4>Sujith Gunasekaran</h3>
+
+<h3>Version</h3>
+
+<h4>1.0.0</h4>
+
+<h3>License</h3>
+<h4>This project is licensed under the MIT License</h4>
+
+
