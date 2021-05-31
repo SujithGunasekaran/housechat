@@ -1,5 +1,5 @@
 
-<h1 align="Center"><a href="https://housechat.herokuapp.com/">HouseChat</a></h1>
+<h1 align="Center"><a href="https://forumhouse.herokuapp.com/">HouseChat</a></h1>
 <h3 align="Center"> Knowledge Sharing Platform 🚀 Explore technical topics </h3>
 <h4 align="Center">community platform to find and contribute answers to technical challenges</h4>
 
